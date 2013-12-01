@@ -60,72 +60,72 @@ class LibApplicationRouter extends KObject
      * 
      * @return void
      */ 
-	public function __construct($config = array()) 
+    public function __construct($config = array()) 
     {
-    	$config = new KConfig($config);
-    	
-		parent::__construct($config);
-		
-		$this->_enable_rewrite = $config->enable_rewrite;
-	    $this->_base_url       = $config->base_url;
-	    
-	    if ( is_string($this->_base_url) ) {
-	        $this->_base_url = $this->getService('koowa:http.url', array('url'=>$this->_base_url));    
-	    }
-	    
+        $config = new KConfig($config);
+        
+        parent::__construct($config);
+        
+        $this->_enable_rewrite = $config->enable_rewrite;
+        $this->_base_url       = $config->base_url;
+        
+        if ( is_string($this->_base_url) ) {
+            $this->_base_url = $this->getService('koowa:http.url', array('url'=>$this->_base_url));    
+        }
+        
         $this->_clonable_url   = $config->url;
-	}
-	
-	/**
-	 * Initializes the default configuration for the object
-	 *
-	 * Called from {@link __construct()} as a first step of object instantiation.
-	 *
-	 * @param KConfig $config An optional KConfig object with configuration options.
-	 *
-	 * @return void
-	 */
-	protected function _initialize(KConfig $config)
-	{    	
-	    if ( !$config->base_url )
-	    {
-	        $base = clone KRequest::base();
-	        
-	        foreach(array('host','scheme','port','user','pass') as $part) {
-	            $base->$part = KRequest::url()->$part;
-	        }
-	        
-	        $config->base_url = $base;	        	       
-	    }
-	    	    
-    	$config->append(array(
-    		'enable_rewrite' => false,    	    
-    		'url'	         => clone KService::get('koowa:http.url')	
-    	));
-  	
-	    parent::_initialize($config);
-	}	
-	
-	/**
-	 * Return if rewerite is enabled
-	 * 
-	 * @return boolean
-	 */
-	public function rewriteEnabled()
-	{
-	    return $this->_enable_rewrite;
-	}
+    }
+    
+    /**
+     * Initializes the default configuration for the object
+     *
+     * Called from {@link __construct()} as a first step of object instantiation.
+     *
+     * @param KConfig $config An optional KConfig object with configuration options.
+     *
+     * @return void
+     */
+    protected function _initialize(KConfig $config)
+    {
+        if ( !$config->base_url )
+        {
+            $base = clone KRequest::base();
+            
+            foreach(array('host','scheme','port','user','pass') as $part) {
+                $base->$part = KRequest::url()->$part;
+            }
+            
+            $config->base_url = $base;
+        }
+                
+        $config->append(array(
+            'enable_rewrite' => false,
+            'url'            => clone KService::get('koowa:http.url')
+        ));
+      
+        parent::_initialize($config);
+    }
+    
+    /**
+     * Return if rewerite is enabled
+     * 
+     * @return boolean
+     */
+    public function rewriteEnabled()
+    {
+        return $this->_enable_rewrite;
+    }
 
-	/**
-	 * Return the base url
-	 * 
-	 * @return KHttpUrl
-	 */
-	public function getBaseUrl()
-	{
-	    return $this->_base_url;
-	}
-	
+    /**
+     * Return the base url
+     * 
+     * @return KHttpUrl
+     */
+    public function getBaseUrl()
+    {
+        return $this->_base_url;
+    }
+    
     /**
      * Return the router mode
      * 
@@ -143,33 +143,33 @@ class LibApplicationRouter extends KObject
      * 
      * @return void
      */
-	public function parse($url)
-	{
+    public function parse($url)
+    {
         $this->_fixUrlForParsing($url);
-        $this->_parse($url);        
-	    return true;	       
-	}
-
-	/**
-	 * Parses a URL
-	 * 
-	 * @param KHttpUrl $url
-	 */
-	protected function _parse($url)
-	{
-	    $segments   = explode('/', trim($url->path,'/'));
-	    $segments   = array_filter($segments);
-	     
-	    if ( count($segments) )
-	    {
-	        $component  = array_shift($segments);
-	        $url->query = array_merge(array('option'=>'com_'.$component), $url->query);
-	        $component  = str_replace('com_','',$url->query['option']);
-	        $query      = $this->getComponentRouter($component)->parse($segments);
-	        $url->query = array_merge($url->query, array('option'=>'com_'.$component), $query);
-	    }
-	}
-	
+        $this->_parse($url);
+        return true;
+    }
+    
+    /**
+     * Parses a URL
+     * 
+     * @param KHttpUrl $url
+     */
+    protected function _parse($url)
+    {
+        $segments   = explode('/', trim($url->path,'/'));
+        $segments   = array_filter($segments);
+         
+        if ( count($segments) )
+        {
+            $component  = array_shift($segments);
+            $url->query = array_merge(array('option'=>'com_'.$component), $url->query);
+            $component  = str_replace('com_','',$url->query['option']);
+            $query      = $this->getComponentRouter($component)->parse($segments);
+            $url->query = array_merge($url->query, array('option'=>'com_'.$component), $query);
+        }
+    }
+    
     /**
      * Builds a SEF URL
      * 
@@ -178,33 +178,33 @@ class LibApplicationRouter extends KObject
      * 
      * @return void
      */
-	public function build($url = '', $fqr = false)
-	{	    
-	    if ( is_array($url) ) {
-	        $url = '?'.http_build_query($url, '', '&');    
-	    }
-	    
-	    $url   = (string) $url;
-	    //remove the index.php for urls that starts
-	    //with index.php? 	    
-	    if ( strpos($url, 'index.php?') === 0 ) {
-	        $url = substr($url, 9);
-	    }
-	    //add ? to the urls that starts with a query key=
-	    elseif ( preg_match('/^\w+=/', $url) ) {
-	        $url = '?'.$url;
-	    }
-	    
-	    $uri = clone $this->_clonable_url;	    	    
-	    $uri->setUrl($url);
-	    if ( $uri->scheme || $uri->path ) {
-	        return $uri;
-	    }
-	    
-	    $query = $uri->query;
+    public function build($url = '', $fqr = false)
+    {
+        if ( is_array($url) ) {
+            $url = '?'.http_build_query($url, '', '&');
+        }
         
-        if ( isset($query['format']) ) {            
-            $uri->format = $query['format'];                        
+        $url   = (string) $url;
+        //remove the index.php for urls that starts
+        //with index.php?
+        if ( strpos($url, 'index.php?') === 0 ) {
+            $url = substr($url, 9);
+        }
+        //add ? to the urls that starts with a query key=
+        elseif ( preg_match('%^[^?/]+=%', $url) ) {
+            $url = '?'.$url;
+        }
+        
+        $uri = clone $this->_clonable_url;
+        $uri->setUrl($url);
+        if ( $uri->scheme || $uri->path ) {
+            return $uri;
+        }
+        
+        $query = $uri->query;
+        
+        if ( isset($query['format']) ) {
+            $uri->format = $query['format'];
             unset($query['format']);
         }
         
@@ -218,12 +218,12 @@ class LibApplicationRouter extends KObject
             $router   = $this->getComponentRouter(str_replace('com_','', $query['option']));
             $parts    = pick($router->build($query), array());
         }
-                
+        
         if ( isset($query['option']) ) {
             array_unshift($parts, str_replace('com_','', $query['option']));
             unset($query['option']);
         }
-
+        
         $uri->query = $query;
         
         //only add index.php is it's rewrite SEF
@@ -238,11 +238,11 @@ class LibApplicationRouter extends KObject
             foreach(array('host','scheme','port','user','pass') as $part) 
             {
                 $uri->$part = $this->_base_url->$part; 
-            }            
-        }        
-        return $uri;        
-	}
-
+            }
+        }
+        return $uri;
+    }
+    
     /**
      * Returna component router
      * 
@@ -257,7 +257,7 @@ class LibApplicationRouter extends KObject
             $identifier = clone $this->getIdentifier();
             $identifier->path    = array();
             $identifier->package = str_replace('com_','',$component);
-            $identifier->name    = 'router';            
+            $identifier->name    = 'router';
             $this->_routers[$component] = $this->getService($identifier);
         }
         
@@ -286,6 +286,6 @@ class LibApplicationRouter extends KObject
         $url->format = $url->format ? $url->format : pick(KRequest::format(), 'html');
         if(!empty($url->format) ) {
             $url->query['format'] = $url->format;
-        }        
+        }
     }
 }
