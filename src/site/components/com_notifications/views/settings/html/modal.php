@@ -1,5 +1,4 @@
 <popup:header>
-    <a href="#" class="close">x</a>
     <h3><?= @text('COM-NOTIFICATIONS-ACTOR-EDIT-NOTIFICATION-SETTINGS') ?></h3>
 </popup:header>
 
@@ -27,5 +26,5 @@
 </form>    
 
 <popup:footer>
-    <a href="#" class="btn dismiss"><?= @text('LIB-AN-ACTION-DONE') ?></a>
+    <a href="#" class="btn dismiss stopEvent"><?= @text('LIB-AN-ACTION-DONE') ?></a>
 </popup:footer>
