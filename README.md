@@ -28,8 +28,7 @@ i.e. make [composer.json](https://github.com/anahitasocial/anahita-standard/blob
 }
 ```
 
-Changelog
-=========
+## Changelog
 
 The chengelog lists fixes and updates which are not present in the original Anahita.
 If a patch finds its way upstream or a similar one intorduced there, the log entry is
@@ -46,7 +45,7 @@ changes.
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
 * make *subject* for *notification* entity an optional field allowing anonymous notifications
-issued by the system d9a0d8ab4359a473bb6f6157f7c13b86ff575b67
+issued by the system kulbakin@d9a0d8ab4359a473bb6f6157f7c13b86ff575b67
 * fix url construction logic misbihaving in some contexts
 8591bca7f2546bbd22bcecff4a79d7a94d16d5f1 d6a61290ba3fb0974bc2bc342a254ad1005c8dc6
 * fix notification sending process not being able to work when called from under *admin*
