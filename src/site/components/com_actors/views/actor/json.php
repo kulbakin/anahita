@@ -47,8 +47,6 @@ class ComActorsViewActorJson extends ComBaseViewJson
              
             $this->getService('anahita:event.dispatcher')->dispatchEvent('onProfileDisplay', $context);
              
-            $this->getService('anahita:event.dispatcher')->dispatchEvent('onProfileDisplay', $context);
-        
             dispatch_plugin('profile.onDisplay', array('actor'=>$this->_state->getItem(), 'profile'=>$context->profile));
         
             $this->profile = $context->profile;
