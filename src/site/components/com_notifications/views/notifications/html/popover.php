@@ -9,9 +9,11 @@
     <?php foreach($notifications as $notification) : ?>
     <?php $class = $actor->notificationViewed($notification) ? '' : 'an-highlight'; ?>    
     <div class="an-entity <?= $class ?>">
+        <?php if ($notification->subject): ?>
 		<div class="entity-portrait-square">
 			<?= @avatar($notification->subject) ?>
 		</div>
+        <?php endif ?>
 		
 		<div class="entity-container">
 	        <div class="entity-description">

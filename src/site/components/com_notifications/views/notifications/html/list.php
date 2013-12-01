@@ -11,9 +11,11 @@ $dates = @helper('notifications.group', $notifications);
     ?>
     <div class="an-entity an-record an-removable">
     	<div class="clearfix">
+            <?php if ($notification->subject): ?>
 	    	<div class="entity-portrait-square">
 	    		<?= @avatar($notification->subject) ?>
 	    	</div>
+            <?php endif ?>
 	    	
 	    	<div class="entity-container">	
 	    		<p class="entity-title">	    			

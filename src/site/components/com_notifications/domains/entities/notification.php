@@ -58,7 +58,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
             ),
 			'relationships'	 => array(			    
 				'object'	 => array('polymorphic'=>true, 'type_column'=>'story_object_type', 'child_column'=>'story_object_id'),
-				'subject'    => array('required'=>true,'parent'=>'com:actors.domain.entity.actor', 'child_column'=>'story_subject_id'),
+				'subject'    => array('required'=>false,'parent'=>'com:actors.domain.entity.actor', 'child_column'=>'story_subject_id'),
 				'target'     => array('required'=>true,'parent'=>'com:actors.domain.entity.actor', 'child_column'=>'story_target_id'),
 				'comment'    => array('parent'=>'com:base.domain.entity.comment', 'child_column'=>'story_comment_id')
 			 )
