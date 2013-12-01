@@ -80,7 +80,7 @@ Object.extend({
             original[key] = value;
         });
         return Object;
-    },
+    }
 });
 
 /**
@@ -486,7 +486,7 @@ Behavior.addGlobalFilter('Countable',{
 			var decrement  = limit ? api.getAs(Boolean, 'decrement') : false;			
 			var emptyValue = decrement ? limit : '&nbsp;';
 			var getLength  = function(length) {
-				return decrement ? limit - length : length
+				return decrement ? limit - length : length;
 			}
 			if ( !counter ) return;			
 			(function() {

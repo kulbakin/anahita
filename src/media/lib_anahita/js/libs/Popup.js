@@ -17,14 +17,14 @@
 					this._mask.dispose();
 				}
 			}
-		},
+		}
 	});
 	var parse = function(section, html, sections) {
 		var sectionReg    = new RegExp('<popup:'+section+'>([\\s\\S]*?)<\/popup:'+section+'>');
 		var matches       = sectionReg.exec(html);
 		sections[section] = matches ? matches[1] : null;
 		return html.replace(sectionReg, '');
-	}
+	};
 	Bootstrap.Popup.implement({
 		setContent : function(sections) 
 		{
@@ -84,6 +84,7 @@
 					}					
 					
 				}.bind(this));
+				
 				var buttons = (sections.buttons || []).map(function(button) {
 					Object.set(button, {
 						click 	: Function.from(),
