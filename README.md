@@ -33,7 +33,7 @@ i.e. make [composer.json](https://github.com/anahitasocial/anahita-standard/blob
 The chengelog lists fixes and updates which are not present in the original Anahita.
 If a patch finds its way upstream or a similar one intorduced there, the log entry is
 striked out. There is strong correlation with commit history, so it is recommended
-to log into corresponding commit comments for additional details regarding introduced
+to look into corresponding commit comments for additional details regarding introduced
 changes.
 
 > Since this fork among other things strives to introduce consistent
