@@ -271,29 +271,28 @@ function translate($texts, $force = true)
     $debug		  = isset($_GET['dbg']);
     $debug_list	  = array();
     $lang  		  = JFactory::getLanguage();
-    $has_key 	  = version_compare(JVERSION,'1.6.0','ge');
     $translatable = false;
-    foreach($texts as $text) {
-        if ( strpos($text, '_') ) {
-            $text = strtoupper(str_replace('_','-',$text));
+    foreach ($texts as $text) {
+        if (strpos($text, '_')) {
+            $text = strtoupper(str_replace('_', '-', $text));
         }
-        if ( $has_key ? $lang->hasKey($text) : isset($lang->_strings[$text]) ) {
-            if ( $debug ) {
+        if ($lang->hasKey($text)) {
+            if ($debug) {
                 $debug_lists[] = $text.'=>'.$lang->_($text);
                 continue;
             }
             $text = $lang->_($text);
             $translatable = true;
             break;
-        } elseif ( $debug ) {
+        } elseif ($debug) {
             $debug_lists[] = $text;
         }
     }
 
-    if ( $debug ) {
+    if ($debug) {
         return '['.implode(',', $debug_lists).']';
     }
-    if ( !$translatable && !$force ) {
+    if ( ! $translatable && ! $force ) {
         return null;
     }
 
