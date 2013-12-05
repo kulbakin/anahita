@@ -13,10 +13,10 @@
 
 <module position="sidebar-b" title="<?= @text('LIB-AN-META') ?>">	
 	<ul class="an-meta">
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-AUTHOR'), @date($photo->creationTime), @name($photo->author)) ?></li>
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-EDITOR'), @date($photo->updateTime), @name($photo->editor)) ?></li>
-		<li><?= sprintf( @text('COM-PHOTOS-PHOTO-META-SETS'), $photo->sets->getTotal()) ?></li>
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS'), $photo->numOfComments) ?></li>
+		<li><?= sprintf(@text('LIB-AN-MEDIUM-AUTHOR'), @date($photo->creationTime), @name($photo->author)) ?></li>
+		<li><?= sprintf(@text('LIB-AN-MEDIUM-EDITOR'), @date($photo->updateTime), @name($photo->editor)) ?></li>
+		<li><?= sprintf(@ntext('COM-PHOTOS-PHOTO-META-SETS', $photo->sets->getTotal()), $photo->sets->getTotal()) ?></li>
+		<li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $photo->numOfComments), $photo->numOfComments) ?></li>
 	</ul>
 </module>	
 	

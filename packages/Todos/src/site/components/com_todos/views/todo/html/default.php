@@ -10,7 +10,7 @@
 			<?= sprintf(@text('COM-TODOS-TODOLIST-COMPLETED-BY-REPORT'), @date($todo->openStatusChangeTime), @name($todo->lastChanger)) ?>
 		</li>
 		<?php endif; ?>
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS'), $todo->numOfComments) ?></li>
+		<li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $todo->numOfComments), $todo->numOfComments) ?></li>
 	</ul>
 </module>
 

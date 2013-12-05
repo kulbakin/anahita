@@ -21,7 +21,7 @@
 	<?php endif; ?>
 	
 	<div class="an-meta">
-		<?= sprintf(@text('COM-PHOTOS-SET-META-PHOTOS'), $object->getPhotoCount()) ?>
+		<?= sprintf(@ntext('COM-PHOTOS-SET-META-PHOTOS', $object->getPhotoCount()), $object->getPhotoCount()) ?>
 	</div>
 </data>
 <?php endif;?>

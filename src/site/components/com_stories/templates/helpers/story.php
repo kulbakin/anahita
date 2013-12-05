@@ -59,8 +59,8 @@ class ComStoriesTemplateHelperStory extends KTemplateHelperAbstract
 			
 			$actors = array_splice($actors, 0, $truncate_after);
 			$actors = implode(', ',array_map(array($helper, 'name'), $actors));
-			$actors = sprintf(JTEXT::_('COM-STORIES-AND-OTHERS'), $actors, JRoute::_('option=com_actors&layout=modal&view=actors&'.$ids), JText::_($left_over));	
-			return   $actors;
+			$actors = sprintf(JText::_n('COM-STORIES-AND-OTHERS', $left_over), $actors, JRoute::_('option=com_actors&layout=modal&view=actors&'.$ids), $left_over);	
+			return $actors;
 		}
 		 
 		return $helper->name($actor);		

@@ -58,7 +58,7 @@
 	<?php if(!$package->recurring): ?>
 	<?php $daysLeft = ceil( AnHelperDate::secondsTo('day', $subscription->getTimeLeft())); ?>
 	<div class="alert alert-<?= ($daysLeft < 31) ? 'warning' : 'success' ?>">
-		<p><?= sprintf(@text('COM-SUB-PACKAGE-ABOUT-TO-EXPIRE'), $daysLeft); ?></p>
+		<p><?= sprintf(@ntext('COM-SUB-PACKAGE-ABOUT-TO-EXPIRE', $daysLeft), $daysLeft); ?></p>
 		
 		<?php if( $daysLeft < 31 ) : ?>
 		<p>

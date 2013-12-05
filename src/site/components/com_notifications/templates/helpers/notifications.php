@@ -49,7 +49,7 @@ class ComNotificationsTemplateHelperNotifications extends KTemplateHelperAbstrac
                 if ( $current->day ==  $notification->creationTime->day )
                     $key = JText::_('LIB-AN-DATE-TODAY');
                 else
-                    $key = JText::_('LIB-AN-DATE-DAY');
+                    $key = JText::_('LIB-AN-DATE-YESTERDAY');
             }
             else
                 $key = $this->getTemplate()->renderHelper('date.format',$notification->creationTime, array('format'=>'%B %d'));

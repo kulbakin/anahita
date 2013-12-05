@@ -9,8 +9,8 @@
 <module position="sidebar-b" title="<?= @text('COM-PAGES-META-ADDITIONAL-INFORMATION') ?>">
 	<ul class="an-meta" >
 		<li><span class="label label-info"><?= @text('COM-PAGES-PAGE-REVISION-META-CURRENT') ?></span></li>
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-EDITOR'), @date($page->updateTime), @name($page->editor)) ?></li>
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS'), $page->numOfComments) ?></li>
+		<li><?= sprintf(@text('LIB-AN-MEDIUM-EDITOR'), @date($page->updateTime), @name($page->editor)) ?></li>
+		<li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $page->numOfComments), $page->numOfComments) ?></li>
 	</ul>
 </module>
 

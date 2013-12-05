@@ -25,7 +25,7 @@
 	<div class="entity-meta">
 		<ul class="an-meta inline">
 			<?php if ( $topic->numOfComments ) : ?> 
-			<li><?= sprintf(@text('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS'), $topic->numOfComments); ?></li>
+			<li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $topic->numOfComments), $topic->numOfComments) ?></li>
 			<li><?= sprintf(@text('LIB-AN-MEDIUM-LAST-COMMENT-BY-X'), @name($topic->lastCommenter), @date($topic->lastCommentTime)) ?></li>
 			<?php endif; ?>
 			

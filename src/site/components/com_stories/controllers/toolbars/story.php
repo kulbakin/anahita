@@ -72,7 +72,7 @@ class ComStoriesControllerToolbarStory extends ComBaseControllerToolbarDefault
     protected function _commandView($command)
     {
         $entity = $this->getController()->getItem();
-        $label = sprintf( JText::_('COM-STORIES-VIEW-ALL-COMMENTS'), $entity->getNumOfComments());
+        $label = sprintf(JText::_n('COM-STORIES-VIEW-ALL-COMMENTS', $entity->getNumOfComments()), $entity->getNumOfComments());
         $command->append(array('label'=>$label));
         $command->href(JRoute::_($entity->getURL()));
     }

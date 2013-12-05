@@ -57,10 +57,10 @@ Delegator.register('click', {
 
 <module position="sidebar-b" title="<?= @text('LIB-AN-META') ?>">
 	<ul class="an-meta">
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-AUTHOR'), @date($set->creationTime), @name($set->author)) ?></li>
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-EDITOR'), @date($set->updateTime), @name($set->editor)) ?></li>
-		<li><?= sprintf(@text('COM-PHOTOS-SET-META-PHOTOS'), $set->getPhotoCount() ) ?></li>
-		<li><?= sprintf( @text('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS'), $set->numOfComments) ?></li>
+		<li><?= sprintf(@text('LIB-AN-MEDIUM-AUTHOR'), @date($set->creationTime), @name($set->author)) ?></li>
+		<li><?= sprintf(@text('LIB-AN-MEDIUM-EDITOR'), @date($set->updateTime), @name($set->editor)) ?></li>
+		<li><?= sprintf(@ntext('COM-PHOTOS-SET-META-PHOTOS', $set->getPhotoCount()), $set->getPhotoCount()) ?></li>
+		<li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $set->numOfComments), $set->numOfComments) ?></li>
 	</ul>
 </module>
 

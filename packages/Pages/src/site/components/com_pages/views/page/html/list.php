@@ -38,9 +38,9 @@
 		<?php endif; ?>
 		
 		<ul class="an-meta inline">
-			<li><?= sprintf( @text('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS'), $page->numOfComments) ?></li>
+			<li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $page->numOfComments), $page->numOfComments) ?></li>
 			<?php if(isset($page->editor)) : ?>
-			<li><?= sprintf( @text('LIB-AN-MEDIUM-EDITOR'), @date($page->updateTime), @name($page->editor)) ?></li>
+			<li><?= sprintf(@text('LIB-AN-MEDIUM-EDITOR'), @date($page->updateTime), @name($page->editor)) ?></li>
 			<?php endif; ?>
 		</ul>
 	

@@ -47,6 +47,6 @@
 	</div>
 	
 	<div class="entity-meta">
-		<?= sprintf(@text('COM-PHOTOS-SET-META-PHOTOS'), $object->getPhotoCount()) ?>
+		<?= sprintf(@ntext('COM-PHOTOS-SET-META-PHOTOS', $object->getPhotoCount()), $object->getPhotoCount()) ?>
 	</div>
 </data>

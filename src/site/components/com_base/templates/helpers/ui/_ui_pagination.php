@@ -23,7 +23,7 @@
 	</ul>
 	
 	<div class="an-meta">
-		<?= sprintf(@text('LIB-AN-RECORDS-AVAILABLE'), number_format($total)) ?>
+		<?= sprintf(@ntext('LIB-AN-RECORDS-AVAILABLE', $total), number_format($total)) ?>
 	</div>
 </div>
 <?php endif; ?>
