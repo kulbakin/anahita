@@ -45,7 +45,8 @@ changes.
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
 * update language trnaslation system to support plural forms
-  [4d619fc](https://github.com/kulbakin/anahita/commit/4d619fcc3e2947984d7b0c43e1afccde32ddf729), [e984637](https://github.com/kulbakin/anahita/commit/e9846374be2a9328e3ccb9512d6ddbddae364324)
+  [4d619fc](https://github.com/kulbakin/anahita/commit/4d619fcc3e2947984d7b0c43e1afccde32ddf729), [e984637](https://github.com/kulbakin/anahita/commit/e9846374be2a9328e3ccb9512d6ddbddae364324);
+  also see [Translation](https://github.com/kulbakin/anahita/wiki/Translation) in project wiki
 * make *subject* for *notification* entity an optional field allowing anonymous notifications
   issued by the system [d9a0d8a](https://github.com/kulbakin/anahita/commit/d9a0d8ab4359a473bb6f6157f7c13b86ff575b67)
 * fix url construction logic misbihaving in some contexts
