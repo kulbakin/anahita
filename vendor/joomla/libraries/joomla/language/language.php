@@ -27,7 +27,7 @@ class JLanguage extends JObject
      * @var boolean
      */
     protected $_debug = false;
-
+    
     /**
      * The default language
      *
@@ -36,42 +36,42 @@ class JLanguage extends JObject
      * @var string
      */
     protected $_default = 'en-GB';
-
+    
     /**
      * An array of orphaned text
      *
      * @var array
      */
     protected $_orphans = array();
-
+    
     /**
      * Array holding the language metadata
      *
      * @var      array
      */
     protected $_metadata = null;
-
+    
     /**
      * The language to load
      *
      * @var string
      */
     protected $_lang = null;
-
+    
     /**
      * List of language files that have been loaded
      *
      * @var array of arrays
      */
     protected $_paths = array();
-
+    
     /**
      * Translations
      *
      * @var array
      */
     protected $_strings = null;
-
+    
     /**
      * An array of used text, used during debugging
      *
@@ -86,7 +86,7 @@ class JLanguage extends JObject
      * @var callback
      */
     public static $pluralForms = array();
-
+    
     /**
      * Constructor activating the default information of the language
      */
@@ -101,7 +101,7 @@ class JLanguage extends JObject
         $this->setLanguage($lang);
         $this->load();
     }
-
+    
     /**
      * Returns a reference to a language object
      *
@@ -133,7 +133,7 @@ class JLanguage extends JObject
         $key = substr($key, 0, 1) == '_' ? substr($key, 1) : $key;
         
         if (isset($this->_strings[$key])) {
-            $string = $this->_debug ? "&bull;".$this->_strings[$key]."&bull;" : $this->_strings[$key];
+            $string = $this->_debug ? "-".$this->_strings[$key]."-" : $this->_strings[$key];
             
             // Store debug information
             if ($this->_debug) {
@@ -148,15 +148,15 @@ class JLanguage extends JObject
         } else {
             if (defined($string)) {
                 $string = $this->_debug ? '!!'.constant($string).'!!' : constant($string);
-
+                
                 // Store debug information
                 if ($this->_debug) {
                     $caller = $this->_getCallerInfo();
-
+                    
                     if ( ! array_key_exists($key, $this->_used ) ) {
                         $this->_used[$key] = array();
                     }
-
+                    
                     $this->_used[$key][] = $caller;
                 }
             } else {
