@@ -13,18 +13,19 @@
 class ComPagesControllerPage extends ComMediumControllerDefault
 {
     /**
-    * Initializes the default configuration for the object
-    * 
-    * Called from {@link __construct()} as a first step of object instantiation.
-    * 
-    * @param KConfig $config An optional KConfig object with configuration options.
-    * @return void
-    */
+     * Initializes the default configuration for the object
+     *
+     * Called from {@link __construct()} as a first step of object instantiation.
+     *
+     * @param KConfig $config An optional KConfig object with configuration options.
+     * @return void
+     */
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
             'request' => array(
-                'order' => 'creationTime',
+                'sort' => 'creationTime',
+                'direction' => 'desc',
             ),
             'behaviors' => array(
                 'enablable',
@@ -32,16 +33,5 @@ class ComPagesControllerPage extends ComMediumControllerDefault
         ));
         
         parent::_initialize($config);
-    }
-    
-    /**
-     * Browse Pages
-     * 
-     * @param KCommandContext $context Context parameter
-     * @return void
-     */
-    protected function _actionBrowse($context)
-    {
-        return parent::_actionBrowse($context)->order($this->order, 'DESC');
     }
 }
