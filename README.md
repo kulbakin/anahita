@@ -44,6 +44,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix redirection logic for edit form to redirect back to entity view by default
+  [60a8d6a](https://github.com/kulbakin/anahita/commit/60a8d6a287582957df7dd188d95e9fe6f2946043)
 * update language trnaslation system to support plural forms
   [4d619fc](https://github.com/kulbakin/anahita/commit/4d619fcc3e2947984d7b0c43e1afccde32ddf729), [e984637](https://github.com/kulbakin/anahita/commit/e9846374be2a9328e3ccb9512d6ddbddae364324);
   also see [Translation](https://github.com/kulbakin/anahita/wiki/Translation) in project wiki
