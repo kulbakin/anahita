@@ -218,26 +218,6 @@ class JLanguage extends JObject
     }
     
     /**
-     * Return index based on input number and current language
-     * 
-     * @param int $n
-     * @return int
-     */
-    public function _plural($n)
-    {
-        $ln = substr($this->_lang, 0, 2);
-        if (isset(self::$pluralForms[$this->_lang])) {
-            $cb = self::$pluralForms[$this->_lang];
-        } elseif (isset(self::$pluralForms[$ln])) {
-            $cb = self::$pluralForms[$ln];
-        } else {
-            $cb = function ($n) {return 0;};
-        }
-        
-        return call_user_func($cb, $n);
-    }
-    
-    /**
      * Transliterate function
      *
      * This method processes a string and replaces all accented UTF-8 characters by unaccented
