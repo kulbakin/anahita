@@ -44,6 +44,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update admin area theme to remove excessive branding
+  [b0ef7b0](https://github.com/kulbakin/anahita/commit/b0ef7b0e41a9368372c90887375e7f15987a5a9f)
 * fix default sorting direction applied in browse actions of entity controllers when only sorting
   field is defined (caused by typo) [5ca6285](https://github.com/kulbakin/anahita/commit/5ca6285732e8bc2c65f79d630a73cb1c84b593f5)
 * fix redirection logic for edit form to redirect back to entity view by default
