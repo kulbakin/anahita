@@ -84,10 +84,7 @@ $mctrl->addOverrideStyles();
 			<div id="mc-footer">
 				<div class="mc-wrapper">
 					<p class="copyright">
-						<span class="mc-footer-logo"></span>
-						<a href="http://www.anahitapolis.com" target="_blank">Anahita Social Networking Platform and Framework</a>
-						<?php echo JText::_('ISFREESOFTWARE') ?> - Anahita <?php echo  JText::_('Version') ?> <?php echo  Anahita::getVersion(); ?><br />
-						<?php echo JText::_('MISSION_CONTROL_FOOTER') ?> (MC Version <?php echo CURRENT_VERSION; ?>)
+						Powered by <a href="https://github.com/kulbakin/anahita" target="_blank">Anahita</a>, v.<?php echo Anahita::getVersion() ?>
 					</p>
 				</div>
 			</div>
