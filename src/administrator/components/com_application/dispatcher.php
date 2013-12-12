@@ -1,18 +1,5 @@
 <?php
 
-/** 
- * LICENSE: ##LICENSE##
- * 
- * @category   Anahita
- * @package    Com_Application
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id: resource.php 11985 2012-01-12 10:53:20Z asanieyan $
- * @link       http://www.anahitapolis.com
- */
-
 /**
  * Application Dispatcher
  *
@@ -20,16 +7,14 @@
  * @package    Com_Application
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
+ * @license    GNU GPLv3
  */
 class ComApplicationDispatcher extends LibApplicationDispatcher
-{    
+{
     /** 
      * Constructor.
-     *
-     * @param KConfig $config An optional KConfig object with configuration options.
      * 
+     * @param KConfig $config An optional KConfig object with configuration options.
      * @return void
      */ 
     public function __construct(KConfig $config)
@@ -37,32 +22,45 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         parent::__construct($config);
         
         //parse route
-        $this->registerCallback('before.run',   array($this, 'load'));      
+        $this->registerCallback('before.run', array($this, 'load'));
     }
-        
+    
     /**
-    * Initializes the default configuration for the object
-    *
-    * Called from {@link __construct()} as a first step of object instantiation.
-    *
-    * @param KConfig $config An optional KConfig object with configuration options.
-    *
-    * @return void
-    */
+     * Initializes the default configuration for the object
+     * 
+     * Called from {@link __construct()} as a first step of object instantiation.
+     * 
+     * @param KConfig $config An optional KConfig object with configuration options.
+     * @return void
+     */
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
-            'application' => 'administrator'                             
-        ));   
-
+            'application' => 'administrator',
+        ));
+        
         parent::_initialize($config);
     }
-  
+    
+    /**
+     * Loads the application
+     *
+     * @return void
+     */
+    protected function _actionLoad(KCommandContext $context)
+    {
+        parent::_actionLoad($context);
+        
+        KService::setConfig('com://site/application.router', array(
+            'base_url' => KService::get('koowa:http.url', array('url' => rtrim(JURI::root(), '/'))),
+            'enable_rewrite' => JFactory::getConfig()->getValue('sef_rewrite'),
+        ));
+    }
+    
     /**
      * Run the application dispatcher
-     *
+     * 
      * @param KCommandContext $context Command chain context
-     *
      * @return boolean
      */
     protected function _actionRun(KCommandContext $context)
@@ -74,11 +72,11 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         
         //initialize the application and load system plugins
         $this->_application->initialise();
-         
+        
         JPluginHelper::importPlugin('system');
         
         $this->_application->triggerEvent('onAfterInitialise');
-    
+        
         $this->route();
     }
     
@@ -86,24 +84,22 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
      * Dispatches the component
      * 
      * @param KCommandContext $context Command chain context
-     * 
      * @return boolean
-     */        
+     */
     protected function _actionDispatch(KCommandContext $context)
-    {        
+    {
         parent::_actionDispatch($context);
         
         $this->_application->triggerEvent('onAfterDispatch', array($context));
         
         //render if it's only an HTML
         //otherwise just send back the request
-        if ( !$context->response->isRedirect() &&
-              $context->request->getFormat() == 'html' &&
-             !$context->request->isAjax()
-        )
-        {
+        if ( ! $context->response->isRedirect()
+            && $context->request->getFormat() == 'html'
+            && ! $context->request->isAjax()
+        ) {
             $this->render($context);
-        } 
+        }
         
         $this->_application->triggerEvent('onAfterRender', array($context));
         
@@ -114,18 +110,17 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
      * Renders the output
      * 
      * @param KCommandContext $context Command chain context
-     * 
      * @return boolean
-     */        
+     */
     protected function _actionRender(KCommandContext $context)
-    {        
-        //old school of rendering for the backend for now        
+    {
+        //old school of rendering for the backend for now
         $component  = $this->getComponent()->getIdentifier()->package;
-
+        
         $template   = $this->_application->getTemplate();
-        $file       = $this->_request->get('tmpl','index');
-
-        if($component == 'login') {
+        $file       = $this->_request->get('tmpl', 'index');
+        
+        if ($component == 'login') {
             $file = 'login';
         }
         
@@ -136,28 +131,28 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         );
         
         $document =& JFactory::getDocument();
-        $document->addScript( JURI::root(true).'/administrator/includes/joomla.javascript.js');
-        $document->setTitle( htmlspecialchars_decode($this->_application->getCfg('sitename' )). ' - ' .JText::_( 'Administration' ));
-        $document->setDescription( $this->_application->getCfg('MetaDesc') );
+        $document->addScript(JURI::root(true).'/administrator/includes/joomla.javascript.js');
+        $document->setTitle(htmlspecialchars_decode($this->_application->getCfg('sitename')).' - '.JText::_('Administration'));
+        $document->setDescription($this->_application->getCfg('MetaDesc'));
         
         $document->setBuffer($context->response->getContent(), 'component');
         $content = $document->render(false, $config);
         
         //lets do some parsing. mission template and legacy stuff
-        $content = preg_replace_callback('#(src|href)="templates\/#',function($matches){
+        $content = preg_replace_callback('#(src|href)="templates\/#', function ($matches) {
            return $matches[1].'="'.KRequest::base().'/templates/';
         }, $content);
         
-        $content = preg_replace_callback('#(src|href)="/(media|administrator)/#',function($matches){
+        $content = preg_replace_callback('#(src|href)="/(media|administrator)/#', function ($matches) {
             return $matches[1].'="'.KRequest::root().'/'.$matches[2].'/';
-        }, $content); 
-               
+        }, $content);
         
-        $content = preg_replace_callback('#action="index.php"#',function($matches){
+        
+        $content = preg_replace_callback('#action="index.php"#', function ($matches) {
             return 'action="'.JRoute::_('index.php?').'"';
         }, $content);
                 
-        $context->response->setContent($content);       
+        $context->response->setContent($content);
     }
     
     /**
@@ -166,10 +161,10 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
      * @param KCommandContext $context
      */
     protected function _actionRoute(KCommandContext $context)
-    {     
+    {
         //legacy
-        if ( KRequest::has('post.option') ) {
-            KRequest::set('get.option',KRequest::get('post.option', 'cmd'));
+        if (KRequest::has('post.option')) {
+            KRequest::set('get.option', KRequest::get('post.option', 'cmd'));
         }
         
         parent::_actionRoute($context);
@@ -178,36 +173,34 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         
         $user =& JFactory::getUser();
         
-        if (!$user->authorize('login', 'administrator')) {
+        if ( ! $user->authorize('login', 'administrator')) {
             $component = 'com_login';
         }
         
-        if( empty($component) ) {
+        if (empty($component)) {
             $component = 'com_cpanel';
         }
-        $this->getRequest()->set('option',  $component);
-        JRequest::set($this->getRequest()->toArray(),'get');
+        $this->getRequest()->set('option', $component);
+        JRequest::set($this->getRequest()->toArray(), 'get');
         $this->setComponent(substr($component, 4));
         $this->dispatch();
     }
-        
+    
     /**
      * Callback to handle both JError and Exception
      * 
      * @param KCommandContext $context Command chain context
-     * caller => KObject, data => mixed
-     * 
+     *  caller => KObject, data => mixed
      * @return KException
      */
     protected function _actionException($context)
     {
         $error = $context->data;
-        if ( $context->response->getHeader('Location') ) 
-        {
+        if ($context->response->getHeader('Location')) {
             $context->response->send();
             exit(0);
         }
         JError::customErrorPage($error);
         exit(0);
-    }    
+    }
 }
