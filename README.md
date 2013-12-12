@@ -44,6 +44,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix admin area to load vendor (aka managed by composer) packages
+  [9b20178](https://github.com/kulbakin/anahita/commit/9b201780e23c5bde5964bbdf5a6533c14948e0d5)
 * update admin area theme to remove excessive branding
   [b0ef7b0](https://github.com/kulbakin/anahita/commit/b0ef7b0e41a9368372c90887375e7f15987a5a9f)
 * fix default sorting direction applied in browse actions of entity controllers when only sorting
