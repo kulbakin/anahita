@@ -163,8 +163,7 @@ class AnDomainQueryHelper
         $query->link($parent_query, $condition, array('as' => $as));
         
         if ($attribute) {
-            $result = self::parseColumn($parent_query, $attribute);
-            return $result;
+            return self::parseColumn($parent_query, $attribute);
         }
     }
     
