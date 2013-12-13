@@ -54,6 +54,9 @@ $query->order('subscriber.name', 'asc'); // without fix such sorting would not b
 $result = $query->fetchSet();
 ```
 
+* fix profile page javascript error appearing on stream switch when there are no component specific
+  composer form defined
+  [4d163f9](https://github.com/kulbakin/anahita/commit/4d163f96af4f845ef55a994cede279d6ef36346a)
 * fix admin area to have proper *com://site/application.router* initialized when requested, i.e.
   make its *base_url* correspond to site application
   [291ec48](https://github.com/kulbakin/anahita/commit/291ec48f945d97b840d135d1029a7e26858bb94b)
