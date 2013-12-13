@@ -20863,8 +20863,8 @@ String.implement({
 });
 Behavior.addGlobalFilter('Alert', {
 	defaults : {
-		mode 		: 'top',
-		position	: 'center',
+		mode 		: 'bottom',
+		position	: 'right',
 		highlight   : false,
 		hide 		: true,
 		alert		: {
@@ -21226,7 +21226,6 @@ Behavior.addGlobalFilter('InfinitScroll', {
     			}
     		}.bind(el)
 		});
-		api.get('scrollable').fireEvent('scroll');
 	}
 });
 ///media/lib_anahita/js/libs/MasonryLayout.js
