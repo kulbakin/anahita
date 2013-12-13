@@ -44,6 +44,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix profile page javascript error appearing on stream switch when there are no component specific
+  composer formы defined
+  [4d163f9](https://github.com/kulbakin/anahita/commit/4d163f96af4f845ef55a994cede279d6ef36346a)
 * fix query building logic to properly recognize relationship aliases
   [0f20b3e](https://github.com/kulbakin/anahita/commit/0f20b3e05bb118f71984f37f6d278206229040d1),
   i.e. make work
@@ -54,9 +57,6 @@ $query->order('subscriber.name', 'asc'); // without fix such sorting would not b
 $result = $query->fetchSet();
 ```
 
-* fix profile page javascript error appearing on stream switch when there are no component specific
-  composer form defined
-  [4d163f9](https://github.com/kulbakin/anahita/commit/4d163f96af4f845ef55a994cede279d6ef36346a)
 * fix admin area to have proper *com://site/application.router* initialized when requested, i.e.
   make its *base_url* correspond to site application
   [291ec48](https://github.com/kulbakin/anahita/commit/291ec48f945d97b840d135d1029a7e26858bb94b)
