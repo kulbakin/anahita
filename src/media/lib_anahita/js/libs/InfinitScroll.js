@@ -54,5 +54,6 @@ Behavior.addGlobalFilter('InfinitScroll', {
     			}
     		}.bind(el)
 		});
+		api.get('scrollable').fireEvent('scroll');
 	}
 });
