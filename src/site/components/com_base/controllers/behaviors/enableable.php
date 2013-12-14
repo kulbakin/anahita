@@ -19,7 +19,7 @@ class ComBaseControllerBehaviorEnableable extends KControllerBehaviorAbstract
      */
     public function canEnable()
     {
-        return $this->getItem()->authroize('administration');
+        return $this->getItem()->authorize('administration');
     }
     
     /**
@@ -29,7 +29,7 @@ class ComBaseControllerBehaviorEnableable extends KControllerBehaviorAbstract
      */
     public function canDisable()
     {
-        return $this->getItem()->authroize('administration');
+        return $this->getItem()->authorize('administration');
     }
     
     /**

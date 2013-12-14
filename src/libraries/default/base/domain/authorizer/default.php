@@ -13,7 +13,7 @@
 class LibBaseDomainAuthorizerDefault extends LibBaseDomainAuthorizerAbstract 
 {
     /**
-     * Check if a node authroize being subscribed too
+     * Check if a node authorize being subscribed too
      * 
      * @param KCommandContext $context Context parameter
      * @return boolean
@@ -39,7 +39,7 @@ class LibBaseDomainAuthorizerDefault extends LibBaseDomainAuthorizerAbstract
     }
     
     /**
-     * Check if a node authroize being voted
+     * Check if a node authorize being voted
      * 
      * @param KCommandContext $context Context parameter
      * @return boolean
