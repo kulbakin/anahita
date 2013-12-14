@@ -28,7 +28,7 @@ class ComPagesControllerPage extends ComMediumControllerDefault
                 'direction' => 'desc',
             ),
             'behaviors' => array(
-                'enablable',
+                'enableable',
             ),
         ));
         
