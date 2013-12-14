@@ -1,154 +1,125 @@
-//INLINE EDIT
-form.inline-edit
-{
+// INLINE EDIT
+form.inline-edit {
     margin: 0 10px;
     
-    .form-actions
-    {
+    .form-actions {
         margin: 0;
         border: 0;
         background-color: transparent;
         padding: 0 0 10px 0;
-    }	
+    }
 }
 
-.media-grid
-{
+.media-grid {
     margin: 0 -10px;
     .clearfix;
     
-    > div 
-    {
+    > div  {
         float: left;
         
-        a
-        {
+        a {
             display: block;
         }
         
-        img
-        {
+        img {
             margin: 10px;
         }
     }
 }
 
 .an-read-more,
-.an-read-less
-{
+.an-read-less {
     display: block;
     font-size: @baseFontSize;
     font-weight: bold;
     margin-top: 5px;
 }
 
-.an-meta
-{ 
+.an-meta {
     font-size: @baseFontSize - 1;
 }
 
-.uiActivityIndicator 
-{ 
-    background:url(images/spinner.gif) center center no-repeat; 
+.uiActivityIndicator  {
+    background:url(images/spinner.gif) center center no-repeat;
 }
 
-.defaultSkin .mceProgress 
-{ 
-    background:url(images/spinner.gif) center center no-repeat !important; 
+.defaultSkin .mceProgress  {
+    background:url(images/spinner.gif) center center no-repeat !important;
 }
 
-ul.an-navigations
-{
-    li
-	{
-	   line-height: @baseLineHeight + 2;
-	       
-	   &.tabSelected a
-	   {
-	       text-decoration: underline;
-	   }
-    }  
+ul.an-navigations {
+    li {
+       line-height: @baseLineHeight + 2;
+       
+       &.tabSelected a {
+           text-decoration: underline;
+       }
+    }
 }
 
 .form-placeholder,
-.comment-overtext-box
-{   
+.comment-overtext-box {
     .border-radius(3px);
     margin: -10px 10px 10px 10px;
     
-    span
-    {
+    a {
         padding: 5px 10px;
         display: block;
-        width: 100%;
         font-size: @baseFontSize;
+        
+        &:hover {
+            cursor: text;
+        }
     }
-    
-    &:hover
-    {
-        cursor: text;
-    }	
 }
 
-.actions
-{
+.actions {
     .form-actions;
-    padding: 10px;	
+    padding: 10px;
 }
 
-.well
-{
-    margin: 15px 0;	
+.well {
+    margin: 15px 0;
 }
 
-form
-{
-    legend
-    {
+form {
+    legend {
         margin-bottom: 20px;
-    }	
+    }
 }
 
 // vote button adjustment
-a.vote-action
-{
-    &.btn
-    {
+a.vote-action {
+    &.btn {
        margin-bottom: 1px;
     }
 }
 
-.an-actions
-{
-    a
-    {
-        cursor: pointer; 
-    }	
+.an-actions {
+    a {
+        cursor: pointer;
+    }
 }
 
 // ACTIONS
-ul.an-actions
-{
+ul.an-actions {
     list-style: none;
     font-size: @baseFontSize + 1;
     padding: 0;
     margin: 0;
     
-    li
-    { 
+    li {
         display: inline; 
         margin-right: 10px;
         
-        a
-        {
+        a {
             font-size: @baseFontSize;
         }
     }
 }
 
 //Scrollbar CSS
-.scrollbar 
-{
+.scrollbar  {
     width: 21px;
     position: absolute;
     top: 0;
@@ -157,48 +128,41 @@ ul.an-actions
     visibility: hidden;
     z-index: 1011;
     
-    .knob 
-    {
-	    background: @gray;
-	    width: 5px;
-	    height: 50px;
-	    margin: 0 10px;
-	    .border-radius(@baseBorderRadius);
-	    cursor: pointer;
-	    -moz-opacity: 0.75;
-	    opacity: 0.75;
-	    
-	    &:hover {
-		    -moz-opacity: 1;
-		    opacity: 1;    
-		}
-	}
-}
-
-.dropdown-menu
-{
-    a:hover
-    {
+    .knob  {
+        background: @gray;
+        width: 5px;
+        height: 50px;
+        margin: 0 10px;
+        .border-radius(@baseBorderRadius);
         cursor: pointer;
-    }	
+        -moz-opacity: 0.75;
+        opacity: 0.75;
+        
+        &:hover {
+            -moz-opacity: 1;
+            opacity: 1;
+        }
+    }
 }
 
-.modal
-{
-    .an-entity
-    {
+.dropdown-menu {
+    a:hover {
+        cursor: pointer;
+    }
+}
+
+.modal {
+    .an-entity {
         margin: 0;
-    }   
+    }
 }
 
-.an-filterbox
-{
-    margin: 18px 0;	
+.an-filterbox {
+    margin: 18px 0;
 }
 
-.an-text-highlight
-{
-    display:inline-block;
-    background-color:#CEDFF0;   
-    padding:1px;
+.an-text-highlight {
+    display: inline-block;
+    background-color: #CEDFF0;
+    padding: 1px;
 }

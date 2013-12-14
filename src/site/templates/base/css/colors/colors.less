@@ -1,83 +1,69 @@
-//VARIABLES
+// VARIABLES
 @borderColor: darken(@grayLighter, 10%);
 
-.border-bottom
-{
+.border-bottom {
    border-bottom: 1px solid @borderColor;
 }
 
-hr
-{
+hr {
     border-top: 0;
     border-bottom: 1px solid @borderColor;
 }
 
-//NAVPILLS
-.nav
-{
-    &.nav-pills
-    {
-	    a:hover
-	    {
-	        background-color: lighten( @borderColor, 4%);
-	    }
-	    
-	    .active > a,
-		.active > a:hover 
-		{
-		    background-color: @linkColor;
-		}
-    }	
+// NAVPILLS
+.nav {
+    &.nav-pills {
+        a:hover {
+            background-color: lighten( @borderColor, 4%);
+        }
+        
+        .active > a,
+        .active > a:hover {
+            background-color: @linkColor;
+        }
+    }
 }
 
-//NAVTABS
+// NAVTABS
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
-  background-color: @white;
+    background-color: @white;
 }
 
 // Actions (the buttons)
-.actions 
-{
+.actions {
   background: @grayLighter;
   border-top: 1px solid @borderColor;
 }
 
 // Media Grid
-.media-grid
-{
-    img
-    {
+.media-grid {
+    img {
         background-color: @white;
     }
     
-    a
-    {
+    a {
         border: 0;
-    }	
+    }
 }
 
-.container
-{
-    .hero-unit
-    {
+.container {
+    .hero-unit {
         background-color: transparent;
         
-        &.hero-unit-light
-        {
+        &.hero-unit-light {
             background-color: @white;
-            h1,h2
-            {
+            
+            h1, h2 {
                 color: @gray;
             }
         }
         
-        &.hero-unit-dark
-        {
+        &.hero-unit-dark {
             background-color: @grayDark;
             color: @white;
-            h1,h2
-            {
+            
+            h1, h2 {
                 color: @grayLight;
             }
         }
@@ -85,149 +71,117 @@ hr
 }
 
 // DEFAULT MODULE
-.module-title
-{
+.module-title {
     border-bottom: 1px solid @borderColor;
 }
 
-.module-content
-{
-	.an-entity
-	{
-	   background-color: transparent;
+.module-content {
+    .an-entity {
+       background-color: transparent;
     }
 }
 
-.an-highlight 
-{ 
+.an-highlight  {
     background-color: @yellow !important 
 }
 
-.an-ui-inline-form-prompt
-{ 
+.an-ui-inline-form-prompt {
     color: @grayLight;
     width: 100%;
 }
 
-.form-placeholder,
-.comment-overtext-box
-{
+a.form-placeholder,
+a.action-comment-overtext {
     border: 1px solid @grayLighter;
-    color: @grayLight;  
+    color: @grayLight;
     
-    &:hover
-    {
+    &:hover {
        border-color: darken(@grayLighter, 15%);
     }
 }
 
-.an-media-header
-{ 
+.an-media-header {
    #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
    border: 1px solid @navbarBorder;
   .box-shadow(0 1px 4px rgba(0,0,0,.065)); 
 }
 
 .an-meta,
-.entity-meta
-{ 
+.entity-meta {
     font-weight:normal;
     color: @grayLight; 
 }
 
-.an-entity
-{
+.an-entity {
     background-color: @white;
 }
 
 .entity-title,
 .entity-name,
 .entity-description,
-.entity-body
-{        
-    &.editable:hover
-    {
+.entity-body {
+    &.editable:hover {
         background-color: @yellow;
     }
     
-    blockquote
-    { 
-        border-right: @grayLighter; 
+    blockquote {
+        border-right: @grayLighter;
     }
 }
 
-.an-comments
-{    
-    .an-comment
-	{
-	    border-top: 1px solid @bodyBackground;
-	}
+.an-comments {
+    .an-comment {
+        border-top: 1px solid @bodyBackground;
+    }
 }
 
-
-
-//datalist
-dl
-{            
-    dt
-    {
+// datalist
+dl {
+    dt {
         color: @grayLight;
     }
 }
 
-
 // GADGET
-.an-gadget
-{ 
-    h2.gadget-title
-    {
+.an-gadget {
+    h2.gadget-title {
         border-bottom: 1px solid @borderColor;
     }
 }
 
 // POPOVER
-.popover-content
-{   
-    .an-entity
-    {
+.popover-content {
+    .an-entity {
         border-top: 1px solid @bodyBackground;
-    }   
+    }
 }
 
 // MODAL
-.modal-body
-{   
-    .an-entity
-    {
+.modal-body {
+    .an-entity {
         border-top: 1px solid @bodyBackground;
-    }   
+    }
 }
 
 // Fixing the link button diabled view
-a.btn-primary
-{
-    &.disabled
-    {
+a.btn-primary {
+    &.disabled {
         color: @white;
-    }   
+    }
 }
 
 // AUTO COMPLETE
-ul.autocompleter-choices
-{
+ul.autocompleter-choices {
     background-color: @grayLight;
     color: @white;
     border: 1px solid @grayLighter;
     
-    li
-    {
-        &.autocompleter-selected
-        {
+    li {
+        &.autocompleter-selected {
             background-color: @grayDark;
             color: @white;
             
-            span.autocompleter-queried
-            {
+            span.autocompleter-queried {
                 color: @linkColor;
             }
         }
@@ -235,68 +189,55 @@ ul.autocompleter-choices
 }
 
 // STORIES
-#com-composer-container
-{ 
+#com-composer-container { 
     .box-shadow(inset 0 2px 5px rgba(0,0,0,.065));
     border: 1px solid @navbarBorder;
     background-color: @white;
     
-    .nav-tabs
-    {
+    .nav-tabs {
         border-color: @grayLighter;
         
-        li.active
-        {
-            a
-            {
+        li.active {
+            a {
                 border-color: @grayLighter @grayLighter transparent
             }
         }
         
-        li
-        {
-           a:hover
-           {
+        li {
+           a:hover {
                border-color: @grayLighter @grayLighter transparent @grayLighter;
            }
         }
     }
 }
 
-.an-story
-{
-    .story-title
-    {
+.an-story {
+    .story-title {
         color: @grayLight;
-    }	
-
-    .an-comments
-    {
+    }
+    
+    .an-comments {
         background-color: lighten(@grayLighter, 4%);
-        .an-comment
-        {
+        
+        .an-comment {
             border-top: 1px solid @bodyBackground;
             background-color: transparent;
         }
         
-        .an-comment:last-child
-        {
+        .an-comment:last-child {
             border-bottom: 1px solid @bodyBackground;
         }
     }
 }
 
 // SUBSCRIPTIONS
-#sub-tos
-{
-    .entity-description
-    {
+#sub-tos {
+    .entity-description {
         border: 1px solid @grayLighter;
     }
 }
 
-#payment-selector
-{
+#payment-selector {
     border-top: 1px solid @grayLighter;
 }
 
