@@ -24,7 +24,8 @@ class LibBaseDomainBehaviorEnableable extends AnDomainBehaviorAbstract
     {
         $config->append(array(
             'attributes' => array(
-                'enabled' => array('default' => true)),
+                'enabled' => array('default' => true)
+            ),
         ));
         
         parent::_initialize($config);
