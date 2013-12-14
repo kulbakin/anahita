@@ -45,7 +45,8 @@ changes.
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
 * fix *enableable* behavior
-  [273b93e](https://github.com/kulbakin/anahita/commit/273b93e0ffa92a20ed8345cad0eff032093775bd)
+  [273b93e](https://github.com/kulbakin/anahita/commit/273b93e0ffa92a20ed8345cad0eff032093775bd),
+  [bd6616f](https://github.com/kulbakin/anahita/commit/bd6616f5d4d26e7f1c3dacc9a652263d1456d407)
 * fix profile page javascript error appearing on stream switch when there are no component specific
   composer formы defined
   [4d163f9](https://github.com/kulbakin/anahita/commit/4d163f96af4f845ef55a994cede279d6ef36346a)
