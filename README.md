@@ -44,6 +44,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update *notifier* behavior to have method for sending notification to administrators
+  [1d6ad19](https://github.com/kulbakin/anahita/commit/1d6ad19e722d19d2c7c6527b696809644960b65e)
 * discard anahitasocial/anahita@70e450255ca8b00f5b62703c4a61d286c8d4bb42
 * fix *enableable* behavior
   [273b93e](https://github.com/kulbakin/anahita/commit/273b93e0ffa92a20ed8345cad0eff032093775bd),
