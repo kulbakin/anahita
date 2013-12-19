@@ -114,7 +114,6 @@ Behavior.addGlobalFilter('ComposerForm', {
         }
     });
     Delegator.register('click', 'LoadComposerTab', function (event, el, api) {
-        event.stop();
         
         var index = api.getAs(Number, 'index');
         if (composerTabs && composerTabs.now == index) {
