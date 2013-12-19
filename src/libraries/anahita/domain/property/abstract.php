@@ -171,7 +171,7 @@ abstract class AnDomainPropertyAbstract
                 case 'protected': $config->read = AnDomain::ACCESS_PROTECTED; break;
                 case 'public'   : $config->read = AnDomain::ACCESS_PUBLIC; break;
             }
-        }        
+        }
     }
     
     
@@ -182,7 +182,7 @@ abstract class AnDomainPropertyAbstract
      */
     public function getName()
     {
-        return $this->_name;    
+        return $this->_name;
     }
     
     /**

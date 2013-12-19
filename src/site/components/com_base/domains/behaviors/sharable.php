@@ -33,7 +33,7 @@ class ComBaseDomainBehaviorSharable extends AnDomainBehaviorAbstract
                 )
             ),
             'attributes' => array(
-                'sharedOwnerIds'   => array('type' => 'set',     'default' => 'set', 'write' => 'private'),
+                'sharedOwnerIds'   => array('type' => 'set', 'default' => 'set', 'write' => 'private'),
                 'sharedOwnerCount' => array('type' => 'integer', 'write' => 'private'),
             )
         ));

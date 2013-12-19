@@ -259,7 +259,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
      * @param string  $access   The name of the column containing access values
      * @return string
      */
-    public function buildCondition($actor_id, $config ,$access = '@col(access)')
+    public function buildCondition($actor_id, $config, $access = '@col(access)')
     {
         $store   = $this->_repository->getStore();
         $viewer  = $config->viewer;
@@ -269,7 +269,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
         $where[] = "WHEN FIND_IN_SET('".self::GUEST."', $access) THEN 1";
         if ($viewer->id) {
             $where[] = "WHEN FIND_IN_SET('".self::REG."', $access) THEN 1";
-            if ($viewer->userType != 'registered') {
+            if ($viewer->userType != 'Registered') {
                 $where[] = "WHEN FIND_IN_SET('".self::SPECIAL."', $access) THEN 1";
             }
             $where[] = "WHEN FIND_IN_SET(".$viewer->id.", $access) THEN 1";

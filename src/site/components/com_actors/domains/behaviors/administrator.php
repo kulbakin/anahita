@@ -25,7 +25,7 @@ class ComActorsDomainBehaviorAdministrator extends AnDomainBehaviorAbstract
     {
         $config->append(array(
             'attributes' => array(
-                'administratingIds' => array('type'=>'set', 'default'=> 'set')
+                'administratingIds' => array('type' => 'set', 'default' => 'set',  'write' => 'private')
             )
         ));
         

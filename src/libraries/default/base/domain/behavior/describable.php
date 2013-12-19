@@ -43,15 +43,15 @@ class LibBaseDomainBehaviorDescribable extends AnDomainBehaviorAbstract
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
-            'searchable_properties' => array('name','body'),
+            'searchable_properties' => array('name', 'body'),
             'attributes' => array(
-                'name'  => array('format'=>'string'),
+                'name'  => array('format' => 'string'),
                 'body'  => array(),
-                'alias' => array('format'=>'slug')
+                'alias' => array('format' => 'slug')
             ),
             'aliases' => array(
-                'title'         => 'name',
-                'description'   => 'body'
+                'title'       => 'name',
+                'description' => 'body',
             )
         ));
         

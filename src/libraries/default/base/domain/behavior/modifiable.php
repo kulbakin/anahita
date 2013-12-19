@@ -45,8 +45,8 @@ class LibBaseDomainBehaviorModifiable extends AnDomainBehaviorAbstract
         $config->append(array(
             'modifiable_properties' => array(),
             'attributes' => array(
-                'creationTime' => array('column' => 'created_on', 'default' => 'date', 'required' => true),
-                'updateTime'   => array('column' => 'modified_on','default' => 'date'),
+                'creationTime' => array('column' => 'created_on',  'default' => 'date', 'required' => true),
+                'updateTime'   => array('column' => 'modified_on', 'default' => 'date'),
             ),
             'relationships' => array(
                 'author' => array('parent' => 'com:people.domain.entity.person', 'child_column' => 'created_by'),
@@ -54,7 +54,7 @@ class LibBaseDomainBehaviorModifiable extends AnDomainBehaviorAbstract
             )
         ));
         
-        parent::_initialize($config);    
+        parent::_initialize($config);
     }
         
     /**
@@ -84,7 +84,7 @@ class LibBaseDomainBehaviorModifiable extends AnDomainBehaviorAbstract
         $this->creationTime = AnDomainAttributeDate::getInstance();
         $this->editor       = $author;
     }
-
+    
     /**
      * Set editr of a node. It also updates the updateTime property 
      * 

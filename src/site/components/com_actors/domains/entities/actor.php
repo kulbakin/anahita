@@ -33,7 +33,7 @@ class ComActorsDomainEntityActor extends ComBaseDomainEntityNode
             'inheritance' => array('abstract' => $this->getIdentifier()->classname == __CLASS__),
             'attributes' => array(
                 'name' => array('required' => AnDomain::VALUE_NOT_EMPTY, 'format' => 'string', 'read' => 'public'),
-                'body' => array('format'=>'string'),
+                'body' => array('format' => 'string'),
                 'status' => array(),
                 'statusUpdateTime' => array(),
             ),
@@ -49,7 +49,7 @@ class ComActorsDomainEntityActor extends ComBaseDomainEntityNode
                 'dictionariable',
                 'followable',
                 'portraitable' => array(
-                    'sizes'  => array(
+                    'sizes' => array(
                         'small'  => '80xauto',
                         'medium' => '160xauto',
                         'large'  => '480xauto',
