@@ -44,6 +44,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *ComPeopleDomainEntityPerson* domain to prevent it from allowing any user pontentially
+  gaining admin access for *site* application
+  [b44eb70](https://github.com/kulbakin/anahita/commit/b44eb709f058777d1cd987e157e96456f7a18631)
 * update *notifier* behavior to have method for sending notification to administrators
   [1d6ad19](https://github.com/kulbakin/anahita/commit/1d6ad19e722d19d2c7c6527b696809644960b65e)
 * discard anahitasocial/anahita@70e450255ca8b00f5b62703c4a61d286c8d4bb42
