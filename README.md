@@ -44,6 +44,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *portraitable* behavior to prevent it from generating the same filename for
+  different attachments of the same user handled within same second
+  [a2b3ef8](https://github.com/kulbakin/anahita/commit/a2b3ef8d56119de88fd14eac71b7d183104d1c22)
 * fix *fileable* behavior so it doesn't rely on obsolete database columns,
   fix *mime_type()* helper function (replacement for depricated standard *mime_content_type()*)
   [f109fbd](https://github.com/kulbakin/anahita/commit/f109fbd2614a560691784de1bd3891ed441b5880)
