@@ -44,6 +44,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *fileable* behavior so it doesn't rely on obsolete database columns,
+  fix *mime_type()* helper function (replacement for depricated standard *mime_content_type()*)
+  [f109fbd](https://github.com/kulbakin/anahita/commit/f109fbd2614a560691784de1bd3891ed441b5880)
 * fix localization in admin area by passing page titles through translation function allowing them
   to be translated
   [c99f8f5](https://github.com/kulbakin/anahita/commit/c99f8f59fc88aad0b58ead888d68b480de6ad8f3)
