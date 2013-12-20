@@ -79,7 +79,7 @@ class LibBaseDomainBehaviorPortraitable extends LibBaseDomainBehaviorStorable
         
         parent::_initialize($config);
     }
-
+    
     /**
      * Return if the portrait is set
      * 
@@ -217,19 +217,16 @@ class LibBaseDomainBehaviorPortraitable extends LibBaseDomainBehaviorStorable
         }
         
         $image = $config->image;
-        
         if (empty($image)) {
             return false;
         }
         
         $rotation = $config->rotation;
-        
         switch($rotation) {
-            case 3: $rotation=180; break;
-            case 6: $rotation=-90; break;
-            case 8: $rotation=90; break;
-            default :
-                $rotation = 0;
+            case 3:  $rotation = 180; break;
+            case 6:  $rotation = -90; break;
+            case 8:  $rotation = 90; break;
+            default: $rotation = 0; break;
         }
         
         if ($rotation != 0) {
@@ -241,14 +238,14 @@ class LibBaseDomainBehaviorPortraitable extends LibBaseDomainBehaviorStorable
         }
         
         $images = $this->_mixer->resizePortraitImage($image);
-        $this->_mixer->set('filename', md5(time().uniqid()).'.'.$mimetypes[$config->mimetype]);
+        $this->_mixer->set('filename', md5(uniqid('', true)).'.'.$mimetypes[$config->mimetype]);
         $this->_mixer->set('mimetype', $config->mimetype);
         $sizes = array();
         $files = array();
         foreach ($images as $key => $value) {
             $filename         = $this->_mixer->getPortraitFile($key);
-            $sizes[$key]      = $value['size'];            
-            $files[$filename] = AnHelperImage::output($value['data'], $config->mimetype);            
+            $sizes[$key]      = $value['size'];
+            $files[$filename] = AnHelperImage::output($value['data'], $config->mimetype);
         }
         imagedestroy($image);
         $this->_mixer->setValue('sizes', $sizes);
