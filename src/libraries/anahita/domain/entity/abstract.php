@@ -629,7 +629,7 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
      * @param mixd         $value    Property value
      * @return void
      */
-    public function setData($property, $value = null )
+    public function setData($property, $value = null)
     {
         if (is_array($property)) {
             $description = $this->getEntityDescription();

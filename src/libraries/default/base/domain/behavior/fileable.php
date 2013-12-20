@@ -10,7 +10,7 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class LibBaseDomainBehaviorFileable extends LibBaseDomainBehaviorStorable 
+class LibBaseDomainBehaviorFileable extends LibBaseDomainBehaviorStorable
 {
     /**
      * Initializes the default configuration for the object
@@ -23,9 +23,10 @@ class LibBaseDomainBehaviorFileable extends LibBaseDomainBehaviorStorable
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
-            'attributes'     => array(
-                'filesize' => array('column' => 'medium_excerpt',   'type' => 'integer',     'write' => 'private'),
-                'mimeType' => array('column' => 'medium_mime_type', 'match' => '/\w+\/\w+/', 'write' => 'private'),
+            'attributes' => array(
+                'filename' => array('write' => 'private'),
+                'filesize' => array('type' => 'integer', 'write' => 'private'),
+                'mimetype' => array('match' => '/\S+\/\S+/', 'write' => 'private'),
             )
         ));
         
@@ -42,16 +43,17 @@ class LibBaseDomainBehaviorFileable extends LibBaseDomainBehaviorStorable
     {
         $filename = md5($this->id);
         $data     = file_get_contents($file->tmp_name);
-        if ($this->getFileName() == $this->name) {
-            $this->name = $file->name;
-        }
         $file->append(array(
-            'type' => mime_content_type($file->name)
+            'type' => mime_type($file->name)
         ));
-        $this->mimeType = $file->type;
-        $this->setValue('file_name', $file->name);
-        $this->fileSize = strlen($data);
-        $this->writeData($filename, $data, false);
+        
+        $this->setData(array(
+            'filename' => $file->name,
+            'mimetype' => $file->type,
+            'filesize' => strlen($data),
+        ), AnDomain::ACCESS_PRIVATE);
+        
+        return $this->writeData($filename, $data, false);
     }
     
     /**
@@ -63,15 +65,5 @@ class LibBaseDomainBehaviorFileable extends LibBaseDomainBehaviorStorable
     {
         $filename = md5($this->id);
         return $this->readData($filename, false);
-    }
-    
-    /**
-     * Return the original file name
-     * 
-     * @return string
-     */
-    public function getFileName()
-    {
-        return $this->getValue('file_name');
     }
 }
