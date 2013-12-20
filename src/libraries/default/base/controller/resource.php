@@ -14,14 +14,14 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
 {
     /**
      * View object or identifier (APP::com.COMPONENT.view.NAME.FORMAT)
-     *
+     * 
      * @var string|object
      */
     protected $_view;
     
     /**
      * Constructor.
-     *
+     * 
      * @param   object  An optional KConfig object with configuration options.
      */
     public function __construct( KConfig $config)
@@ -211,7 +211,7 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
     public function getToolbar($toolbar, $config = array())
     {
         if (is_string($toolbar)) {
-            if (strpos($toolbar,'.') === false) {
+            if (strpos($toolbar, '.') === false) {
                 $identifier       = clone $this->getIdentifier();
                 $identifier->path = array('controller', 'toolbar');
                 $identifier->name = $toolbar;
