@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Controller
+ * Note Controller
  * 
  * @category   Anahita
  * @package    Com_Notes
@@ -23,14 +23,18 @@ class ComNotesControllerNote extends ComMediumControllerDefault
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
-           'behaviors' => array('com://site/shares.controller.behavior.sharable')
+            'request' => array(
+                'sort' => 'creationTime',
+                'direction' => 'desc',
+            ),
+            'behaviors' => array('com://site/shares.controller.behavior.sharable'),
         ));
         
         parent::_initialize($config);
     }
     
     /**
-     * Adds a new post
+     * Adds a new note
      * 
      * @param KCommandContext $context Context parameter
      * @return void
@@ -46,14 +50,12 @@ class ComNotesControllerNote extends ComMediumControllerDefault
             unset($data->private);
         }
         
-        //if a private message then
-        //set the privacy to subject/target
+        //if a private message then set the privacy to subject/target
         if ($data->private) {
             $entity->setAccess(array($this->actor->id, get_viewer()->id));
         }
         
-        //create a notification for the subscribers and 
-        //the post owner as well
+        //create a notification for the subscribers and the post owner as well
         if ($entity->owner->isSubscribable()) {
             //create a notification and pass the owner
             $notification = $this->createNotification(array(

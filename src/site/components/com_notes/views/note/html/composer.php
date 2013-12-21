@@ -6,7 +6,7 @@
         
         <div class="control-group">
             <div class="controls">
-                <textarea class="input-block-level" data-validators="minLength:1 maxLength:5000" id="composer-textarea"  name="body" overtext="<?= @text('COM-NOTES-SHARE-PROMPT') ?>"></textarea>
+                <textarea class="input-block-level" data-validators="minLength:1 maxLength:5000" id="composer-textarea" name="body" overtext="<?= @text('COM-NOTES-SHARE-PROMPT') ?>"></textarea>
             </div>
         </div>
         
@@ -34,7 +34,7 @@
                     }
                 }
                 ?>
-                <?php if ( count($sessions) > 0 ) : ?>
+                <?php if (count($sessions) > 0): ?>
                     <?php foreach($sessions as $session) : ?>
                         <a class="btn btn-<?= $session->api->getName() ?>" data-trigger="Checkbox" data-checkbox-name="channels[]" data-checkbox-value="<?= $session->getName() ?>" data-behavior="BS.Twipsy" title="<?= sprintf(@text('COM-CONNECT-SHARE-POST'), ucfirst($session->api->getName())) ?>">
                             <?= @helper('com://site/connect.template.helper.service.icon', $session->api->getName())?>
@@ -47,7 +47,7 @@
                 <?php endif ?>
             <?php endif ?>
             
-            <button data-trigger="Share" data-request-options="{inject:'an-stories'}" class="btn btn-primary pull-right" >
+            <button data-trigger="Share" data-request-options="{inject:'an-stories'}" class="btn btn-primary pull-right">
                 <?= @text('LIB-AN-ACTION-SHARE') ?>
             </button>
         </div>
