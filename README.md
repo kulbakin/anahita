@@ -1,13 +1,16 @@
 Anahita+
 ========
 
-This is forked version of [Anahita](https://github.com/anahitasocial/anahita). For general information see the original.
+This is forked version of [Anahita](https://github.com/anahitasocial/anahita).
+For general information see the original.
 The following information focuses on differences between the versions.
 
 ## Installation
 
-In order to use this fork instead of original Anahita, use [Loading a package from VCS repository method](http://getcomposer.org/doc/05-repositories.md#vcs),
-i.e. make [composer.json](https://github.com/anahitasocial/anahita-standard/blob/master/composer.json) of your anahita application to be:
+In order to use this fork instead of original Anahita, utilize
+[Loading a package from VCS repository method](http://getcomposer.org/doc/05-repositories.md#vcs),
+i.e. make [composer.json](https://github.com/anahitasocial/anahita-standard/blob/master/composer.json)
+of your anahita application to be:
 
 ```json
 {
@@ -44,9 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
-* fix *portraitable* behavior to prevent it from generating the same filename for
+* ~~fix *portraitable* behavior to prevent it from generating the same filename for
   different attachments of the same user handled within same second
-  [a2b3ef8](https://github.com/kulbakin/anahita/commit/a2b3ef8d56119de88fd14eac71b7d183104d1c22)
+  [a2b3ef8](https://github.com/kulbakin/anahita/commit/a2b3ef8d56119de88fd14eac71b7d183104d1c22)~~
 * fix *fileable* behavior so it doesn't rely on obsolete database columns,
   fix *mime_type()* helper function (replacement for depricated standard *mime_content_type()*)
   [f109fbd](https://github.com/kulbakin/anahita/commit/f109fbd2614a560691784de1bd3891ed441b5880)
@@ -63,7 +66,7 @@ changes.
   [273b93e](https://github.com/kulbakin/anahita/commit/273b93e0ffa92a20ed8345cad0eff032093775bd),
   [bd6616f](https://github.com/kulbakin/anahita/commit/bd6616f5d4d26e7f1c3dacc9a652263d1456d407)
 * fix profile page javascript error appearing on stream switch when there are no component specific
-  composer formы defined
+  composer form defined
   [4d163f9](https://github.com/kulbakin/anahita/commit/4d163f96af4f845ef55a994cede279d6ef36346a)
 * fix query building logic to properly recognize relationship aliases
   [0f20b3e](https://github.com/kulbakin/anahita/commit/0f20b3e05bb118f71984f37f6d278206229040d1),
