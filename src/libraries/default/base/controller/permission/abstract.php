@@ -45,9 +45,9 @@ abstract class LibBaseControllerPermissionAbstract extends KControllerBehaviorAb
      * 
      * @param string          $name    The command name
      * @param KCommandContext $context The command context
-     * @return boolean     Can return both true or false.  
+     * @return boolean Can return both true or false.  
      */
-    public function execute( $name, KCommandContext $context)
+    public function execute($name, KCommandContext $context)
     {
         $parts = explode('.', $name);
         
@@ -60,7 +60,7 @@ abstract class LibBaseControllerPermissionAbstract extends KControllerBehaviorAb
             }
             
             if ($this->_mixer->canExecute($action) === false) {
-                if ($this->viewer && !$this->viewer->guest()) {
+                if ($this->viewer && ! $this->viewer->guest()) {
                     throw  new LibBaseControllerExceptionForbidden('Action '.ucfirst($action).' Not Allowed');
                 } else {
                     throw  new LibBaseControllerExceptionUnauthorized('Action '.ucfirst($action).' Not Allowed');

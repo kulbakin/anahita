@@ -19,7 +19,7 @@ class LibBaseControllerAbstract extends KControllerAbstract
      * @var KConfigState
      */
     protected $_state;
-
+    
     /**
      * response object
      *
@@ -103,7 +103,7 @@ class LibBaseControllerAbstract extends KControllerAbstract
     /**
      * Get the state value of a property
      * 
-     * @param string $key   The property name
+     * @param string $key The property name
      * @return void
      */
     public function __get($key)
@@ -116,12 +116,11 @@ class LibBaseControllerAbstract extends KControllerAbstract
      * properties by using the request property name as the method name.
      * 
      * For example : $controller->view('name')->limit(10)->browse();
+     * @see http://martinfowler.com/bliki/FluentInterface.html
      * 
      * @param   string  Method name
      * @param   array   Array containing all the arguments for the original call
      * @return  KControllerBread
-     * 
-     * @see http://martinfowler.com/bliki/FluentInterface.html
      */
     public function __call($method, $args)
     {
@@ -139,7 +138,7 @@ class LibBaseControllerAbstract extends KControllerAbstract
             //method exists, then that means the action
             //has been called on the object parent i.e.
             //parent::_action[Name] but since the parent is 
-            //not implementing the action it falls back to __call. 
+            //not implementing the action it falls back to __call.
             //we need to check if a behavior implement this method
             if (method_exists($this, $method)) {
                 $action = strtolower(substr($method, 7));
@@ -148,9 +147,9 @@ class LibBaseControllerAbstract extends KControllerAbstract
                     return $this->_mixed_methods[$action]
                         ->execute('action.'.$action, isset($args[0]) ? $args[0] : null);
                 } else {
-                    //we need to throw this 
+                    //we need to throw this
                     //because if it goes to parent::__call it will causes
-                    //infinite recursion                    
+                    //infinite recursion
                     throw new BadMethodCallException('Call to undefined method :'.$method);
                 }
             }
@@ -217,7 +216,7 @@ class LibBaseControllerAbstract extends KControllerAbstract
                 $identifier       = clone $this->getIdentifier();
                 $identifier->path = array('controller','behavior');
                 $identifier->name = $behavior;
-                register_default(array('identifier'=>$identifier, 'prefix'=>$this));
+                register_default(array('identifier' => $identifier, 'prefix' => $this));
                 $behavior = $identifier;
             }
         }
