@@ -43,9 +43,8 @@ class ComBaseControllerResource extends LibBaseControllerResource
             'language'  => 'com_'.$this->getIdentifier()->package,
             'behaviors' => to_hash('com://site/application.controller.behavior.message'),
         ));
-       
-        parent::_initialize($config);
         
+        parent::_initialize($config);
     }
     
     /**
