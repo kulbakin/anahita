@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *stories* view for its toolbar to reflect *filter=leaders* selection as other componets do
+  [7dc27fe](https://github.com/kulbakin/anahita/commit/7dc27fe9ce49a0fd5bb8e733da216f27569af8ca)
 * fix *@paginator()* template helper to read *limit* parameter from supplied entityset instead
   of assigning default value of (20) twenty
   [7a49a31](https://github.com/kulbakin/anahita/commit/7a49a315c7822c9744e7e499ff943f630c25626d)
