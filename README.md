@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *@paginator()* template helper to read *limit* parameter from supplied entityset instead
+  of assigning default value of (20) twenty
+  [7a49a31](https://github.com/kulbakin/anahita/commit/7a49a315c7822c9744e7e499ff943f630c25626d)
 * ~~fix *portraitable* behavior to prevent it from generating the same filename for
   different attachments of the same user handled within same second
   [a2b3ef8](https://github.com/kulbakin/anahita/commit/a2b3ef8d56119de88fd14eac71b7d183104d1c22)~~
