@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update *notes* component to support browse operation, i.e. now it is possible to navigate notes
+  not only from stories feed but with dedicated listing (listing URL is http://DOMAIN/notes)
+  [74fd14b](https://github.com/kulbakin/anahita/commit/74fd14b2f9c5221caaf3df913f0a4de6ea7055da)
 * fix *stories* view for its toolbar to reflect *filter=leaders* selection as other componets do
   [7dc27fe](https://github.com/kulbakin/anahita/commit/7dc27fe9ce49a0fd5bb8e733da216f27569af8ca)
 * fix *@paginator()* template helper to read *limit* parameter from supplied entityset instead
