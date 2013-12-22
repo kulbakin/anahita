@@ -75,8 +75,8 @@ changes.
 * update *notifier* behavior to have method for sending notification to administrators
   [1d6ad19](https://github.com/kulbakin/anahita/commit/1d6ad19e722d19d2c7c6527b696809644960b65e)
 * discard [anahitasocial/anahita@d34578f](https://github.com/anahitasocial/anahita/commit/d34578f91b3f2e44d4e2a43d22d8aa5a772d0f07):
-  not constructive, anahita+ intents to keep listings of public items for guest users instead
-  of restricting access to them as original anahita suggests
+  not constructive, anahita+ intends to keep listings of public items for guest users instead
+  of completely restricting access to them as original anahita suggests
 * fix *enableable* behavior
   [273b93e](https://github.com/kulbakin/anahita/commit/273b93e0ffa92a20ed8345cad0eff032093775bd),
   [bd6616f](https://github.com/kulbakin/anahita/commit/bd6616f5d4d26e7f1c3dacc9a652263d1456d407)
