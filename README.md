@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *PlgStorageAbstract::_write()* by removing *$public* parameter which makes no sence
+  and thus unused
+  [83693a4](https://github.com/kulbakin/anahita/commit/83693a49317215f39a2593de619f71824869cc39)
 * discard [anahitasocial/anahita@35b8e8d](https://github.com/anahitasocial/anahita/commits/35b8e8d10e68b483ea18cc67e70543a2ed98feee)
   and [anahitasocial/anahita@d9a68c5](https://github.com/anahitasocial/anahita/commits/d9a68c5c20b5961c7f996391f3ab423f1a8c4661):
   anahita+ supports note browsing introduced by earlier update
