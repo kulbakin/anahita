@@ -1,6 +1,6 @@
 <?php defined('KOOWA') or die('Restricted access') ?>
 
-<div scroll-handle="<?=$comment->id?>" id="an-comment-<?= $comment->id ?>" class="an-entity an-comment an-record an-removable">
+<div scroll-handle="<?= $comment->id ?>" id="an-comment-<?= $comment->id ?>" class="an-entity an-comment an-record an-removable">
     <div class="clearfix">
         <div class="entity-portrait-square">
             <?= @avatar($comment->author)  ?>
@@ -19,7 +19,7 @@
     </div>
     
     <?php $body = $comment->body ?>
-    <?php if (empty($strip_tags)): ?>
+    <?php if( ! empty($strip_tags)): ?>
         <?php $body = strip_tags($body) ?>
     <?php endif ?>
     

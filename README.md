@@ -47,6 +47,10 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* discard [anahitasocial/anahita@35b8e8d](https://github.com/anahitasocial/anahita/commits/35b8e8d10e68b483ea18cc67e70543a2ed98feee)
+  and [anahitasocial/anahita@d9a68c5](https://github.com/anahitasocial/anahita/commits/d9a68c5c20b5961c7f996391f3ab423f1a8c4661):
+  the branch supports note browsing introduced by earlier update
+  [74fd14b](https://github.com/kulbakin/anahita/commit/74fd14b2f9c5221caaf3df913f0a4de6ea7055da)
 * update *notes* component to support browse operation, i.e. now it is possible to navigate notes
   not only from stories feed but with dedicated listing (listing URL is http://DOMAIN/notes)
   [74fd14b](https://github.com/kulbakin/anahita/commit/74fd14b2f9c5221caaf3df913f0a4de6ea7055da)
@@ -69,7 +73,7 @@ changes.
   [b44eb70](https://github.com/kulbakin/anahita/commit/b44eb709f058777d1cd987e157e96456f7a18631)~~
 * update *notifier* behavior to have method for sending notification to administrators
   [1d6ad19](https://github.com/kulbakin/anahita/commit/1d6ad19e722d19d2c7c6527b696809644960b65e)
-* discard anahitasocial/anahita@70e450255ca8b00f5b62703c4a61d286c8d4bb42
+* discard [anahitasocial/anahita@70e4502](https://github.com/anahitasocial/anahita/commits/70e450255ca8b00f5b62703c4a61d286c8d4bb42)
 * fix *enableable* behavior
   [273b93e](https://github.com/kulbakin/anahita/commit/273b93e0ffa92a20ed8345cad0eff032093775bd),
   [bd6616f](https://github.com/kulbakin/anahita/commit/bd6616f5d4d26e7f1c3dacc9a652263d1456d407)
