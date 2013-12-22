@@ -55,7 +55,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
      */
     public function setAccess($value)
     {
-        $values = (array) $value;
+        $values = (array)$value;
         
         foreach ($values as $key => $value) {
             if (empty($value) ) {
