@@ -21,8 +21,8 @@ class ComNotesControllerNote extends ComMediumControllerDefault
      * @return void
      */
     protected function _initialize(KConfig $config)
-    {	
-    	$config->append(array(
+    {
+        $config->append(array(
             'request' => array(
                 'sort' => 'creationTime',
                 'direction' => 'desc',
