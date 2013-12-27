@@ -368,7 +368,7 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
         $context['property'] = $property;
         $context['value']    = $value;
         $context['entity']   = $this;
-
+        
         if ($this->getRepository()->getCommandChain()->run('before.setdata', $context) === false) {
             return $this;
         }
