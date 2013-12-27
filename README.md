@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix com_pages revisions: make their listing, add and edit pages show 404 error instead of empty
+  page or 500 error
+  [7352d26](https://github.com/kulbakin/anahita/commit/7352d26311775f7203673f0200844cc03b38a1ac)
 * fix *PlgStorageAbstract::_write()* by removing *$public* parameter which makes no sence
   and thus unused
   [83693a4](https://github.com/kulbakin/anahita/commit/83693a49317215f39a2593de619f71824869cc39)
