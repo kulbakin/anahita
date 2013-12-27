@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix so it supports mixed key types in parameter, i.e. checks key type for each element instead
+  of deciding on key type by first one
+  [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
 * fix internal helper method *AnHelperArray::getValueAtIndex()*
   [6e209f7](https://github.com/kulbakin/anahita/commit/6e209f780872af6c321e9ee7a6a3764d297b590e)
 * fix com_pages revisions: make their listing, add and edit pages show 404 error instead of empty
