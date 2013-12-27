@@ -1,7 +1,7 @@
 <?php
 /**
  * Topics Controller
- *
+ * 
  * @category   Anahita
  * @package    Com_Topics
  * @subpackage Controller
