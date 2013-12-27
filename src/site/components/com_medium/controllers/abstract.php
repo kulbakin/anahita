@@ -66,7 +66,7 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
         //we need to set the default owner to the viewer        
         $config->append(array(
             'behaviors' => array(
-                'ownable' => array('default'=>get_viewer()),
+                'ownable' => array('default' => get_viewer()),
             ),
         ));
         
