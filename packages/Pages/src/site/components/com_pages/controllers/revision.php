@@ -34,8 +34,12 @@ class ComPagesControllerRevision extends ComMediumControllerDefault
      */
     protected function _actionBrowse($context)
     {
-        // revision listing is not allowed
-        throw new KHttpException('Not Found', KHttpResponse::NOT_FOUND);
+        if ('gadget' != $context->request->layout) {
+            // only gadget revision listing is not allowed
+            throw new KHttpException('Not Found', KHttpResponse::NOT_FOUND);
+        }
+        
+        return parent::_actionBrowse($context);
     }
     
     /**
