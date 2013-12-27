@@ -44,7 +44,7 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
             'behaviors' => to_hash(array(
                 'com://site/search.controller.behavior.searchable',
                 'com://site/stories.controller.behavior.publisher',
-                'com://site/notifications.controller.behavior.notifier',                                    
+                'com://site/notifications.controller.behavior.notifier',
                 'followable',
                 'administrable',
                 'ownable',
