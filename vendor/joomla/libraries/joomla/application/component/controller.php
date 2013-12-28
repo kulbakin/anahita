@@ -354,7 +354,7 @@ class JController extends JObject
 
 			// Lets get the application object and set menu information if its available
 			$app	= &JFactory::getApplication();
-			$menu	= &$app->getMenu();
+			$menu	= call_user_func(array(get_class($app), 'getMenu'), $app->getName());
 			if (is_object( $menu ))
 			{
 				if ($item = $menu->getActive())

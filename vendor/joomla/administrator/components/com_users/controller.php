@@ -46,17 +46,17 @@ class UsersController extends JController
 	/**
 	 * Displays a view
 	 */
-	function display( )
+	function display($cachable = false)
 	{
 		switch($this->getTask())
 		{
-			case 'add'     :
+			case 'add':
 			{	JRequest::setVar( 'hidemainmenu', 1 );
 				JRequest::setVar( 'layout', 'form'  );
 				JRequest::setVar( 'view', 'user' );
 				JRequest::setVar( 'edit', false );
 			} break;
-			case 'edit'    :
+			case 'edit':
 			{
 				JRequest::setVar( 'hidemainmenu', 1 );
 				JRequest::setVar( 'layout', 'form'  );
@@ -65,7 +65,7 @@ class UsersController extends JController
 			} break;
 		}
 
-		parent::display();
+		parent::display($cachable);
 	}
 
 	/**

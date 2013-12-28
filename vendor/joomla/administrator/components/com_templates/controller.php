@@ -96,7 +96,7 @@ class TemplatesController
 		// Initialize some variables
 		$db		= & JFactory::getDBO();
 		$cid	= JRequest::getVar('cid', array(), 'method', 'array');
-		$cid	= array(JFilterInput::clean(@$cid[0], 'cmd'));
+		$cid	= array(JFilterInput::getInstance()->clean(@$cid[0], 'cmd'));
 		$option	= JRequest::getCmd('option');
 		$client	=& JApplicationHelper::getClientInfo(JRequest::getVar('client', '0', '', 'int'));
 
@@ -124,7 +124,7 @@ class TemplatesController
 		// Initialize some variables
 		$db			= & JFactory::getDBO();
 		$cid		= JRequest::getVar('cid', array(), 'method', 'array');
-		$cid		= array(JFilterInput::clean(@$cid[0], 'cmd'));
+		$cid		= array(JFilterInput::getInstance()->clean(@$cid[0], 'cmd'));
 		$template	= $cid[0];
 		$option		= JRequest::getCmd('option');
 		$client		=& JApplicationHelper::getClientInfo(JRequest::getVar('client', '0', '', 'int'));

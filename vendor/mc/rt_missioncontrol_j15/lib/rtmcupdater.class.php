@@ -16,7 +16,7 @@ class MCUpdater {
         // see if $mctrl has been initiated yet, if not do so
         if (!$mctrl) {
             require_once(JPATH_ADMINISTRATOR.'/templates/rt_missioncontrol_j15/lib/missioncontrol.class.php');
-            $mctrl =& MissionControl::getInstance();
+            $mctrl = MissionControl::getInstance();
         }
         
         $output = '';
@@ -26,8 +26,6 @@ class MCUpdater {
         if (!$update) $mctrl->addScript('MC.Updater.js');
 
         $params =& $mctrl->params;
-
-
         $updater = new RokUpdater();
         $updater->init($mctrl->updateUrl, $mctrl->updateSlug, $params, $params->get('updater_dl_method'), $params->get('updater_extract_method'));
 
@@ -44,18 +42,15 @@ class MCUpdater {
 
         //get status details
         $details = $updater->updateAvailable();
-
         $errors = ob_get_clean();
 
         if ($details === false || $errors) {
-                $output .= '<div class="mc-update-check updates-true">';
-                $output .=  '<b>There was an error processing your request:</b>';
-                $output .=  $errors;
-                $output .=  '<p class="mc-update"><a href="#">Force Update</a> <span class="spinner"></span></p>';
-                $output .=  '</div>';
-
+            $output .= '<div class="mc-update-check updates-true">';
+            $output .=  '<b>There was an error processing your request:</b>';
+            $output .=  $errors;
+            $output .=  '<p class="mc-update"><a href="#">Force Update</a> <span class="spinner"></span></p>';
+            $output .=  '</div>';
         } else {
-
             if ($details->updates) {
                 $output .=  '<div class="mc-update-check updates-true">';
                 $output .=  $update_info.$details->name.' <span class="mc-new-version">'.$details->version.'</span> is now available. ';
@@ -69,12 +64,6 @@ class MCUpdater {
                 $output .=  '</div>';
             }
         }
-
         return $output;
     }
-
-
-
-
-
 }

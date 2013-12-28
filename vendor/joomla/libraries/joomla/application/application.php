@@ -703,14 +703,13 @@ class JApplication extends JObject
 	/**
 	 * Return a reference to the application JPathway object.
 	 *
-	 * @access public
 	 * @param  array	$options 	An optional associative array of configuration settings.
 	 * @return object JMenu.
 	 * @since 1.5
 	 */
-	function &getMenu($name = null, $options = array())
+	public static function &getMenu($name = null, $options = array())
 	{
-		if(!isset($name)) {
+		if( ! isset($name)) {
 			$name = $this->_name;
 		}
 

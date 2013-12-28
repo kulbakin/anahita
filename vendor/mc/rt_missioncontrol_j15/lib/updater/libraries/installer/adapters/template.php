@@ -62,7 +62,7 @@ class RokInstallerTemplate extends JInstallerTemplate
 
 		// Set the extensions name
 		$name =& $root->getElementByPath('name');
-		$name = JFilterInput::clean($name->data(), 'cmd');
+		$name = JFilterInput::getInstance()->clean($name->data(), 'cmd');
 		$this->set('name', $name);
 
 		// Set the template root path

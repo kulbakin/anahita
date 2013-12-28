@@ -46,7 +46,7 @@ class PluginsViewPlugin extends JView
 
 		// fail if checked out not by 'me'
 
-		if ($row->isCheckedOut( $user->get('id') ))
+		if (JTable::isCheckedOut($user->get('id'), $row->checked_out))
 		{
 			$msg = JText::sprintf( 'DESCBEINGEDITTED', JText::_( 'The plugin' ), $row->title );
 			$this->setRedirect( 'index.php?option='. $option .'&client='. $client, $msg, 'error' );

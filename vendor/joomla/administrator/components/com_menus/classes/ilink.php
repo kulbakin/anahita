@@ -44,7 +44,7 @@ class iLink extends JTree
 		}
 
 		if ($menutype) {
-			$this->_menutype = "&amp;menutype=" . JFilterInput::clean($menutype, 'menutype');
+			$this->_menutype = "&amp;menutype=" . JFilterInput::getInstance()->clean($menutype, 'menutype');
 		} else {
 			$this->_menutype = null;
 		}

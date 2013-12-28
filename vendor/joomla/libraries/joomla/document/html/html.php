@@ -201,7 +201,7 @@ class JDocumentHTML extends JDocument
 	 * @param string 	$name		oke The name of the element to render
 	 * @param string 	$content	The content to be set in the buffer
 	 */
-	function setBuffer($contents, $type, $name = null)
+	function setBuffer($contents, $type = null, $name = null)
 	{
 		$this->_buffer[$type][$name] = $contents;
 	}
@@ -218,8 +218,8 @@ class JDocumentHTML extends JDocument
 	{
 		// check
 		$directory	= isset($params['directory']) ? $params['directory'] : 'templates';
-		$template	= JFilterInput::clean($params['template'], 'cmd');
-		$file		= JFilterInput::clean($params['file'], 'cmd');
+		$template	= JFilterInput::getInstance()->clean($params['template'], 'cmd');
+		$file		= JFilterInput::getInstance()->clean($params['file'], 'cmd');
 
 		if ( !file_exists( $directory.DS.$template.DS.$file) ) {
 			$template = 'system';

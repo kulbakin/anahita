@@ -17,20 +17,16 @@ class JElementLogoUpload extends JElement {
 	function fetchElement($name, $value, &$node, $control_name)
 	{
         global $mctrl;
-        $mctrl =& MissionControl::getInstance();
-
+        $mctrl = MissionControl::getInstance();
+        
         if($mctrl->_getCurrentAdminTemplate() == "rt_missioncontrol_j15") {
             $upload_url = "?process=ajax&amp;model=logoupload";
             $html = '<iframe src="'.$upload_url.'" class="mc-logoupload"></iframe>';
         } else {
             $html = '<b>* Feature only available within MissionControl</b>';
         }
-
-
-
+        
         return $html;
-
 	}
 
 }
-?>

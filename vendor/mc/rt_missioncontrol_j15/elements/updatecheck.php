@@ -20,8 +20,8 @@ class JElementUpdateCheck extends JElement {
 	function fetchElement($name, $value, &$node, $control_name)
 	{
         global $mctrl;
-        $mctrl =& MissionControl::getInstance();
-
+        $mctrl = MissionControl::getInstance();
+        
         if($mctrl->_getCurrentAdminTemplate() == "rt_missioncontrol_j15") {
             $ftp = JClientHelper::getCredentials('ftp');
             if ($ftp['enabled']) {
@@ -29,16 +29,9 @@ class JElementUpdateCheck extends JElement {
             } else {
                $html = MCUpdater::display(false);
             }
-
-
         } else {
             $html = '<b>* Feature only available within MissionControl</b>';
         }
-
-
         return $html;
 	}
-
-
 }
-?>

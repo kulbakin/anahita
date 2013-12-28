@@ -16,6 +16,7 @@
 ?>
 
 <?php
+    isset($row) or $row = new stdClass();
 	$this->plugin->nameA = '';
 	if ( $this->plugin->id ) {
 		$row->nameA = '<small><small>[ '. $this->plugin->name .' ]</small></small>';

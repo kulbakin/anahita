@@ -1,12 +1,4 @@
 <?php
-/**
- * @category   Anahita
- * @package	   Joomla.Framework
- * @subpackage Language
- * @copyright  Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
- * @license    GNU/GPL
- */
-
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die();
 
@@ -18,6 +10,8 @@ defined('JPATH_BASE') or die();
  * @category   Anahita
  * @package    Joomla.Framework
  * @subpackage Language
+ * @copyright  Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @license    GNU/GPL
  */
 class JLanguage extends JObject
 {
@@ -240,14 +234,14 @@ class JLanguage extends JObject
     
     /**
      * Check if a language exists
-     *
+     * 
      * This is a simple, quick check for the directory that should contain language files for the given user.
-     *
+     * 
      * @param    string $lang Language to check
      * @param    string $basePath Optional path to check
      * @return   boolean True if the language exists
      */
-    public function exists($lang, $basePath = JPATH_BASE)
+    public static function exists($lang, $basePath = JPATH_BASE)
     {
         static $paths = array();
         

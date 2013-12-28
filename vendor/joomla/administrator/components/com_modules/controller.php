@@ -399,7 +399,7 @@ class ModulesController extends JController
 		// load the row from the db table
 		$row->load( (int) $cid[0] );
 		// fail if checked out not by 'me'
-		if ($row->isCheckedOut( $user->get('id') )) {
+		if (JTable::isCheckedOut($user->get('id'), $row->checked_out)) {
 			$this->setRedirect( 'index.php?option=com_modules&client='.$client->id );
 			return JError::raiseWarning( 500, JText::sprintf( 'DESCBEINGEDITTED', JText::_( 'The module' ), $row->title ) );
 		}

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Query Helper Class
  * 
@@ -182,7 +181,8 @@ class AnDomainQueryHelper
         if ( ! $child_belongs_to_property->getParent()) {
             throw new AnDomainQueryException('Query Building Failed. Unkown Parent');
         } elseif ($child_belongs_to_property->isPolymorphic()) {
-            $columns = array(array_shift(array_keys($columns)) => array_shift(array_values($columns)));
+            list($k) = array_keys($columns);
+            $columns = array($k => $columns[$k]);
         }
         
         $condition = array();

@@ -251,11 +251,10 @@ class JDocument extends JObject
 	 * This method must be invoked as:
 	 * 		<pre>  $document = &JDocument::getInstance();</pre>
 	 *
-	 * @access public
 	 * @param type $type The document type to instantiate
 	 * @return object  The document object.
 	 */
-	function &getInstance($type = 'html', $attributes = array())
+	public static function &getInstance($type = 'html', $attributes = array())
 	{
 		static $instances;
 

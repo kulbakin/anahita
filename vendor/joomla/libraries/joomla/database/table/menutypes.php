@@ -49,7 +49,7 @@ class JTableMenuTypes extends JTable
 	 */
 	function check()
 	{
-		$this->menutype = JFilterInput::clean($this->menutype, 'menutype');
+		$this->menutype = JFilterInput::getInstance()->clean($this->menutype, 'menutype');
 		if (empty($this->menutype)) {
 			$this->setError( "Cannot save: Empty menu type" );
 			return false;

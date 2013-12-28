@@ -48,7 +48,7 @@ class RokInstallerModule extends JInstallerModule
 
 		// Set the extensions name
 		$name =& $this->manifest->getElementByPath('name');
-		$name = JFilterInput::clean($name->data(), 'string');
+		$name = JFilterInput::getInstance()->clean($name->data(), 'string');
 		$this->set('name', $name);
 
 		// Get the component description

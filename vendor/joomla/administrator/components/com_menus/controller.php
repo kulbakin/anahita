@@ -574,6 +574,7 @@ class MenusController extends JController
 			return false;
 		}
 
+		$msg = null;
 		if ($isNew)
 		{
 			if ($title = JRequest::getVar( 'module_title', $menuType->menutype, 'post', 'string' ))

@@ -32,7 +32,7 @@ class MenusModelList extends JModel
 	 * Returns the internal table object
 	 * @return JTable
 	 */
-	function &getTable()
+	function &getTable($name = '', $prefix = 'Table', $options = array())
 	{
 		if ($this->_table == null)
 		{
