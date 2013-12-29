@@ -7,14 +7,14 @@
     <license>http://www.gnu.org/licenses/gpl-3.0.htmlL</license>
     <authoremail>info@anahitapolis.com</authoremail>
     <authorurl>www.anahitapolis.com</authorurl>
-    <version>##BUILD_VERSION##</version>	
+    <version>##BUILD_VERSION##</version>
     <description>Module to display the viewer related information (such as avatar, menus and etc)</description>
     <files>
         <folder>html</folder>
         <file>html.php</file>
         <filename module="mod_viewer">mod_viewer.php</filename>
     </files>
-	<params>
-		<param name="menutype" type="mos_menu" default="" label="Menu Name" description="The viewer menu" />		
-	</params>		    
+    <params>
+        <param name="menutype" type="mos_menu" default="" label="Menu Name" description="The viewer menu" />
+    </params>
 </install>

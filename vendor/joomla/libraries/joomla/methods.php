@@ -1,9 +1,9 @@
 <?php
 /**
  * @category    Anahita
- * @package		Joomla.Framework
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
- * @license		GNU/GPL
+ * @package     Joomla.Framework
+ * @copyright   Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @license     GNU/GPL
  */
 
 // Check to ensure this file is within the rest of the framework
@@ -28,7 +28,7 @@ class JRoute
     {
         return KService::get('application')
             ->getRouter()
-            ->build($url, $fqr);        
+            ->build($url, $fqr);
     }
 }
 
