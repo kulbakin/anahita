@@ -58,8 +58,8 @@ changes.
   [93621b7](https://github.com/kulbakin/anahita/commit/93621b70d5eb59eb82ce86ec6bdb9e48edf5634b),
   [498bffb](https://github.com/kulbakin/anahita/commit/498bffb067a3fa7d46927bae78d2da8e4b3fd0f2),
   [95245bd](https://github.com/kulbakin/anahita/commit/95245bdd78e04ff15df28c29112990382e4521f2)
-* fix so it supports mixed key types in parameter, i.e. checks key type for each element instead
-  of deciding on key type by first one
+* fix *KConfig::append()* so it supports mixed key types in parameter, i.e. checks key type for each element instead
+  of deciding on key type by the first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
 * fix internal helper method *AnHelperArray::getValueAtIndex()*
   [6e209f7](https://github.com/kulbakin/anahita/commit/6e209f780872af6c321e9ee7a6a3764d297b590e)
