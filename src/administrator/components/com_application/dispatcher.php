@@ -1,8 +1,7 @@
 <?php
-
 /**
  * Application Dispatcher
- *
+ * 
  * @category   Anahita
  * @package    Com_Application
  * @author     Arash Sanieyan <ash@anahitapolis.com>
@@ -17,7 +16,7 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
      * 
      * @param KConfig $config An optional KConfig object with configuration options.
      * @return void
-     */ 
+     */
     public function __construct(KConfig $config)
     {
         parent::__construct($config);
@@ -106,7 +105,7 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         
         $this->send($context);
     }
-        
+    
     /**
      * Renders the output
      * 
@@ -148,11 +147,10 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
             return $matches[1].'="'.KRequest::root().'/'.$matches[2].'/';
         }, $content);
         
-        
         $content = preg_replace_callback('#action="index.php"#', function ($matches) {
             return 'action="'.JRoute::_('index.php?').'"';
         }, $content);
-                
+        
         $context->response->setContent($content);
     }
     
@@ -171,7 +169,6 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         parent::_actionRoute($context);
         
         $component = $this->getRequest()->get('option');
-        
         $user =& JFactory::getUser();
         
         if ( ! $user->authorize('login', 'administrator')) {
@@ -194,7 +191,7 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
      *  caller => KObject, data => mixed
      * @return KException
      */
-    protected function _actionException($context)
+    protected function _actionException(KCommandContext $context)
     {
         $error = $context->data;
         if ($context->response->getHeader('Location')) {

@@ -39,7 +39,7 @@ class ComNotesControllerNote extends ComMediumControllerDefault
      * @param KCommandContext $context Context parameter
      * @return void
      */
-    protected function _actionAdd($context)
+    protected function _actionAdd(KCommandContext $context)
     {
         $data   = $context->data;
         $entity = parent::_actionAdd($context);

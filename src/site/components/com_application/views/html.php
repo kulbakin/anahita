@@ -49,7 +49,7 @@ class ComApplicationViewHtml extends LibApplicationViewHtml
      * (non-PHPdoc)
      * @see LibBaseViewAbstract::getRoute()
      */
-    public function getRoute($route, $fqr = false)
+    public function getRoute($route = '', $fqr = false)
     {
         return $this->getService('application')
             ->getRouter()->build($route, $fqr);

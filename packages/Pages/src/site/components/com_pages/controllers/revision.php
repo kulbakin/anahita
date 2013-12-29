@@ -32,7 +32,7 @@ class ComPagesControllerRevision extends ComMediumControllerDefault
     /**
      * {@inheritdoc}}
      */
-    protected function _actionBrowse($context)
+    protected function _actionBrowse(KCommandContext $context)
     {
         if ('gadget' != $context->request->layout) {
             // only gadget revision listing is not allowed
@@ -45,7 +45,7 @@ class ComPagesControllerRevision extends ComMediumControllerDefault
     /**
      * {@inheritdoc}}
      */
-    protected function _actionRead($context)
+    protected function _actionRead(KCommandContext $context)
     {
         if ($context->request->layout) {
             // only default revision view is allowed (i.e. forbid edit/add form access)
@@ -61,7 +61,7 @@ class ComPagesControllerRevision extends ComMediumControllerDefault
      * @param KCommandContext $context Context paramter
      * @return void
      */
-    protected function _actionRestore($context)
+    protected function _actionRestore(KCommandContext $context)
     {
         $revision = $this->getItem();
         $page = $revision->page;

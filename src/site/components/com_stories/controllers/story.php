@@ -66,7 +66,7 @@ class ComStoriesControllerStory extends ComBaseControllerService
      * @param KCommandContext $context Context parameter
      * @return void
      */
-    protected function _actionBrowse($context)
+    protected function _actionBrowse(KCommandContext $context)
     {
         $query = $this->getRepository()->getQuery()
             ->limit(20, $this->start);
@@ -102,7 +102,7 @@ class ComStoriesControllerStory extends ComBaseControllerService
      * 
      * @return boolean
      */
-    protected function _actionDelete($context)
+    protected function _actionDelete(KCommandContext $context)
     {
         $context->response->status = KHttpResponse::NO_CONTENT;
         $this->getItem()->delete();

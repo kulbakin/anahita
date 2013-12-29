@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Abstract Medium Controller
  * 
@@ -63,7 +62,7 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
         
         //anything within the medium app
         //is within the context of an owner
-        //we need to set the default owner to the viewer        
+        //we need to set the default owner to the viewer
         $config->append(array(
             'behaviors' => array(
                 'ownable' => array('default' => get_viewer()),
@@ -77,10 +76,9 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
      * Browse Action
      * 
      * @param KCommandContext $context Context Parameter
-     * 
      * @return AnDomainQuery
      */
-    protected function _actionBrowse($context)
+    protected function _actionBrowse(KCommandContext $context)
     {
         $entities = parent::_actionBrowse($context);
         
@@ -152,7 +150,7 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
     public function createStoryCallback(KCommandContext $context)
     {
         if ($context->result !== false) {
-            $data     = $context->data;
+            $data    = $context->data;
             $name    = $this->getIdentifier()->name.'_'.$context->action;
             $context->append(array(
                 'story' => array(

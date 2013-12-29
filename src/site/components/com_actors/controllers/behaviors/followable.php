@@ -119,10 +119,10 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
      * @param KCommandContext $context Context parameter
      * @return void
      */
-    protected function _actionDeleteblocked($context)
+    protected function _actionDeleteblocked(KCommandContext $context)
     {
         $this->getResponse()->status = KHttpResponse::RESET_CONTENT;
-        $this->getItem()->removeBlocked($this->actor);    
+        $this->getItem()->removeBlocked($this->actor);
         return $this->getItem();
     }
     
@@ -162,7 +162,7 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
         if ( ! $entities) {
             return false;
         }
-        $xid = (array) KConfig::unbox($this->getState()->xid);
+        $xid = (array)KConfig::unbox($this->getState()->xid);
         
         if ( ! empty($xid)) {
             $entities->where('id','NOT IN', $xid);
@@ -188,7 +188,7 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
         $data = $context->data;
         
         if ($data->actor) {
-            $ret = $this->getService('repos:actors.actor')->fetch($data->actor);        
+            $ret = $this->getService('repos:actors.actor')->fetch($data->actor);
         } else {
             $ret = get_viewer();
         }

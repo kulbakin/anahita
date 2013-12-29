@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Enableable Behavior
  * 
@@ -39,7 +38,7 @@ class ComBaseControllerBehaviorEnableable extends KControllerBehaviorAbstract
      * @param KCommandContext $context
      * @return void
      */
-    protected function _actionEnable($context)
+    protected function _actionEnable(KCommandContext $context)
     {
         $context->response->status = KHttpResponse::RESET_CONTENT;
         $this->getItem()->enabled = 1;
@@ -52,7 +51,7 @@ class ComBaseControllerBehaviorEnableable extends KControllerBehaviorAbstract
      * @param KCommandContext $context
      * @return void
      */
-    protected function _actionDisable($context)
+    protected function _actionDisable(KCommandContext $context)
     {
         $context->response->status = KHttpResponse::RESET_CONTENT;
         $this->getItem()->enabled = 0;

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Todo Controller
  * 
@@ -17,7 +16,6 @@ class ComTodosControllerTodo extends ComMediumControllerDefault
      * Constructor.
      * 
      * @param KConfig $config An optional KConfig object with configuration options.
-     * 
      * @return void
      */
     public function __construct(KConfig $config)
@@ -66,7 +64,7 @@ class ComTodosControllerTodo extends ComMediumControllerDefault
      * @param  KCommandContext $context
      * @return void
      */
-    protected function _actionBrowse($context)
+    protected function _actionBrowse(KCommandContext $context)
     {
         $todos = parent::_actionBrowse($context);
         

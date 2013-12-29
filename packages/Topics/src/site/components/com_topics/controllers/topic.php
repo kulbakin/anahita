@@ -18,7 +18,7 @@ class ComTopicsControllerTopic extends ComMediumControllerDefault
      * @param KCommandContext $context Context
      * @return void
      */
-    protected function _actionBrowse($context)
+    protected function _actionBrowse(KCommandContext $context)
     {
         $topics = parent::_actionBrowse($context);
         
@@ -35,7 +35,7 @@ class ComTopicsControllerTopic extends ComMediumControllerDefault
      * @param KCommandContext $context Context parameter
      * @return void
      */
-    protected function _actionAdd($context)
+    protected function _actionAdd(KCommandContext $context)
     {
         $entity = parent::_actionAdd($context);
         if ($entity->owner->isSubscribable()) {
@@ -55,7 +55,7 @@ class ComTopicsControllerTopic extends ComMediumControllerDefault
      * @param  KCommandContext $context Context parameter
      * @return void
      */
-    protected function _actionSticky($context)
+    protected function _actionSticky(KCommandContext $context)
     {
         $data = $context->data;
         $this->getItem()->isSticky = $data->is_sticky;
