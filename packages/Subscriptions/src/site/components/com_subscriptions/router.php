@@ -10,7 +10,7 @@
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
 class ComSubscriptionsRouter extends ComBaseRouterDefault
-{    
+{
     /**
      * Parse the segments of a URL.
      * 

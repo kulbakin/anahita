@@ -13,7 +13,7 @@ require_once 'compiler.php';
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
 class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
-{    
+{
     /**
      * Compiles a less css file. The the compiler will create a css file output
      * 
@@ -34,7 +34,7 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
         ));
         
         $less  = new lessc();
-        $less->setPreserveComments(!$config->compress);
+        $less->setPreserveComments( ! $config->compress);
         if ($config->compress) {
             $less->setFormatter("compressed");
         }
@@ -51,16 +51,14 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
         
         //if output doesn't exsit then force compile
         if ( ! is_readable($config->output)) {
-            $force = true;    
+            $force = true;
         }
         
         //check if any of the import folder have changed or
         //if yes then re-compile
         if (is_array($cache)) {
             foreach ($config['import'] as $path) {
-                if (is_readable($path)
-                    && filemtime($path) > $cache['updated']
-                ) {
+                if (is_readable($path) && filemtime($path) > $cache['updated']) {
                     $force = true;
                     break;
                 }
@@ -81,7 +79,7 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
             file_put_contents($cache_file, serialize($new_cache));
             //store the compiled file
             //create a directory if 
-            if ( !file_exists(dirname($config->output)) ) {
+            if ( ! file_exists(dirname($config->output))) {
                  mkdir(dirname($config->output), 0755);
             }
             file_put_contents($config->output, $new_cache['compiled']);
