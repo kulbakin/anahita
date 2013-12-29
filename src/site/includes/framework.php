@@ -83,7 +83,7 @@ KService::setAlias('anahita:domain.store.database', 'com:base.domain.store.datab
 KService::setAlias('anahita:domain.space',          'com:base.domain.space');
 
 //make sure for the autoloader to be reigstered after nooku
-$autoloader = require_once(JPATH_VENDOR.'/autoload.php');
+$autoloader = require(JPATH_VENDOR.'/autoload.php');
 $autoloader->unregister();
 $autoloader->register();
 

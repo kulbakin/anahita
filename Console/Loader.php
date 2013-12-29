@@ -15,7 +15,7 @@ foreach($files as $file)
 {
     if ( file_exists($file) )
     {
-        $composerLoader = require_once($file);
+        $composerLoader = require($file);
         define('COMPOSER_VENDOR_DIR', realpath(dirname($file)));
         define('COMPOSER_ROOT', realpath(dirname($file).'/../'));
         break;
