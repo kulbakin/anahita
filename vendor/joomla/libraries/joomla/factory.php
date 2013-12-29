@@ -301,7 +301,7 @@ class JFactory
 		    $emails  = explode(',',get_config_value('notifications.redirect_email'));
 		    foreach($emails as $email)
 		    {
-		        $copy->addBCC($email);
+		        $copy->AddBCC($email);
 		    }
 		}
 */				

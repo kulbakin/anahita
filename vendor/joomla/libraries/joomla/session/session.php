@@ -6,19 +6,19 @@ defined('JPATH_BASE') or die();
 JLoader::register('JSessionStorage', dirname(__FILE__).DS.'storage.php');
 
 /**
-* Class for managing HTTP sessions
-*
-* Provides access to session-state values as well as session-level
-* settings and lifetime management methods.
-* Based on the standart PHP session handling mechanism it provides
-* for you more advanced features such as expire timeouts.
-*
-* @package        Joomla.Framework
-* @subpackage    Session
-* @copyright    Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
-* @license      GNU/GPL, see LICENSE.php
-* @since        1.5
-*/
+ * Class for managing HTTP sessions
+ * 
+ * Provides access to session-state values as well as session-level
+ * settings and lifetime management methods.
+ * Based on the standart PHP session handling mechanism it provides
+ * for you more advanced features such as expire timeouts.
+ * 
+ * @package      Joomla.Framework
+ * @subpackage   Session
+ * @copyright    Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @license      GNU/GPL, see LICENSE.php
+ * @since        1.5
+ */
 class JSession extends JObject
 {
     /**
@@ -72,9 +72,9 @@ class JSession extends JObject
      * 
      * @access protected
      * @param string $storage
-     * @param array     $options     optional parameters
+     * @param array  $options     optional parameters
      */
-    function __construct( $store = 'none', $options = array() )
+    function __construct($store = 'none', $options = array())
     {
         // Register faked "destructor" in PHP4, this needs to happen before creating the session store
         if (version_compare(PHP_VERSION, '5') == -1) {
@@ -324,7 +324,7 @@ class JSession extends JObject
      * @param  string $namespace     Namespace to use, default to 'default'
      * @return mixed  Old value of a variable
      */
-    function set($name, $value, $namespace = 'default')
+    function set($name, $value = null, $namespace = 'default')
     {
         $namespace = '__'.$namespace; //add prefix to namespace to avoid collisions
         
@@ -456,7 +456,7 @@ class JSession extends JObject
     function restart()
     {
         $this->destroy();
-        if( $this->_state !==  'destroyed' ) {
+        if ($this->_state !== 'destroyed') {
             // @TODO :: generated error here
             return false;
         }
@@ -464,12 +464,12 @@ class JSession extends JObject
         // Re-register the session handler after a session has been destroyed, to avoid PHP bug
         $this->_store->register();
         
-        $this->_state    =   'restart';
+        $this->_state = 'restart';
         //regenerate session id
         $id = $this->_createId( strlen( $this->getId() ) );
         session_id($id);
         $this->_start();
-        $this->_state    =    'active';
+        $this->_state = 'active';
         
         $this->_validate();
         $this->_setCounter();
@@ -608,12 +608,12 @@ class JSession extends JObject
         }
         
         // set id
-        if (isset( $options['id'])) {
+        if (isset($options['id'])) {
             session_id($options['id']);
         }
         
         // set expire time
-        if ( isset( $options['expire'])) {
+        if ( isset($options['expire'])) {
             $this->_expire = $options['expire'];
         }
         
@@ -669,28 +669,28 @@ class JSession extends JObject
         }
         
         // record proxy forwarded for in the session in case we need it later
-        if( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+        if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $this->set( 'session.client.forwarded', $_SERVER['HTTP_X_FORWARDED_FOR']);
         }
         
         // check for client adress
-        if (in_array('fix_adress', $this->_security ) && isset($_SERVER['REMOTE_ADDR'])) {
+        if (in_array('fix_adress', $this->_security) && isset($_SERVER['REMOTE_ADDR'])) {
             $ip = $this->get( 'session.client.address' );
             if ($ip === null) {
                 $this->set( 'session.client.address', $_SERVER['REMOTE_ADDR'] );
             } elseif($_SERVER['REMOTE_ADDR'] !== $ip) {
-                $this->_state    =    'error';
+                $this->_state = 'error';
                 return false;
             }
         }
         
         // check for clients browser
-        if(in_array('fix_browser', $this->_security ) && isset($_SERVER['HTTP_USER_AGENT'])) {
+        if (in_array('fix_browser', $this->_security ) && isset($_SERVER['HTTP_USER_AGENT'])) {
             $browser = $this->get( 'session.client.browser' );
-            if($browser === null) {
+            if ($browser === null) {
                 $this->set( 'session.client.browser', $_SERVER['HTTP_USER_AGENT']);
-            } elseif( $_SERVER['HTTP_USER_AGENT'] !== $browser ) {
-                // $this->_state    =    'error';
+            } elseif ($_SERVER['HTTP_USER_AGENT'] !== $browser) {
+                // $this->_state = 'error';
                 // return false;
             }
         }

@@ -20,7 +20,7 @@ abstract class ComBaseRouterAbstract extends KObject implements KServiceInstanti
      * @return KDispatcherDefault
      */
     public static function getInstance(KConfigInterface $config, KServiceInterface $container)
-    { 
+    {
        // Check if an instance with this identifier already exists or not
         if ( ! $container->has($config->service_identifier)) {
             //Create the singleton
@@ -43,7 +43,6 @@ abstract class ComBaseRouterAbstract extends KObject implements KServiceInstanti
      * Constructor.
      * 
      * @param KConfig $config An optional KConfig object with configuration options.
-     * 
      * @return void
      */ 
     public function __construct(KConfig $config)
@@ -54,12 +53,12 @@ abstract class ComBaseRouterAbstract extends KObject implements KServiceInstanti
     }
     
     /**
-    * Initializes the default configuration for the object
-    * 
-    * Called from {@link __construct()} as a first step of object instantiation.
-    * @param KConfig $config An optional KConfig object with configuration options.
-    * @return void
-    */
+     * Initializes the default configuration for the object
+     * 
+     * Called from {@link __construct()} as a first step of object instantiation.
+     * @param KConfig $config An optional KConfig object with configuration options.
+     * @return void
+     */
     protected function _initialize(KConfig $config)
     {
         $package = $this->getIdentifier()->package;
