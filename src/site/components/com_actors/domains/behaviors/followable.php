@@ -16,7 +16,7 @@
  *      if ($actor->leading($person)) {
  *          print 'actor is leading the person or person is following the actor'
  *      }
- *      $actor->followers //return the actors followers      
+ *      $actor->followers //return the actors followers
  * }
  * </code>
  * 
@@ -28,7 +28,7 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract 
+class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract
 {
     /**
      * A flag to whether subscribe to an actor after following or not
@@ -100,7 +100,7 @@ class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract
         
         parent::_initialize($config);
     }
-
+    
     /**
      * Add a follow requester to the actor 
      * 
@@ -195,11 +195,10 @@ class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract
         $edge = $this->getService('repos:actors.follow')
             ->findOrAddNew(array(
                 'leader'   => $mixer,
-                'follower' => $actorб
+                'follower' => $actor,
             ));
         
         $edge->save();
-        
         $this->resetStats(array($mixer, $actor));
         
         return $edge;
@@ -221,8 +220,7 @@ class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract
             $mixer->removeSubscriber($actor);
         }
         
-        //remove the follower as subscriber from any node that's owned
-        //mixer
+        //remove the follower as subscriber from any node that's owned mixer
         
         //lets find all the nodes that actor is subscribed to
         $query = $this->getService('repos://site/base.subscription')->getQuery()
@@ -305,12 +303,12 @@ class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract
         $this->getService('repos:actors.block')->destroy($data);
         $this->resetStats(array($this->_mixer, $actor));
     }
-
+    
     /**
      * Return true if the actor is following the mixer else return false
      * 
      * @param ComActorsDomainEntityActor $actor The actor to block
-     * @return boolean 
+     * @return boolean
      */
     public function leading($actor)
     {
@@ -338,7 +336,7 @@ class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract
     {
         return $this->_mixer->blockedIds->offsetExists($actor->id);
     }
-
+    
     /**
      * Adds a filter to the query based on the access mode
      * 
@@ -375,10 +373,10 @@ class ComActorsDomainBehaviorFollowable extends AnDomainBehaviorAbstract
                 $follower_ids     = $actor->followers->getQuery(true,true)->fetchValues('id');
                 $blocked_ids    = $actor->blockeds->getQuery(true,true)->fetchValues('id');
                 $requester_ids  = $actor->requesters->getQuery(true,true)->fetchValues('id');
-                $actor->set('followerCount', count($follower_ids));
-                $actor->set('followerIds'  , AnDomainAttribute::getInstance('set')->setData($follower_ids));
-                $actor->set('blockedIds',      AnDomainAttribute::getInstance('set')->setData($blocked_ids));
-                $actor->set('followRequesterIds',  AnDomainAttribute::getInstance('set')->setData($requester_ids));
+                $actor->set('followerCount',      count($follower_ids));
+                $actor->set('followerIds',        AnDomainAttribute::getInstance('set')->setData($follower_ids));
+                $actor->set('blockedIds',         AnDomainAttribute::getInstance('set')->setData($blocked_ids));
+                $actor->set('followRequesterIds', AnDomainAttribute::getInstance('set')->setData($requester_ids));
             }
             
             if ($actor->isLeadable()) {
