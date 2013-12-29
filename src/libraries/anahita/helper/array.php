@@ -237,7 +237,7 @@ class AnHelperArray extends KHelperArray
      * @param mixed $index
      * @return null or value
      */
-    public function getValueAtIndex($array, $index)
+    public static function getValueAtIndex($array, $index)
     {
         $value = null;
         
