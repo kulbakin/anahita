@@ -47,11 +47,13 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
-* fix joomla legacy not to issue strict standards notifications (though there is constant effort
-  to get rid of joomla legacy, anahita codebase still strongly relies on it and seems to continue
-  be that way for some time, thus in order to efficienly develop in php 5.4+ strict standards
-  notifications are taken care of)
-  [cc4c11a](https://github.com/kulbakin/anahita/commit/cc4c11a0fe647b84c390db03668a5ea4dd42c23a)
+* fix joomla legacy not to issue strict standards notifications, fix method declarations
+  in child classes to comply with php 5.4+ strict standards restrictions (though there is constant
+  effort to get rid of joomla legacy, anahita codebase still strongly relies on it and seems to
+  continue be that way for some time, thus in order to efficienly develop in php 5.4+ strict
+  standards notifications are taken care of)
+  [cc4c11a](https://github.com/kulbakin/anahita/commit/cc4c11a0fe647b84c390db03668a5ea4dd42c23a),
+  [5ba8798](https://github.com/kulbakin/anahita/commit/5ba8798d19a90a3c1235e9bf81b8a17b8b3ee0d7)
 * fix so it supports mixed key types in parameter, i.e. checks key type for each element instead
   of deciding on key type by first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
