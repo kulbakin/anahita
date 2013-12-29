@@ -55,7 +55,8 @@ changes.
   [cc4c11a](https://github.com/kulbakin/anahita/commit/cc4c11a0fe647b84c390db03668a5ea4dd42c23a),
   [5ba8798](https://github.com/kulbakin/anahita/commit/5ba8798d19a90a3c1235e9bf81b8a17b8b3ee0d7),
   [a150b65](https://github.com/kulbakin/anahita/commit/a150b659bbfdb0f53bb2b96b832cf6884145dabc),
-  [93621b7](https://github.com/kulbakin/anahita/commit/93621b70d5eb59eb82ce86ec6bdb9e48edf5634b)
+  [93621b7](https://github.com/kulbakin/anahita/commit/93621b70d5eb59eb82ce86ec6bdb9e48edf5634b),
+  [498bffb](https://github.com/kulbakin/anahita/commit/498bffb067a3fa7d46927bae78d2da8e4b3fd0f2)
 * fix so it supports mixed key types in parameter, i.e. checks key type for each element instead
   of deciding on key type by first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
