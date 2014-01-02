@@ -41,7 +41,7 @@
 <script data-inline>
 (function(){
     var metaTitle = document.getElement('title').innerHTML;
-    
+
     (function(){
         new Request.JSON({
             url      : '<?= @route("option=com_notifications&view=notifications&get=count") ?>',

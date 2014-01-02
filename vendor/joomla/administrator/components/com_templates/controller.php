@@ -25,9 +25,9 @@ class TemplatesController
         $limit        = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.'.'.$client->id.'.limitstart', 'limitstart', 0, 'int');
         
-        $select[]            = JHTML::_('select.option', '0', JText::_('Site'));
-        $select[]            = JHTML::_('select.option', '1', JText::_('Administrator'));
-        $lists['client']     = JHTML::_('select.genericlist',  $select, 'client', 'class="inputbox" size="1" onchange="document.adminForm.submit();"', 'value', 'text', $client->id);
+        $select[]        = JHTML::_('select.option', '0', JText::_('Site'));
+        $select[]        = JHTML::_('select.option', '1', JText::_('Administrator'));
+        $lists['client'] = JHTML::_('select.genericlist',  $select, 'client', 'class="inputbox" size="1" onchange="document.adminForm.submit();"', 'value', 'text', $client->id);
         
         $tBaseDir = $client->path.DS.'templates';
         
@@ -37,8 +37,8 @@ class TemplatesController
         
         // set dynamic template information
         for ($i = 0; $i < count($rows); $i++)  {
-            $rows[$i]->assigned        = TemplatesHelper::isTemplateAssigned($rows[$i]->directory);
-            $rows[$i]->published    = TemplatesHelper::isTemplateDefault($rows[$i]->directory, $client->id);
+            $rows[$i]->assigned  = TemplatesHelper::isTemplateAssigned($rows[$i]->directory);
+            $rows[$i]->published = TemplatesHelper::isTemplateDefault($rows[$i]->directory, $client->id);
         }
         
         jimport('joomla.html.pagination');
@@ -153,7 +153,7 @@ class TemplatesController
         
         if ($default) {
             $row->pages = 'all';
-        } elseif (!$assigned) {
+        } elseif ( ! $assigned) {
             $row->pages = 'none';
         } else {
             $row->pages = null;
@@ -229,7 +229,7 @@ class TemplatesController
                 $db->query();
                 
                 $query = 'INSERT INTO #__templates_menu' .
-                        ' SET client_id = 0, template = '. $db->Quote( $template ) .', menuid = '.(int) $menuid;
+                        ' SET client_id = 0, template = '.$db->Quote( $template ).', menuid = '.(int)$menuid;
                 $db->setQuery($query);
                 $db->query();
             }
