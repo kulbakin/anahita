@@ -105,7 +105,7 @@ class MissionControl extends RTCore
         $dest = 'images/missioncontrol-logo.png';
         
         if (file_exists($dest)) {
-            $logo_url = $dest;
+            $logo_url = JURI::base(true).'/'.$dest;
             $size = getimagesize($dest);
         } else {
             $logo_url = $this->templateUrl."/images/logo.png";
