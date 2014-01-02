@@ -47,6 +47,12 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix entityset decorators
+  [80ff6bb](https://github.com/kulbakin/anahita/commit/80ff6bbd51ac0bf5a3a6ab49b6d6e7042d4e6a98)
+  - make *AnObjectDecorator::count()* method deligate parameters to decorated class;
+  - deprecate *AnDomainEntitysetAbstract::isLoaded()* in favor of *AnDomainEntitysetAbstract::loaded()*
+    for it not to be masked by decorators trying to match it to behavior check;
+  - fix is... calls to properly check for underlying repository to have corresponding behavior;
 * fix some legacy joomla admin components (users, menus, templates) not to have duplicated
   *index.php* in URLs
   [1f6bdad](https://github.com/kulbakin/anahita/commit/1f6bdad89815f2bf5b4592f60140263ba5a0b93a)
@@ -69,7 +75,8 @@ changes.
   [498bffb](https://github.com/kulbakin/anahita/commit/498bffb067a3fa7d46927bae78d2da8e4b3fd0f2),
   [95245bd](https://github.com/kulbakin/anahita/commit/95245bdd78e04ff15df28c29112990382e4521f2),
   [e9671e6](https://github.com/kulbakin/anahita/commit/e9671e6a7e2aaf679631aa61b1f990e01f73f6d9),
-  [fd98a41](https://github.com/kulbakin/anahita/commit/fd98a4104040b16859796ea6e0d805b11218845c)
+  [fd98a41](https://github.com/kulbakin/anahita/commit/fd98a4104040b16859796ea6e0d805b11218845c),
+  [128f8dc](https://github.com/kulbakin/anahita/commit/128f8dc66eea14d1f5e8210e1acfc499c5e6e52f)
 * fix *KConfig::append()* so it supports mixed key types in parameter, i.e. checks key type for each element instead
   of deciding on key type by the first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
