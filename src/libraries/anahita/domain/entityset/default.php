@@ -22,19 +22,6 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
     protected $_set_query;
     
     /**
-     * Initializes the options for the object
-     * 
-     * Called from {@link __construct()} as a first step of object instantiation.
-     * 
-     * @param object An optional KConfig object with configuration options.
-     * @return void
-     */
-    protected function _initialize(KConfig $config)
-    {
-        parent::_initialize($config);
-    }
-    
-    /**
      * Revert the query back to the original
      * 
      * @return AnDomainQuery
@@ -122,8 +109,7 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
         $parts = KInflector::explode($method);
         
         if ($parts[0] == 'is' && isset($parts[1])) {
-            $behavior = lcfirst(substr($method, 2));
-            return $this->_repository->hasBehavior($behavior);
+            return $this->_repository->hasBehavior(strtolower($parts[1]));
         }
         
         //forward a call to the query
@@ -136,6 +122,25 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
             $result = parent::__call($method, $arguments);
         }
         return $result;
+    }
+    
+    /**
+     * Count Data
+     * 
+     * @param booelan $load If the flag is set to on. If the qurey is set, it will
+     *                      perform a count query instead of loading all the objects
+     * @return int
+     */
+    public function count($load = true)
+    {
+        //if query is set, and the data is not loaded
+        //lets use the query to get the count
+        if ( ! $load && ! $this->loaded() && $this->getQuery()) {
+            return (int)AnDomainQuery::getInstance($this->getRepository(), $this->getQuery())->fetchValue('count(*)');
+        } else {
+            $this->_loadData();
+            return AnObjectSet::count();
+        }
     }
     
     /**

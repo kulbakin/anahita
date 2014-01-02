@@ -18,7 +18,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
      * @var AnDomainRepositoryAbstract 
      */
     protected $_repository;
-
+    
     /**
      * The query that will load the set. If an array is 
      * passed it will be used as query conditions
@@ -48,7 +48,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
             $this->_object_set = null;
         }
     }
-
+    
     /**
      * Initializes the default configuration for the object
      * 
@@ -78,8 +78,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
         $parts = KInflector::explode($method);
         
         if ($parts[0] == 'is' && isset($parts[1])) {
-            $behavior = lcfirst(substr($method, 2));
-            return !is_null($this->_repository->getBehavior($behavior));
+            return $this->_repository->hasBehavior(strtolower($parts[1]));
         }
         
         return parent::__call($method, $arguments);
@@ -101,7 +100,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
         
         $entities = array();
         
-        foreach($this as $entity) {
+        foreach ($this as $entity) {
             foreach ($needle as $key => $value) {
                 $v = AnHelperArray::getValue($entity, $key);
                 if (is($value,'AnDomainEntityAbstract') || is($value,'AnDomainEntityProxy')) { 
@@ -147,7 +146,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
             return $data;
         }
     }
-        
+    
     /**
      * Return the entityset repository
      * 
@@ -180,7 +179,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
                 $identifier->type = 'repos';
                 $identifier->path = array();
                 $identifier->name = $repository;
-            } else  {
+            } else {
                 $identifier = $this->getIdentifier($repository);
             }
             
@@ -304,9 +303,8 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
     {
         //if query is set, and the data is not loaded
         //lets use the query to get the count
-        if (isset($this->_query) && ! $this->isLoaded() && ! $load) {
-            $query  = AnDomainQuery::getInstance($this->getRepository(), $this->_query);
-            return $query->fetchValue('count(*)');
+        if ( ! $load && ! $this->loaded() && isset($this->_query)) {
+            return (int)AnDomainQuery::getInstance($this->getRepository(), $this->_query)->fetchValue('count(*)');
         } else {
             $this->_loadData();
             $result = parent::count();
@@ -391,13 +389,13 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
         $this->_loadData();
         return parent::getIterator();
     }
-
+    
     /**
      * Returns whether a the set has been loaded or not
      * 
      * @return boolean
      */
-    public function isLoaded()
+    public function loaded()
     {
         return isset($this->_object_set);
     }
@@ -409,7 +407,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
      */
     final protected function _loadData()
     {
-        if ( ! $this->isLoaded()) {
+        if ( ! $this->loaded()) {
             $this->_object_set = new ArrayObject();
             foreach ($this->_getData() as $object) {
                 $this->insert($object);
@@ -475,5 +473,14 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
     {
         $this->_loadData();
         parent::__clone();
+    }
+    
+    /**
+     * @deprecated 
+     */
+    public function isLoaded()
+    {
+        deprecated('Use '.__CLASS__.'::loaded() instead');
+        return $this->loaded();
     }
 }
