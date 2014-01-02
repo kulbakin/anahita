@@ -812,7 +812,7 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
     {
         return $this->__get($offset);
     }
-
+    
     /**
      * @see self::__unset
      * 
@@ -905,14 +905,14 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
         
         $parts = KInflector::explode($method);
         
-        if ( $parts[0] == 'is') {
+        if ($parts[0] == 'is') {
             return isset($this->_mixed_methods[$method]);
         }
         
         if ( ! isset($this->_mixed_methods[$method])) {
             if ($parts[0] == 'get' || $parts[0] == 'set') {
-                $property  = lcfirst(KInflector::implode(array_slice($parts, 1)));
-                $property  = $this->getEntityDescription()->getProperty($property);
+                $property = lcfirst(KInflector::implode(array_slice($parts, 1)));
+                $property = $this->getEntityDescription()->getProperty($property);
                 if ($property) {
                     if ($parts[0] == 'get') {
                         return $this->getData($property->getName());
@@ -953,8 +953,8 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
     /**
      * Checks if the object or one of it's mixins inherits from a class. 
      * 
-     * @param     string|object     The class to check
-     * @return     boolean         Returns TRUE if the object inherits from the class
+     * @param  string|object The class to check
+     * @return boolean       Returns TRUE if the object inherits from the class
      */
     public function inherits($class)
     {
@@ -1028,8 +1028,11 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
             foreach($this->getModifiedData() as $property => $changes) {
                 $property = $this->getEntityDescription()->getProperty($property);
                 $old = $property->serialize($changes->old);
-                $new = $property->serialize($changes->new);    
-                $data['modified'][$property->getName()] = array('old' => count($old) < 2 ? array_pop($old) : $old, 'new' => count($new) < 2 ? array_pop($new) : $new);
+                $new = $property->serialize($changes->new);
+                $data['modified'][$property->getName()] = array(
+                    'old' => count($old) < 2 ? array_pop($old) : $old,
+                    'new' => count($new) < 2 ? array_pop($new) : $new,
+                );
             }
         }
         
@@ -1075,7 +1078,7 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
                 $copy->set($name, $property->isScalar() ? $this->get($name) : clone $this->get($name));
             } elseif ($property->isRelationship()) {
                 //if it's a belongs to then set the value in the 
-                //copy as  the original
+                //copy as the original
                 if ($property->isManyToOne()) {
                     $copy->set($name, $this->get($name));
                 } elseif ($deep && $property->isOneToOne()) {
@@ -1094,7 +1097,7 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
     }
     
     /**
-     * Return an array of methods.  
+     * Return an array of methods.
      * 
      * {@inheritdoc}
      */
@@ -1158,11 +1161,11 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
             $result = false;
             
             if (method_exists($this, $method)) {
-                $result =  true;
+                $result = true;
             } elseif (self::_cache($this)->offsetExists('behavior.'.$method)) {
                 $result = self::_cache($this)->offsetGet('behavior.'.$method);
             } else {
-                $behaviors  = $this->getRepository()->getBehaviors();
+                $behaviors = $this->getRepository()->getBehaviors();
                 foreach ($behaviors as $behavior) {
                     if (in_array($method, $behavior->getMixableMethods($this))) {
                         $result = true;
