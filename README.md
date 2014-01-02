@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix some legacy joomla admin components (users, menus, templates) not to have duplicated
+  *index.php* in URLs
+  [1f6bdad](https://github.com/kulbakin/anahita/commit/1f6bdad89815f2bf5b4592f60140263ba5a0b93a)
 * fix *LibApplicationRouter::build()* to construct base url, i.e. when empty string is submitted
   as argumetn, WITHOUT index.php part (applies only when *enable_rewrite* application config is
   enabled)
@@ -65,7 +68,8 @@ changes.
   [93621b7](https://github.com/kulbakin/anahita/commit/93621b70d5eb59eb82ce86ec6bdb9e48edf5634b),
   [498bffb](https://github.com/kulbakin/anahita/commit/498bffb067a3fa7d46927bae78d2da8e4b3fd0f2),
   [95245bd](https://github.com/kulbakin/anahita/commit/95245bdd78e04ff15df28c29112990382e4521f2),
-  [e9671e6](https://github.com/kulbakin/anahita/commit/e9671e6a7e2aaf679631aa61b1f990e01f73f6d9)
+  [e9671e6](https://github.com/kulbakin/anahita/commit/e9671e6a7e2aaf679631aa61b1f990e01f73f6d9),
+  [fd98a41](https://github.com/kulbakin/anahita/commit/fd98a4104040b16859796ea6e0d805b11218845c)
 * fix *KConfig::append()* so it supports mixed key types in parameter, i.e. checks key type for each element instead
   of deciding on key type by the first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
