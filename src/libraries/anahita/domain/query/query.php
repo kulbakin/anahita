@@ -358,9 +358,9 @@ class AnDomainQuery extends KObject implements KCommandInterface
                 $link    = $this->getLink($name);
                 $config  = new KConfig($condition);
                 $config->append(array(
-                        'type'         => $link->type,
-                        'bind_type'    => $link->bind_type,
-                        'conditions'   => array(),
+                    'type'         => $link->type,
+                    'bind_type'    => $link->bind_type,
+                    'conditions'   => array(),
                 ));
                 $link->offsetSet('type', $config->type)->offsetSet('bind_type', $config->bind_type);
                 foreach ($config->conditions as $key => $value) {
@@ -807,7 +807,7 @@ class AnDomainQuery extends KObject implements KCommandInterface
     {
         return KService::get($this->getRepository()->getEntitySet(), array('query' => clone $this, 'repository' => $this->getRepository()));
     }
-
+    
     /**
      * Retun AnDomain operation based on the query operation
      * 
@@ -815,12 +815,12 @@ class AnDomainQuery extends KObject implements KCommandInterface
      */
     public function getOperation()
     {
-        switch($this->operation['type']) {
-            case AnDomainQuery::QUERY_UPDATE :
+        switch ($this->operation['type']) {
+            case AnDomainQuery::QUERY_UPDATE:
                 return AnDomain::OPERATION_UPDATE;
-            case AnDomainQuery::QUERY_DELETE :
+            case AnDomainQuery::QUERY_DELETE:
                 return AnDomain::OPERATION_DELETE;
-            default :
+            default:
                 return AnDomain::OPERATION_FETCH;
         }
     }
@@ -844,12 +844,12 @@ class AnDomainQuery extends KObject implements KCommandInterface
                 $context->caller = $this;
                 $context->query  = $query;
                 switch ($this->operation['type']) {
-                    case AnDomainQuery::QUERY_UPDATE :
-                       $command = 'update';break;
-                    case AnDomainQuery::QUERY_DELETE :
-                       $command = 'delete';break;
+                    case AnDomainQuery::QUERY_UPDATE:
+                       $command = 'update'; break;
+                    case AnDomainQuery::QUERY_DELETE:
+                       $command = 'delete'; break;
                     default :
-                       $command = 'select';break;
+                       $command = 'select'; break;
                 }
                 $chain->run('before.'.$command, $context);
                 $context->result = $query->build();

@@ -103,7 +103,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
         foreach ($this as $entity) {
             foreach ($needle as $key => $value) {
                 $v = AnHelperArray::getValue($entity, $key);
-                if (is($value,'AnDomainEntityAbstract') || is($value,'AnDomainEntityProxy')) { 
+                if (is($value, 'AnDomainEntityAbstract') || is($value, 'AnDomainEntityProxy')) { 
                     $is_equal = $value->eql($v);
                 } else {
                     $is_equal = $value == $v;
@@ -126,7 +126,7 @@ abstract class AnDomainEntitysetAbstract extends AnObjectSet
         }
         return new AnDomainEntityset(new KConfig(array('data' => $entities, 'repository' => $this->_repository)));
     }
-        
+    
     /**
      * Inspects the entityset
      * 

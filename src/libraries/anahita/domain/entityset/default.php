@@ -76,12 +76,12 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
     {
         $query = clone $this->getQuery();
         $query->order = null;
-        return $query->fetchValue('count(*)');
+        return (int)$query->fetchValue('count(*)');
     }
     
     /**
      * Returns the set limit
-     *
+     * 
      * @return int
      */
     public function getLimit()
@@ -91,7 +91,7 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
     
     /**
      * Returns the set offset
-     *
+     * 
      * @return int
      */
     public function getOffset()
