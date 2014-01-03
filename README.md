@@ -59,7 +59,7 @@ changes.
   *index.php* in URLs
   [1f6bdad](https://github.com/kulbakin/anahita/commit/1f6bdad89815f2bf5b4592f60140263ba5a0b93a)
 * fix *LibApplicationRouter::build()* to construct base url, i.e. when empty string is submitted
-  as argumetn, WITHOUT index.php part (applies only when *enable_rewrite* application config is
+  as argument, WITHOUT index.php part (applies only when *enable_rewrite* application config is
   enabled)
   [4781d13](https://github.com/kulbakin/anahita/commit/4781d135304f2cf8ba132a7dfdb51cef3bed9a68)
 * fix notification button on profile when viewer is not following viewed actor, since notifications
