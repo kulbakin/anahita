@@ -76,8 +76,7 @@ class ComPagesControllerToolbarPage extends ComMediumControllerToolbarDefault
         $label  = JText::_('LIB-AN-ACTION-'.strtoupper($name));
         $url    = $entity->getURL().'&action='.$name;
         
-        $command->append(array('label' => $label))
-            ->href($url);
+        $command->append(array('label' => $label))->href($url);
         
         if ($ajax) {
             $command->setAttribute('href', 'layout=list&filter=', '&');

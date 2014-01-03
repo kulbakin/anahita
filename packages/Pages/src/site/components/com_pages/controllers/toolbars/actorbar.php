@@ -1,6 +1,6 @@
 <?php
 /**
- * Actorbar. 
+ * Actorbar.
  * 
  * @category   Anahita
  * @package    Com_Pages

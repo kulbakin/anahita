@@ -1,8 +1,7 @@
 <?php
-
 /**
  * Default Medium Controller Toolbar
- *
+ * 
  * @category   Anahita
  * @package    Com_Medium
  * @subpackage Controller_Toolbar
@@ -39,7 +38,7 @@ class ComMediumControllerToolbarDefault extends ComBaseControllerToolbarDefault
         
         if ($entity->authorize('vote'))
             $this->addCommand('vote');
-                
+        
         if ($entity->authorize('subscribe') || ($entity->isSubscribable() && $entity->subscribed(get_viewer())))
             $this->addCommand('subscribe');
         

@@ -17810,9 +17810,7 @@ provides: [Bootstrap]
 
 ...
 */
-var Bootstrap = {
-	version: 3
-};
+var Bootstrap = {};
 ///media/lib_anahita/js/vendors/bootstrap/UI/Bootstrap.Dropdown.js
 /*
 ---
@@ -17854,7 +17852,7 @@ Bootstrap.Dropdown = new Class({
 	},
 
 	hideAll: function(){
-		var els = this.element.removeClass('open').getElements('.open').removeClass('open');
+		var els = this.element.getElements('.open').removeClass('open');
 		this.fireEvent('hide', els);
 		return this;
 	},
@@ -17879,13 +17877,8 @@ Bootstrap.Dropdown = new Class({
 		var open = el.getParent('.open');
 		if (!el.match(this.options.ignore) || !open) this.hideAll();
 		if (this.element.contains(el)) {
-			var parent;
-			if (el.match('[data-toggle="dropdown"]') || el.getParent('[data-toggle="dropdown"] !')){
-				parent = el.getParent('.dropdown, .btn-group');
-			}
-			// backwards compatibility
-			if (!parent) parent = el.match('.dropdown-toggle') ? el.getParent() : el.getParent('.dropdown-toggle !');
-			if (parent){
+			var parent = el.match('.dropdown-toggle') ? el.getParent() : el.getParent('.dropdown-toggle');
+			if (parent) {
 				e.preventDefault();
 				if (!open) this.show(parent);
 			}
@@ -17933,19 +17926,12 @@ Bootstrap.Tooltip = Bootstrap.Twipsy = new Class({
 		trigger: 'hover', //focus, manual
 		getContent: function(el){
 			return el.get(this.options.title);
-		},
-		inject: {
-			target: null, //defaults to document.body,
-			where: 'bottom'
 		}
 	},
 
 	initialize: function(el, options){
 		this.element = document.id(el);
 		this.setOptions(options);
-		var location = this.options.location;
-		if (location == 'above') this.options.location = 'top';    //bootstrap 2.0
-		if (location == 'below') this.options.location = 'bottom'; //bootstrap 2.0
 		this._attach();
 	},
 
@@ -17975,9 +17961,7 @@ Bootstrap.Tooltip = Bootstrap.Twipsy = new Class({
 				offset.y = this.options.offset;
 		}
 		if (typeOf(this.options.offset) == "object") offset = this.options.offset;
-		if (this.element.getParent('.modal')) this.tip.inject(this.element, 'after');
-		else this.tip.inject(this.options.inject.target || document.body, this.options.inject.where);
-		this.tip.show().position({
+		this.tip.inject(document.body).show().position({
 			relativeTo: this.element,
 			position: pos,
 			edge: edge,
@@ -18003,10 +17987,6 @@ Bootstrap.Tooltip = Bootstrap.Twipsy = new Class({
 		if (this.tip) this.tip.destroy();
 		this.destroyed = true;
 		return this;
-	},
-
-	toggle: function(){
-		return this[this.visible ? 'hide' : 'show']();
 	},
 
 	// PRIVATE METHODS
@@ -18037,8 +18017,7 @@ Bootstrap.Tooltip = Bootstrap.Twipsy = new Class({
 		this.bound = {
 			enter: this._enter.bind(this),
 			leave: this._leave.bind(this),
-			complete: this._complete.bind(this),
-			toggle: this.toggle.bind(this)
+			complete: this._complete.bind(this)
 		};
 
 		if (this.options.trigger == 'hover') {
@@ -18050,10 +18029,6 @@ Bootstrap.Tooltip = Bootstrap.Twipsy = new Class({
 			this.element[method]({
 				focus: this.bound.enter,
 				blur: this.bound.leave
-			});
-		} else if (this.options.trigger == 'click'){
-			this.element[method]({
-				click: this.bound.toggle
 			});
 		}
 	},
@@ -18124,7 +18099,7 @@ Bootstrap.Popover = new Class({
 
 	options: {
 		location: 'right',
-		offset: Bootstrap.version == 2 ? 10 : 0,
+		offset: 10,
 		getTitle: function(el){
 			return el.get(this.options.title);
 		},
@@ -18136,26 +18111,17 @@ Bootstrap.Popover = new Class({
 
 	_makeTip: function(){
 		if (!this.tip){
-			var title = this.options.getTitle.apply(this, [this.element]) || this.options.fallback;
-			var content = this.options.getContent.apply(this, [this.element]);
-
-			var inner = new Element('div.popover-inner');
-
-
-			if (title) {
-				var titleWrapper = new Element('h3.popover-title');
-				if (typeOf(title) == "element") titleWrapper.adopt(title);
-				else titleWrapper.set('html', title);
-				inner.adopt(titleWrapper);
-			} else {
-				inner.addClass('no-title');
-			}
-
-			if (typeOf(content) != "element") content = new Element('p', { html: content});
-			inner.adopt(new Element('div.popover-content').adopt(content));
 			this.tip = new Element('div.popover').addClass(this.options.location)
 				 .adopt(new Element('div.arrow'))
-				 .adopt(inner);
+				 .adopt(
+				   new Element('div.popover-inner').adopt(
+				     new Element('h3.popover-title', { html: this.options.getTitle.apply(this, [this.element]) || this.options.fallback })
+				   ).adopt(
+				     new Element('div.popover-content').adopt(
+				       new Element('p', { html: this.options.getContent.apply(this, [this.element])})
+				     )
+				   )
+				 );
 			if (this.options.animate) this.tip.addClass('fade');
 			if (Browser.Features.cssTransition && this.tip.addEventListener){
 				this.tip.addEventListener(Browser.Features.transitionEnd, this.bound.complete);
@@ -18210,8 +18176,7 @@ Bootstrap.Popup = new Class({
 		closeOnClickOut: true,
 		closeOnEsc: true,
 		mask: true,
-		animate: true,
-		changeDisplayValue: true
+		animate: true
 	},
 
 	initialize: function(element, options){
@@ -18220,10 +18185,8 @@ Bootstrap.Popup = new Class({
 		this.bound = {
 			hide: this.hide.bind(this),
 			bodyClick: function(e){
-				if (Bootstrap.version == 2){
-					if (!this.element.contains(e.target)) this.hide();
-				} else {
-					if (this.element == e.target) this.hide();
+				if (!this.element.contains(e.target)){
+					this.hide();
 				}
 			}.bind(this),
 			keyMonitor: function(e){
@@ -18236,45 +18199,38 @@ Bootstrap.Popup = new Class({
 			if (this.element.hasClass('fade')) this.element.removeClass('in');
 			this.show();
 		}
-
-		if (Bootstrap.version > 2){
-			if (this.options.closeOnClickOut){
-				this.element.addEvent('click', this.bound.bodyClick);
-			}
-		}
-	},
-
-	toElement: function(){
-		return this.element;
 	},
 
 	_checkAnimate: function(){
 		var check = this.options.animate !== false && Browser.Features.getCSSTransition() && (this.options.animate || this.element.hasClass('fade'));
 		if (!check) {
 			this.element.removeClass('fade').addClass('hide');
-			if (this._mask) this._mask.removeClass('fade').addClass('hide');
+			this._mask.removeClass('fade').addClass('hide');
 		} else if (check) {
 			this.element.addClass('fade').removeClass('hide');
-			if (this._mask) this._mask.addClass('fade').removeClass('hide');
+			this._mask.addClass('fade').removeClass('hide');
 		}
 		return check;
 	},
 
 	show: function(){
 		if (this.visible || this.animating) return;
-		this.element.addEvent('click:relay(.close, .dismiss, [data-dismiss=modal])', this.bound.hide);
+		var hide = this.bound.hide;
+		this.element.addEvent('click:relay(.close, .dismiss)', function(e){
+			e.stop();
+			hide();
+		});
 		if (this.options.closeOnEsc) document.addEvent('keyup', this.bound.keyMonitor);
 		this._makeMask();
-		if (this._mask) this._mask.inject(document.body);
+		this._mask.inject(document.body);
 		this.animating = true;
-		if (this.options.changeDisplayValue) this.element.show();
 		if (this._checkAnimate()){
 			this.element.offsetWidth; // force reflow
 			this.element.addClass('in');
-			if (this._mask) this._mask.addClass('in');
+			this._mask.addClass('in');
 		} else {
 			this.element.show();
-			if (this._mask) this._mask.show();
+			this._mask.show();
 		}
 		this.visible = true;
 		this._watch();
@@ -18292,17 +18248,16 @@ Bootstrap.Popup = new Class({
 			this.fireEvent('show', this.element);
 		} else {
 			this.fireEvent('hide', this.element);
-			if (this.options.changeDisplayValue) this.element.hide();
 			if (!this.options.persist){
 				this.destroy();
-			} else if (this._mask) {
+			} else {
 				this._mask.dispose();
 			}
 		}
 	},
 
 	destroy: function(){
-		if (this._mask) this._mask.destroy();
+		this._mask.destroy();
 		this.fireEvent('destroy', this.element);
 		this.element.destroy();
 		this._mask = null;
@@ -18310,26 +18265,21 @@ Bootstrap.Popup = new Class({
 	},
 
 	hide: function(event, clicked){
-		if (clicked) {
-			var immediateParentPopup = clicked.getParent('[data-behavior~=BS.Popup]');
-			if (immediateParentPopup && immediateParentPopup != this.element) return;
-		}
 		if (!this.visible || this.animating) return;
 		this.animating = true;
 		if (event && clicked && clicked.hasClass('stopEvent')){
 			event.preventDefault();
 		}
-
-		if (Bootstrap.version == 2) document.id(document.body).removeEvent('click', this.bound.hide);
+		document.id(document.body).removeEvent('click', this.bound.hide);
 		document.removeEvent('keyup', this.bound.keyMonitor);
 		this.element.removeEvent('click:relay(.close, .dismiss)', this.bound.hide);
 
 		if (this._checkAnimate()){
 			this.element.removeClass('in');
-			if (this._mask) this._mask.removeClass('in');
+			this._mask.removeClass('in');
 		} else {
 			this.element.hide();
-			if (this._mask) this._mask.hide();
+			this._mask.hide();
 		}
 		this.visible = false;
 		this._watch();
@@ -18340,13 +18290,17 @@ Bootstrap.Popup = new Class({
 	_makeMask: function(){
 		if (this.options.mask){
 			if (!this._mask){
-				this._mask = new Element('div.modal-backdrop.in');
-				if (this._checkAnimate()) this._mask.addClass('fade');
+				this._mask = new Element('div.modal-backdrop', {
+					events: {
+						click: this.bound.hide
+					}
+				});
+				if (this._checkAnimate()){
+					this._mask.addClass('fade');
+				}
 			}
-		}
-		if (this.options.closeOnClickOut && Bootstrap.version == 2){
-			if (this._mask) this._mask.addEvent('click', this.bound.hide);
-			else document.id(document.body).addEvent('click', this.bound.hide);
+		} else if (this.options.closeOnClickOut){
+			document.id(document.body).addEvent('click', this.bound.hide);
 		}
 	}
 
@@ -18368,24 +18322,24 @@ provides: CSSEvents
 */
 
 Browser.Features.getCSSTransition = function(){
-	Browser.Features.transitionEnd = (function(){
-    var el = document.createElement('tmp');
+	Browser.Features.cssTransition = (function () {
+		var thisBody = document.body || document.documentElement
+			, thisStyle = thisBody.style
+			, support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
+		return support;
+	})();
 
-    var transEndEventNames = {
-      'WebkitTransition' : 'webkitTransitionEnd'
-    , 'MozTransition'    : 'transitionend'
-    , 'OTransition'      : 'oTransitionEnd otransitionend'
-    , 'transition'       : 'transitionend'
-    };
-
-    for (var name in transEndEventNames) {
-      if (el.style[name] !== undefined) {
-        return transEndEventNames[name];
-      }
-    }
-  })();
-  Browser.Features.cssTransition = !!Browser.Features.transitionEnd;
-
+	// set CSS transition event type
+	if ( Browser.Features.cssTransition ) {
+		Browser.Features.transitionEnd = "TransitionEnd";
+		if ( Browser.safari || Browser.chrome ) {
+			Browser.Features.transitionEnd = "webkitTransitionEnd";
+		} else if ( Browser.firefox ) {
+			Browser.Features.transitionEnd = "transitionend";
+		} else if ( Browser.opera ) {
+			Browser.Features.transitionEnd = "oTransitionEnd";
+		}
+	}
 	Browser.Features.getCSSTransition = Function.from(Browser.Features.transitionEnd);
 };
 
@@ -18489,7 +18443,6 @@ license: MIT-style license.
 authors: [Aaron Newton]
 
 requires:
- - More/Fx.Reveal
  - More-Behaviors/Behavior.FormValidator
 
 provides: [Behavior.BS.FormValidator]
@@ -18497,76 +18450,55 @@ provides: [Behavior.BS.FormValidator]
 ...
 */
 
-(function(){
-
-	var getFieldDetails = function(field, advice, className){
-		var cls = field.hasClass('warning') || field.hasClass('warn-' + className) ? 'has-warning' : 'has-error',
-		    inputParent = field.getParent('.form-group');
-		var clearfixParent;
-		if (inputParent){
-			if (inputParent.hasClass('form-group')) clearfixParent = inputParent;
-			else clearfixParent = inputParent.getParent('.form-group');
-		}
-
-		return {
-			cls: cls,
-			inputParent: inputParent,
-			clearfixParent: clearfixParent
-		}
-	};
-
-	Behavior.addGlobalPlugin("FormValidator", "BS.FormValidator", {
-		setup: function(element, api, instance){
-			var original = {
-				showError: instance.options.showError,
-				hideError: instance.options.hideError
-			};
-			instance.setOptions({
-				showError: function(){},
-				hideError: function(){}
-			});
-			instance.errorPrefix = '';
-			instance.addEvents({
-				showAdvice: function(field, advice, className){
-					var fieldDetails = getFieldDetails(field, advice, className);
-					if (!fieldDetails.inputParent || !fieldDetails.clearfixParent){
-						original.showError(advice);
-					} else {
-						field.addClass(fieldDetails.cls);
-						var help = fieldDetails.inputParent.getElement('div.advice');
-						if (!help){
-							fieldDetails.inputParent.getElements('span.help-block').setStyle('display', 'none');
-							var closestParent = field.getParent();
-							help = new Element('span.help-block.advice.auto-created', {
-								html: (field.hasClass('warning') ? 'Suggestion: ' : '') + advice.get('html')
-							}).hide().inject(closestParent.hasClass('input-append') ? closestParent  : field, 'after');
-						}
-						help.set('html', (field.hasClass('warning') ? 'Suggestion: ' : '') + advice.get('html')).reveal();
-						help.removeClass('hide');
-						help.set('title', advice.get('html'));
-						fieldDetails.clearfixParent.addClass(fieldDetails.cls);
+Behavior.addGlobalPlugin("FormValidator", "BS.FormValidator", {
+	setup: function(element, api, instance){
+		var original = {
+            showError: instance.options.showError,
+            hideError: instance.options.hideError
+		};
+		instance.setOptions({
+			showError: function(){},
+			hideError: function(){}
+		});
+		instance.warningPrefix = '';
+		instance.errorPrefix = '';
+		instance.addEvents({
+			showAdvice: function(field, advice, className){
+				var inputParent = field.getParent('.controls'),
+				    clearfixParent = inputParent.getParent('.control-group');
+				if (!inputParent || !clearfixParent){
+					original.showError(advice);
+				} else {
+					field.addClass('error');
+					var help = inputParent.getElement('div.advice');
+					if (!help){
+						inputParent.getElements('span.help-inline').setStyle('display', 'none');
+						help = new Element('span.help-inline.advice.auto-created', {
+							html: advice.get('html')
+						}).inject(inputParent);
 					}
-				},
-				hideAdvice: function(field, advice, className){
-					var fieldDetails = getFieldDetails(field, advice, className);
-					if (!fieldDetails.inputParent || !fieldDetails.clearfixParent){
-						original.hideError(advice);
-					} else {
-						field.removeClass(fieldDetails.cls);
-						var help = fieldDetails.inputParent.getElement('.advice');
-						fieldDetails.inputParent.getElements('.help-block').dissolve().getLast().get('reveal').chain(function(){
-							if (help.hasClass('auto-created')) help.destroy();
-							else help.set('html', '');
-						});
-						fieldDetails.clearfixParent.removeClass(fieldDetails.cls);
-					}
+					help.removeClass('hide');
+					help.set('title', advice.get('html'));
+					clearfixParent.addClass('error');
 				}
-			});
-		}
-	});
-
-})();
-
+			},
+			hideAdvice: function(field, advice, className){
+				var inputParent = field.getParent('.controls'),
+				    clearfixParent = inputParent.getParent('.control-group');
+				if (!inputParent || !clearfixParent){
+					original.hideError(advice);
+				} else {
+					field.removeClass('error');
+					var help = inputParent.getElement('span.advice');
+					if (help.hasClass('auto-created')) help.destroy();
+					else help.set('html', '');
+					inputParent.getElements('span.help-inline').setStyle('display', '');
+					clearfixParent.removeClass('error');
+				}
+			}
+		});
+	}
+});
 ///media/lib_anahita/js/vendors/bootstrap/Behaviors/Behavior.BS.Popover.js
 /*
 ---
@@ -18591,16 +18523,12 @@ provides: [Behavior.BS.Popover]
 Behavior.addGlobalFilters({
 	'BS.Popover': {
 		defaults: {
-			contentElement: null,
-			cloneContent: false,
-			titleElement: null,
-			cloneTitle: false,
 		  onOverflow: false,
 			location: 'right', //below, left, right
 			animate: true,
 			delayIn: 200,
 			delayOut: 0,
-			offset: Bootstrap.version == 2 ? 10 : null,
+			offset: 10,
 			trigger: 'hover' //focus, manual
 		},
 		delayUntil: 'mouseover,focus',
@@ -18618,26 +18546,10 @@ Behavior.addGlobalFilters({
 					trigger: String
 				})
 			);
-			if (options.offset === undefined && (['above', 'left', 'top'].contains(options.location) || !options.location)){
-				options.offset = -6;
-			}
-
-			var getter = function(which){
-				if (api.get(which + 'Element')) {
-					var target = el.getElement(api.get(which + 'Element'));
-					if (!target) api.fail('could not find ' + which + ' for popup');
-					if (api.get('clone' + which.capitalize())) target = target.clone(true, true);
-					return target.setStyle('display', 'block');
-				} else {
-					return api.get(which) || el.get(which);
-				}
-			};
-
-			options.getContent = getter.pass('content');
-			options.getTitle = getter.pass('title');
-
+			options.getContent = Function.from(api.get('content'));
+			options.getTitle = Function.from(api.get('title') || el.get('title'));
 			var tip = new Bootstrap.Popover(el, options);
-			if (api.event && api.get('trigger') != 'click') tip._enter();
+			if (api.event) tip._enter();
 			api.onCleanup(tip.destroy.bind(tip));
 			return tip;
 		}
@@ -18668,7 +18580,6 @@ provides: [Behavior.BS.Popup]
 Behavior.addGlobalFilters({
 	'BS.Popup': {
 		defaults: {
-			focusOnShow: "input[type=text], select, textarea",
 			hide: false,
 			animate: true,
 			closeOnEsc: true,
@@ -18678,7 +18589,6 @@ Behavior.addGlobalFilters({
 		},
 		returns: Bootstrap.Popup,
 		setup: function(el, api){
-			if (api.get('moveElementTo')) el.inject(api.getElement('moveElementTo'));
 			var popup = new Bootstrap.Popup(el,
 				Object.cleanValues(
 					api.getAs({
@@ -18693,12 +18603,6 @@ Behavior.addGlobalFilters({
 			popup.addEvent('destroy', function(){
 				api.cleanup(el);
 			});
-			if (api.get('focusOnShow')) {
-				popup.addEvent('show', function(){
-					var input = document.id(popup).getElement(api.get('focusOnShow'));
-					if (input) input.select();
-				});
-			}
 			if (!el.hasClass('hide') && !api.getAs(Boolean, 'hide') && (!el.hasClass('in') && !el.hasClass('fade'))) {
 				popup.show();
 			}
@@ -18719,8 +18623,8 @@ license: MIT-style license.
 authors: [Aaron Newton]
 
 requires:
- - More-Behaviors/Behavior.FormRequest
  - /Behavior.BS.Popup
+ - More/Form.Request
 
 provides: [Behavior.BS.Popup.FormRequest]
 
@@ -18742,7 +18646,7 @@ Behavior.addGlobalPlugin("FormRequest", "Popup.FormRequest", {
 			instance.addEvents({
 				success: function(){
 					var formRequestAPI = new BehaviorAPI(element, 'formrequest');
-					if ((formRequestAPI.getAs(Boolean, 'closeOnSuccess') !== false && api.getAs(Boolean, 'closeOnSuccess') !== false) || dismissed){
+					if (formRequestAPI.getAs(Boolean, 'closeOnSuccess') !== false || api.get(Boolean, 'closeOnSuccess') !== false || dismissed){
 						element.getParent('.modal').getBehaviorResult('BS.Popup').hide();
 					}
 				}
@@ -18772,15 +18676,12 @@ provides: [Behavior.BS.Tabs]
 */
 (function(){
 
-	// start with the base options from the tabs behavior
 	var tabs = Object.clone(Behavior.getFilter('Tabs'));
 
-	// customizing it here for Bootstrap, we start by duplicationg the other behavior
 	Behavior.addGlobalFilters({
 		'BS.Tabs': tabs.config
 	});
 
-	// set custom defaults specific to bootstrap
 	Behavior.setFilterDefaults('BS.Tabs', {
 		'tabs-selector': 'a:not(.dropdown-toggle)',
 		'sections-selector': '+.tab-content >',
@@ -18789,43 +18690,13 @@ provides: [Behavior.BS.Tabs]
 		smoothSize: false
 	});
 
-	// this plugin configures tabswapper to use bootstrap specific DOM structures
 	Behavior.addGlobalPlugin('BS.Tabs', 'BS.Tabs.CSS', function(el, api, instance){
-		// whenever the tabswapper activates a tab
 		instance.addEvent('active', function(index, section, tab){
-			// get the things in the tabs element that are active and remove that class
 			el.getElements('.active').removeClass('active');
-			// get the parent LI for the tab and add active to it
 			tab.getParent('li').addClass('active');
-			// handle the possibility of a dropdown in the tab.
 			var dropdown = tab.getParent('.dropdown');
 			if (dropdown) dropdown.addClass('active');
 		});
-		// invoke the event for startup
-		var now = instance.now;
-		var tab = instance.tabs[now];
-		var section = tab.retrieve('section');
-		instance.fireEvent('active', [now, section, tab]);
-
-	});
-
-	// this plugin makes links that have #href targets select their target tabs
-	Behavior.addGlobalPlugin('BS.Tabs', 'BS.Tabs.TargetLinks', function(el, api, instance){
-		// whenever the instance activates a tab, find any related #href links and add `active-section-link` to the appropriate ones
-		instance.addEvent('active', function(index, section, tab){
-			document.body.getElements('.active-section-link').removeClass('active-section-link');
-			// if there's a "group controller" go select it.
-			if (tab.get('data-tab-group')) {
-				document.id(tab.get('data-tab-group')).addClass('active-section-link');
-			}
-		});
-
-				// invoke the event for startup
-		var now = instance.now;
-		var tab = instance.tabs[now];
-		var section = tab.retrieve('section');
-		instance.fireEvent('active', [now, section, tab]);
-
 	});
 
 })();
@@ -18874,20 +18745,11 @@ provides: [Behavior.BS.Twipsy, Behavior.BS.Tooltip]
 					fallback: String,
 					override: String,
 					html: Boolean,
+					offset: Number,
 					trigger: String
 				})
 			);
-			if (api.get('offset')){
-				var offset;
-				try {
-					offset = api.getAs(Number, 'offset');
-				} catch (e){
-					offset = api.getAs(Object, 'offset');
-				}
-				if (offset === undefined) api.fail('Could not read offset value as number or string. The value was: ' + api.get('offset'));
-				options.offset = offset;
-			}
-			options.getContent = Function.from(api.get('content') || el.get('title'));
+			options.getTitle = Function.from(api.get('content') || el.get('title'));
 			var tip = new Bootstrap.Tooltip(el, options);
 			api.onCleanup(tip.destroy.bind(tip));
 			if (api.event) tip.show();
@@ -20735,7 +20597,6 @@ Class.refactor(Bootstrap.Popover, {
 				edge = 'centerBottom';
 				offset.y = this.options.offset;
 		}
-		
 		if (typeOf(this.options.offset) == "object") offset = this.options.offset;
 		this.tip.position({			
 			relativeTo: this.element,
