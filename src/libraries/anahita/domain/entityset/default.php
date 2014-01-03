@@ -29,8 +29,7 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
     public function reset()
     {
         $this->_set_query  = null;
-        $this->_loaded     = false;
-        $this->_object_set = new ArrayObject();
+        $this->_object_set = null;
         
         return $this;
     }
@@ -152,5 +151,39 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
     {
         $data = $this->getRepository()->fetch($this->getQuery(), AnDomain::FETCH_ENTITY_LIST);
         return $data;
+    }
+    
+    /**
+     * Execute callback function on each item in the set
+     * 
+     * Function can be used to iterate through big entity sets in order to avoid to pull
+     * entire set into memory, internally function use chunks of 100 records in such case
+     * 
+     * @param callback $callback Accepts single parameter to be an item from entity set
+     * @param bool[optional] $load Whether to load set or iterate through entire one
+     * @return int
+     */
+    public function each($callback, $load = true)
+    {
+        if ($load) {
+            $this->_loadData();
+            $set = $this;
+        } else {
+            $set = clone $this;
+            $set->reset();
+        }
+        
+        $limit = 100; $offset = 0; $result = 0;
+        do {
+            if ( ! $load) {
+                $set->reset()->getQuery()->limit($limit, $offset);
+                $offset += $limit;
+            }
+            foreach ($set as $item) {
+                $result += (int)call_user_func($callback, $item);
+            }
+        } while ( ! $load and $set->count() == $limit);
+        
+        return $result;
     }
 }
