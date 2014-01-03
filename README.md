@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix KDate::format() to support *%l* and *%e* formatting paramters on Windows as well
+  [6a52ac7](https://github.com/kulbakin/anahita/commit/6a52ac71e223149b5f673fa824435bd2ba369242)
 * fix entityset decorators
   [80ff6bb](https://github.com/kulbakin/anahita/commit/80ff6bbd51ac0bf5a3a6ab49b6d6e7042d4e6a98)
   - make *AnObjectDecorator::count()* method deligate parameters to decorated class;
