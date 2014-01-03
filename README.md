@@ -47,6 +47,10 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix AnDomainEntitysetDefault::reset() to properly reset loaded status to false;
+  add AnDomainEntitysetDefault::each() method mainly targeted for iterating through
+  large sets without pulling them into memory entirely
+  [22140f2](https://github.com/kulbakin/anahita/commit/22140f20f9548bd541351d9f3f9f9bc20cf9c9d2)
 * fix KDate::format() to support *%l* and *%e* formatting paramters on Windows as well
   [6a52ac7](https://github.com/kulbakin/anahita/commit/6a52ac71e223149b5f673fa824435bd2ba369242)
 * fix entityset decorators
