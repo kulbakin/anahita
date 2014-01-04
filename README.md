@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* remove no logner used joomla legacy *.xml configs
+  [9d67dcf](https://github.com/kulbakin/anahita/commit/9d67dcfae5f5c0216ca388de1b9b5bf512f9ab12)
 * fix AnDomainEntitysetDefault::reset() to properly reset loaded status to false;
   add AnDomainEntitysetDefault::each() method mainly targeted for iterating through
   large sets without pulling them into memory entirely
