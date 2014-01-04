@@ -12,7 +12,7 @@
  */
 abstract class ComActorsControllerAbstract extends ComBaseControllerService
 {
-    /** 
+    /**
      * Constructor.
      * 
      * @param KConfig $config An optional KConfig object with configuration options.
@@ -248,13 +248,12 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
     public function redirect(KCommandContext $context)
     {
         $url = null;
-        
         if ('delete' == $context->action) {
             // if deleted then go to back to the general page
             $url = 'option=com_'.$this->getIdentifier()->package.'&view='.KInflector::pluralize($this->getIdentifier()->name);
         } elseif ('add' == $context->action) {
             // after add always go to the setting
-            $url = $context->result->getURL().'&get=settings';
+            $url = $context->getItem()->getURL().'&get=settings';
         }
         
         if ($url) {

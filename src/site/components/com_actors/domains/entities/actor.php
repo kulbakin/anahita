@@ -11,7 +11,7 @@
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
 class ComActorsDomainEntityActor extends ComBaseDomainEntityNode
-{   
+{
     /**
      * Actor components
      * 

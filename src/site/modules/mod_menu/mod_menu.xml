@@ -24,12 +24,12 @@
         <param name="home_menuitem" type="list" default="0" label="Home Menu Item" description="Hide or display the home menu item">
             <option value="1">Show</option>
             <option value="0">Hide</option>
-        </param>        
+        </param>
         <param name="cache" type="list" default="0" label="Caching" description="Select whether to cache the content of this module">
             <option value="1">Use global</option>
             <option value="0">No caching</option>
         </param>
         <param name="@spacer" type="spacer" default="" label="" description="" />
         <param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
-    </params>			    
+    </params>
 </install>

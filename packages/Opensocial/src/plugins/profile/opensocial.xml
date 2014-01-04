@@ -7,12 +7,12 @@
     <license>GPL3 - http://www.gnu.org/licenses/gpl-3.0.html</license>
     <authoremail>info@anahitapolis.com</authoremail>
     <authorurl>www.Anahitapolis.com</authorurl>
-   	<version>##BUILD_VERSION##</version>
-	<release>##BUILD_RELEASE##</release>
+    <version>##BUILD_VERSION##</version>
+    <release>##BUILD_RELEASE##</release>
     <description>Opensocial Profile Plugin</description>
-	<languages>
-		<language tag="en-GB">en-GB.plg_profile_opensocial.ini</language>
-	</languages>    
+    <languages>
+        <language tag="en-GB">en-GB.plg_profile_opensocial.ini</language>
+    </languages>
     <files>
         <filename plugin="opensocial">opensocial.php</filename>
     </files>

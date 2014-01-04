@@ -8,6 +8,6 @@
     <authorurl>http://www.Anahitapolis.com</authorurl>
     <description>Create and maintain group actors in Anahita</description>
     <administration>
-	    <menu>Groups</menu>
+        <menu>Groups</menu>
     </administration>
 </install>

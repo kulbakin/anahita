@@ -1,27 +1,13 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
+/**
+ * Default Component Dispatcher 
  * 
  * @category   Anahita
  * @package    Com_Base
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
+ * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id: resource.php 11985 2012-01-12 10:53:20Z asanieyan $
- * @link       http://www.anahitapolis.com
- */
-
-/**
- * Default Component Dispatcher 
- *
- * @category   Anahita
- * @package    Com_Base
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
  */
 class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
 {
@@ -36,17 +22,16 @@ class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
     {   
         //if there are no views then
         //lets redirect to configuration
-        if ( !file_exists(JPATH_COMPONENT.'/views') &&
-              file_exists(JPATH_COMPONENT.'/config.xml')
-              && $context->request->get('view') != 'configurations'   
-                 ) 
-        {
+        if ( ! file_exists(JPATH_COMPONENT.'/views')
+            && file_exists(JPATH_COMPONENT.'/config.xml')
+            && $context->request->get('view') != 'configurations'
+        ) {
             $query = $context->request->toArray();
             $query['view'] = 'configurations';
             $context->response->setRedirect(JRoute::_($query));
             return false;
         }
-
+        
         parent::_actionGet($context);
     }
     
@@ -59,13 +44,13 @@ class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
     protected function _actionRenderlegacy(KCommandContext $context)
     {
         parent::_actionRenderlegacy($context);
+        
         global $mainframe;
-        jimport( 'joomla.application.helper' );
-        if (($path = JApplicationHelper::getPath( 'toolbar' )) && $mainframe->isAdmin())
-        {
+        jimport('joomla.application.helper');
+        if (($path = JApplicationHelper::getPath('toolbar')) && $mainframe->isAdmin()) {
             // Get the task again, in case it has changed
             $task = JRequest::getString( 'task' );
-        
+            
             // Make the toolbar
             include_once( $path );
         }
@@ -73,26 +58,24 @@ class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
     
     /**
      * Draw the toolbar
-     *
+     * 
      * @param KCommandContext $context The command context
-     *
      * @return string
      */
     protected function _actionRender(KCommandContext $context)
     {
-        if ( $context->result !== false ) {
-            	
+        if ($context->result !== false) {
             $view = $this->getController()->getView();
-    
+            
             //Set the document mimetype
             JFactory::getDocument()->setMimeEncoding($view->mimetype);
-    
+            
             //Disabled the application menubar
-            if(!KInflector::isPlural($view->getName()) && !KRequest::has('get.hidemainmenu')) {
+            if ( ! KInflector::isPlural($view->getName()) && ! KRequest::has('get.hidemainmenu')) {
                 KRequest::set('get.hidemainmenu', 1);
             }
         }
-    
+        
         return parent::_actionRender($context);
-    }    
+    }
 }
