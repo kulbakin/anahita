@@ -165,7 +165,7 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
             $defaults[] = 'ComActorsView'.ucfirst($view).ucfirst($this->_view->name);
             $defaults[] = 'ComActorsView'.ucfirst($name).ucfirst($this->_view->name);
             $defaults[] = 'ComBaseView'.ucfirst($this->_view->name);
-            register_default(array('identifier' => $this->_view, 'default'=>$defaults));
+            register_default(array('identifier' => $this->_view, 'default' => $defaults));
         }
         
         return $this;

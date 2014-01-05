@@ -32,7 +32,7 @@ class LibBaseViewHtml extends LibBaseViewTemplate
     
     /**
      * Set a view properties
-     *
+     * 
      * @param   string  The property name.
      * @param   mixed   The property value.
      */
@@ -44,7 +44,7 @@ class LibBaseViewHtml extends LibBaseViewTemplate
             $name = $property;
         }
         if ($property == $name) {
-            if ( KInflector::isPlural($name) ) {
+            if (KInflector::isPlural($name) ) {
                 $this->_state->setList($value);
             } else {
                 $this->_state->setItem($value);

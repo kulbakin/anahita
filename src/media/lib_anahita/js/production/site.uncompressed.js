@@ -21033,63 +21033,62 @@ Paginator.Pages = new Class({
 });
 ///media/lib_anahita/js/libs/InfinitScroll.js
 Behavior.addGlobalFilter('InfinitScroll', {
-	defaults : {
-		record  	: '.an-entity',
-		numColumns 	: 3,
-		limit		: 20,
-		url			: null,
-		scrollable  : window,
-		fixedheight : false
-	},
-	
-	setup : function(el, api)
-	{    		
-		var masonry = new MasonryLayout({
-			container  : el,
-			numColumns : api.getAs(Number, 'numColumns'),
-			record	   : api.get('record')
-		});
-		
-		//only instantiate a paginator if
-		//if the current number of entities > limit
-		if ( masonry.getEntities().length < api.getAs(Number, 'limit') )
-			return null;
-			
-		var paginator = new Paginator({
-			resultSelector 	  : api.get('record'),
-			url		  		  : api.get('url'),
-			limit			  : api.getAs(Number, 'limit')
-		});
-		
-		paginator.addEvent('pageReady', function(page){
-			this.add(page.entities);
-			api.get('scrollable').fireEvent('scroll');
-		}.bind(masonry));
-		
-		this.resizeTo = null;
-		window.addEvent('resize', function(){
-			if(this.resizeTo)
-				clearTimeout(this.resizeTo);
-			
-			this.resizeTo = setTimeout(function(){
-				masonry.update();
-			}, 50);
-		}.bind(this));
-
-		el.store('paginator', paginator);
-		el.store('masonry', masonry);
-		
-		var scroller = new ScrollLoader({
-			scrollable: api.get('scrollable'),
-			fixedheight: api.get('fixedheight'),
-			onScroll: function() {
-    			if ( this.isVisible() ) {
-    				this.retrieve('paginator').showNextPage();	
-    			}
-    		}.bind(el)
-		});
-		api.get('scrollable').fireEvent('scroll');
-	}
+    defaults: {
+        record: '.an-entity',
+        numColumns: 3,
+        limit: 20,
+        url: null,
+        scrollable: window,
+        fixedheight: false
+    },
+    
+    setup : function (el, api) {
+        var masonry = new MasonryLayout({
+            container: el,
+            numColumns: api.getAs(Number, 'numColumns'),
+            record: api.get('record')
+        });
+        
+        // only instantiate a paginator
+        // if the current number of entities > limit
+        if (masonry.getEntities().length < api.getAs(Number, 'limit')) {
+            return null;
+        }
+        var paginator = new Paginator({
+            resultSelector: api.get('record'),
+            url: api.get('url'),
+            limit: api.getAs(Number, 'limit')
+        });
+        
+        paginator.addEvent('pageReady', function (page) {
+            this.add(page.entities);
+            api.get('scrollable').fireEvent('scroll');
+        }.bind(masonry));
+        
+        this.resizeTo = null;
+        window.addEvent('resize', function () {
+            if(this.resizeTo) {
+                clearTimeout(this.resizeTo);
+            }
+            this.resizeTo = setTimeout(function () {
+                masonry.update();
+            }, 50);
+        }.bind(this));
+        
+        el.store('paginator', paginator);
+        el.store('masonry', masonry);
+        
+        var scroller = new ScrollLoader({
+            scrollable: api.get('scrollable'),
+            fixedheight: api.get('fixedheight'),
+            onScroll: function () {
+                if (this.isVisible()) {
+                    this.retrieve('paginator').showNextPage();
+                }
+            }.bind(el)
+        });
+        api.get('scrollable').fireEvent('scroll');
+    }
 });
 ///media/lib_anahita/js/libs/MasonryLayout.js
 /**
@@ -21184,11 +21183,10 @@ var MasonryLayout = new Class ({
     }
 });
 ///media/lib_anahita/js/libs/ScrollLoader.js
-
 var ScrollLoader = new Class({
-
+    
     Implements: [Options, Events],
-
+    
     options: {
         // onScroll: fn,
         mode: 'vertical',
@@ -21198,8 +21196,8 @@ var ScrollLoader = new Class({
     initialize: function(options) {
         this.setOptions(options);
         this.scrollable = document.id(this.options.scrollable) || window; 
-        this.bounds     = {
-            scroll : this.scroll.bind(this)
+        this.bounds = {
+            scroll: this.scroll.bind(this)
         };
         this.attach();
     },
@@ -21212,24 +21210,19 @@ var ScrollLoader = new Class({
         return this;
     },
     scroll: function() {
-    	var orientation = ( this.options.mode == 'vertical' ) ? 'y' : 'x';
-    	var scroll 		= this.scrollable.getScroll()[orientation];
-    	var scrollSize	= this.scrollable.getScrollSize()[orientation];
-    	var scrollWin   = this.scrollable.getSize()[orientation];    	
-//    	console.log('scroll size: ' + scrollSize);
-//    	console.log('fire :' + Math.floor(scrollSize * 0.6));
-//    	console.log('fire: ' + Math.max(scrollSize - scrollWin * 2, 0));
-//    	console.log('scroll: ' + scroll);
-//    	console.log('---');    	
-    	
-    	if( (this.options.fixedheight && scroll < scrollSize)
-    				|| scroll > scrollSize - scrollWin * 2 ) { 
-    		//scroll > Math.floor(scrollSize * 0.6)
-    		this.fireEvent('scroll');
-    	}
-    		
+        var orientation = (this.options.mode == 'vertical') ? 'y' : 'x';
+        var scroll      = this.scrollable.getScroll()[orientation];
+        var scrollSize  = this.scrollable.getScrollSize()[orientation];
+        var scrollWin   = this.scrollable.getSize()[orientation];
+        
+        if ((this.options.fixedheight && scroll < scrollSize)
+            || scroll > scrollSize - scrollWin * 2
+        ) {
+            this.fireEvent('scroll');
+        }
     }
 });
+
 
 /**
  * String Alert using Purr

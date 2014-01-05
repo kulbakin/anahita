@@ -1,19 +1,4 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
- * 
- * @category   Anahita
- * @package    Lib_Application
- * @subpackage Template_Helper
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id$
- * @link       http://www.anahitapolis.com
- */
-
 /**
  * Grid Template Helper
  * 
@@ -23,28 +8,26 @@
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
+ * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
 class LibApplicationTemplateHelperModules extends KTemplateHelperAbstract
-{     
+{
     /**
      * Renders a module
-     *
-     * @param stdclass $module  Renders a module object
-     * @param array    $config  Module default attribs   
      * 
+     * @param stdclass $module  Renders a module object
+     * @param array    $config  Module default attribs
      * @return string
      */
     public function render($modules, $config = array())
     {
-        if ( is_string($modules) ) {
-        	jimport('joomla.application.module.helper');
-            $modules = JModuleHelper::getModules($modules);    
+        if (is_string($modules)) {
+            jimport('joomla.application.module.helper');
+            $modules = JModuleHelper::getModules($modules);
         }
         
         $content = null;
-        
-        foreach($modules as $module) {
+        foreach ($modules as $module) {
             $content .= $this->renderModule($module, $config);
         }
         
@@ -56,30 +39,28 @@ class LibApplicationTemplateHelperModules extends KTemplateHelperAbstract
      * 
      * @param stdclass $module The module to render
      * @param array    $config The module attributes
-     * 
      * @return string
      */
     public function renderModule($module, $config = array())
     {
-        if ( is_string($module) ) 
-        {
+        if (is_string($module)) {
             $module = JModuleHelper::getModule($module);
-            if ( empty($module) ) {
+            if (empty($module)) {
                 return;
-            } 
+            }
         }
-
-        if ( isset($module->attribs) ) {
+        
+        if (isset($module->attribs)) {
             $config = array_merge($module->attribs, $config);
         }
         
         $config = new KConfig($config);
         
         $config->append(array(
-            'style' => 'default'
+            'style' => 'default',
         ));
-                
-        $params = new JParameter( $module->params );        
+        
+        $params = new JParameter($module->params);
         
         //create an identifier
         $name = preg_replace('/[^A-Z0-9_\.-]/i', '', $module->module);
@@ -89,8 +70,7 @@ class LibApplicationTemplateHelperModules extends KTemplateHelperAbstract
         $path       = $identifier->filepath;
         
         // Load the module
-        if (!$module->user && file_exists( $path ) )
-        {
+        if ( ! $module->user && file_exists($path)) {
             $lang =& JFactory::getLanguage();
             $lang->load($module->module);
             
@@ -100,8 +80,8 @@ class LibApplicationTemplateHelperModules extends KTemplateHelperAbstract
             ob_end_clean();
             $module->content = empty($content) ? $module->content : $content;
         }
-               
-        if ( !$this->_template->findPath('chromes/'.$config->style.'.php') ) {
+        
+        if ( ! $this->_template->findPath('chromes/'.$config->style.'.php')) {
             $config->style = 'default';
         }
         

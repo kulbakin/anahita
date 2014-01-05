@@ -1,7 +1,7 @@
 <?php defined('KOOWA') or die ?>
 <?php
-$subject         = is_array($subject) ? array_shift($subject) : $subject;
-$target_to_show  = null;
+$subject        = is_array($subject) ? array_shift($subject) : $subject;
+$target_to_show = null;
 if (isset($item->object) 
     && ! is_array($item->target)
     && ! $item->target->eql($item->subject)
@@ -58,7 +58,7 @@ if (isset($item->object)
         </div>
     <?php endif ?>
     
-    <div class="entity-actions">    
+    <div class="entity-actions">
         <?php $can_comment = $commands->offsetExists('comment') ?>
         <?= @helper('ui.commands', $commands)?>
     </div>
