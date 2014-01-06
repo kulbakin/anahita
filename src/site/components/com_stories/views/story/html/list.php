@@ -1,6 +1,6 @@
 <?php defined('KOOWA') or die ?>
 <?php
-$subject        = is_array($subject) ? array_shift($subject) : $subject;
+$subject = is_array($subject) ? array_shift($subject) : $subject;
 $target_to_show = null;
 if (isset($item->object) 
     && ! is_array($item->target)
@@ -63,7 +63,7 @@ if (isset($item->object)
         <?= @helper('ui.commands', $commands)?>
     </div>
     
-    <div id="<?= 'story-comments-'.$item->id?>" class="story-comments">
+    <div id="story-comments-<?= $item->id ?>" class="story-comments">
         <?php if ( ! empty($comments) || $can_comment): ?>
             <?= @helper('ui.comments', $item->object, array(
                 'comments'          => $comments,
@@ -72,7 +72,7 @@ if (isset($item->object)
                 'show_guest_prompt' => false,
                 'truncate_body'     => array('length' => 220, 'consider_html' => true, 'read_more' => true),
             )) ?>
-        <?php endif;?>
+        <?php endif ?>
         
         <?php if( ! empty($comments) && $can_comment ): ?>
             <div class="comment-overtext-box">
