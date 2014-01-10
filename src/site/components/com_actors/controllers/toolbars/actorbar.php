@@ -67,7 +67,7 @@ class ComActorsControllerToolbarActorbar extends ComBaseControllerToolbarActorba
             }
         }
         
-        if ( $entity->authorize('administration', array('strict'=>true)) ) {
+        if ($entity->authorize('administration', array('strict' => true))) {
             $types[] = 'Blockeds';
         }
         $filter = $this->getService('koowa:filter.cmd');

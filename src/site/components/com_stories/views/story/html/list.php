@@ -16,7 +16,7 @@ if (isset($item->object)
         </div>
         
         <div class="entity-container">
-            <?php if( ! empty($title)): ?>
+            <?php if ( ! empty($title)): ?>
                 <h4 class="story-title">
                     <?= $title ?>
                 </h4>
@@ -28,11 +28,11 @@ if (isset($item->object)
             
             <ul class="an-meta inline">
                 <li><?= @date($timestamp) ?></li>
-                <?php if( $target_to_show ): ?>
+                <?php if ($target_to_show): ?>
                     <li>
                         <a href="<?= @route($target_to_show->getURL()) ?>"><?= @name($target_to_show) ?></a>
                     </li>
-                <?php endif; ?>
+                <?php endif ?>
             </ul>
         </div>
     </div>
@@ -74,7 +74,7 @@ if (isset($item->object)
             )) ?>
         <?php endif ?>
         
-        <?php if( ! empty($comments) && $can_comment ): ?>
+        <?php if ( ! empty($comments) && $can_comment ): ?>
             <div class="comment-overtext-box">
                 <a class="action-comment-overtext" storyid="<?= $item->id ?>" href="<?= @route($item->object->getURL()) ?>">
                     <?= @text('COM-STORIES-ADD-A-COMMENT') ?>

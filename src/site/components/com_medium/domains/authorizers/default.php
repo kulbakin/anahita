@@ -25,7 +25,7 @@ class ComMediumDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
             return true;
         }
         if ($this->_entity->isPrivatable()) {
-            return $this->_entity->allows($this->_viewer,'access');
+            return $this->_entity->allows($this->_viewer, 'access');
         }
     }
     

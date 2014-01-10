@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Default Actor Authorizer
  * 
@@ -151,9 +150,9 @@ class ComActorsDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
      * @return boolean
      */
     protected function _authorizeFollower(KCommandContext $context)
-    {                
+    {
         // viewer can only follow actor if and only if
-        // viewer is leadable and actor is followable           
+        // viewer is leadable and actor is followable
         if ($this->_entity->isFollowable() && !$this->_viewer->isLeadable()) {
             return false;
         }
@@ -314,7 +313,7 @@ class ComActorsDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
         // viewer can only block actor from following them if and only if
         // actor is leadable (can follow ) and viewer is followable        
         if ( !$this->_entity->isLeadable() || !$this->_viewer->isFollowable() ) {
-            return false;    
+            return false;
         }
         
         if (is_guest($this->_viewer)) {

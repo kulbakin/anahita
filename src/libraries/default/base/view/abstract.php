@@ -165,7 +165,7 @@ abstract class LibBaseViewAbstract extends KObject
      * @throws  KObjectException
      * @return  KObject
      */
-    public function set( $property, $value = null )
+    public function set($property, $value = null)
     {
         if (is_object($property)) {
             $property = get_object_vars($property);
@@ -282,7 +282,7 @@ abstract class LibBaseViewAbstract extends KObject
      * @param boolean If TRUE create a fully qualified route. Default TRUE.
      * @return string The route
      */
-    public function getRoute( $route = '', $fqr = true)
+    public function getRoute($route = '', $fqr = true)
     {
         if ( ! is_array($route)) {
             $parts = array();
@@ -294,7 +294,7 @@ abstract class LibBaseViewAbstract extends KObject
         $route = array();
         
         //Check to see if there is component information in the route if not add it
-        if(!isset($parts['option'])) {
+        if( ! isset($parts['option'])) {
             $route['option'] = 'com_'.$this->getIdentifier()->package;
         }
         
