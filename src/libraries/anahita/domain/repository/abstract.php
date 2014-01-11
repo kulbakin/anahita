@@ -361,7 +361,7 @@ abstract class AnDomainRepositoryAbstract extends KCommand
                         $list[] = $this->_createEntity($data);
                     }
                     if ($mode == AnDomain::FETCH_ENTITY_SET) {
-                        $list = $this->getService($this->_entityset, array('repository'=>$this, 'query'=>$context->query, 'data'=>$list));
+                        $list = $this->getService($this->_entityset, array('repository' => $this, 'query' => $context->query, 'data' => $list));
                     }
                     $context->data = $list;
                     break;

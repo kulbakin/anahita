@@ -202,7 +202,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         
         $data   = $context->data;
         $person = parent::_actionEdit($context);
-              
+        
         //manually set the password to make sure there's a password
         if ( !empty($data->password) ) {
             $person->setPassword($data->password);

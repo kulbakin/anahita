@@ -1,116 +1,95 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
+/**
+ * JSON View Class
  * 
  * @category   Anahita
  * @package    Lib_Base
  * @subpackage View
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
+ * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id: view.php 13650 2012-04-11 08:56:41Z asanieyan $
- * @link       http://www.anahitapolis.com
- */
-
-/**
- * JSON View Class
- *
- * @category   Anahita
- * @package    Lib_Base
- * @subpackage View
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
  */
 class LibBaseViewJson extends LibBaseViewAbstract
-{    	
-	 /**
-	 * The padding for JSONP
-	 *
-	 * @var string
-	 */
-	protected $_padding;
-
-	 /**
-	 * Constructor
-	 *
-	 * @param   object  An optional KConfig object with configuration options
-	 */
-	public function __construct(KConfig $config)
-	{
-		parent::__construct($config);
-
-		//Padding can explicitly be turned off by setting to FALSE
-		if(empty($config->padding) && $config->padding !== false)
-		{
-			if(isset($this->callback) && (strlen($this->callback) > 0)) {
-				$config->padding = $state->callback;
-			}
-		}
-
-		$this->_padding = $config->padding;
-	}
-
-	/**
-	 * Initializes the config for the object
-	 *
-	 * Called from {@link __construct()} as a first step of object instantiation.
-	 *
-	 * @param 	object 	An optional KConfig object with configuration options
-	 * @return  void
-	 */
-	protected function _initialize(KConfig $config)
-	{
-		$config->append(array(
-			'padding'	  => '',
-			'version'	  => '1.0'
-		))->append(array(
-			'mimetype'	  => 'application/json; version='.$config->version,
-		));
-
-		parent::_initialize($config);
-	}
-	
-	/**
-	 * Return the views output
- 	 *
-	 *  @return string 	The output of the view
-	 */
-    public function display()
-    { 
-        $name  = $this->getName();
+{
+    /**
+     * The padding for JSONP
+     *
+     * @var string
+     */
+    protected $_padding;
+    
+    /**
+     * Constructor
+     * 
+     * @param object An optional KConfig object with configuration options
+     */
+    public function __construct(KConfig $config)
+    {
+        parent::__construct($config);
         
+        //Padding can explicitly be turned off by setting to FALSE
+        if (empty($config->padding) && $config->padding !== false) {
+            if (isset($this->callback) && (strlen($this->callback) > 0)) {
+                $config->padding = $state->callback;
+            }
+        }
+        
+        $this->_padding = $config->padding;
+    }
+    
+    /**
+     * Initializes the config for the object
+     * 
+     * Called from {@link __construct()} as a first step of object instantiation.
+     * 
+     * @param  object An optional KConfig object with configuration options
+     * @return void
+     */
+    protected function _initialize(KConfig $config)
+    {
+        $config->append(array(
+            'padding' => '',
+            'version' => '1.0'
+        ))->append(array(
+            'mimetype' => 'application/json; version='.$config->version,
+        ));
+        
+        parent::_initialize($config);
+    }
+    
+    /**
+     * Return the views output
+     * 
+     * @return string The output of the view
+     */
+    public function display()
+    {
+        $name  = $this->getName();
         $data  = array();
         
         //if data is set the just json encode those
-        if ( count($this->_data) ) {
+        if (count($this->_data)) {
             $this->output = $this->_data;
-        }
-        
-        else if ( KInflector::isPlural($name) ) {
+        } elseif (KInflector::isPlural($name)) {
             $this->output = $this->_getList();
-        }
-        
-        else {
+        } else {
             $this->output = $this->_getItem();
         }
-      
+        
         //if null then return empty string
         $this->output = pick($this->output, '');
         
         if (!is_string($this->output)) {
             $this->output = json_encode($this->_toArray(KConfig::unbox($this->output)));
         }
-
+        
         //Handle JSONP
         if(!empty($this->_padding)) {
             $this->output = $this->_padding.'('.$this->output.');';
         }
         
-    	return $this->output;
+        return $this->output;
     }
     
     /**
@@ -122,33 +101,29 @@ class LibBaseViewJson extends LibBaseViewAbstract
     {
         $data = array();
         
-        if ( $items = $this->_state->getList() ) 
-        {          
+        if ($items = $this->_state->getList()) {
             $name = KInflector::singularize($this->getName());
-             
-            foreach($items as $item) 
-            {               
+            
+            foreach ($items as $item) {
                $this->_state->setItem($item);
                $name = null; 
-               $item = $this->_serializeToArray($item, $name);                              
+               $item = $this->_serializeToArray($item, $name);
                
-               if ( count($commands = $this->getToolbarCommands('list')) ) {
+               if (count($commands = $this->getToolbarCommands('list'))) {
                     $item['commands'] = $commands;
                }
-               
                $data[] = $item; 
             }
             
             $data = array(
-                'data' => $data                
+                'data' => $data,
             );
             
-            if ( is($items, 'AnDomainEntitysetAbstract') )
-            {
+            if (is($items, 'AnDomainEntitysetAbstract')) {
                 $data['pagination'] = array(
                         'offset' => (int) $items->getOffset(),
                         'limit'  => (int) $items->getLimit(),
-                        'total'  => (int) $items->getTotal(),                
+                        'total'  => (int) $items->getTotal(),
                 );
             }
         }
@@ -164,12 +139,11 @@ class LibBaseViewJson extends LibBaseViewAbstract
     protected function _getItem()
     {
         $item = null;
-
-        if ( $item = $this->_state->getItem() ) 
-        {
+        
+        if (($item = $this->_state->getItem())) {
            $item     = $this->_serializeToArray($item);
            $commands = $this->getToolbarCommands('toolbar');
-           if ( !empty($commands) ) {
+           if ( ! empty($commands)) {
                 $item['commands'] = $commands;
            }
         }
@@ -186,13 +160,13 @@ class LibBaseViewJson extends LibBaseViewAbstract
     {
         $result = array();
         
-        if ( is($item, 'AnDomainBehaviorSerializable') )
+        if (is($item, 'AnDomainBehaviorSerializable')) {
             $result = $item->toSerializableArray();
-        else {
+        } else {
             $result = (array)$item;
         }
         
-        return $result;         
+        return $result;
     }
     
     /**
@@ -200,25 +174,22 @@ class LibBaseViewJson extends LibBaseViewAbstract
      * a toolbar 
      * 
      * @param string $name The name of the commands
-     * 
      * @return array Return an array of commands
      */
     public function getToolbarCommands($name)
     {
         $result = array();
         
-        if ( $this->_state->toolbar instanceof KControllerToolbarAbstract ) 
-        {
+        if ($this->_state->toolbar instanceof KControllerToolbarAbstract) {
             $this->_state->toolbar->reset();
             $method  = 'add'.ucfirst($name).'Commands';
             
-            if ( method_exists($this->_state->toolbar, $method) ) {
+            if (method_exists($this->_state->toolbar, $method)) {
                 $this->_state->toolbar->$method();
             }
-        
-            $commands = $this->_state->toolbar->getCommands();
             
-            foreach($commands as $command) {
+            $commands = $this->_state->toolbar->getCommands();
+            foreach ($commands as $command) {
                 $result[] =$command->getname();
             }
         }
@@ -235,18 +206,15 @@ class LibBaseViewJson extends LibBaseViewAbstract
     protected function _toArray($data)
     {
         $array = array();
-        foreach ($data as $key => $value)
-        {
-            if ( is($value, 'AnDomainBehaviorSerializable') ) {
+        foreach ($data as $key => $value) {
+            if (is($value, 'AnDomainBehaviorSerializable')) {
                 $array[$key] = $value->toSerializableArray();
-            }
-            elseif ( is_array($value) ) {
-                $array[$key] = $this->_toArray($value); 
-            }
-            else {
+            } elseif (is_array($value)) {
+                $array[$key] = $this->_toArray($value);
+            } else {
                 $array[$key] = $value;
             }
         }
         return $array;
-    }    
+    }
 }
