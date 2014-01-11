@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix login for blocked user to display a message in login form instead of returning
+  *404 Permission Denied* page
+  [6d6b689](https://github.com/kulbakin/anahita/commit/6d6b68914cef00f7b542bea440763171799c51a1)
 * fix *AnDomainAttributeJson::serialize()* so nested objects are properly serialized,
   affects any *dictionariable* entity which stores structures as meta data
   [c0bae52](https://github.com/kulbakin/anahita/commit/c0bae52fc9d26eacbcc0a26583c3129cf745f376)
