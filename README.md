@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix html syntax error
+  [a265126](https://github.com/kulbakin/anahita/commit/a265126c4d41ee155adedec5d1dbda5c05d68f66)
 * fix login for blocked user to display a message in login form instead of returning
   *404 Permission Denied* page
   [6d6b689](https://github.com/kulbakin/anahita/commit/6d6b68914cef00f7b542bea440763171799c51a1)
