@@ -47,9 +47,12 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *AnDomainAttributeJson::serialize()* so nested objects are properly serialized,
+  affects any *dictionariable* entity which stores structures as meta data
+  [c0bae52](https://github.com/kulbakin/anahita/commit/c0bae52fc9d26eacbcc0a26583c3129cf745f376)
 * fix 'read more' feature for *text.truncate* template helper making ids generated with
   subsequent *uniqid()* calls reliably unique
-  [bde5a33](bde5a33e1a5ff31730133144735f2f2e210b3f61)
+  [bde5a33](https://github.com/kulbakin/anahita/commit/bde5a33e1a5ff31730133144735f2f2e210b3f61)
 * remove no logner used joomla legacy *.xml configs
   [9d67dcf](https://github.com/kulbakin/anahita/commit/9d67dcfae5f5c0216ca388de1b9b5bf512f9ab12)
 * fix AnDomainEntitysetDefault::reset() to properly reset loaded status to false;
