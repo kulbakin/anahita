@@ -146,7 +146,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
             $user = $this->getService('repos://site/users.user')->fetch(array('username'=>$user['username']));
             if ($user && $user->block) {
                 $this->setMessage('COM-PEOPLE-AUTHENTICATION-PERSON-BLOCKED', 'error');
-                throw new LibBaseControllerExceptionForbidden('User is blocked');
+                throw new LibBaseControllerExceptionUnauthorized('User is blocked');
             }
             
             $this->setMessage('COM-PEOPLE-AUTHENTICATION-PERSON-UNKOWN', 'error');
