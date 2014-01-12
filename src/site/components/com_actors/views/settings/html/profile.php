@@ -2,7 +2,7 @@
 
 <h3><?= @text('COM-ACTORS-PROFILE-EDIT-PROFILE-INFORMATION') ?></h3>
 
-<form data-behavior="FormValidator" action="<?=@route($item->getURL())?>" method="post" enctype="multipart/form-data">
+<form data-behavior="FormValidator" action="<?= @route($item->getURL()) ?>" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><?= @text('COM-ACTORS-PROFILE-INFO-BASIC') ?></legend>
         
@@ -41,7 +41,7 @@
                     <?= @text('COM-ACTORS-ENABLED') ?>
                 </label>
                 <div class="controls">
-                    <?= @html('select','enabled', array('options' => array(@text('LIB-AN-NO'), @text('LIB-AN-YES')), 'selected' => $item->enabled))?>
+                    <?= @html('select', 'enabled', array('options' => array(@text('LIB-AN-NO'), @text('LIB-AN-YES')), 'selected' => $item->enabled)) ?>
                 </div>
             </div>
         <?php endif ?>

@@ -70,7 +70,7 @@ class JText
     
     /**
      * Passes a string thru an sprintf
-     *
+     * 
      * @param   format The format string
      * @param   mixed  Mixed number of arguments for the sprintf function
      * @return  string
@@ -88,7 +88,7 @@ class JText
 
     /**
      * Passes a string thru an printf
-     *
+     * 
      * @param   format The format string
      * @param   mixed Mixed number of arguments for the sprintf function
      * @return  string

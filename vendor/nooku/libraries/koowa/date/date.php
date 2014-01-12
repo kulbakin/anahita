@@ -104,10 +104,10 @@ class KDate extends KObject
                         Recognized key values include 'date'
      * @return KDate The new Date object
      */
-    public function __construct( KConfig $config = null)
+    public function __construct(KConfig $config = null)
     { 
         //If no config is passed create it
-        if(!isset($config)) $config = new KConfig();
+        if ( ! isset($config)) $config = new KConfig();
         
         parent::__construct($config);
         
@@ -566,7 +566,7 @@ class KDate extends KObject
         $names  = self::getMonthNames();
         return $names[$month];
     }
-
+    
     /**
      * Returns the abbreviated month name for the given month
      *
@@ -581,7 +581,7 @@ class KDate extends KObject
         $month = (int)$month;
         return substr(self::getMonthFullname($month), 0, $length);
     }
-
+    
     /**
      * Returns an array of month names
      * 
@@ -647,8 +647,7 @@ class KDate extends KObject
             return 31;
         }
     }
-
-
+    
     /**
      * Returns true for a leap year, else false
      * 

@@ -146,7 +146,7 @@ class PlgProfileOpensocial extends PlgProfileAbstract
                 } elseif ($type == 'date') {
                     $data = explode('-', $data);
                     $selector = KService::get('com:base.template.helper.selector');
-                    $date  = new KDate(new KConfig());
+                    $date  = new KDate();
                     
                     $value = $selector->month(array('name' => $name.'[month]', 'selected' => (int)@$data[1]))->class('input-medium').'&nbsp;'
                         .$selector->day(array('name' => $name.'[day]', 'selected' =>(int) @$data[2]))->class('input-medium').'&nbsp;'

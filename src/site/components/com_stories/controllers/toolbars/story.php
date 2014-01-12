@@ -23,7 +23,7 @@ class ComStoriesControllerToolbarStory extends ComBaseControllerToolbarDefault
         
         if ($story->authorize('vote')) {
             $this->getController()->setItem($story->object);
-            $this->addCommand('vote');            
+            $this->addCommand('vote');
             $this->getController()->setItem($story);
         }
         
@@ -58,7 +58,7 @@ class ComStoriesControllerToolbarStory extends ComBaseControllerToolbarDefault
         $command->append(array('label' => $label));
         $command->href(JRoute::_($entity->getURL()));
     }
-     
+    
     /**
      * Comment command
      * 
@@ -69,11 +69,11 @@ class ComStoriesControllerToolbarStory extends ComBaseControllerToolbarDefault
     {
         $entity = $this->getController()->getItem();
         
-        $command->append(array('label'=>JText::_('LIB-AN-ACTION-COMMENT')))
+        $command->append(array('label' => JText::_('LIB-AN-ACTION-COMMENT')))
             ->href(JRoute::_($entity->getURL()))
             ->class('comment');
     }
-     
+    
     /**
      * Delete Command for a story
      * 

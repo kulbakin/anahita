@@ -14,7 +14,7 @@
                 <li><?= @date($topic->creationTime) ?></li>
                 <?php if ( ! $topic->owner->eql($topic->author)): ?>
                     <li><?= @name($topic->owner) ?></li>
-                <?php endif; ?>
+                <?php endif ?>
             </ul>
         </div>
     </div>
@@ -22,7 +22,7 @@
     <h3 class="entity-title">
         <?php if ($topic->lastComment): ?>
             <a href="<?= @route($topic->getURL().'&permalink='.$topic->lastComment->id) ?>">
-                <?= sprintf( @text('LIB-AN-MEDIUM-COMMENTED'), @escape($topic->title) ); ?>
+                <?= sprintf(@text('LIB-AN-MEDIUM-COMMENTED'), @escape($topic->title)) ?>
             </a>
         <?php else: ?>
             <a href="<?= @route($topic->getURL()) ?>">

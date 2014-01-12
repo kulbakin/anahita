@@ -1,8 +1,7 @@
 <?php
-
 /**
  * Adds a BREAD action to the controller. It also mixes other behaviors 
- *
+ * 
  * @category   Anahita
  * @package    Lib_Base
  * @subpackage Controller_Behavior
@@ -30,7 +29,7 @@ class LibBaseControllerBehaviorServiceable extends KControllerBehaviorAbstract
     public function __construct(KConfig $config)
     {
         parent::__construct($config);
-
+        
         //inverse of exclude_actions
         if (count($config->only)) {
             $actions = (array)$config['only'];

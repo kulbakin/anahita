@@ -10,8 +10,8 @@
 
 <?php if ($type == 'story'): ?>
 
-<?php else : ?>
-    <?php $commands->insert('follow', array('label'=>sprintf(@text('COM-ACTORS-VIEW-PROFILE'), $subject->name)))->href($subject->getURL()) ?>
+<?php else: ?>
+    <?php $commands->insert('follow', array('label' => sprintf(@text('COM-ACTORS-VIEW-PROFILE'), $subject->name)))->href($subject->getURL()) ?>
     <data name="email_body">
         <?= $subject->followerCount ?>
         <span><?= @text('COM-ACTORS-SOCIALGRAPH-FOLLOWERS') ?></span>
@@ -19,7 +19,7 @@
             / <?= $subject->leaderCount ?>
             <span><?= @text('COM-ACTORS-SOCIALGRAPH-LEADERS') ?></span>
         <?php endif ?>
-        <?php if ($subject->isLeadable() && $target->isLeadable() ) : ?>
+        <?php if ($subject->isLeadable() && $target->isLeadable()): ?>
             <?php 
             $common = $subject->getCommonLeaders($target);
             $common_leaders_total = $common->getTotal();

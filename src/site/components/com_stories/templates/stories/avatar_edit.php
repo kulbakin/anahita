@@ -13,8 +13,8 @@
         <?= @avatar($target, 'medium') ?>
     <?php else: ?>
         <div class="media-grid">
-            <?php foreach ($target as $t) : ?>  
-            <div><?= @avatar($t, 'square') ?></div>
+            <?php foreach ($target as $t): ?>
+                <div><?= @avatar($t, 'square') ?></div>
             <?php endforeach ?>
         </div>
     <?php endif ?>

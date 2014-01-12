@@ -25,7 +25,7 @@ class LibBaseTemplateHelperDate extends KTemplateHelperAbstract implements KServ
             $instance  = new $classname($config);
             $container->set($config->service_identifier, $instance);
         }
-    
+        
         return $container->get($config->service_identifier);
     }
     
@@ -38,7 +38,7 @@ class LibBaseTemplateHelperDate extends KTemplateHelperAbstract implements KServ
     
     /**
      * Constructor.
-     *
+     * 
      * @param object An optional KConfig object with configuration options
      */
     public function __construct(KConfig $config)
@@ -92,24 +92,24 @@ class LibBaseTemplateHelperDate extends KTemplateHelperAbstract implements KServ
             12 => JText::_('DECEMBER'),
         );
         
-        $days  = array(0=>'Select Day');
-        $years = array(0=>'Select Year');
+        $days  = array(0 => 'Select Day');
+        $years = array(0 => 'Select Year');
         
-        foreach (range(1,31) as $i=>$num) {
-            $days[$i+1] = $num;
+        foreach (range(1, 31) as $i=>$num) {
+            $days[$i + 1] = $num;
         }
         
         $current  = new KDate();
         
-        foreach(range(0,100) as $i) {
+        foreach (range(0, 100) as $i) {
             $years[$current->year + $i] = $current->year + $i;
         }
         
-        $year    = $html->select($name.'[year]',  array('options'=>$years,  'selected'=>$year))->class('input-medium');
-        $month   = $html->select($name.'[month]', array('options'=>$months, 'selected'=>$month))->class('input-medium');
-        $day     = $html->select($name.'[day]',   array('options'=>$days,   'selected'=>$day))->class('input-small');
+        $year    = $html->select($name.'[year]',  array('options' => $years,  'selected' => $year))->class('input-medium');
+        $month   = $html->select($name.'[month]', array('options' => $months, 'selected' => $month))->class('input-medium');
+        $day     = $html->select($name.'[day]',   array('options' => $days,   'selected' => $day))->class('input-small');
         
-        return $year.' '.$month.' '.$day;        
+        return $year.' '.$month.' '.$day;
     }
     
     /**
@@ -127,7 +127,7 @@ class LibBaseTemplateHelperDate extends KTemplateHelperAbstract implements KServ
         $config->append(array(
             'format'   => '%B %d %Y',
             'relative' => false,
-            'offset'   => null
+            'offset'   => null,
         ));
         
         $format = $config->format;

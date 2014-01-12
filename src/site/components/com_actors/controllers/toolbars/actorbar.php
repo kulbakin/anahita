@@ -51,7 +51,7 @@ class ComActorsControllerToolbarActorbar extends ComBaseControllerToolbarActorba
      * @return void
      */
     protected function _configureGraphBar()
-    {   
+    {
         $entity = $this->getController()->getItem();
         $types  = array();
         

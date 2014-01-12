@@ -22,12 +22,12 @@ $url = $entity->getURL().'&get=voters&'.$query
                     $ids = $entity->voterUpIds->toArray();
                     unset($ids[$viewer->id]);
                     ?>
-                    <?= sprintf(@text('LIB-AN-VOTE-YOU-AND-ONE-PERSON'), @name(@service('repos:actors.actor')->fetch(end($ids))))?>
+                    <?= sprintf(@text('LIB-AN-VOTE-YOU-AND-ONE-PERSON'), @name(@service('repos:actors.actor')->fetch(end($ids)))) ?>
                 <?php else: ?>
-                    <?= sprintf(@text('LIB-AN-VOTE-YOU-AND-OTHER-VOTED-POPOVER'), @route($url), $entity->voteUpCount - 1)?>
+                    <?= sprintf(@text('LIB-AN-VOTE-YOU-AND-OTHER-VOTED-POPOVER'), @route($url), $entity->voteUpCount - 1) ?>
                 <?php endif ?>
             <?php else:?>
-                <?= sprintf(@text('LIB-AN-VOTE-OTHER-VOTED-POPOVER'), @route($url), $entity->voteUpCount)?>
+                <?= sprintf(@text('LIB-AN-VOTE-OTHER-VOTED-POPOVER'), @route($url), $entity->voteUpCount) ?>
             <?php endif ?>
         <?php endif ?>
     </div>

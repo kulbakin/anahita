@@ -32,7 +32,7 @@ class LibBaseDomainBehaviorDictionariable extends AnDomainBehaviorAbstract
         
         parent::_initialize($config);
     }
-        
+    
     /**
      * Sets a key value in the object dictionary, If $key is array
      * the it iterates through the array to set the values

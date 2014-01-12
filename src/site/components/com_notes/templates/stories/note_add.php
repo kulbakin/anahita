@@ -16,6 +16,6 @@
 <?php if ($type == 'notification'): ?>
     <data name="email_body">
         <div><?= $object->body ?></div>
-        <?php $commands->insert('viewstory', array('label' => @text('COM-NOTES-VIEW-POST')))->href($object->getURL())?>
+        <?php $commands->insert('viewstory', array('label' => @text('COM-NOTES-VIEW-POST')))->href($object->getURL()) ?>
     </data>
 <?php endif ?>
