@@ -3,7 +3,7 @@ $actor = null;
 $label = @text('TMPL-SEARCH-PLACEHOLDER');
 if (@service()->has('mod://site/search.owner')) {
     $actor = @service('mod://site/search.owner');
-    $label = sprintf(@text('TMPL-SEARCH-PLACEHOLDER-OWNER'), $actor->name);
+    $label = @textf('TMPL-SEARCH-PLACEHOLDER-OWNER', $actor->name);
 }
 $scope = null;
 if (@service()->has('mod://site/search.scope')) {

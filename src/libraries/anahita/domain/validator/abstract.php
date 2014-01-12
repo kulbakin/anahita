@@ -402,7 +402,7 @@ abstract class AnDomainValidatorAbstract extends KObject
                 //check if the value exists
                 if (KHelperString::strlen($value) <= 0 || ctype_space($value)) {
                     $entity->addError(array(
-                        'message' => sprintf(JText::_('%s %s can not be empty!'), $entity->getIdentifier()->name, $property->getName()),
+                        'message' => JText::sprintf('%s %s can not be empty!', $entity->getIdentifier()->name, $property->getName()),
                         'code'    => AnError::MISSING_VALUE,
                         'key'     => $property->getName()
                     ));
@@ -435,14 +435,14 @@ abstract class AnDomainValidatorAbstract extends KObject
         
         if ( ! $present) {
             $entity->addError(array(
-                'message' => sprintf(JText::_('%s %s can not be empty!'), $entity->getIdentifier()->name, $property->getName()),
+                'message' => JText::sprintf('%s %s can not be empty!', $entity->getIdentifier()->name, $property->getName()),
                 'code'    => AnError::MISSING_VALUE,
                 'key'     => $property->getName()
             ));
             return false;
         }
     }
-     
+    
     /**
      * Validate length
      * 
@@ -469,7 +469,7 @@ abstract class AnDomainValidatorAbstract extends KObject
                         $greater  = KHelperString::strlen($value) > (int)$options['max'];
                         if ($greater) {
                             $entity->addError(array(
-                                'message'    => sprintf(JText::_('%s %s can not be greater than %d characters'), $this->getIdentifier()->name, $property->getName(), $options['max']),
+                                'message'    => JText::sprintf('%s %s can not be greater than %d characters', $this->getIdentifier()->name, $property->getName(), $options['max']),
                                 'code'       => AnError::INVALID_LENGTH,
                                 'key'        => $property->getName(),
                                 'max_lenght' => $options['max']
@@ -481,7 +481,7 @@ abstract class AnDomainValidatorAbstract extends KObject
                         $lesser  = KHelperString::strlen($value) < (int)$options['min'];
                         if ($lesser) {
                             $entity->addError(array(
-                                'message'    => sprintf(JText::_('%s %s can not be less than %d characters'), $this->getIdentifier()->name, $property->getName(), $options['min']),
+                                'message'    => JText::sprintf('%s %s can not be less than %d characters', $this->getIdentifier()->name, $property->getName(), $options['min']),
                                 'code'       => AnError::INVALID_LENGTH,
                                 'key'        => $property->getName(),
                                 'min_length' => $options['min']
@@ -493,7 +493,7 @@ abstract class AnDomainValidatorAbstract extends KObject
            } else {
                if (KHelperString::strlen($value) != (int)$options) {
                     $entity->addError(array(
-                        'message' => sprintf(JText::_('%s %s must be %d characters'), $this->getIdentifier()->name, $property->getName(), $options),
+                        'message' => JText::sprintf('%s %s must be %d characters', $this->getIdentifier()->name, $property->getName(), $options),
                         'code'    => AnError::INVALID_LENGTH,
                         'key'     => $property->getName(),
                         'length'  => (int)$options,
@@ -538,7 +538,7 @@ abstract class AnDomainValidatorAbstract extends KObject
         
         if ($query->disableChain()->fetch()) {
             $entity->addError(array(
-                'message'    => sprintf(JText::_('%s %s is not unique'), $this->getIdentifier()->name, $property->getName()),
+                'message'    => JText::sprintf('%s %s is not unique', $this->getIdentifier()->name, $property->getName()),
                 'code'       => AnError::NOT_UNIQUE,
                 'key'        => $property->getName()
             ));

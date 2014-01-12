@@ -2,7 +2,7 @@
 
 <?php if (is_array($object)): ?>
     <data name="title">
-        <?= sprintf(@text('COM-TODOS-STORY-TODOS-CLOSED'), @name($subject)) ?>
+        <?= @textf('COM-TODOS-STORY-TODOS-CLOSED', @name($subject)) ?>
     </data>
     
     <data name="body">
@@ -24,7 +24,7 @@
     </data>
 <?php else: ?>
     <data name="title">
-        <?= sprintf(@text('COM-TODOS-STORY-TODO-CLOSED'), @name($subject), @route($object->getURL())) ?>
+        <?= @textf('COM-TODOS-STORY-TODO-CLOSED', @name($subject), @route($object->getURL())) ?>
     </data>
     <data name="body">
         <div>

@@ -96,7 +96,7 @@ class KTemplateHelperDate extends KTemplateHelperAbstract
                     $periods[$i].= 's';
                 }
                 
-                $result = sprintf(JText::_('%s '.$periods[$i].' '.$tense), $difference);
+                $result = JText::sprintf('%s '.$periods[$i].' '.$tense, $difference);
             } else {
                 $result = JText::_('Now');
             }

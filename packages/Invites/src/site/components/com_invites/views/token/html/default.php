@@ -1,8 +1,6 @@
 
 <module position="sidebar-b"></module>
-<p>
-    <?= sprintf(@text('COM-INVITES-INVITED-BY'), @name($token->inviter)) ?>
-</p>
+<p><?= @textf('COM-INVITES-INVITED-BY', @name($token->inviter)) ?></p>
 
 <style>
 #inviter-list #block {

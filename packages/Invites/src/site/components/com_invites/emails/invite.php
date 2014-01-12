@@ -43,7 +43,7 @@ EOF;
                               </td>
                               <td valign="top" style="padding-left:10px">
                                   <h1 style="font-size:16px;"><?= @text('COM-INVITES-MESSAGE-TITLE') ?></h1>
-                                  <p style="padding-top:10px;font-size:12px"><?= sprintf(@text('COM-INVITES-MESSAGE-BODY'), @name($sender, false), $site_name) ?></p>
+                                  <p style="padding-top:10px;font-size:12px"><?= @textf('COM-INVITES-MESSAGE-BODY', @name($sender, false), $site_name) ?></p>
                                   <div>
                                       <a href="<?= @route($invite_url) ?>" style="<?= $btn.$btn_primary ?>">
                                           <?= @text('COM-INVITES-ACTION-ACCEPT-INVITE') ?>

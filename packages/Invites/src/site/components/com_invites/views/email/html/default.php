@@ -12,7 +12,7 @@
             <div class="controls">
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-envelope"></i></span>
-                    <input class="email required validate-email span3" type="text" name="email[]" autocomplete="off" placeholder="<?= sprintf(@text('COM-INVITES-EMAIL-FIELD'), $i + 1) ?>" />
+                    <input class="email required validate-email span3" type="text" name="email[]" autocomplete="off" placeholder="<?= @textf('COM-INVITES-EMAIL-FIELD', $i + 1) ?>" />
                 </div>
             </div>
         </div>

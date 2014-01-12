@@ -1,8 +1,8 @@
 <?php defined('KOOWA') or die('Restricted access');?>
 
 <?php if (is_array($object)): ?>
-    <data name="title">    
-        <?= sprintf(@text('COM-TODOS-STORY-TODOS-OPENED'), @name($subject)) ?>
+    <data name="title">
+        <?= @textf('COM-TODOS-STORY-TODOS-OPENED', @name($subject)) ?>
     </data>
     <data name="body">
         <ol>
@@ -23,7 +23,7 @@
     </data>
 <?php else : ?>
     <data name="title">
-        <?= sprintf(@text('COM-TODOS-STORY-TODO-OPENED'), @name($subject), @route($object->getURL())) ?>
+        <?= @textf('COM-TODOS-STORY-TODO-OPENED', @name($subject), @route($object->getURL())) ?>
     </data>
     <data name="body">
         <?php
@@ -37,7 +37,7 @@
         }
         ?>
         <div>
-            <?= @link($object) ?> <span class="an-meta"> - (<?= @text('COM-TODOS-TODO-PRIORITY') ?>: <?=$priority?>)</span>            
+            <?= @link($object) ?> <span class="an-meta"> - (<?= @text('COM-TODOS-TODO-PRIORITY') ?>: <?=$priority?>)</span>
         </div>
     </data>
 <?php endif ?>

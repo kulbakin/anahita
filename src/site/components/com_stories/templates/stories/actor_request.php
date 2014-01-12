@@ -1,12 +1,12 @@
 <?php defined('KOOWA') or die('Restricted access');?>
 
 <data name="title">
-    <?= sprintf(@text('COM-ACTORS-TITLE-FOLLOW-REQUEST-NOTIFICATION'), @name($subject), @route($target->getURL().'&get=settings&edit=requests'), @possessive($target)) ?>
+    <?= @textf('COM-ACTORS-TITLE-FOLLOW-REQUEST-NOTIFICATION', @name($subject), @route($target->getURL().'&get=settings&edit=requests'), @possessive($target)) ?>
 </data>
 
 <?php
-$commands->insert('follow', array('label' => sprintf(@text('COM-ACTORS-VIEW-PROFILE'), $subject->name)))->href($subject->getURL());
-$commands->insert('viewrequest', array('label' => sprintf(@text('COM-ACTORS-VIEW-REQUEST'), $subject->name)))->href($target->getURL().'&get=settings&edit=requests');
+$commands->insert('follow', array('label' => @textf('COM-ACTORS-VIEW-PROFILE', $subject->name)))->href($subject->getURL());
+$commands->insert('viewrequest', array('label' => @textf('COM-ACTORS-VIEW-REQUEST', $subject->name)))->href($target->getURL().'&get=settings&edit=requests');
 ?>
 <data name="email_body">
     <?= $subject->followerCount ?>

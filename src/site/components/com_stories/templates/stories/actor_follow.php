@@ -2,16 +2,16 @@
 
 <data name="title">
     <?php if ($type != 'notification' ): ?>
-        <?= sprintf(@text('COM-ACTORS-TITLE-FOLLOW-ACTIVITY'), @name($subject), @name($target)) ?>
+        <?= @textf('COM-ACTORS-TITLE-FOLLOW-ACTIVITY', @name($subject), @name($target)) ?>
     <?php else: ?>
-        <?= sprintf(@text('COM-ACTORS-TITLE-FOLLOW-ACTIVITY-NOTIFICATION'), @name($subject),@possessive($target)) ?>
+        <?= @textf('COM-ACTORS-TITLE-FOLLOW-ACTIVITY-NOTIFICATION', @name($subject),@possessive($target)) ?>
     <?php endif ?>
 </data>
 
 <?php if ($type == 'story'): ?>
 
 <?php else: ?>
-    <?php $commands->insert('follow', array('label' => sprintf(@text('COM-ACTORS-VIEW-PROFILE'), $subject->name)))->href($subject->getURL()) ?>
+    <?php $commands->insert('follow', array('label' => @textf('COM-ACTORS-VIEW-PROFILE', $subject->name)))->href($subject->getURL()) ?>
     <data name="email_body">
         <?= $subject->followerCount ?>
         <span><?= @text('COM-ACTORS-SOCIALGRAPH-FOLLOWERS') ?></span>

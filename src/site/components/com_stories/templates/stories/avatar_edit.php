@@ -2,9 +2,9 @@
 
 <data name="title">
     <?php if( ! is_array($target)): ?>
-        <?= sprintf(@text('COM-STORIES-TITLE-UPDATE-AVATAR'), @name($subject), @possessive($target)) ?>
+        <?= @textf('COM-STORIES-TITLE-UPDATE-AVATAR', @name($subject), @possessive($target)) ?>
     <?php else: ?>
-        <?= sprintf(@ntext('COM-STORIES-TITLE-UPDATE-AVATARS', count($target)), count($target)) ?>
+        <?= @ntextf('COM-STORIES-TITLE-UPDATE-AVATARS', count($target)) ?>
     <?php endif; ?>
 </data>
 

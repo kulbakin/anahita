@@ -1,7 +1,7 @@
 <?php defined('KOOWA') or die('Restricted access'); ?>
 
 <data name="title">
-    <?= sprintf(@text('COM-PHOTOS-STORY-NEW-SET'),  @name($subject), @route($object->getURL())) ?>
+    <?= @textf('COM-PHOTOS-STORY-NEW-SET',  @name($subject), @route($object->getURL())) ?>
 </data>
 
 <data name="body">
@@ -47,6 +47,6 @@
     </div>
     
     <div class="entity-meta">
-        <?= sprintf(@ntext('COM-PHOTOS-SET-META-PHOTOS', $object->getPhotoCount()), $object->getPhotoCount()) ?>
+        <?= @ntextf('COM-PHOTOS-SET-META-PHOTOS', $object->getPhotoCount()) ?>
     </div>
 </data>

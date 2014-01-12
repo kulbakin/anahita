@@ -17,7 +17,7 @@
         </div>
         
         <div class="entity-meta">
-            <div class="an-meta"><?= sprintf(@text('LIB-AN-MEDIUM-AUTHOR'), @date($item->creationTime), @name($item->author)) ?></div>
+            <div class="an-meta"><?= @textf('LIB-AN-MEDIUM-AUTHOR', @date($item->creationTime), @name($item->author)) ?></div>
         </div>
     </div>
 </div>

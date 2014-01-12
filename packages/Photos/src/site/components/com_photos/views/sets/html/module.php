@@ -20,7 +20,7 @@
                     </h4>
                     
                     <div class="entity-meta">
-                        <?= sprintf(@ntext('COM-PHOTOS-SET-META-PHOTOS', $set->getPhotoCount()), $set->getPhotoCount()) ?>
+                        <?= @ntextf('COM-PHOTOS-SET-META-PHOTOS', $set->getPhotoCount()) ?>
                     </div>
                 </div>
             </div>

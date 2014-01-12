@@ -1,1 +1,1 @@
-<?= sprintf(@text('COM-PEOPLE-NEW-USER-NOTIFICATION-SUBJECT'), $user->name) ?>
+<?= @textf('COM-PEOPLE-NEW-USER-NOTIFICATION-SUBJECT', $user->name) ?>

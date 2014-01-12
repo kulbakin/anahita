@@ -3,7 +3,7 @@
 <?php 
 if ( ! isset($assigned_sets)) {
     $assigned_sets = array();
-    if(count($photo->top()->sets)) {
+    if (count($photo->top()->sets)) {
         foreach($photo->top()->sets as $set) {
             $assigned_sets[] = $set->id;
         }
@@ -20,11 +20,11 @@ if ( ! isset($assigned_sets)) {
     
     <div class="entity-container">
         <h4 class="entity-title">
-            <?= @helper('text.truncate',  @escape($set->title), array('length' => 25, 'omission' => '...') ) ?>
+            <?= @helper('text.truncate', @escape($set->title), array('length' => 25, 'omission' => '...')) ?>
         </h4>
         
         <div class="entity-meta">
-            <?= sprintf(@ntext('COM-PHOTOS-SET-META-PHOTOS', $set->getPhotoCount()), $set->getPhotoCount()) ?>
+            <?= @ntextf('COM-PHOTOS-SET-META-PHOTOS', $set->getPhotoCount()) ?>
         </div>
     </div>
 </div>

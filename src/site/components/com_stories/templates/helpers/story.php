@@ -29,7 +29,7 @@ class ComStoriesTemplateHelperStory extends KTemplateHelperAbstract
                 $last_actor = $helper->name(array_pop($actors));
                 if ( ! empty($actors)) {
                     $name = implode(', ', array_map(array($helper, 'name'), $actors));
-                    $name = sprintf(JText::_('COM-STORIES-AND-ACTOR'), $name, $last_actor);
+                    $name = JText::sprintf('COM-STORIES-AND-ACTOR', $name, $last_actor);
                 } else {
                     $name = $last_actor;
                 }
@@ -42,7 +42,7 @@ class ComStoriesTemplateHelperStory extends KTemplateHelperAbstract
             
             $actors = array_splice($actors, 0, $truncate_after);
             $actors = implode(', ', array_map(array($helper, 'name'), $actors));
-            $actors = sprintf(JText::_n('COM-STORIES-AND-OTHERS', $left_over), $actors, JRoute::_('option=com_actors&layout=modal&view=actors&'.$ids), $left_over);
+            $actors = JText::nsprintf('COM-STORIES-AND-OTHERS', $left_over, $actors, JRoute::_('option=com_actors&layout=modal&view=actors&'.$ids));
             return $actors;
         }
         
@@ -66,7 +66,7 @@ class ComStoriesTemplateHelperStory extends KTemplateHelperAbstract
             } elseif ($actor->eql(get_viewer())) {
                  $value = JText::_('LIB-AN-YOUR');
             } else {
-                $value = sprintf(JText::_('LIB-AN-THIRD-PERSON\'S'), $this->actorName($actor));
+                $value = JText::sprintf('LIB-AN-THIRD-PERSON\'S', $this->actorName($actor));
             }
         }
         

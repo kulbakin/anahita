@@ -50,8 +50,7 @@ class JText
      */
     public static function _($string, $jsSafe = false)
     {
-        $lang = &JFactory::getLanguage();
-        return $lang->_($string, $jsSafe);
+        return JFactory::getLanguage()->_($string, $jsSafe);
     }
     
     /**
@@ -64,43 +63,58 @@ class JText
      */
     public static function _n($string, $n, $jsSafe = false)
     {
-        $lang = &JFactory::getLanguage();
-        return $lang->_n($string, $n, $jsSafe);
+        return JFactory::getLanguage()->_n($string, $n, $jsSafe);
     }
     
     /**
-     * Passes a string thru an sprintf
+     * Passes a string through sprintf
      * 
-     * @param   format The format string
-     * @param   mixed  Mixed number of arguments for the sprintf function
+     * @param   string $format The format string
+     * @param   int    $n      Number
+     * @param   mixed  $args Mixed number of arguments for the sprintf function
+     * $param   mixed  $...
      * @return  string
      */
-    public static function sprintf($string)
+    public static function nsprintf($format, $n)
     {
-        $lang = &JFactory::getLanguage();
+        $args = func_get_args();
+        if (count($args) > 1) {
+            $args[0] = JFactory::getLanguage()->_n($args[0], $args[1]);
+        }
+        return  call_user_func_array('sprintf', $args);
+    }
+    
+    /**
+     * Passes a string through sprintf
+     * 
+     * @param   string $format The format string
+     * @param   mixed  $args Mixed number of arguments for the sprintf function
+     * $param   mixed  $...
+     * @return  string
+     */
+    public static function sprintf($format)
+    {
         $args = func_get_args();
         if (count($args) > 0) {
-            $args[0] = $lang->_($args[0]);
-            return call_user_func_array('sprintf', $args);
+            $args[0] = JFactory::getLanguage()->_($args[0]);
         }
-        return '';
+        return call_user_func_array('sprintf', $args);
     }
-
+    
     /**
-     * Passes a string thru an printf
+     * Passes a string thrugh printf
      * 
-     * @param   format The format string
-     * @param   mixed Mixed number of arguments for the sprintf function
-     * @return  string
+     * @param   string $format The format string
+     * @param   mixed  $args Mixed number of arguments for the sprintf function
+     * $param   mixed  $...
+     * @return  int
      */
     public static function printf($string)
     {
-        $lang = &JFactory::getLanguage();
         $args = func_get_args();
         if (count($args) > 0) {
-            $args[0] = $lang->_($args[0]);
-            return call_user_func_array('printf', $args);
+            $args[0] = JFactory::getLanguage()->_($args[0]);
         }
-        return '';
+        return call_user_func_array('printf', $args);
     }
 }

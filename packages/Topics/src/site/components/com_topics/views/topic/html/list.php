@@ -22,7 +22,7 @@
     <h3 class="entity-title">
         <?php if ($topic->lastComment): ?>
             <a href="<?= @route($topic->getURL().'&permalink='.$topic->lastComment->id) ?>">
-                <?= sprintf(@text('LIB-AN-MEDIUM-COMMENTED'), @escape($topic->title)) ?>
+                <?= @textf('LIB-AN-MEDIUM-COMMENTED', @escape($topic->title)) ?>
             </a>
         <?php else: ?>
             <a href="<?= @route($topic->getURL()) ?>">
@@ -37,7 +37,7 @@
     
     <div class="entity-meta">
         <ul class="an-meta inline">
-            <li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $topic->numOfComments), $topic->numOfComments) ?></li>
+            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $topic->numOfComments) ?></li>
         </ul>
         
         <div class="an-meta vote-count-wrapper" id="vote-count-wrapper-<?= $topic->id ?>">

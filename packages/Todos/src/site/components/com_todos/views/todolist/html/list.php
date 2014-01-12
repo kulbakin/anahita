@@ -21,7 +21,7 @@
         <?php endif; ?>
         
         <div class="an-meta">
-            <?= sprintf(@text('COM-TODOS-TODOLIST-COUNTS'), (int)$todolist->numOfOpenTodos, (int)$todolist->numOfTodos) ?>
+            <?= @ntextf('COM-TODOS-TODOLIST-COUNTS', (int)$todolist->numOfOpenTodos, (int)$todolist->numOfTodos) ?>
         </div>
         
         <div class="an-meta" class="vote-count-wrapper" id="vote-count-wrapper-<?= $todolist->id ?>">

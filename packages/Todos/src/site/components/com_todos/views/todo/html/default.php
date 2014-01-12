@@ -3,14 +3,14 @@
 <module position="sidebar-b" title="<?= @text('LIB-AN-META') ?>">
     <ul class="an-meta">
         <?php if (isset($todo->editor)): ?>
-            <li><?= sprintf( @text('LIB-AN-MEDIUM-EDITOR'), @date($todo->updateTime), @name($todo->editor)) ?></li>
+            <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($todo->updateTime), @name($todo->editor)) ?></li>
         <?php endif; ?>
         <?php if ( ! $todo->open): ?>
             <li>
-                <?= sprintf(@text('COM-TODOS-TODOLIST-COMPLETED-BY-REPORT'), @date($todo->openStatusChangeTime), @name($todo->lastChanger)) ?>
+                <?= @textf('COM-TODOS-TODOLIST-COMPLETED-BY-REPORT', @date($todo->openStatusChangeTime), @name($todo->lastChanger)) ?>
             </li>
         <?php endif ?>
-        <li><?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $todo->numOfComments), $todo->numOfComments) ?></li>
+        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $todo->numOfComments) ?></li>
     </ul>
 </module>
 

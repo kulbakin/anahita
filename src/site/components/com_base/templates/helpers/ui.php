@@ -391,7 +391,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
                     ));
                 } else {
                     $options->append(array(
-                        LibBaseDomainBehaviorPrivatable::ADMIN => sprintf(JText::_('LIB-AN-PRIVACYLABEL-ONLYNAME'), $actor->name)
+                        LibBaseDomainBehaviorPrivatable::ADMIN => JText::sprintf('LIB-AN-PRIVACYLABEL-ONLYNAME', $actor->name)
                     ));
                 }
             }

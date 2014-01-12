@@ -143,27 +143,27 @@ class LibBaseTemplateHelperDate extends KTemplateHelperAbstract implements KServ
             }
             
             if ($diff < 60) {
-                return sprintf(JText::_n('LIB-AN-DATE-SECONDS'.$mod, $diff), $diff);
+                return JText::nsprintf('LIB-AN-DATE-SECONDS'.$mod, $diff);
             }
             
             $diff = round($diff / 60);
             if ($diff < 60) {
-                return sprintf(JText::_n('LIB-AN-DATE-MINUTES'.$mod, $diff), $diff);
+                return JText::nsprintf('LIB-AN-DATE-MINUTES'.$mod, $diff);
             }
                 
             $diff = round($diff / 60);
             if ($diff < 24) {
-                return sprintf(JText::_n('LIB-AN-DATE-HOURS'.$mod, $diff), $diff);
+                return JText::nsprintf('LIB-AN-DATE-HOURS'.$mod, $diff);
             }
             
             $diff = round($diff / 24);
             if ($diff < 7) {
-               return sprintf(JText::_n('LIB-AN-DATE-DAYS'.$mod, $diff), $diff);
+               return JText::nsprintf('LIB-AN-DATE-DAYS'.$mod, $diff);
             }
             
             $diff = round($diff / 7);
             if ($diff < 4) {
-                return sprintf(JText::_n('LIB-AN-DATE-WEEKS'.$mod, $diff), $diff);
+                return JText::nsprintf('LIB-AN-DATE-WEEKS'.$mod, $diff);
             }
         } elseif ($config->offset) {
             $date->addHours($config->offset);

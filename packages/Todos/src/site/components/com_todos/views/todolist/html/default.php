@@ -4,11 +4,11 @@
 
 <module position="sidebar-b" title="<?= @text('LIB-AN-META') ?>">
     <ul class="an-meta">
-        <li><?= sprintf(@text('LIB-AN-MEDIUM-AUTHOR'), @date($todolist->creationTime), @name($todolist->author)) ?></li>
+        <li><?= @textf('LIB-AN-MEDIUM-AUTHOR', @date($todolist->creationTime), @name($todolist->author)) ?></li>
         <?php if(isset($todo->editor)) : ?>
-            <li><?= sprintf(@text('LIB-AN-MEDIUM-EDITOR'), @date($todolist->updateTime), @name($todolist->editor)) ?></li>
+            <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($todolist->updateTime), @name($todolist->editor)) ?></li>
         <?php endif ?>
-        <li><?= sprintf(@text('COM-TODOS-TODOLIST-COUNTS'), (int) $todolist->numOfOpenTodos, (int) $todolist->numOfTodos) ?></li>
+        <li><?= @ntextf('COM-TODOS-TODOLIST-COUNTS', (int)$todolist->numOfOpenTodos, (int)$todolist->numOfTodos) ?></li>
         
         <?php if(isset($todolist->milestone->id)): ?>
             <li>

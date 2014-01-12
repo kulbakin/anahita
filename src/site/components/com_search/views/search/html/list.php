@@ -70,7 +70,7 @@
                 <ul class="an-meta inline">
                     <li>
                         <a href="<?= @route($item->getURL()) ?>">
-                            <?= sprintf(@ntext('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $item->numOfComments), $item->numOfComments) ?>
+                            <?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $item->numOfComments) ?>
                         </a>
                     </li>
                 </ul>

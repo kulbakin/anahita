@@ -2,7 +2,7 @@
 
 <module position="sidebar-b" style="none"></module>
 
-<h4><?= sprintf(@text('COM-CONNECT-LOGIN-PROMPT-HI'), $api->getUser()->name, ucfirst($api->getName())) ?></h4>
+<h4><?= @textf('COM-CONNECT-LOGIN-PROMPT-HI', $api->getUser()->name, ucfirst($api->getName())) ?></h4>
 
 <?php if (@service('com://site/people.controller.person')->canRegister()): ?>
     <h4><?= @text('COM-CONNECT-LOGIN-PROMPT-SIGN-IN-OR-SIGNUP')?></h4>

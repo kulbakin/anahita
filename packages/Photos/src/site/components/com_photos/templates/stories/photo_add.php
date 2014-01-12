@@ -1,14 +1,14 @@
-<?php defined('KOOWA') or die('Restricted access');?>
+<?php defined('KOOWA') or die ?>
 
-<?php if (  is_array($object) ) : ?>
-<data name="title">
-    <?= sprintf(@text('COM-PHOTOS-STORY-NEW-PHOTOS'), @name($subject)) ?>
-</data>
-<?php else: ?>
-<data name="title">
-    <?= sprintf(@text('COM-PHOTOS-STORY-NEW-PHOTO'), @name($subject), @route($object->getURL()) ); ?>
-</data>
-<?php endif;?>
+<?php if (is_array($object)): ?>
+    <data name="title">
+        <?= @textf('COM-PHOTOS-STORY-NEW-PHOTOS', @name($subject)) ?>
+    </data>
+    <?php else: ?>
+    <data name="title">
+        <?= @textf('COM-PHOTOS-STORY-NEW-PHOTO', @name($subject), @route($object->getURL()) ); ?>
+    </data>
+<?php endif ?>
 
 <?php if ($type != 'notification'): ?>
     <data name="body">

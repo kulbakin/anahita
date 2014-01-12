@@ -1,7 +1,7 @@
 <?php defined('KOOWA') or die ?>
 
 <data name="title">
-    <?= sprintf(@text('COM-TODOS-STORY-NEW-MILESTONE'), @name($subject), @route($object->getURL())) ?>
+    <?= @textf('COM-TODOS-STORY-NEW-MILESTONE', @name($subject), @route($object->getURL())) ?>
 </data>
 
 <data name="body">

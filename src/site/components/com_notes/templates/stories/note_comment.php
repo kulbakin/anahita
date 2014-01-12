@@ -4,7 +4,7 @@
     <?php if ($object->access != 'public'): ?>
         <i class="icon-lock"></i> 
     <?php endif ?>
-    <?= sprintf(@text('COM-NOTES-STORY-COMMENT'), @name($subject), @route($object->getURL())) ?>
+    <?= @textf('COM-NOTES-STORY-COMMENT', @name($subject), @route($object->getURL())) ?>
 </data>
 
 <data name="body">

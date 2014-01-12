@@ -1,7 +1,7 @@
 <?php defined('KOOWA') or die ?>
 
 <data name="title">
-    <?= sprintf(@text('COM-PHOTOS-STORY-NEW-SET-COMMENT'),  @name($subject), @route($object->getURL())) ?>
+    <?= @textf('COM-PHOTOS-STORY-NEW-SET-COMMENT', @name($subject), @route($object->getURL())) ?>
 </data>
 
 <?php if ($type != 'notification'):?>
@@ -21,7 +21,7 @@
         <?php endif ?>
         
         <div class="an-meta">
-            <?= sprintf(@ntext('COM-PHOTOS-SET-META-PHOTOS', $object->getPhotoCount()), $object->getPhotoCount()) ?>
+            <?= @ntextf('COM-PHOTOS-SET-META-PHOTOS', $object->getPhotoCount()) ?>
         </div>
     </data>
 <?php endif ?>

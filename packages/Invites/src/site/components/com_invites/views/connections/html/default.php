@@ -12,8 +12,8 @@
 <?php $url = @route()->getURl(KHttpUrl::SCHEME | KHttpUrl::HOST | KHttpUrl::PORT) ?>
 
 <?php
-$subject = htmlspecialchars(sprintf(@text('COM-INVITES-MESSAGE-SUBJECT'), JFactory::getConfig()->getValue('sitename')));
-$body    = @helper('text.script', sprintf(@text('COM-INVITES-MESSAGE-BODY'), @name($viewer, false), JFactory::getConfig()->getValue('sitename')));
+$subject = htmlspecialchars(@textf('COM-INVITES-MESSAGE-SUBJECT', JFactory::getConfig()->getValue('sitename')));
+$body    = @helper('text.script', @textf('COM-INVITES-MESSAGE-BODY', @name($viewer, false), JFactory::getConfig()->getValue('sitename')));
 ?>
 <script>
 new FacebookInvite({

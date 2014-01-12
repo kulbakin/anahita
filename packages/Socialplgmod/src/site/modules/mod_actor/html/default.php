@@ -11,7 +11,7 @@
         </div>
         
         <div class="entity-meta">
-            <?= sprintf(@ntext('MOD-ACTOR-NUMBER-OF-FOLLOWERS', $actor->followerCount), $actor->followerCount) ?>
+            <?= @ntextf('MOD-ACTOR-NUMBER-OF-FOLLOWERS', $actor->followerCount) ?>
         </div>
     </div>
 </div>

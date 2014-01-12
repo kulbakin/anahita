@@ -28,7 +28,7 @@ class ComStoriesControllerToolbarActorbar extends ComBaseControllerToolbarActorb
             $this->setTitle(JText::_('COM-STORIES-ACTOR-HEADER-STORIES-LEADERS'));
             $this->setDescription(JText::_('COM-STORIES-ACTOR-HEADER-STORIES-LEADERS-DESCRIPTION'));
         } else {
-            $this->setTitle(sprintf(JText::_('COM-STORIES-HEADER-STORIES'), $actor->name));
+            $this->setTitle(JText::sprintf('COM-STORIES-HEADER-STORIES', $actor->name));
         }
     }
 }

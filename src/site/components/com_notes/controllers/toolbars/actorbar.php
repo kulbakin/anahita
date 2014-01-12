@@ -28,7 +28,7 @@ class ComNotesControllerToolbarActorbar extends ComBaseControllerToolbarActorbar
             $this->setTitle(JText::_('COM-NOTES-ACTOR-HEADER-NOTES-LEADERS'));
             $this->setDescription(JText::_('COM-NOTES-ACTOR-HEADER-NOTES-LEADERS-DESCRIPTION'));
         } else {
-            $this->setTitle(sprintf(JText::_('COM-NOTES-HEADER-NOTES'), $actor->name));
+            $this->setTitle(JText::sprintf('COM-NOTES-HEADER-NOTES', $actor->name));
             
             //create navigations
             $this->addNavigation(
