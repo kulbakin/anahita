@@ -47,7 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
-* fix html syntax error
+* fix html on edit profile page for *input* tags not having unnecessary *cols* and *rows* attributes
+  [92dfa84](https://github.com/kulbakin/anahita/commit/92dfa84e5bb74be72250fefffc732f9c1e64ca7d)
+* fix html syntax error (container button tag is closed in its opening part)
   [a265126](https://github.com/kulbakin/anahita/commit/a265126c4d41ee155adedec5d1dbda5c05d68f66)
 * fix login for blocked user to display a message in login form instead of returning
   *404 Permission Denied* page
