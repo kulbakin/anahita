@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update translation system to have *JText::nsprintf()*, *@textf()*, *@ntextf()* shortcuts for
+  formatted translation strings and use them throughout the codebase where applicable
+  [8cce3b3](https://github.com/kulbakin/anahita/commit/8cce3b3bf85a2152a100a7e1dcc7c047250efd16)
 * fix html on edit profile page for *input* tags not having unnecessary *cols* and *rows* attributes
   [92dfa84](https://github.com/kulbakin/anahita/commit/92dfa84e5bb74be72250fefffc732f9c1e64ca7d)
 * fix html syntax error (container button tag is closed in its opening part)
