@@ -4,8 +4,8 @@
 
 <form data-behavior="FormValidator" action="<?= @route('view=person&id='.$item->id) ?>" method="post" name="userform" id="userform" autocomplete="off">
     <div class="control-group">
-        <label class="control-label"  for="username">
-        <?php echo @text('COM-ACTORS-NAME') ?>:
+        <label class="control-label" for="username">
+            <?php echo @text('COM-ACTORS-NAME') ?>:
         </label>
         <div class="controls">
             <div class="input-prepend">
@@ -16,8 +16,8 @@
     </div>
     
     <div class="control-group">
-        <label class="control-label"  for="username">
-        <?php echo @text('COM-PEOPLE-USERNAME') ?>:
+        <label class="control-label" for="username">
+            <?php echo @text('COM-PEOPLE-USERNAME') ?>:
         </label>
         <div class="controls">
             <div class="input-prepend">
@@ -28,7 +28,7 @@
     </div>
     
     <div class="control-group">
-        <label class="control-label"  for="email">
+        <label class="control-label" for="email">
             <?php echo @text('COM-PEOPLE-EMAIL') ?>:
         </label>
         <div class="controls">

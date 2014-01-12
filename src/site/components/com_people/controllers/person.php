@@ -246,10 +246,10 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         
         return $person;
     }
-     
+    
     /**
      * Mail an activation link
-     *
+     * 
      * @param KCommandContext $context The context parameter
      * @return void
      */
@@ -272,9 +272,9 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
      * 
      * @param KCommandContext $context The context parameter
      * @return void
-     */    
+     */
     public function notifyAdminsNewUser(KCommandContext $context)
-    {        
+    {
         $person = $context->result;
         $this->user = $person->getUserObject();
         $this->mailAdmins(array(
@@ -318,7 +318,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
      * @return void
      */
     public function onSettingDisplay(KEvent $event)
-    {   
+    {
         $tabs = $event->tabs;
         if (JFactory::getUser()->id == $event->actor->userId) {
             $tabs->insert('account',array('label'=>JText::_('COM-PEOPLE-SETTING-TAB-ACCOUNT')));

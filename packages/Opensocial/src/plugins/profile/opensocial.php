@@ -72,7 +72,6 @@ class PlgProfileOpensocial extends PlgProfileAbstract
      */
     public function onDisplay(KEvent $config)
     {
-        
         if ( ! is_person($config->actor)) {
             return;
         }
