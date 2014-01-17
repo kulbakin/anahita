@@ -7,22 +7,13 @@
 (function () {
     Browser.Platform.mobile = Browser.Platform.ios || Browser.Platform.android || Browser.Platform.webos || Browser.Platform.name.match(/BlackBerry/i);
     
-    //for firefix 15, don't round corder the images
-    //caauses issues
-    if (Browser.name == 'firefox' && Browser.version >= 15) {
-        new Element('style', { 
-            'type': 'text/css',
-            'text': '.modal img,.popover img {border-radius:0}'
-        }).inject(document.getElements('script').getLast(), 'after');
-    }
-    
     var style = new Element('style', {
         'type': 'text/css',
         'text': '#row-main *[data-behavior] {visibility:hidden}'
     }).inject(document.getElements('script').getLast(), 'after');
     
-    window.behavior  = new Behavior({breakOnErrors:true});
-    window.delegator = new Delegator({breakOnErrors:true});
+    window.behavior  = new Behavior({breakOnErrors: true});
+    window.delegator = new Delegator({breakOnErrors: true});
     
     window.addEvent('domready', function () {
         window.delegator.attach(document);
@@ -41,7 +32,6 @@
         }
     });
 })();
-
 
 //parse language
 (function(){
