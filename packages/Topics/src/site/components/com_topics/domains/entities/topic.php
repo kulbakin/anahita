@@ -27,7 +27,7 @@ class ComTopicsDomainEntityTopic extends ComMediumDomainEntityMedium
             'attributes' => array(
                 'name'     => array('required' => AnDomain::VALUE_NOT_EMPTY),
                 'body'     => array('required' => AnDomain::VALUE_NOT_EMPTY),
-                'isSticky' => array('column' => 'sticky', 'type'=>'boolean', 'default' => false, 'required' => true),
+                'isSticky' => array('column' => 'sticky', 'type' => 'boolean', 'default' => false, 'required' => true),
             ),
             'behaviors' => array(
                 'hittable',

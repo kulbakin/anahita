@@ -19786,79 +19786,75 @@ Class.refactor(Form.Validator.Inline, {
 /**
  * Initialize Global Behavior and Delegator
  */
-(function(){
-			
-	Browser.Platform.mobile = Browser.Platform.ios || Browser.Platform.android ||
-							  Browser.Platform.webos || Browser.Platform.name.match(/BlackBerry/i)		
-
-	//for firefix 15, don't round corder the images
-	//caauses issues
-	if ( Browser.name == 'firefox' && Browser.version >= 15 )
-	{
-		new Element('style', { 
-	                'type': 'text/css',
-	                'text': '.modal img,.popover img {border-radius:0}'
-	    }).inject(document.getElements('script').getLast(),'after');	
-	}	
-    	
-	var style  = new Element('style', { 
-                'type': 'text/css',
-                'text': '#row-main *[data-behavior] {visibility:hidden}'
-    }).inject(document.getElements('script').getLast(),'after');
-	
+(function () {
+    Browser.Platform.mobile = Browser.Platform.ios || Browser.Platform.android || Browser.Platform.webos || Browser.Platform.name.match(/BlackBerry/i);
+    
+    //for firefix 15, don't round corder the images
+    //caauses issues
+    if (Browser.name == 'firefox' && Browser.version >= 15) {
+        new Element('style', { 
+            'type': 'text/css',
+            'text': '.modal img,.popover img {border-radius:0}'
+        }).inject(document.getElements('script').getLast(), 'after');
+    }
+    
+    var style = new Element('style', {
+        'type': 'text/css',
+        'text': '#row-main *[data-behavior] {visibility:hidden}'
+    }).inject(document.getElements('script').getLast(), 'after');
+    
     window.behavior  = new Behavior({breakOnErrors:true});
     window.delegator = new Delegator({breakOnErrors:true});
     
-	window.addEvent('domready', function() {
+    window.addEvent('domready', function () {
         window.delegator.attach(document);
         window.behavior.apply(document.body);
         style.dispose();
-	});
-        
-	/**
-	 * Refactors request to attach all An.Core.Event.Window instances 
-	 */
-	Class.refactor(Request.HTML, 
-	{
-		onSuccess: function() {
-			this.previous.apply(this, arguments);
-        	window.delegator.attach(document);
-        	window.behavior.apply(document.body);
-		}
-	});	
+    });
+    
+    /**
+     * Refactors request to attach all An.Core.Event.Window instances 
+     */
+    Class.refactor(Request.HTML, {
+        onSuccess: function() {
+            this.previous.apply(this, arguments);
+            window.delegator.attach(document);
+            window.behavior.apply(document.body);
+        }
+    });
 })();
 
 
 //parse language
 (function(){
-	//set the language
-	var lang = document.getElement('html').get('lang') || 'en-GB';
-	Locale.define(lang,{});
-	Locale.use(lang);	
-	window.addEvent('domready', function() {
-		document.getElements('script[type="text/language"]').each(function(lang) {
-			var lang = JSON.decode(lang.get('text'));
-			Object.each(lang, function(data, set){
-				Locale.define(Locale.getCurrent().name, set, data)
-			});
-		});
-	});
+    //set the language
+    var lang = document.getElement('html').get('lang') || 'en-GB';
+    Locale.define(lang, {});
+    Locale.use(lang);
+    window.addEvent('domready', function() {
+        document.getElements('script[type="text/language"]').each(function (lang) {
+            var lang = JSON.decode(lang.get('text'));
+            Object.each(lang, function (data, set){
+                Locale.define(Locale.getCurrent().name, set, data);
+            });
+        });
+    });
 })();
 
 /**
  * Extend Object
  */
 Object.extend({
-    set : function(original, extension) {
+    set: function (original, extension) {
         extension = Object.merge(extension, original);
-        Object.each(extension, function(value, key) {
+        Object.each(extension, function (value, key) {
             original[key] = value;
         });
         return Object;
     },
-    add : function(original, extension) {
+    add: function (original, extension) {
         extension = Object.merge(extension, original);
-        Object.each(extension, function(value, key) {
+        Object.each(extension, function (value, key) {
             original[key] = value;
         });
         return Object;
@@ -19868,16 +19864,16 @@ Object.extend({
 /**
  * String Extras
  */
-String.implement({  
-    translate : function() {
+String.implement({
+    translate: function () {
         var str = this + "";
         return Locale.get(str) || str;
-    },  
-    parseHTML  : function(parent) {
-        parent = parent || 'span'; 
+    },
+    parseHTML: function (parent) {
+        parent = parent || 'span';
         return new Element('span', {html : this});
     },
-    toObject   : function() {
+    toObject: function() {
         var object = {};
         this.split('&').each(function (part) {
             part = part.split('=');
@@ -19885,9 +19881,9 @@ String.implement({
         });
         return object;
     },
-    escapeHTML : function() {
-        var result = "", i = 0;
-        for (i; i < this.length; i += 1) {
+    escapeHTML: function () {
+        var result = "", i;
+        for (i = 0; i < this.length; i += 1) {
             if (this.charAt(i) === "&"  && (this.length - i - 1) >= 4 && this.substr(i, 4) !== "&amp;") {
                 result = result + "&amp;";
             } else if (this.charAt(i) === "<") {
@@ -19899,393 +19895,371 @@ String.implement({
             }
         }
         return result;
-    }   
+    }
 });
-  	
+
 (function() {
-	var elements  = [];
-	var selectors = [];
-	Class.refactor(Request.HTML, 
-	{
-		onSuccess: function() {
-			this.previous.apply(this, arguments);
-			selectors.each(function(item){
-				selector = item.selector;
-				fn	     = item.fn;
-				document.getElements(selector).each(function(el){
-					if ( !elements.contains(el) ) {
-		    		    elements.push(el);
-		    			fn.apply(el);					
-					}
-				});
-			});
-		}
-	});
-	String.implement({	
-		addEvent : function(type, fn) 
-		{
-		    if ( type == 'domready' ) 
-		    {
-		    	var selector = String.from(this);
-		    	selectors.push({selector:selector,fn:fn});
-		    	document.addEvent('domready', function(){	    		
-		    		document.getElements(selector).each(function(el) {
-		    		    elements.push(el);
-		    			fn.apply(el);
-		    		});
-		    	})
-		    } else {
-				type = type + ':relay(' + this + ')';
-				document.addEvent(type, fn);		
-			}
-		} 
-	});
+    var elements  = [];
+    var selectors = [];
+    Class.refactor(Request.HTML, {
+        onSuccess: function () {
+            this.previous.apply(this, arguments);
+            selectors.each(function (item) {
+                selector = item.selector;
+                fn = item.fn;
+                document.getElements(selector).each(function(el){
+                    if ( ! elements.contains(el)) {
+                        elements.push(el);
+                        fn.apply(el);
+                    }
+                });
+            });
+        }
+    });
+    String.implement({
+        addEvent: function (type, fn) {
+            if (type == 'domready') {
+                var selector = String.from(this);
+                selectors.push({selector: selector, fn: fn});
+                document.addEvent('domready', function () {
+                    document.getElements(selector).each(function (el) {
+                        elements.push(el);
+                        fn.apply(el);
+                    });
+                });
+            } else {
+                type = type + ':relay(' + this + ')';
+                document.addEvent(type, fn);
+            }
+        }
+    });
 })();
-
-
-
 
 /**
  * Spinner Refactor 
  */
 Class.refactor(Spinner, {
-	options : {	
-		'class' 	: 'uiActivityIndicator',		
-		'onShow' : function() { 
-			this.target.fade(0.5);
-		},
-		'onHide' : function() { 
-			this.target.fade(1);
-		}
-	}
+    options: {
+        'class': 'uiActivityIndicator',
+        'onShow': function () { 
+            this.target.fade(0.5);
+        },
+        'onHide': function () {
+            this.target.fade(1);
+        }
+    }
 });
-
 
 /**
  * Injects an ajax request result into dom element. To use pass the dom element to inject
  * the result into as Ajax Options 
  * 
  * @example
- *  
+ * 
  * new Request.HTML({
- * 		inject : 'some-element';
+ *         inject : 'some-element';
  * });
  * 
  * new Request.HTML({
- * 		inject : {
- * 			where : 'top',
- * 			duration : 2,
- * 			transition Fx.Transitions.Bounce.easeOut
- * 		}
+ *     inject : {
+ *         where : 'top',
+ *         duration : 2,
+ *         transition Fx.Transitions.Bounce.easeOut
+ *     }
  * });
- *   
+ * 
  */
-(function(){
-	
-	Class.refactor(Request, {
-		submit : function()
-		{
-			var form = Element.Form({
-				method	: this.options.method,
-				action 	: this.options.url,
-				data	: this.options.data
-			});
-			form.submit();
-		},
-		onFailure : function(xhr) 
-		{
-			this.previous.apply(this, arguments);
-			var method = 'on' + this.status;
-			if ( this.options[method] ) {
-				this.options[method].apply(this, [this]);
-			}
-		}
-	});
-	
-	/**
-	 * Refactors the request to include the current document media in each
-	 * ajax request
-	 */
-	Class.refactor(Request.HTML, 
-	{
-		options : {
-			noCache : true
-		},
-		onSuccess: function(tree, elements, html) 
-		{
-			this._applyEmbedStyleSheetFix(this.response.html || "");
-			
-			if ( this.options.inject ) 
-			{
-				var options = this.options.inject;
-				
-				if ( instanceOf(options, String) || instanceOf(options, Element)) 
-				{
-					options = {
-						element: document.id(options)
-					}
-				}
-				
-				Object.add(options, {
-                    where    : 'top',
-                    fx       : {
-                        duration : 'long'                        
+(function () {
+    Class.refactor(Request, {
+        submit: function () {
+            var form = Element.Form({
+                method: this.options.method,
+                action: this.options.url,
+                data: this.options.data
+            });
+            form.submit();
+        },
+        onFailure: function (xhr) {
+            this.previous.apply(this, arguments);
+            var method = 'on' + this.status;
+            if (this.options[method]) {
+                this.options[method].apply(this, [this]);
+            }
+        }
+    });
+    
+    /**
+     * Refactors the request to include the current document media in each
+     * ajax request
+     */
+    Class.refactor(Request.HTML, {
+        options: {
+            noCache : true
+        },
+        onSuccess: function (tree, elements, html) {
+            this._applyEmbedStyleSheetFix(this.response.html || "");
+            
+            if (this.options.inject) {
+                var options = this.options.inject;
+                if (instanceOf(options, String) || instanceOf(options, Element)) {
+                    options = {
+                        element: document.id(options)
+                    };
+                }
+                
+                Object.add(options, {
+                    where: 'top',
+                    fx: {
+                        duration: 'long'
                     },
-                    showFx   : function(element, container, options) {
-                        element.fade('in');   
+                    showFx: function(element, container, options) {
+                        element.fade('in');
                     }
-				});
-				var container   = options.element;		
-				var element     = new Element('div',{html:html}).getElement('*');
-				element.fade('hide');
-				element.inject(container, options.where);
-				options.showFx(element, container, options);
-			}
-			
-			if ( this.options.remove ) {
-				document.id( this.options.remove )
-				.fade('out')
-				.get('tween').chain(function(){
-					this.element.dispose();
-				});
-			}
-			
-			if ( this.options.replace ) {
-				var els = html.stripTags('script').stripTags('style').parseHTML().getElement('*');
-				if ( els ) {
-					els.replaces(this.options.replace).show();
-				}
-			}
-			
-			return this.previous.apply(this, arguments);			
-		},
-		_applyEmbedStyleSheetFix : function(rawHTML) 
-		{
-			if (!Browser.ie) return;
-			var headEl = null; // lazy-load
-			// find all styles in the string
-			var styleFragRegex = '<style[^>]*>([\u0001-\uFFFF]*?)</style>';
-			var matchAll = new RegExp(styleFragRegex, 'img');
-			var matchOne = new RegExp(styleFragRegex, 'im');
-			var styles = (rawHTML.match(matchAll) || [])
-			.map(function(tagMatch) {
-				return (tagMatch.match(matchOne) || ['', ''])[1];
-			});
-		
-			// add all found style blocks to the HEAD element.
-			for (i = 0; i < styles.length; i++) {
-				if (!headEl) {
-					headEl = document.getElementsByTagName('head')[0];				
-					if (!headEl){
-						return;
-					}
-				}
-				var newStyleEl = new Element('style');
-				newStyleEl.type = 'text/css';
-				newStyleEl.styleSheet.cssText = styles[i];
-				headEl.adopt(newStyleEl);
-			}		
-		}
-	});
+                });
+                var container   = options.element;
+                var element     = new Element('div', {html: html}).getElement('*');
+                element.fade('hide');
+                element.inject(container, options.where);
+                options.showFx(element, container, options);
+            }
+            
+            if (this.options.remove) {
+                document.id(this.options.remove).fade('out').get('tween').chain(function () {
+                    this.element.dispose();
+                });
+            }
+            
+            if (this.options.replace) {
+                var els = html.stripTags('script').stripTags('style').parseHTML().getElement('*');
+                if (els) {
+                    els.replaces(this.options.replace).show();
+                }
+            }
+            
+            return this.previous.apply(this, arguments);
+        },
+        _applyEmbedStyleSheetFix: function (rawHTML) {
+            if (!Browser.ie) return;
+            var headEl = null; // lazy-load
+            // find all styles in the string
+            var styleFragRegex = '<style[^>]*>([\u0001-\uFFFF]*?)</style>';
+            var matchAll = new RegExp(styleFragRegex, 'img');
+            var matchOne = new RegExp(styleFragRegex, 'im');
+            var styles = (rawHTML.match(matchAll) || []).map(function(tagMatch) {
+                return (tagMatch.match(matchOne) || ['', ''])[1];
+            });
+            
+            // add all found style blocks to the HEAD element.
+            for (i = 0; i < styles.length; i++) {
+                if ( ! headEl) {
+                    headEl = document.getElementsByTagName('head')[0];
+                    if ( ! headEl) {
+                        return;
+                    }
+                }
+                var newStyleEl = new Element('style');
+                newStyleEl.type = 'text/css';
+                newStyleEl.styleSheet.cssText = styles[i];
+                headEl.adopt(newStyleEl);
+            }
+        }
+    });
 })();
 
 /**
  * Creates a form element using the passed option
  */
-Element.Form = function(options)
-{
-	Object.add(options, {
-		method : 'post',
-		data   : {}
-	});
-	
-	var data = options.data;
-	
-	if ( instanceOf(data, Element) ) {
-		data = data.toQueryString();
-	}
-	
-	if ( instanceOf(data, String) ) {
-		data = data.parseQueryString();
-	}
-	
-	delete options.data;
-	
-	var form = new Element('form',options);
-	
-	var lambda = function(key, value) {
-		form.adopt(new Element('input',{name:key,value:value,type:'hidden'}));
-	}
-	Object.each(data , function(value, key) {
-		if ( instanceOf(value, Object) ) {			
-			Object.each(value, function(v, k){
-				lambda(key + '[' + k + ']', v);
-			})
-		} else if ( instanceOf(value, Array) ) {			
-			Object.each(value, function(v){
-				lambda(key + '[]',v);
-			})
-		}   
-		else lambda(key, value);
-	});
-
-	form.set('target', '_self');	
-	form.hide();
-	form.inject(document.body);	
-	return form;
-}
-
-
+Element.Form = function (options) {
+    Object.add(options, {
+        method: 'post',
+        data: {}
+    });
+    
+    var data = options.data;
+    if (instanceOf(data, Element)) {
+        data = data.toQueryString();
+    }
+    
+    if (instanceOf(data, String)) {
+        data = data.parseQueryString();
+    }
+    
+    delete options.data;
+    
+    var form = new Element('form', options);
+    var lambda = function (key, value) {
+        form.adopt(new Element('input',{name:key,value:value,type:'hidden'}));
+    };
+    Object.each(data, function (value, key) {
+        if (instanceOf(value, Object)) {
+            Object.each(value, function (v, k) {
+                lambda(key + '[' + k + ']', v);
+            });
+        } else if (instanceOf(value, Array)) {
+            Object.each(value, function (v) {
+                lambda(key + '[]',v);
+            });
+        } else {
+            lambda(key, value);
+        }
+    });
+    
+    form.set('target', '_self');
+    form.hide();
+    form.inject(document.body);
+    return form;
+};
 
 /**
  * Content Property
  */
 Element.Properties.content = {
-   set : function(content) 
-   {
-       if ( instanceOf(content, Element) || instanceOf(content, Elements) ) 
+   set: function (content) {
+       if (instanceOf(content, Element) || instanceOf(content, Elements)) {
            this.empty().adopt(content);
-       else this.set('html', content);
+       } else {
+           this.set('html', content);
+       }
    }
-}
+};
 
 Elements.implement({
-	replaces : function(elements) {
-		Array.each(this, function(element, i){
-			element.replaces(elements[i]);
-		});
-	}
+    replaces : function(elements) {
+        Array.each(this, function(element, i){
+            element.replaces(elements[i]);
+        });
+    }
 });
 
 /**
  * Load Behavior. Loads a URL through ajax an update an element
  */
-(function(){
-	var elements = [];
-	Object.append(elements, {
-		timer : null,
-		cycle : function() 
-		{
-			this.each(function(el){
-				if ( el.isVisible() ) {
-					this.remove(el);
-					el.fireEvent('visible');
-				}
-			}.bind(this));
-		},
-		startTimer : function() 
-		{			
-			if ( this.length == 0 ) {
-				//stop timer
-				clearInterval(this.timer);
-				this.timer = null;
-			} else if (!this.timer) {
-				//start timer
-				this.timer = this.cycle.bind(this).periodical(100);
-			}
-		},
-		add : function(el) {
-			this.include(el);
-			this.startTimer();
-		},
-		remove : function(el) {
-			this.erase(el);
-			this.startTimer();
-		}
-	});
-	Element.Events.visible = {	    	   
-		onAdd    : function() {
-			if ( !this.isVisible() ) {
-				elements.add(this);	
-			}
-		},
-		onRemove: function() {
-			elements.remove(this);
-		}
-	}
-	Behavior.addGlobalFilter('Load',{
-		defaults : {
-			useSpinner : false
-		},
-		setup : function(el, api) 
-		{			
-			if ( !api.get('url') ) {
-				return;
-			}
-			var event = api.get('event') ;
-			var options = {
-				url : api.get('url'),
-				useSpinner : api.getAs(Boolean,'useSpinner')
-			};
-			
-			if ( api.get('element') )
-				options.update = el.getElement(api.get('element'));		
-			if ( event == 'visible' && el.isVisible() ) {
-				event = null;
-			} else if ( event ) {
-				options.useSpinner = true;
-			}
-			var request = el.ajaxRequest(options);		
-			request 	= request.get.bind(request);		
-			if ( event ) {				
-				el.addEvent(event+':once', request);					
-			}
-			else request.apply();
-		}
-	});	
+(function () {
+    var elements = [];
+    Object.append(elements, {
+        timer: null,
+        cycle: function () {
+            this.each(function(el){
+                if (el.isVisible()) {
+                    this.remove(el);
+                    el.fireEvent('visible');
+                }
+            }.bind(this));
+        },
+        startTimer: function () {
+            if (this.length == 0) {
+                //stop timer
+                clearInterval(this.timer);
+                this.timer = null;
+            } else if ( ! this.timer) {
+                //start timer
+                this.timer = this.cycle.bind(this).periodical(100);
+            }
+        },
+        add: function(el) {
+            this.include(el);
+            this.startTimer();
+        },
+        remove: function(el) {
+            this.erase(el);
+            this.startTimer();
+        }
+    });
+    Element.Events.visible = {
+        onAdd: function () {
+            if ( ! this.isVisible()) {
+                elements.add(this);
+            }
+        },
+        onRemove: function () {
+            elements.remove(this);
+        }
+    };
+    Behavior.addGlobalFilter('Load',{
+        defaults: {
+            useSpinner: false
+        },
+        setup: function (el, api) {
+            if ( ! api.get('url')) {
+                return;
+            }
+            var event = api.get('event') ;
+            var options = {
+                url : api.get('url'),
+                useSpinner : api.getAs(Boolean,'useSpinner')
+            };
+            
+            if (api.get('element')) {
+                options.update = el.getElement(api.get('element'));
+            }
+            if (event == 'visible' && el.isVisible()) {
+                event = null;
+            } else if (event) {
+                options.useSpinner = true;
+            }
+            var request = el.ajaxRequest(options);
+            request = request.get.bind(request);
+            if (event) {
+                el.addEvent(event+':once', request);
+            } else {
+                request.apply();
+            }
+        }
+    });
 })();
 
 /**
  * Hide Behavior. Hides an element 
  */
 Behavior.addGlobalFilter('Hide',{
-	setup : function(el, api) {
-		var hide = el;
-		if ( api.get('element') ) 
-			hide = el.getElement(api.get('element'));
-		if ( hide ) {
-		    el.removeClass('hide');
-			hide.hide();
-		}
-	}
+    setup: function(el, api) {
+        var hide = el;
+        if (api.get('element')) {
+            hide = el.getElement(api.get('element'));
+        }
+        if (hide) {
+            el.removeClass('hide');
+            hide.hide();
+        }
+    }
 });
-
 
 /**
  * Countable Behavior for a textarea
  */
-Behavior.addGlobalFilter('Countable',{
-	defaults : {
-		decrement : false
-	},
-	setup 	 : function(el,api) {		
-		var counter   = el.getElement(api.get('element'));
-		counter.set('html','&nbsp;');
-		el.addEvent('focus:once', function(){
-			//when an element with count triggered is focus 
-			//count character in an interval			
-			var limit	   = api.getAs(Number,  'limit');
-			var decrement  = limit ? api.getAs(Boolean, 'decrement') : false;			
-			var emptyValue = decrement ? limit : '&nbsp;';
-			var getLength  = function(length) {
-				return decrement ? limit - length : length;
-			}
-			if ( !counter ) return;			
-			(function() {
-				var length = el.get('value').length;
-				if ( length == 0 ) {					
-					counter.set('html', decrement ? limit : '');
-					return;
-				}
-				if ( limit && length > limit ) 
-					counter.addClass('label important');
-				else
-					counter.removeClass('label important');
-				counter.set('text', getLength(length));
-			}).periodical(100);			
-		})
-	}
-})
+Behavior.addGlobalFilter('Countable', {
+    defaults : {
+        decrement : false
+    },
+    setup: function(el,api) {
+        var counter   = el.getElement(api.get('element'));
+        counter.set('html','&nbsp;');
+        el.addEvent('focus:once', function () {
+            //when an element with count triggered is focus
+            //count character in an interval
+            var limit = api.getAs(Number, 'limit');
+            var decrement  = limit ? api.getAs(Boolean, 'decrement') : false;
+            var emptyValue = decrement ? limit : '&nbsp;';
+            var getLength  = function (length) {
+                return decrement ? limit - length : length;
+            };
+            if ( ! counter) return;
+            (function () {
+                var length = el.get('value').length;
+                if (length == 0) {
+                    counter.set('html', decrement ? limit : '');
+                    return;
+                }
+                if (limit && length > limit) {
+                    counter.addClass('label important');
+                } else {
+                    counter.removeClass('label important');
+                }
+                counter.set('text', getLength(length));
+            }).periodical(100);
+        });
+    }
+});
 
 
 
@@ -20295,22 +20269,22 @@ Behavior.addGlobalFilter('Countable',{
 
 DOMEvent.definePseudo('outside', function(split, fn, args) {
      var event    = args[0];
-     var elements = split.value ? document.getElements(split.value) : [];     
-     if ( instanceOf(event, DOMEvent) && elements.length > 0 ) {
-         var outsideEvent = elements.every(function(el){return el != event.target && !el.contains(event.target)});         
-         if ( outsideEvent ) {
+     var elements = split.value ? document.getElements(split.value) : [];
+     if (instanceOf(event, DOMEvent) && elements.length > 0) {
+         var outsideEvent = elements.every(function(el){return el != event.target && !el.contains(event.target);});
+         if (outsideEvent) {
              fn.apply(this, args);
          }
          elements.fireEvent(event.name + 'Outside', event);
      }
 });
 
-Slick.definePseudo('uid', function(value){      
+Slick.definePseudo('uid', function (value) {
     return Slick.uidOf(this) == value;
 });
 
 Element.implement({
-    onOutside : function(event, callback) {        
+    onOutside : function (event, callback) {
         var uid      = Slick.uidOf(this),
             selector = ':uid(' + uid + ')',
             event    = event + ':outside('+selector+')';
@@ -20318,16 +20292,16 @@ Element.implement({
     }
 });
 
-var parseLess = function() 
-{	
-	document.getElements('style[type="text/less"]').each(function(style) {
-		(new less.Parser()).parse(style.get('html'), function(e, tree){
-			var css = tree.toCSS();
-			style.dispose();
-			document.body.adopt(new Element('style',{html:css}));
-    	});
-	});	
+var parseLess = function() {
+    document.getElements('style[type="text/less"]').each(function (style) {
+        (new less.Parser()).parse(style.get('html'), function (e, tree) {
+            var css = tree.toCSS();
+            style.dispose();
+            document.body.adopt(new Element('style', {html: css}));
+        });
+    });
 };
+
 ///media/lib_anahita/js/libs/Popup.js
 (function(){
 	Class.refactor(Bootstrap.Popup, {
@@ -21228,353 +21202,339 @@ var ScrollLoader = new Class({
  * String Alert using Purr
  */
 String.implement({
-	prompt : function(options) {
-		var options = {					
-				body    : '<h3>' + this.translate() + '</h3>',
-				buttons : [
-				   {name: 'Action.cancel'.translate(), dismiss:true},
-				   {name: 'Action.yes'.translate(), dismiss:true, click:options.onConfirm, type: 'btn-danger'}
-				]
-		};
-		return new Bootstrap.Popup.from(options).show();	
-	}
+    prompt : function(options) {
+        var options = {
+            body: '<h3>' + this.translate() + '</h3>',
+            buttons: [
+               {name: 'Action.cancel'.translate(), dismiss: true},
+               {name: 'Action.yes'.translate(), dismiss: true, click:options.onConfirm, type: 'btn-danger'}
+            ]
+        };
+        return new Bootstrap.Popup.from(options).show();
+    }
 });
 
 /**
  * Editable Behavior
  */
 Behavior.addGlobalFilter('Editable',{
-	defaults : {
-		prompt 		: 'Prompt.inlineEdit'.translate(),
-		inputType	: 'textfield'
-	},
-	setup : function(el, api)
-	{
-		var prompt 	       = api.getAs(String, 'prompt'),
-			inputType      = api.getAs(String, 'inputType'),
-			url	   	       = api.getAs(String, 'url'),
-			inputName      = api.getAs(String, 'name'),
-			dataValidators = api.getAs(String, 'dataValidators')
-			;
-			
-		el.store('prompt', '<span class="an-ui-inline-form-prompt">'+ prompt +'</span>');
-		
-		if ( !el.get('text').test(/\S/) ) {
-			el.set('html', el.retrieve('prompt'));
-		}
-		
-		el.addEvent('click', function(el, inputType, url,inputName) 
-		{
-			var prompt = el.retrieve('prompt');
-			if ( el.retrieve('state:edit') ) {
-				return;
-			}
-			el.store('state:edit', true);
-			el.hide();
-			var form 	   = new Element('form', {method:'post', 'action':url,'class':'inline-edit', 'data-behavior':'FormValidator'});			
-			var cancelBtn  = new Element('button', {text:'Action.cancel'.translate(),'class':'btn'});
-			var saveBtn    = new Element('button', {text:'Action.save'.translate(),  'class':'btn btn-primary'});
-			var value	   = el.getElement('span') ? '' : el.get('text');
-			
-			
-			if ( inputType == 'textarea' )
-				var inputText = new Element('textarea', {'cols':'5', 'rows':'5'});
-			else
-				var inputText  = new Element('input', {type:'text'});
-			
-			inputText.set({name:inputName, value:value.trim(), 'class':'input-block-level'});
-			
-			if(dataValidators)
-				inputText.set({'data-validators':dataValidators});
-			
-			form.show();
-			form.adopt(new Element('div', {'class':'control-group'}).adopt(new Element('div', {'class':'controls'}).adopt(inputText)));
-			form.adopt(new Element('div', {'class':'form-actions'}).adopt(cancelBtn).appendText(' ').adopt(saveBtn));
-			
-			cancelBtn.addEvent('click', function(e){
-				e.stop();
-				el.store('state:edit', false);
-				el.show();
-				form.destroy();
-			});
-			
-			saveBtn.addEvent('click', function(e){
-				e.stop();
-				el.store('state:edit', false);
-				
-				if(!form.get('validator').validate())
-					return;
-				
-				form.ajaxRequest({
-					onSuccess : function() {
-						el.set('html', inputText.get('value') || prompt);
-						el.show();
-						form.hide();					
-					}
-				}).send();
-			});
-			
-			el.getParent().adopt(form);
-		}.bind(null,[el,inputType, url,inputName]));
-	}
+    defaults: {
+        prompt: 'Prompt.inlineEdit'.translate(),
+        inputType: 'textfield'
+    },
+    setup: function (el, api) {
+        var prompt         = api.getAs(String, 'prompt'),
+            inputType      = api.getAs(String, 'inputType'),
+            url            = api.getAs(String, 'url'),
+            inputName      = api.getAs(String, 'name'),
+            dataValidators = api.getAs(String, 'dataValidators');
+        
+        el.store('prompt', '<span class="an-ui-inline-form-prompt">'+ prompt +'</span>');
+        
+        if ( ! el.get('text').test(/\S/)) {
+            el.set('html', el.retrieve('prompt'));
+        }
+        
+        el.addEvent('click', function (el, inputType, url,inputName) {
+            var prompt = el.retrieve('prompt');
+            if (el.retrieve('state:edit')) {
+                return;
+            }
+            el.store('state:edit', true);
+            el.hide();
+            var form      = new Element('form', {method: 'post', 'action': url, 'class': 'inline-edit', 'data-behavior': 'FormValidator'});
+            var cancelBtn = new Element('button', {text: 'Action.cancel'.translate(), 'class': 'btn'});
+            var saveBtn   = new Element('button', {text: 'Action.save'.translate(),  'class': 'btn btn-primary'});
+            var value     = el.getElement('span') ? '' : el.get('text');
+            
+            
+            if (inputType == 'textarea') {
+                var inputText = new Element('textarea', {'cols':'5', 'rows':'5'});
+            } else {
+                var inputText  = new Element('input', {type:'text'});
+            }
+            inputText.set({name:inputName, value:value.trim(), 'class':'input-block-level'});
+            
+            if (dataValidators) {
+                inputText.set({'data-validators':dataValidators});
+            }
+            form.show();
+            form.adopt(new Element('div', {'class':'control-group'}).adopt(new Element('div', {'class':'controls'}).adopt(inputText)));
+            form.adopt(new Element('div', {'class':'form-actions'}).adopt(cancelBtn).appendText(' ').adopt(saveBtn));
+            
+            cancelBtn.addEvent('click', function(e){
+                e.stop();
+                el.store('state:edit', false);
+                el.show();
+                form.destroy();
+            });
+            
+            saveBtn.addEvent('click', function(e){
+                e.stop();
+                el.store('state:edit', false);
+                
+                if ( ! form.get('validator').validate()) {
+                    return;
+                }
+                form.ajaxRequest({
+                    onSuccess: function() {
+                        el.set('html', inputText.get('value') || prompt);
+                        el.show();
+                        form.hide();
+                    }
+                }).send();
+            });
+            
+            el.getParent().adopt(form);
+        }.bind(null,[el,inputType, url,inputName]));
+    }
 });
 
 /**
  * Embeding Video
  */
 Behavior.addGlobalFilter('EmbeddedVideo', {
-	setup : function(el, api) 
-	{
-		var img = Asset.image(el.getElement('img').src, {
-			onLoad: function (img)
-			{
-				var width = Math.min(img.width, el.getSize().x);
-				var height = Math.min(img.height, el.getSize().y);
-
-				var styles = {'width':width, 'height':height};
-				var span = new Element('span');
-				span.setStyles(styles);
-				span.inject(el, 'top');
-				
-	    		window.addEvent('resize', function(){
-	    			el.getElement('span').setStyle('width', Math.min(img.width, el.getSize().x));
-    				el.getElement('span').setStyle('height', Math.min(img.height, el.getSize().y));
-	    		}.bind(this));
-				
-				el.addEvent('click:once', function(){
-					
-					var options = api._getOptions();					
-
-					if ( Browser.Engine.trident )
-						options.wMode   = '';
-					
-					var object = new Swiff(options['url']+'&autoplay=1', {
-						width: width,
-						height: height,
-						params : options
-					});
-					
-					img.set('tween',{
-						duration 	: 'short',
-						onComplete	: function() {
-							el.empty().adopt(object);
-						}
-					});
-					img.fade(0.7);
-				});
-			}
-		});
-	}		
+    setup: function (el, api) {
+        var img = Asset.image(el.getElement('img').src, {
+            onLoad: function (img) {
+                var width = Math.min(img.width, el.getSize().x);
+                var height = Math.min(img.height, el.getSize().y);
+                
+                var styles = {'width': width, 'height': height};
+                var span = new Element('span');
+                span.setStyles(styles);
+                span.inject(el, 'top');
+                
+                window.addEvent('resize', function(){
+                    el.getElement('span').setStyle('width', Math.min(img.width, el.getSize().x));
+                    el.getElement('span').setStyle('height', Math.min(img.height, el.getSize().y));
+                }.bind(this));
+                
+                el.addEvent('click:once', function () {
+                    var options = api._getOptions();
+                    
+                    if (Browser.Engine.trident) {
+                        options.wMode   = '';
+                    }
+                    var object = new Swiff(options['url']+'&autoplay=1', {
+                        width: width,
+                        height: height,
+                        params: options
+                    });
+                    
+                    img.set('tween',{
+                        duration: 'short',
+                        onComplete: function() {
+                            el.empty().adopt(object);
+                        }
+                    });
+                    img.fade(0.7);
+                });
+            }
+        });
+    }
 });
 
 /**
  * Delegates
  */
 Delegator.register('click', {
-	'ViewSource' : function(event, el, api) {
-		event.stop();
-		var element = api.getAs(String, 'element');		
-		element = el.getElement(element);
-		yWindow = window.open('','','resizable=no,scrollbars=yes,width=800,height=500');
-		var codes = [];
-		element.getElements('pre').each(function(line){
-			codes.push(line.get('text').escapeHTML());
-		});
-		yWindow.document.body.innerHTML = '<pre>' + codes.join("\n") + '</pre>';		
-	},
-	'Remove' : function(event, handle, api) {
-		event.stop();		
-		var options = {
-			'confirmMsg'	  : api.get('confirm-message') || 'Prompt.confirmDelete'.translate(),
-			'confirm'		  : true,
-			'parent'          : api.get('parent') || '!.an-removable',
-			'form'			  : api.get('form')
-		};
-		var parent  = handle.getElement(options.parent);		
-		var submit  = function(options) 
-		{
-			if ( !options.form )
-				var data    = handle.get('href').toURI().getData();
-				var url 	= handle.get('href');
-			
-			if ( parent ) 
-			{
-				parent.ajaxRequest({url:url, data:data,onSuccess:function(){parent.destroy()}}).post();
-			} 
-			else 
-			{
-				var form = (options.form || 
-					Element.Form({
-						method  : 'post',
-						url 	: url,
-						data	: data
-					}));
-				if ( instanceOf(options.form, String) )
-				{
-					form = handle.getElement(options.form);
-				}
-				form.submit();
-			}
-			if ( handle.retrieve('modal') ) {
-				handle.retrieve('modal').destroy();
-			}
-		}.pass(options);
-		
-		if ( options.confirm )
-		{
-			options = {
-					body    : '<h3>' + options.confirmMsg + '</h3>',
-					buttons : [
-					   {name: 'Action.cancel'.translate(), dismiss:true},
-					   {name: 'Action.delete'.translate(), dismiss:true, click:function(){submit()}, type: 'btn-danger'}					   
-					]
-			};
-			if ( !handle.retrieve('modal') ) {
-				handle.store('modal', Bootstrap.Popup.from(options));
-			}
-			
-			handle.retrieve('modal').show();								
-		}
-		else submit();		
-	},
-	'VoteLink' : function(event, el, api) {
-		event.stop();
-		el.ajaxRequest({
-			method    : 'post',
-			onSuccess : function() {
-				el.getParent().hide();
-				document.id(api.get('toggle')).getParent().show();
-				var box = document.id('vote-count-wrapper-' + api.get('object')) ||
-				          el.getElement('!.an-actions ~ .story-comments  .vote-count-wrapper ')
-				if ( box ) 
-				{
-					box.set('html', this.response.html);
-					if ( this.response.html.match(/an-hide/) )
-						box.hide();
-					else
-						box.show();
-				}
-			}
-		}).send();		
-	}
+    'ViewSource' : function(event, el, api) {
+        event.stop();
+        var element = api.getAs(String, 'element');
+        element = el.getElement(element);
+        yWindow = window.open('','','resizable=no,scrollbars=yes,width=800,height=500');
+        var codes = [];
+        element.getElements('pre').each(function(line){
+            codes.push(line.get('text').escapeHTML());
+        });
+        yWindow.document.body.innerHTML = '<pre>' + codes.join("\n") + '</pre>';
+    },
+    'Remove' : function (event, handle, api) {
+        event.stop();
+        var options = {
+            'confirmMsg': api.get('confirm-message') || 'Prompt.confirmDelete'.translate(),
+            'confirm': true,
+            'parent': api.get('parent') || '!.an-removable',
+            'form': api.get('form')
+        };
+        var parent  = handle.getElement(options.parent);
+        var submit  = function (options) {
+            var data, url;
+            if ( ! options.form) {
+                data = handle.get('href').toURI().getData();
+                url  = handle.get('href');
+            }
+            if (parent) {
+                parent.ajaxRequest({url: url, data: data, onSuccess: function () {parent.destroy();}}).post();
+            } else {
+                var form = (options.form || 
+                    Element.Form({
+                        method: 'post',
+                        url: url,
+                        data: data
+                    }));
+                if (instanceOf(options.form, String)) {
+                    form = handle.getElement(options.form);
+                }
+                form.submit();
+            }
+            if (handle.retrieve('modal')) {
+                handle.retrieve('modal').destroy();
+            }
+        }.pass(options);
+        
+        if (options.confirm) {
+            options = {
+                body: '<h3>' + options.confirmMsg + '</h3>',
+                buttons: [
+                   {name: 'Action.cancel'.translate(), dismiss: true},
+                   {name: 'Action.delete'.translate(), dismiss: true, click: function () {submit();}, type: 'btn-danger'}
+                ]
+            };
+            if ( ! handle.retrieve('modal')) {
+                handle.store('modal', Bootstrap.Popup.from(options));
+            }
+            
+            handle.retrieve('modal').show();
+        } else {
+            submit();
+        }
+    },
+    'VoteLink': function (event, el, api) {
+        event.stop();
+        el.ajaxRequest({
+            method: 'post',
+            onSuccess: function() {
+                el.getParent().hide();
+                document.id(api.get('toggle')).getParent().show();
+                var box = document.id('vote-count-wrapper-' + api.get('object')) || el.getElement('!.an-actions ~ .story-comments  .vote-count-wrapper');
+                if (box) {
+                    box.set('html', this.response.html);
+                    if (this.response.html.match(/an-hide/)) {
+                        box.hide();
+                    } else {
+                        box.show();
+                    }
+                }
+            }
+        }).send();
+    }
 });
 
 Request.Options = {};
 
 Behavior.addGlobalFilter('Pagination', {
-	defaults: {
-		'container' : '!.an-entities'
-	},
-	
-	setup : function(el, api) {
-		var container = el.getElement(api.get('container'));
-		var links = el.getElements('a');
-		links.addEvent('click', function(e){
-			e.stop();
-			if ( this.getParent().hasClass('active') || this.getParent().hasClass('disabled') )
-				return;
-			var uri   	= this.get('href').toURI();
-			var current	= new URI(document.location).getData();				
-			//only add the queries to hash that are different 
-			//from the current
-			var hash = {};
-			Object.each(uri.getData(), function(value, key) {
-				//if not value skip
-				if ( !value )
-					return;				
-				//if the value is either option,layout,view skip
-				if ( ['layout','option','view'].contains(key) ) {
-					return;
-				}
-				//no duplicate value
-				if ( current[key] != value ) {
-					hash[key] = value;
-				}
- 			});
-			
-			document.location.hash = Object.toQueryString(hash);
-			
-			this.ajaxRequest({			
-				method 	  :  'get',
-				onSuccess : function() {
-					var html = this.response.html.parseHTML();
-					
-					html.getElements('.pagination').replaces(document.getElements('.pagination'));
-					html.getElement('.an-entities').replaces(document.getElement('.an-entities'));
-					var scrollTop = new Fx.Scroll(window).toTop();
-				}
-			}).send();
-		})
-	}
+    defaults: {
+        'container' : '!.an-entities'
+    },
+    
+    setup : function (el, api) {
+        var container = el.getElement(api.get('container'));
+        var links = el.getElements('a');
+        links.addEvent('click', function(e){
+            e.stop();
+            if (this.getParent().hasClass('active') || this.getParent().hasClass('disabled')) {
+                return;
+            }
+            var uri = this.get('href').toURI();
+            var current = new URI(document.location).getData();
+            //only add the queries to hash that are different 
+            //from the current
+            var hash = {};
+            Object.each(uri.getData(), function (value, key) {
+                //if not value skip
+                if ( ! value) {
+                    return;
+                }
+                //if the value is either option,layout,view skip
+                if (['layout', 'option', 'view'].contains(key)) {
+                    return;
+                }
+                //no duplicate value
+                if (current[key] != value) {
+                    hash[key] = value;
+                }
+             });
+            
+            document.location.hash = Object.toQueryString(hash);
+            
+            this.ajaxRequest({
+                method: 'get',
+                onSuccess: function () {
+                    var html = this.response.html.parseHTML();
+                    
+                    html.getElements('.pagination').replaces(document.getElements('.pagination'));
+                    html.getElement('.an-entities').replaces(document.getElement('.an-entities'));
+                    var scrollTop = new Fx.Scroll(window).toTop();
+                }
+            }).send();
+        });
+    }
 });
 
 
-window.addEvent('domready',
-(function(){
-	var uri = document.location.toString().toURI();
-	if ( uri.getData('start', 'fragment') ) {
-		uri.setData(uri.getData(null, 'fragment'), true);
-		uri.set('fragment','');
-		uri.go();
-	}
-	else if ( uri.getData('permalink', 'fragment') ) {
-		uri.setData({permalink:uri.getData('permalink', 'fragment')}, true);
-		uri.set('fragment','');
-		uri.go();
-	} else if ( uri.getData('scroll', 'fragment') ) {
-		window.addEvent('domready', function() {
-			var selector = uri.getData('scroll', 'fragment');
-			var element  = document.getElement('[scroll-handle="'+selector+'"]') || document.getElement(selector);
-			if ( element )
-				new Fx.Scroll(window).toElement(element).chain(element.highlight.bind(element));
-		});
-	}	
-}));
+window.addEvent('domready', function () {
+    var uri = document.location.toString().toURI();
+    if (uri.getData('start', 'fragment')) {
+        uri.setData(uri.getData(null, 'fragment'), true);
+        uri.set('fragment','');
+        uri.go();
+    } else if (uri.getData('permalink', 'fragment')) {
+        uri.setData({permalink: uri.getData('permalink', 'fragment')}, true);
+        uri.set('fragment', '');
+        uri.go();
+    } else if ( uri.getData('scroll', 'fragment') ) {
+        window.addEvent('domready', function () {
+            var selector = uri.getData('scroll', 'fragment');
+            var element  = document.getElement('[scroll-handle="'+selector+'"]') || document.getElement(selector);
+            if (element) {
+                new Fx.Scroll(window).toElement(element).chain(element.highlight.bind(element));
+            }
+        });
+    }
+});
 
 Behavior.addGlobalFilter('PlaceHolder', {
-    defaults : {
-        element  : '.placeholder'
+    defaults: {
+        element: '.placeholder'
     },
-    setup : function(element, api) 
-    {
-        var placeholder = element.getElement(api.getAs(String, 'element'));        
+    setup: function (element, api) {
+        var placeholder = element.getElement(api.getAs(String, 'element'));
         element.store('placeholder:element', placeholder);
         Object.append(element,  {
-            setContent      : function(content) 
-            {
+            setContent: function (content) {
                 element.store('placeholder:content', content);
                 element.adopt(content);
-                element.showContent();                
+                element.showContent();
             },
-            toggleContent   : function(event) 
-            {
+            toggleContent: function (event) {
                 event = event || 'click';
-                element.addEvent(event,  function(e) {
-                    e.eventHandled = true;                    
+                element.addEvent(event, function(e) {
+                    e.eventHandled = true;
                     element.showContent();
                 });
                 var area = element.getElement(api.getAs(String,'area')) || element;
-                area.onOutside(event, function(e){
-                    if ( !e.eventHandled )
+                area.onOutside(event, function (e) {
+                    if ( ! e.eventHandled) {
                         element.hideContent();
+                    }
                 });
             },
-            showContent     : function() 
-            {
-                var content = element.retrieve('placeholder:content'), 
-                placeholder = element.retrieve('placeholder:element'); 
+            showContent: function () {
+                var content = element.retrieve('placeholder:content'),
+                    placeholder = element.retrieve('placeholder:element'); 
                 placeholder.hide();
                 content.fade('show').show();
             },
-            hideContent : function() 
-            {
-                var content = element.retrieve('placeholder:content'), 
-                placeholder = element.retrieve('placeholder:element');
+            hideContent : function () {
+                var content = element.retrieve('placeholder:content'),
+                    placeholder = element.retrieve('placeholder:element');
                 content.get('tween').chain(function(){
                     content.hide();
                     placeholder.show();
                 });
-                content.fade('out');                
+                content.fade('out');
             }
         });
     }
@@ -21583,113 +21543,103 @@ Behavior.addGlobalFilter('PlaceHolder', {
 /**
  * Fixes Bootrap Drop down
  */
-
 Class.refactor(Bootstrap.Dropdown, {
-			
     _handle: function(e){
         var el = e.target;
         var open = el.getParent('.open');
-        if (!el.match(this.options.ignore) || !open) this.hideAll();
+        if ( ! el.match(this.options.ignore) || !open) this.hideAll();
         if (this.element.contains(el)) {
             var parent = el.match('.dropdown-toggle') ? el.getParent() : el.getParent('.dropdown-toggle');
             if (parent) {
                 e.preventDefault();
-                if (!open) this.show(el.getParent('.dropdown,.btn-group') || parent);
+                if ( ! open) this.show(el.getParent('.dropdown,.btn-group') || parent);
             }
         }
     }
 });
 
-Delegator.register(['click'],'Checkbox', {
-	defaults : {
-		'toggle-element' : null,
-		'toggle-class'	 : 'selected'
-	},
-	handler  : function(event, el, api) 
-	{		
-		var target = el;
-		if ( api.get('toggle-element') ) {
-			target = el.getElement(api.get('toggle-element'));
-		}				
-		if ( !el.retrieve('checkbox') ) 
-		{			
-			var checkbox = new Element('input',{
-				type   : 'checkbox',
-				value  : api.getAs(String,'value'),
-				name   : api.getAs(String,'name')
-			});			
-			el.adopt(checkbox);
-			checkbox.hide();
-			if ( checkbox.form ) {
-				checkbox.form.addEvent('reset', function(){
-					target.removeClass(api.get('toggle-class'));
-				});
-			}
-			el.store('checkbox', checkbox);
-		}
-
-		var checkbox 	   = el.retrieve('checkbox');
-		checkbox.checked   = !checkbox.checked;
-		target.toggleClass(api.get('toggle-class'));
-		el.fireEvent('check');
-	}
+Delegator.register(['click'], 'Checkbox', {
+    defaults : {
+        'toggle-element': null,
+        'toggle-class': 'selected'
+    },
+    handler: function (event, el, api) {
+        var target = el;
+        if (api.get('toggle-element')) {
+            target = el.getElement(api.get('toggle-element'));
+        }
+        if ( ! el.retrieve('checkbox')) {
+            var checkbox = new Element('input', {
+                type: 'checkbox',
+                value: api.getAs(String, 'value'),
+                name: api.getAs(String, 'name')
+            });
+            el.adopt(checkbox);
+            checkbox.hide();
+            if (checkbox.form) {
+                checkbox.form.addEvent('reset', function () {
+                    target.removeClass(api.get('toggle-class'));
+                });
+            }
+            el.store('checkbox', checkbox);
+        }
+        
+        var checkbox = el.retrieve('checkbox');
+        checkbox.checked = !checkbox.checked;
+        target.toggleClass(api.get('toggle-class'));
+        el.fireEvent('check');
+    }
 });
 
-var EditEntityOptions = function() {
-	return {
-		replace : this.getParent('form'),
-		url		: function() {
-			var url = this.form.get('action').toURI().setData({layout:'list'}).toString();
-			return url;
-		}
-	}
-}
-
+var EditEntityOptions = function () {
+    return {
+        replace: this.getParent('form'),
+        url: function () {
+            var url = this.form.get('action').toURI().setData({layout:'list'}).toString();
+            return url;
+        }
+    };
+};
 
 var EntityHelper = new Class({
-	
-	initialize: function(){
-		this.form = document.id('entity-form');
-	},
-	
-	resetForm : function(){
-		this.form.title.value = '';
-		this.form.description.value = '';
-	},
-	
-	add : function(){
-		
-		if(this.form.title.value.clean().length < 3)
-			return false;
-		
-		var url = this.form.get('action').toURI().setData({layout:'list'}).toString();
-		this.form.ajaxRequest({
-			method : 'post',
-			url  : url,
-			data : this.form,
-			inject : {
-				element : document.getElement('.an-entities'),
-				where   : 'top'
-			},
-			onSuccess : function(form){
-				var element = document.getElement('.an-entities').getElement('.an-entity');
-				this.resetForm();
-			}.bind(this)
-		}).send();
-	}
+    initialize: function () {
+        this.form = document.id('entity-form');
+    },
+    
+    resetForm: function () {
+        this.form.title.value = '';
+        this.form.description.value = '';
+    },
+    
+    add: function () {
+        if (this.form.title.value.clean().length < 3) {
+            return false;
+        }
+        var url = this.form.get('action').toURI().setData({layout:'list'}).toString();
+        this.form.ajaxRequest({
+            method: 'post',
+            url: url,
+            data: this.form,
+            inject: {
+                element: document.getElement('.an-entities'),
+                where: 'top'
+            },
+            onSuccess : function(form){
+                var element = document.getElement('.an-entities').getElement('.an-entity');
+                this.resetForm();
+            }.bind(this)
+        }).send();
+    }
 });
 
 Behavior.addGlobalFilter('Scrollable',{
-	defaults : {
-	
-	},
-	returns : Scrollable,
-    setup   : function(el, api)
-    {
-    	var container = el;
-    	if ( api.getAs(String,'container') ) {
-    		container = el.getElement(api.getAs(String,'container'));
-    	}
-		return new Scrollable(container);    
+    defaults : {},
+    returns: Scrollable,
+    setup: function(el, api) {
+        var container = el;
+        if (api.getAs(String,'container')) {
+            container = el.getElement(api.getAs(String,'container'));
+        }
+        return new Scrollable(container);
     }
-})
+});

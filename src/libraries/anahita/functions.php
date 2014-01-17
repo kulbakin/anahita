@@ -681,7 +681,7 @@ function clean_apc_with_prefix($prefix)
  * 
  * @return void
  */
-function clean_ap_user_cache()
+function clean_apc_user_cache()
 {
     if (extension_loaded('apc')) {
         apc_clear_cache('user');

@@ -109,7 +109,7 @@ abstract class AnDomainRepositoryAbstract extends KCommand
         $this->mixin(new KMixinBehavior($config));
         
         //insert the reposiry with highest priority
-        $this->getCommandChain()->enqueue($this, -PHP_INT_MAX);        
+        $this->getCommandChain()->enqueue($this, -PHP_INT_MAX);
     }
     
     /**
@@ -130,33 +130,33 @@ abstract class AnDomainRepositoryAbstract extends KCommand
         }
         
         $entityset       = clone $this->getIdentifier();
-        $entityset->path = array('domain','entityset');        
-        register_default(array('identifier'=>$entityset, 'prefix'=>$config->prototype));
+        $entityset->path = array('domain', 'entityset');
+        register_default(array('identifier' => $entityset, 'prefix' => $config->prototype));
         
         $description     = clone $this->getIdentifier();
-        $description->path = array('domain','description');
-        register_default(array('identifier'=>$description, 'prefix'=>$config->prototype));
+        $description->path = array('domain', 'description');
+        register_default(array('identifier' => $description, 'prefix' => $config->prototype));
         
         $query     = clone $this->getIdentifier();
-        $query->path = array('domain','query');
-        register_default(array('identifier'=>$query, 'prefix'=>$config->prototype));
+        $query->path = array('domain', 'query');
+        register_default(array('identifier' => $query, 'prefix' => $config->prototype));
         
         $config->append(array(
             'query'             => $query,
             'space'             => $this->getService('anahita:domain.space'),
             'store'             => $this->getService('anahita:domain.store.database'),
-            'entityset'         => $entityset ,
+            'entityset'         => $entityset,
             'description'       => $description,
             'command_chain'     => $this->getService('koowa:command.chain'),
             'event_dispatcher'  => $this->getService('koowa:event.dispatcher'),
             'dispatch_events'   => true,
             'enable_callbacks'  => true,
-            'behaviors'         => array('validatable','cachable','serializable')
+            'behaviors'         => array('validatable', 'cachable', 'serializable')
         ));
         
         //set the resources
-        $resources            = array_reverse((array)KConfig::unbox($config->resources));                
-        $config['resources']  = new AnDomainResourceSet(new KConfig(array('store'=>$config->store, 'resources'=>$resources)));
+        $resources            = array_reverse((array)KConfig::unbox($config->resources));
+        $config['resources']  = new AnDomainResourceSet(new KConfig(array('store' => $config->store, 'resources' => $resources)));
         $config['repository'] = $this;
         
         parent::_initialize($config);
@@ -223,16 +223,16 @@ abstract class AnDomainRepositoryAbstract extends KCommand
     public function commit($entity)
     {
         switch ($entity->getEntityState()) {
-            case AnDomain::STATE_NEW :
+            case AnDomain::STATE_NEW:
                 $operation  = AnDomain::OPERATION_INSERT;
                 $command    = 'insert';
                 break;
-            case AnDomain::STATE_MODIFIED : 
+            case AnDomain::STATE_MODIFIED: 
                 //get all the updated serializable property/value pairs
                 $operation  = AnDomain::OPERATION_UPDATE;
                 $command    = 'update';
                 break;
-            case  AnDomain::STATE_DELETED :
+            case  AnDomain::STATE_DELETED:
                 $operation  = AnDomain::OPERATION_DELETE;
                 $command    = 'delete';
                 break;
@@ -249,18 +249,18 @@ abstract class AnDomainRepositoryAbstract extends KCommand
         if ($context->result = $this->getCommandChain()->run('before.'.$command, $context) !== false) {
             $context->data = $entity->getAffectedRowData();
             
-            switch($operation) {
-                case(AnDomain::OPERATION_INSERT) :
+            switch ($operation) {
+                case AnDomain::OPERATION_INSERT:
                     if ( !count($context->data) ) {
                         throw new AnDomainRepositoryException('Attempting to store an entity with empty data');
                     }
                     $context->result = $store->insert($this, $context->data);
                     break;
-                case(AnDomain::OPERATION_UPDATE):
-                case(AnDomain::OPERATION_DELETE):
+                case AnDomain::OPERATION_UPDATE:
+                case AnDomain::OPERATION_DELETE:
                     $keys = $this->_description->getIdentityProperty()->serialize($entity->getIdentityId());
                     $keys = array($this->_description->getIdentityProperty()->getName() => $entity->getIdentityId());
-                    if ( $operation & AnDomain::OPERATION_UPDATE) {
+                    if ($operation & AnDomain::OPERATION_UPDATE) {
                         $context->result = count($context->data) ? $this->update($context->data, $keys) : true;
                     } else {
                         $context->result = $this->destroy($keys);
@@ -408,10 +408,9 @@ abstract class AnDomainRepositoryAbstract extends KCommand
         $context->append($config);
         
         //force data to be stored by real name
-        foreach($context->data as $key => $value)
-        {
+        foreach ($context->data as $key => $value) {
             $property = $this->getDescription()->getProperty($key);
-            if ( $property ) {
+            if ($property) {
                 unset($context->data[$key]);
                 $context->data[$property->getName()] = $value;
             }
@@ -481,7 +480,7 @@ abstract class AnDomainRepositoryAbstract extends KCommand
     {
         $query = clone $this->_query;
         
-        if ( $disable_chain ) {
+        if ($disable_chain) {
             $query->disableChain();
         }
         
@@ -503,10 +502,9 @@ abstract class AnDomainRepositoryAbstract extends KCommand
     public function getBehavior($behavior, $config = array())
     {
         if (is_string($behavior)) {
-            if ( strpos($behavior,'.') === false )
-            {
+            if (strpos($behavior, '.') === false) {
                 $identifier       = clone $this->getIdentifier();
-                $identifier->path = array('domain','behavior');
+                $identifier->path = array('domain', 'behavior');
                 $identifier->name = $behavior;
                 register_default(array('identifier' => $identifier,'prefix' => $this->_prototype));
                 $behavior = $identifier;
@@ -546,7 +544,7 @@ abstract class AnDomainRepositoryAbstract extends KCommand
             throw new InvalidArgumentException('No condition pased to the repository::find');
         }
         
-        if ( !is_array($needle) ) {
+        if ( ! is_array($needle)) {
             $needle = array($this->_description->getIdentityProperty()->getName()=>$needle);
         }
         

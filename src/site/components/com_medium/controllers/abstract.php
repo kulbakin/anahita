@@ -150,8 +150,8 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
     public function createStoryCallback(KCommandContext $context)
     {
         if ($context->result !== false) {
-            $data    = $context->data;
-            $name    = $this->getIdentifier()->name.'_'.$context->action;
+            $data = $context->data;
+            $name = $this->getIdentifier()->name.'_'.$context->action;
             $context->append(array(
                 'story' => array(
                     'component' => 'com_'.$this->getIdentifier()->package,
@@ -162,7 +162,7 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
                     'comment'   => $this->isCommentable() ? $data->comment : null
                 ),
             ));
-            $story = $this->createStory( KConfig::unbox($context->story) );
+            $story = $this->createStory(KConfig::unbox($context->story));
             $data->story = $story;
             return $story;
         }
