@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* (legacy) add support for readonly parameters in joomla component configs
+  [e66edd9](https://github.com/kulbakin/anahita/commit/e66edd9ca321b225bd9fbff660747f51c3570beb)
 * update translation system to have *JText::nsprintf()*, *@textf()*, *@ntextf()* shortcuts for
   formatted translation strings and use them throughout the codebase where applicable
   [8cce3b3](https://github.com/kulbakin/anahita/commit/8cce3b3bf85a2152a100a7e1dcc7c047250efd16)
@@ -77,7 +79,7 @@ changes.
   - deprecate *AnDomainEntitysetAbstract::isLoaded()* in favor of *AnDomainEntitysetAbstract::loaded()*
     for it not to be masked by decorators trying to match it to behavior check;
   - fix is... calls to properly check for underlying repository to have corresponding behavior;
-* fix some legacy joomla admin components (users, menus, templates) not to have duplicated
+* (legacy) fix some legacy joomla admin components (users, menus, templates) not to have duplicated
   *index.php* in URLs
   [1f6bdad](https://github.com/kulbakin/anahita/commit/1f6bdad89815f2bf5b4592f60140263ba5a0b93a)
 * fix *LibApplicationRouter::build()* to construct base url, i.e. when empty string is submitted
@@ -87,7 +89,7 @@ changes.
 * fix notification button on profile when viewer is not following viewed actor, since notifications
   cannot be managed, hide the button in such case
   [fd7aa0a](https://github.com/kulbakin/anahita/commit/fd7aa0ab8deb6588187f02c0fd9b0a36fba263de)
-* fix joomla legacy not to issue strict standards notifications, fix method declarations
+* (legacy) fix joomla legacy not to issue strict standards notifications, fix method declarations
   in child classes to comply with php 5.4+ strict standards restrictions (though there is constant
   effort to get rid of joomla legacy, anahita codebase still strongly relies on it and seems to
   continue be that way for some time, thus in order to efficienly develop in php 5.4+ strict
