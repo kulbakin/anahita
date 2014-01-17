@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* remove no longer relevant firefox image border-radius fix
+  [45e2e80](https://github.com/kulbakin/anahita/commit/45e2e800c674f6c2b7a161390f80f0ffd0b29090)
 * (legacy) add support for readonly parameters in joomla component configs
   [e66edd9](https://github.com/kulbakin/anahita/commit/e66edd9ca321b225bd9fbff660747f51c3570beb)
 * update translation system to have *JText::nsprintf()*, *@textf()*, *@ntextf()* shortcuts for
