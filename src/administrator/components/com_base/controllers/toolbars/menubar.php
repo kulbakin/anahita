@@ -38,7 +38,7 @@ class ComBaseControllerToolbarMenubar extends KControllerToolbarAbstract
         $menubar = $event->getPublisher()->getView()->getTemplate()->getHelper('menubar')->render($config);
         $document->setBuffer($menubar, 'modules', 'submenu');
     }
-
+    
     /**
      * Sets the component parameter in the menu bar
      *

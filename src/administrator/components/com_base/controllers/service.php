@@ -65,8 +65,7 @@ class ComBaseControllerService extends ComBaseControllerResource
         
         $data = $context->data;
         
-        //searches for any \w+_id pattern and then set a relationship
-        //accordingly
+        //searches for any \w+_id pattern and then set a relationship accordingly
         //Should be moved to a behavior
         foreach ($data as $key => $value) {
             if (strpos($key,'_id')) {
@@ -78,7 +77,7 @@ class ComBaseControllerService extends ComBaseControllerResource
         if ($this->getItem()) {
             $this->execute('edit', $context);
         } else {
-            $this->execute('add',  $context);
+            $this->execute('add', $context);
         }
         
         return $this->getItem();

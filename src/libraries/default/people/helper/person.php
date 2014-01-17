@@ -46,7 +46,7 @@ class LibPeopleHelperPerson extends KObject
      */
     public function login($person, $options = array())
     {
-        $user        = (array) JFactory::getUser($person->userId);
+        $user        = (array)JFactory::getUser($person->userId);
         $application = JFactory::getApplication();
         if (@$user['id']) {
             $session = &JFactory::getSession();
