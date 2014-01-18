@@ -1,6 +1,4 @@
-<?php
-// Check to ensure this file is within the rest of the framework
-defined('JPATH_BASE') or die();
+<?php defined('JPATH_BASE') or die();
 
 //Register the session storage class with the loader
 JLoader::register('JCacheStorage', dirname(__FILE__).DS.'storage.php');
@@ -20,16 +18,16 @@ class JCache extends JObject
     /**
      * Storage Handler
      * 
-     * @access    private
-     * @var       object
+     * @access  private
+     * @var     object
      */
     var $_handler;
     
     /**
      * Cache Options
      * 
-     * @access    private
-     * @var       array
+     * @access  private
+     * @var     array
      */
     var $_options;
     
@@ -44,38 +42,38 @@ class JCache extends JObject
         $this->_options =& $options;
         
         // Get the default group and caching
-        if(isset($options['language'])) {
+        if (isset($options['language'])) {
             $this->_options['language'] = $options['language'];
         } else {
             $options['language'] = 'en-GB';
         }
         
-        if(isset($options['cachebase'])) {
+        if (isset($options['cachebase'])) {
             $this->_options['cachebase'] = $options['cachebase'];
         } else {
             $this->_options['cachebase'] = JPATH_ROOT.DS.'cache';
         }
         
-        if(isset($options['defaultgroup'])) {
+        if (isset($options['defaultgroup'])) {
             $this->_options['defaultgroup'] = $options['defaultgroup'];
         } else {
             $this->_options['defaultgroup'] = 'default';
         }
         
-        if(isset($options['caching'])) {
-            $this->_options['caching'] =  $options['caching'];
+        if (isset($options['caching'])) {
+            $this->_options['caching'] = $options['caching'];
         } else {
             $this->_options['caching'] = true;
         }
         
-        if( isset($options['storage'])) {
+        if (isset($options['storage'])) {
             $this->_options['storage'] = $options['storage'];
         } else {
             $this->_options['storage'] = 'file';
         }
         
         //Fix to detect if template positions are enabled...
-        if(JRequest::getCMD('tpl',0)) {
+        if (JRequest::getCMD('tpl', 0)) {
             $this->_options['caching'] = false;
         }
     }
@@ -119,15 +117,15 @@ class JCache extends JObject
         $handlers = JFolder::files(dirname(__FILE__).DS.'storage', '.php$');
         
         $names = array();
-        foreach($handlers as $handler) {
+        foreach ($handlers as $handler) {
             $name = substr($handler, 0, strrpos($handler, '.'));
             $class = 'JCacheStorage'.$name;
             
-            if( ! class_exists($class)) {
+            if ( ! class_exists($class)) {
                 require_once(dirname(__FILE__).DS.'storage'.DS.$name.'.php');
             }
             
-            if(call_user_func_array( array( trim($class), 'test' ), array())) {
+            if (call_user_func_array(array(trim($class), 'test'), array())) {
                 $names[] = $name;
             }
         }
@@ -175,7 +173,7 @@ class JCache extends JObject
     
     /**
      * Get cached data by id and group
-     *
+     * 
      * @abstract
      * @access   public
      * @param    string   $id       The cache data id
@@ -191,7 +189,7 @@ class JCache extends JObject
         // Get the storage handler
         $handler =& $this->_getStorage();
         if ( ! JError::isError($handler) && $this->_options['caching']) {
-            return $handler->get($id, $group, (isset($this->_options['checkTime']))? $this->_options['checkTime'] : true);
+            return $handler->get($id, $group, isset($this->_options['checkTime']) ? $this->_options['checkTime'] : true);
         }
         return false;
     }
@@ -213,7 +211,7 @@ class JCache extends JObject
         
         // Get the storage handler and store the cached data
         $handler =& $this->_getStorage();
-        if (!JError::isError($handler) && $this->_options['caching']) {
+        if ( ! JError::isError($handler) && $this->_options['caching']) {
             return $handler->store($id, $group, $data);
         }
         return false;

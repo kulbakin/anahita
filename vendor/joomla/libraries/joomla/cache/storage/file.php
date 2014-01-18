@@ -1,10 +1,7 @@
-<?php
-// Check to ensure this file is within the rest of the framework
-defined('JPATH_BASE') or die();
-
+<?php defined('JPATH_BASE') or die();
 /**
  * File cache storage handler
- *
+ * 
  * @package     Joomla.Framework
  * @subpackage  Cache
  * @copyright   Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
@@ -23,11 +20,11 @@ class JCacheStorageFile extends JCacheStorage
     {
         parent::__construct($options);
         
-        $config         =& JFactory::getConfig();
-        $this->_root    = $options['cachebase'];
-        $this->_hash    = $config->getValue('config.secret');
+        $config      =& JFactory::getConfig();
+        $this->_root = $options['cachebase'];
+        $this->_hash = $config->getValue('config.secret');
     }
-
+    
     /**
      * Get cached data from a file by id and group
      * 
@@ -57,7 +54,7 @@ class JCacheStorageFile extends JCacheStorage
     
     /**
      * Store the data to a file by id and group
-     *
+     * 
      * @access   public
      * @param    string    $id      The cache data id
      * @param    string    $group   The cache data group
@@ -134,7 +131,7 @@ class JCacheStorageFile extends JCacheStorage
         jimport('joomla.filesystem.folder');
         
         $return = true;
-        $folder    = $group;
+        $folder = $group;
         
         if (trim($folder) == '') {
             $mode = 'notgroup';
@@ -143,8 +140,7 @@ class JCacheStorageFile extends JCacheStorage
         switch ($mode) {
             case 'notgroup':
                 $folders = JFolder::folders($this->_root);
-                for ($i=0,$n=count($folders);$i<$n;$i++)
-                {
+                for ($i=0, $n = count($folders); $i < $n; $i++) {
                     if ($folders[$i] != $folder) {
                         $return |= JFolder::delete($this->_root.DS.$folders[$i]);
                     }
@@ -172,7 +168,7 @@ class JCacheStorageFile extends JCacheStorage
         $result = true;
         // files older than lifeTime get deleted from cache
         $files = JFolder::files($this->_root, '_expire', true, true);
-        foreach($files As $file) {
+        foreach ($files As $file) {
             $time = @file_get_contents($file);
             if ($time < $this->_now) {
                 $result |= JFile::delete($file);
@@ -211,7 +207,7 @@ class JCacheStorageFile extends JCacheStorage
             if ($time < $this->_now || empty($time)) {
                 $this->remove($id, $group);
             }
-        } elseif(file_exists($path)) {
+        } elseif (file_exists($path)) {
             //This means that for some reason there's no expire file, remove it
             $this->remove($id, $group);
         }
@@ -235,12 +231,12 @@ class JCacheStorageFile extends JCacheStorage
         // If the folder doesn't exist try to create it
         if ( ! is_dir($dir)) {
             // Make sure the index file is there
-            $indexFile      = $dir . DS . 'index.html';
-            @ mkdir($dir) && file_put_contents($indexFile, '<html><body bgcolor="#FFFFFF"></body></html>');
+            $indexFile = $dir.DS.'index.html';
+            @mkdir($dir) && file_put_contents($indexFile, '<html><body bgcolor="#FFFFFF"></body></html>');
         }
         
         // Make sure the folder exists
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             return false;
         }
         return $dir.DS.$name;

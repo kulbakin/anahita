@@ -6,8 +6,8 @@ defined('JPATH_BASE') or die();
  * Abstract cache storage handler
  * 
  * @abstract
- * @package        Joomla.Framework
- * @subpackage    Cache
+ * @package      Joomla.Framework
+ * @subpackage   Cache
  * @since        1.5
  * @copyright    Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
  * @license      GNU/GPL, see LICENSE.php
@@ -22,11 +22,11 @@ class JCacheStorage extends JObject
     */
     function __construct( $options = array() )
     {
-        $this->_application = (isset($options['application'])) ? $options['application'] : null;
-        $this->_language    = (isset($options['language'])) ? $options['language'] : 'en-GB';
-        $this->_locking     = (isset($options['locking'])) ? $options['locking'] : true;
-        $this->_lifetime    = (isset($options['lifetime'])) ? $options['lifetime'] : null;
-        $this->_now         = (isset($options['now'])) ? $options['now'] : time();
+        $this->_application = isset($options['application']) ? $options['application'] : null;
+        $this->_language    = isset($options['language']) ? $options['language'] : 'en-GB';
+        $this->_locking     = isset($options['locking']) ? $options['locking'] : true;
+        $this->_lifetime    = isset($options['lifetime']) ? $options['lifetime'] : null;
+        $this->_now         = isset($options['now']) ? $options['now'] : time();
         
         // Set time threshold value.  If the lifetime is not set, default to 60 (0 is BAD)
         // _threshold is now available ONLY as a legacy (it's deprecated).  It's no longer used in the core.
