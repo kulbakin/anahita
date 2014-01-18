@@ -1,10 +1,7 @@
-<?php
-// Check to ensure this file is within the rest of the framework
-defined('JPATH_BASE') or die();
-
+<?php defined('JPATH_BASE') or die();
 /**
  * Abstract Format for JRegistry
- *
+ * 
  * @abstract
  * @package     Joomla.Framework
  * @subpackage  Registry
