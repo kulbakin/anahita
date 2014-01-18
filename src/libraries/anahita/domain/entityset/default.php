@@ -161,9 +161,10 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
      * 
      * @param callback $callback Accepts single parameter to be an item from entity set
      * @param bool[optional] $load Whether to load set or iterate through entire one
+     * @param bool[optional] $interraptable Whether to inerrupt cycling when callback returns false
      * @return int
      */
-    public function each($callback, $load = true)
+    public function each($callback, $load = true, $interruptable = false)
     {
         if ($load) {
             $this->_loadData();
@@ -180,7 +181,11 @@ class AnDomainEntitysetDefault extends AnDomainEntityset
                 $offset += $limit;
             }
             foreach ($set as $item) {
-                $result += (int)call_user_func($callback, $item);
+                $r = call_user_func($callback, $item);
+                $result += (int)$r;
+                if ($interruptable && false === $r) {
+                    break 2;
+                }
             }
         } while ( ! $load and $set->count() == $limit);
         
