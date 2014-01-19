@@ -8,7 +8,7 @@
         <?php if(isset($todo->editor)) : ?>
             <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($todolist->updateTime), @name($todolist->editor)) ?></li>
         <?php endif ?>
-        <li><?= @ntextf('COM-TODOS-TODOLIST-COUNTS', (int)$todolist->numOfOpenTodos, (int)$todolist->numOfTodos) ?></li>
+        <li><?= @ntextf('COM-TODOS-TODOLIST-COUNTS', (int)$todolist->openTodoCount, (int)$todolist->todoCount) ?></li>
         
         <?php if(isset($todolist->milestone->id)): ?>
             <li>
