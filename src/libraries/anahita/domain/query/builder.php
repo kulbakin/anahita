@@ -562,7 +562,7 @@ class AnDomainQueryBuilder extends KObject
         $string = str_replace('@MYSQL_JOIN_PLACEHOLDER', $this->join($query), $string);
         $string = $this->parseMethods($query, $string);
         
-        if ( count($query->binds)) {
+        if (count($query->binds)) {
             foreach ($query->binds as $key => $value) {
                 $key    = ':'.$key;
                 $value  = $this->_store->quoteValue($value);

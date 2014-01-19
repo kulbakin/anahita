@@ -167,7 +167,7 @@ abstract class AnDomainRepositoryAbstract extends KCommand
      * 
      * @param string          $name    The command name
      * @param KCommandContext $context The command context
-     * @return boolean     Can return both true or false.  
+     * @return boolean Can return both true or false.  
      */
     final public function execute($command, KCommandContext $context)
     {

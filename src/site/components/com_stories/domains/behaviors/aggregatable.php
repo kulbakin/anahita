@@ -1,7 +1,7 @@
 <?php
 /**
- * Aggregatable behavior 
- *   
+ * Aggregatable behavior
+ * 
  * @category   Anahita
  * @package    Com_Stories
  * @subpackage Domain_Repository
@@ -62,7 +62,7 @@ class ComStoriesDomainBehaviorAggregatable extends AnDomainBehaviorAbstract
         $config   = KConfig::unbox($config);
         $config[] = array(
              'WHEN @col(name) LIKE "avatar_edit"  THEN IF(@col(subject.id) = @col(target.id), "", @col(id))',
-             'WHEN @col(name) LIKE "actor_follow" THEN @col(subject.id)'    
+             'WHEN @col(name) LIKE "actor_follow" THEN @col(subject.id)',
         );
         
         foreach ($config as $component => $keys) {
@@ -109,9 +109,9 @@ class ComStoriesDomainBehaviorAggregatable extends AnDomainBehaviorAbstract
         $query->select('GROUP_CONCAT(DISTINCT @col(comment.id)) AS  comment_ids');
         $query->select('GROUP_CONCAT(DISTINCT @col(object.id)) AS  object_ids');
         $query->select('GROUP_CONCAT(DISTINCT @col(subject.id)) AS subject_ids');
-        $query->select(array('id'=>'MAX(@col(id))'));
-        $query->select(array('creationTime'=>'MAX(@col(creationTime))'));
-        $query->select(array('updateTime'=>'MAX(@col(updateTime))'));
+        $query->select(array('id' => 'MAX(@col(id))'));
+        $query->select(array('creationTime' => 'MAX(@col(creationTime))'));
+        $query->select(array('updateTime' => 'MAX(@col(updateTime))'));
         $viewer = get_viewer();
         $query->group('bundle_key');
         $query->order = array();

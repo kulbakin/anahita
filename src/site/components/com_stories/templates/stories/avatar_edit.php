@@ -1,11 +1,11 @@
-<?php defined('KOOWA') or die('Restricted access');?>
+<?php defined('KOOWA') or die ?>
 
 <data name="title">
     <?php if( ! is_array($target)): ?>
         <?= @textf('COM-STORIES-TITLE-UPDATE-AVATAR', @name($subject), @possessive($target)) ?>
     <?php else: ?>
         <?= @ntextf('COM-STORIES-TITLE-UPDATE-AVATARS', count($target)) ?>
-    <?php endif; ?>
+    <?php endif ?>
 </data>
 
 <data name="body">
