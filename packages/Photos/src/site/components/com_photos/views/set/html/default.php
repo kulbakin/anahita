@@ -60,7 +60,7 @@ Delegator.register('click', {
         <li><?= @textf('LIB-AN-MEDIUM-AUTHOR', @date($set->creationTime), @name($set->author)) ?></li>
         <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($set->updateTime), @name($set->editor)) ?></li>
         <li><?= @ntextf('COM-PHOTOS-SET-META-PHOTOS', $set->getPhotoCount()) ?></li>
-        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $set->numOfComments) ?></li>
+        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $set->commentCount) ?></li>
     </ul>
 </module>
 

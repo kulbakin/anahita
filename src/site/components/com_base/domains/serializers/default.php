@@ -1,7 +1,7 @@
 <?php
 /**
  * Default Entity Serializer
- *
+ * 
  * @category   Anahita
  * @package    Com_Base
  * @subpackage Domain_Serializer
@@ -29,7 +29,7 @@ class ComBaseDomainSerializerDefault extends AnDomainSerializerDefault
             $data['alias'] = $entity->alias;
         }
         
-        if ( $entity->inherits('ComBaseDomainEntityComment') ) {
+        if ($entity->inherits('ComBaseDomainEntityComment')) {
             $data['body'] = $entity->body;
         }
         
@@ -70,26 +70,23 @@ class ComBaseDomainSerializerDefault extends AnDomainSerializerDefault
             $data['imageURL'] = $imageURL;
         }
         
-        if ( $entity->isAdministrable()
-//             && $entity->isAuthorizer()
-//             && $entity->authorize('administration')
-        ) {
+        if ($entity->isAdministrable()) {
             $data['administratorIds'] = array_values($entity->administratorIds->toArray());
             if ($viewer) {
                 $data['isAdministrated'] = $viewer->administrator($entity);
             }
         }
         
-        if ($viewer && !$viewer->eql($entity)) {
-            if ( $entity->isFollowable() ) {
+        if ($viewer && ! $viewer->eql($entity)) {
+            if ($entity->isFollowable()) {
                 $data['isLeader'] = $viewer->following($entity);
             }
-            if ( $entity->isLeadable() ) {
+            if ($entity->isLeadable()) {
                 $data['isFollower'] = $viewer->leading($entity);
             }
         }
         
-        if ($entity->isModifiable() && !is_person($entity)) {
+        if ($entity->isModifiable() && ! is_person($entity)) {
             $data->append(array(
                 'author'        => null,
                 'creationTime'  => null,
@@ -109,8 +106,8 @@ class ComBaseDomainSerializerDefault extends AnDomainSerializerDefault
         }
         
         if ($entity->isCommentable()) {
-            $data['openToComment'] = (bool)$entity->openToComment;
-            $data['numOfComments'] = $entity->numOfComments;
+            $data['commentStatus'] = (bool)$entity->commentStatus;
+            $data['commentCount'] = $entity->commentCount;
             $data['lastCommentTime'] = $entity->lastCommentTime ? $entity->lastCommentTime->getDate() : null;
             $data['lastComment'] = null;
             $data['lastCommenter'] = null;

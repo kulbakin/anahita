@@ -37,7 +37,7 @@
     
     <div class="entity-meta">        
         <ul class="an-meta inline">
-            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $photo->numOfComments) ?></li>
+            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $photo->commentCount) ?></li>
             <?php if ($photo->lastCommenter): ?>
                 <li><?= @textf('LIB-AN-MEDIUM-LAST-COMMENT-BY-X', @name($photo->lastCommenter), @date($photo->lastCommentTime)) ?></li>
             <?php endif ?>

@@ -181,6 +181,6 @@ class ComBaseControllerBehaviorCommentable extends KControllerBehaviorAbstract
     protected function _actionCommentstatus(KCommandContext $context)
     {
         $data = $context->data;
-        $this->getItem()->openToComment = (bool)$data->status;
+        $this->getItem()->commentStatus = (bool)$data->status;
     }
 }

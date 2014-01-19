@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Default Authorizer
  * 
@@ -71,7 +70,7 @@ class LibBaseDomainAuthorizerDefault extends LibBaseDomainAuthorizerAbstract
                 return true;
             }
             
-            if ( ! $this->_entity->openToComment) {
+            if ( ! $this->_entity->commentStatus) {
                 return false;
             }
             

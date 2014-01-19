@@ -37,7 +37,7 @@
     
     <div class="entity-meta">
         <ul class="an-meta inline">
-            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $topic->numOfComments) ?></li>
+            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $topic->commentCount) ?></li>
         </ul>
         
         <div class="an-meta vote-count-wrapper" id="vote-count-wrapper-<?= $topic->id ?>">

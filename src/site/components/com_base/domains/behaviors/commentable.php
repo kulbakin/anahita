@@ -45,8 +45,8 @@ class ComBaseDomainBehaviorCommentable extends AnDomainBehaviorAbstract
     {
         $config->append(array(
             'attributes' => array(
-                'openToComment'     => array('column' => 'comment_status',  'default' => true,  'write' => 'protected'),
-                'numOfComments'     => array('column' => 'comment_count',   'default' => 0,     'write' => 'private'),
+                'commentStatus'     => array('column' => 'comment_status',  'default' => true,  'write' => 'protected'),
+                'commentCount'      => array('column' => 'comment_count',   'default' => 0,     'write' => 'private'),
                 'lastCommentTime'   => array('column' => 'last_comment_on', 'write' => 'private')
             ),
             'relationships' => array(
@@ -54,7 +54,13 @@ class ComBaseDomainBehaviorCommentable extends AnDomainBehaviorAbstract
                 'lastCommenter' => array('parent' => 'com:people.domain.entity.person', 'child_column' => 'last_comment_by', 'write' => 'private'),
                 'comments'      => array('child' =>'comment', 'child_key' => 'parent','parent_delete' => 'ignore')
             ),
-            'comment' => array()
+            'comment' => array(),
+            
+            // XXX backward compatibility synonyms, it is advised to use primary names: commentStatus and commentCount
+            'aliases' => array(
+                'openToComment' => 'commentStatus',
+                'numOfComments' => 'commentCount',
+            )
         ));
         
         parent::_initialize($config);
@@ -144,7 +150,7 @@ class ComBaseDomainBehaviorCommentable extends AnDomainBehaviorAbstract
     public function resetStats(array $entities)
     {
         foreach ($entities as $entity) {
-            $entity->set('numOfComments', $entity->comments->getTotal());
+            $entity->set('commentCount', $entity->comments->getTotal());
             $last_comment = $entity->comments->reset()->order('creationTime','DESC')->fetch();
             $entity->set('lastComment', $last_comment);
             if ($last_comment) {

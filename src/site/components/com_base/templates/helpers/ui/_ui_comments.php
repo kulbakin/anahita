@@ -19,7 +19,7 @@
         <?php if ($viewer->guest()): ?>
             <?= $entity->get('type') ?>
             <?php $return = base64_encode(@route($entity->getURL())); ?>
-        <?php elseif ( ! $entity->openToComment): ?>
+        <?php elseif ( ! $entity->commentStatus): ?>
             <?= @message(@text('LIB-AN-COMMENTS-ARE-CLOSED')) ?>
         <?php elseif ( ! empty($require_follow)): ?>
            <div class="alert alert-info">

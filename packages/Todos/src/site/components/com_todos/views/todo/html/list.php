@@ -31,7 +31,7 @@
     <div class="entity-meta">
         <ul class="an-meta inline">
             <li><?= @text('COM-TODOS-TODO-PRIORITY') ?>: <span class="priority <?= @helper('priorityLabel', $todo) ?>"><?= @helper('priorityLabel', $todo) ?></span></li>
-            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $todo->numOfComments) ?></li>
+            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $todo->commentCount) ?></li>
             <?php if ( ! isset($pid) && isset($todo->todolist)): ?>
                 <li><?= @text('COM-TODOS-TODO-META-TODOLIST') ?>: <a href="<?= @route($todo->todolist->getURL()) ?>"><?= @escape($todo->todolist->title) ?></a></li>
             <?php endif ?>

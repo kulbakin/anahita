@@ -10,7 +10,7 @@
                 <?= @textf('COM-TODOS-TODOLIST-COMPLETED-BY-REPORT', @date($todo->openStatusChangeTime), @name($todo->lastChanger)) ?>
             </li>
         <?php endif ?>
-        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $todo->numOfComments) ?></li>
+        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $todo->commentCount) ?></li>
     </ul>
 </module>
 

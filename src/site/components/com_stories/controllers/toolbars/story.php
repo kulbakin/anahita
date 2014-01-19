@@ -37,7 +37,7 @@ class ComStoriesControllerToolbarStory extends ComBaseControllerToolbarDefault
             $this->getController()->setItem($story);
         }
         
-        if ($story->numOfComments > 10) {
+        if ($story->commentCount > 10) {
             $this->addCommand('view');
         }
         
@@ -54,7 +54,7 @@ class ComStoriesControllerToolbarStory extends ComBaseControllerToolbarDefault
     protected function _commandView($command)
     {
         $entity = $this->getController()->getItem();
-        $label = JText::nsprintf('COM-STORIES-VIEW-ALL-COMMENTS', $entity->getNumOfComments());
+        $label = JText::nsprintf('COM-STORIES-VIEW-ALL-COMMENTS', $entity->commentCount);
         $command->append(array('label' => $label));
         $command->href(JRoute::_($entity->getURL()));
     }

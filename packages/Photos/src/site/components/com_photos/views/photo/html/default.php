@@ -15,7 +15,7 @@
         <li><?= @textf('LIB-AN-MEDIUM-AUTHOR', @date($photo->creationTime), @name($photo->author)) ?></li>
         <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($photo->updateTime), @name($photo->editor)) ?></li>
         <li><?= @ntextf('COM-PHOTOS-PHOTO-META-SETS', $photo->sets->getTotal()) ?></li>
-        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $photo->numOfComments) ?></li>
+        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $photo->commentCount) ?></li>
     </ul>
 </module>
 

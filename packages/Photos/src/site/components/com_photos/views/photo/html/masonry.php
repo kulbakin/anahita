@@ -47,7 +47,7 @@
         <ul class="an-meta inline">
             <li>
                 <a href="<?= @route($photo->getURL()) ?>">
-                    <?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $photo->numOfComments) ?>
+                    <?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $photo->commentCount) ?>
                 </a>
             </li>
             <?php if ($photo->lastCommenter): ?>

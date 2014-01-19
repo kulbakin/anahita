@@ -38,7 +38,7 @@
         <?php endif ?>
         
         <ul class="an-meta inline">
-            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $page->numOfComments) ?></li>
+            <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $page->commentCount) ?></li>
             <?php if (isset($page->editor)): ?>
                 <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($page->updateTime), @name($page->editor)) ?></li>
             <?php endif ?>

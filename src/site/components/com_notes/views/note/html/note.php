@@ -19,9 +19,9 @@
     </div>
     
     <div class="entity-meta">
-        <?php if ($note->numOfComments): ?> 
+        <?php if ($note->commentCount): ?> 
             <ul class="an-meta">
-                <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $note->numOfComments) ?></li> 
+                <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $note->commentCount) ?></li> 
                 <li><?= @textf('LIB-AN-MEDIUM-LAST-COMMENT-BY-X', @name($note->lastCommenter), @date($note->lastCommentTime)) ?></li>
             </ul>
         <?php endif ?>

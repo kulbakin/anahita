@@ -10,7 +10,7 @@
     <ul class="an-meta" >
         <li><span class="label label-info"><?= @text('COM-PAGES-PAGE-REVISION-META-CURRENT') ?></span></li>
         <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($page->updateTime), @name($page->editor)) ?></li>
-        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $page->numOfComments) ?></li>
+        <li><?= @ntextf('LIB-AN-MEDIUM-NUMBER-OF-COMMENTS', $page->commentCount) ?></li>
     </ul>
 </module>
 
