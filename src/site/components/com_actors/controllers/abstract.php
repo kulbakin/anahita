@@ -137,8 +137,8 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
                 $story = $this->createStory(array(
                    'name'   => 'avatar_edit',
                    'owner'  => $entity,
-                   'target' => $entity
-                ));
+                   'target' => $entity,
+                ), true);
             } else {
                 $this->getItem()->removePortraitImage();
             }

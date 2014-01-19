@@ -78,10 +78,10 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
                     'subject' => $this->actor,
                     'owner'   => $this->actor,
                     'target'  => $this->getItem()
-            ));
+            ), true);
             
             //if the entity is not an adiminstrable actor (person)
-            $this->createNotification(array('subject'=>$this->actor, 'target'=>$this->getItem(),'name'=>'actor_follow'));
+            $this->createNotification(array('subject' => $this->actor, 'target' => $this->getItem(), 'name' => 'actor_follow'));
         }
         
         return $this->getItem();

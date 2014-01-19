@@ -17,9 +17,11 @@ class ComStoriesControllerBehaviorPublisher extends KControllerBehaviorAbstract
      * 
      * @param array|KCommandContext $config Config. Can be a story data or KCommandContext if the method
      *  is used as a callback
+     * @param bool[optional] $is_exclusive if the story is exclusive meaning only 1 story of specified name
+     *  can exist for each owner-target combination
      * @return ComStoriesDomainEntityStory
      */
-    public function createStory($config = array())
+    public function createStory($config = array(), $is_exclusive = false)
     {
         $config = new KConfig($config);
         
@@ -29,10 +31,18 @@ class ComStoriesControllerBehaviorPublisher extends KControllerBehaviorAbstract
             'component' => 'com_'.$this->_mixer->getIdentifier()->package,
         ));
         
-        $story = $this->getService('repos://site/stories')
-            ->create($config->toArray());
-            
+        $repo = $this->getService('repos://site/stories');
+        if ($is_exclusive) {
+            $repo->getQuery(true)
+                ->where('name', '=', $config->name)
+                ->where('owner', '=', $config->owner)
+                ->where('target', '=', $config->target)
+                ->destroy();
+        }
+        
+        $story = $repo->create($config->toArray());
         $story->save();
+        
         return $story;
     }
 }
