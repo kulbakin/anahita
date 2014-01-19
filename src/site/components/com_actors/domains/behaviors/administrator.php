@@ -2,7 +2,7 @@
 /**
  * An administrator actor, is an actor that can administrate other actors. Person a
  * actor is a prominent example of an administrator actor 
- *
+ * 
  * @category   Anahita
  * @package    Com_Actors
  * @subpackage Domain_Behavior
@@ -33,8 +33,7 @@ class ComActorsDomainBehaviorAdministrator extends AnDomainBehaviorAbstract
     }
     
     /**
-     * Return if the receiver actor acts as the administrator of the 
-     * $actor
+     * Return if the receiver actor acts as the administrator of the $actor
      * 
      * @param ComActorsDomainEntityActor $actor Actor Entity
      * @return boolean

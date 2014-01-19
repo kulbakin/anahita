@@ -22,11 +22,8 @@ class ComActorsViewSettingsJson extends ComBaseViewJson
         $config = new KConfig();
         foreach ($this->_state->getItem()->components as $component) {
             $permissions = array();
-                        
-            if ( ! $component->isAssignable()) {
-                continue;
-            }
             
+            if ( ! $component->isAssignable()) continue;
             if ( ! count($component->getPermissions())) continue;
             
             foreach ($component->getPermissions() as $identifier => $actions) {

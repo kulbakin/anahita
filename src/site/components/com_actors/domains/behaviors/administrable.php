@@ -49,8 +49,7 @@ class ComActorsDomainBehaviorAdministrable extends AnDomainBehaviorAbstract
     public function addAdministrator($person)
     {
         $result = $this->administrators->insert($person);
-        //if the actor is followable then the admin must also follow
-        //the actor
+        //if the actor is followable then the admin must also follow the actor
         if ($this->isFollowable()) {
             $this->addFollower($person);
         }
