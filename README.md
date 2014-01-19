@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update story publishing logic to have *avatar_edit* and *actor_follow* stories appear only once
+  for the same combination of story *owner* and *target*
+  [9b4ef15](https://github.com/kulbakin/anahita/commit/9b4ef15b68ec925d08d643af9bbee19bfadf452c)
 * remove no longer relevant firefox image border-radius fix
   [45e2e80](https://github.com/kulbakin/anahita/commit/45e2e800c674f6c2b7a161390f80f0ffd0b29090)
 * (legacy) add support for readonly parameters in joomla component configs
@@ -109,8 +112,8 @@ changes.
   [a17dfa3](https://github.com/kulbakin/anahita/commit/a17dfa34c42910cddb9db43909af9962cdbbe394),
   [5bc22aa](https://github.com/kulbakin/anahita/commit/5bc22aa424eb3542aae3a57bc934627a1d97ad74),
   [e27ed7a](https://github.com/kulbakin/anahita/commit/e27ed7a34045e7f630c0b4045eafb80d35b01fad)
-* fix *KConfig::append()* so it supports mixed key types in parameter, i.e. checks key type for each element instead
-  of deciding on key type by the first one
+* fix *KConfig::append()* so it supports mixed key types in parameter, i.e. checks key type for 
+  each element instead of deciding on key type by the first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
 * fix internal helper method *AnHelperArray::getValueAtIndex()*
   [6e209f7](https://github.com/kulbakin/anahita/commit/6e209f780872af6c321e9ee7a6a3764d297b590e)
