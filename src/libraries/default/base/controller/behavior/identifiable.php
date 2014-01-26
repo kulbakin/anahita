@@ -218,9 +218,9 @@ class LibBaseControllerBehaviorIdentifiable extends KControllerBehaviorAbstract
                 //see if the entity exits or not
                 if ($query->disableChain()->fetch()) {
                     if ($this->viewer && ! $this->viewer->guest()) {
-                        $exception = new  LibBaseControllerExceptionForbidden('Forbidden');
+                        $exception = new LibBaseControllerExceptionForbidden('Forbidden');
                     } else {
-                        $exception = new  LibBaseControllerExceptionUnauthorized('Not authorized');
+                        $exception = new LibBaseControllerExceptionUnauthorized('Not authorized');
                     }
                 }
                 

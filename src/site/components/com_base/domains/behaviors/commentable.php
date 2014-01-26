@@ -19,11 +19,10 @@ class ComBaseDomainBehaviorCommentable extends AnDomainBehaviorAbstract
      */
     protected $_comment_sanitizer;
     
-    /** 
+    /**
      * Constructor.
      * 
      * @param KConfig $config An optional KConfig object with configuration options.
-     * 
      * @return void
      */
     public function __construct(KConfig $config)
@@ -32,7 +31,7 @@ class ComBaseDomainBehaviorCommentable extends AnDomainBehaviorAbstract
         
         $this->_comment_sanitizer = $config->comment;
     }
-        
+    
     /**
      * Initializes the default configuration for the object
      * 
