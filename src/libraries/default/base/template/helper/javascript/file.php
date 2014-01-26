@@ -76,7 +76,7 @@ class LibBaseTemplateHelperJavascriptFile extends KTemplateHelperAbstract
         
         parent::_initialize($config);
     }
-
+    
     /**
      * Return the content of the file and all of the files included in it
      * 
@@ -139,7 +139,7 @@ class LibBaseTemplateHelperJavascriptFile extends KTemplateHelperAbstract
             $content = $this->_cache_data[$file]['data'];
         }
         return $content;
-    }    
+    }
     
     /**
      * Check if the file or any of the imported files within it has been modified since 

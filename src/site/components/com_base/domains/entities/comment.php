@@ -72,7 +72,7 @@ class ComBaseDomainEntityComment extends ComBaseDomainEntityNode
     {
         $this->parent->getRepository()->getBehavior('commentable')
             ->resetStats(array($this->parent));
-         
+        
         $this->parent->execute('after.comment', array('comment' => $this));
     }
     
@@ -83,7 +83,7 @@ class ComBaseDomainEntityComment extends ComBaseDomainEntityNode
      * @return void
      */
     protected function _afterEntityDelete(KCommandContext $context)
-    {                
+    {
         $this->parent->getRepository()->getBehavior('commentable')
             ->resetStats(array($this->parent));
     }
