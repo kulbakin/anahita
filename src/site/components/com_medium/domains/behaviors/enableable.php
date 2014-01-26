@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Enableable Behavior
  * 
@@ -29,7 +28,7 @@ class ComMediumDomainBehaviorEnableable extends LibBaseDomainBehaviorEnableable
                 $ids   = get_viewer()->administratingIds->toArray();
                 $ids[] = get_viewer()->id;
                 $ids   = implode(',', $ids);
-                $query->where("IF(@col(enabled) = FALSE, @col(owner.id) IN ($ids) ,1)");
+                $query->where("IF(@col(enabled) = FALSE, @col(owner.id) IN ($ids), 1)");
             }
         }
     }
