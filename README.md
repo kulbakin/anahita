@@ -47,12 +47,15 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update template shortcuts `<script src="" />` and `<style src="" />` to support empty container
+  tag notation, i.e. `<script src=""></script>` and `<style src=""></style>` respectively
+  [c9bcb44](https://github.com/kulbakin/anahita/commit/c9bcb44a686412928af7fa62dd8e6e1d780e11b6)
 * update some entity properties to be more consistent with naming patterns used for the project:
   rename *numOfComments*, *openToComment*, *numOfTodolists*, *numOfTodos*, *numOfOpenTodos* to
   *commentCount*, *commentStatus*, *todolistCount*, *todoCount*, *openTodoCount* respectively
   (old names are preserved as aliases for backward compatibility)
   [03d1a65](https://github.com/kulbakin/anahita/commit/03d1a65142d8d5ba3ee785dd301128caf8cdddbd),
-  [105c2ee](https://github.com/kulbakin/anahita/commit/105c2ee869cf0aba7c0a9726fa5e1ffd8e97d669) 
+  [105c2ee](https://github.com/kulbakin/anahita/commit/105c2ee869cf0aba7c0a9726fa5e1ffd8e97d669)
 * update story publishing logic to have *avatar_edit* and *actor_follow* stories appear only once
   for the same combination of story *owner* and *target*
   [9b4ef15](https://github.com/kulbakin/anahita/commit/9b4ef15b68ec925d08d643af9bbee19bfadf452c)
