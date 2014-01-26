@@ -117,7 +117,8 @@ changes.
   [128f8dc](https://github.com/kulbakin/anahita/commit/128f8dc66eea14d1f5e8210e1acfc499c5e6e52f),
   [a17dfa3](https://github.com/kulbakin/anahita/commit/a17dfa34c42910cddb9db43909af9962cdbbe394),
   [5bc22aa](https://github.com/kulbakin/anahita/commit/5bc22aa424eb3542aae3a57bc934627a1d97ad74),
-  [e27ed7a](https://github.com/kulbakin/anahita/commit/e27ed7a34045e7f630c0b4045eafb80d35b01fad)
+  [e27ed7a](https://github.com/kulbakin/anahita/commit/e27ed7a34045e7f630c0b4045eafb80d35b01fad),
+  [9bc90a4](https://github.com/kulbakin/anahita/commit/9bc90a472dff3c57e2805cbbf29974bc433f3967)
 * fix *KConfig::append()* so it supports mixed key types in parameter, i.e. checks key type for 
   each element instead of deciding on key type by the first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
