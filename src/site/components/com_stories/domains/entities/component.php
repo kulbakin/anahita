@@ -1,7 +1,7 @@
 <?php
 /**
  * Story component
- *
+ * 
  * @category   Anahita
  * @package    Com_Stories
  * @subpackage Domain_Entity
@@ -14,9 +14,9 @@ class ComStoriesDomainEntityComponent extends ComComponentsDomainEntityComponent
 {
     /**
      * Initializes the options for the object
-     *
+     * 
      * Called from {@link __construct()} as a first step of object instantiation.
-     *
+     * 
      * @param  object An optional KConfig object with configuration options.
      * @return void
      */
@@ -25,7 +25,7 @@ class ComStoriesDomainEntityComponent extends ComComponentsDomainEntityComponent
         $config->append(array(
             //'assignment_option'   => self::ASSIGNMENT_OPTION_ALWAYS
         ));
-    
+        
         return parent::_initialize($config);
     }
     
@@ -52,7 +52,7 @@ class ComStoriesDomainEntityComponent extends ComComponentsDomainEntityComponent
         $composers   = $event->composers;
         $this->_setGadgets($actor, $gadgets, 'profile');
     }
-     
+    
     /**
      * On Dashboard event
      * 
@@ -81,7 +81,7 @@ class ComStoriesDomainEntityComponent extends ComComponentsDomainEntityComponent
             $gadgets->insert('stories', array(
                 'title'      => JText::_('COM-STORIES-GADGET-TITLE-STORIES'),
                 'show_title' => get_viewer()->guest(),
-                'content'    => $content
+                'content'    => $content,
             ));
         } else {
             $controller->view('stories')->filter('leaders');
@@ -89,7 +89,7 @@ class ComStoriesDomainEntityComponent extends ComComponentsDomainEntityComponent
             $gadgets->insert('stories', array(
                 'title'      => JText::_('COM-STORIES-GADGET-TITLE-STORIES'),
                 'show_title' => get_viewer()->guest(),
-                'content'    => $content
+                'content'    => $content,
             ));
         }
     }

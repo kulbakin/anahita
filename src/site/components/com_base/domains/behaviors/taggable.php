@@ -40,7 +40,7 @@ class ComBaseDomainBehaviorTaggable extends AnDomainBehaviorAbstract
         
         parent::_initialize($config);
     }
-        
+    
     /**
      * Seaches for hashtags to add/remove a tag
      * 
@@ -62,7 +62,6 @@ class ComBaseDomainBehaviorTaggable extends AnDomainBehaviorAbstract
     {
         $this->_mixer->addHashtagsAsTagsFrom($this->_mixer->body);
     }
-    
     
     /**
      * Add an entity hash tags as tags

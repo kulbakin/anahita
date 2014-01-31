@@ -125,7 +125,7 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
     protected function _actionException(KCommandContext $context)
     {
         $exception = $context->data;
-                
+        
         //if JException then conver it to KException
         if ($exception instanceof JException) {
             $exception = new RuntimeException($exception->getMessage(),$exception->getCode());

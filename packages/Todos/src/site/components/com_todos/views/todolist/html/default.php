@@ -5,12 +5,12 @@
 <module position="sidebar-b" title="<?= @text('LIB-AN-META') ?>">
     <ul class="an-meta">
         <li><?= @textf('LIB-AN-MEDIUM-AUTHOR', @date($todolist->creationTime), @name($todolist->author)) ?></li>
-        <?php if(isset($todo->editor)) : ?>
+        <?php if (isset($todo->editor)): ?>
             <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($todolist->updateTime), @name($todolist->editor)) ?></li>
         <?php endif ?>
         <li><?= @ntextf('COM-TODOS-TODOLIST-COUNTS', (int)$todolist->openTodoCount, (int)$todolist->todoCount) ?></li>
         
-        <?php if(isset($todolist->milestone->id)): ?>
+        <?php if (isset($todolist->milestone->id)): ?>
             <li>
                 <?= @text('COM-TODOS-TODOLIST-META-MILESTONE') ?>: <a href="<?= @route($todolist->milestone->getURL()) ?>"><?= @escape($todolist->milestone->title) ?></a>
             </li>

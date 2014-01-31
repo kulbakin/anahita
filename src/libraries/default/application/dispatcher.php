@@ -158,7 +158,7 @@ class LibApplicationDispatcher extends LibBaseDispatcherApplication
                 if ($i == 0) {
                     if (strpos($arg,'/') !== false) {
                         $arg  =  substr_replace($arg, '?', strpos($arg,'&'), 1);
-                        $url  = KService::get('koowa:http.url', array('url'=>$arg));
+                        $url  = KService::get('koowa:http.url', array('url' => $arg));
                         KRequest::url()->path = KRequest::base().$url->path;
                         $_GET = $url->query;
                     } else {

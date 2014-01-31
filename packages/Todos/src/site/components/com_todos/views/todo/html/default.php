@@ -4,7 +4,7 @@
     <ul class="an-meta">
         <?php if (isset($todo->editor)): ?>
             <li><?= @textf('LIB-AN-MEDIUM-EDITOR', @date($todo->updateTime), @name($todo->editor)) ?></li>
-        <?php endif; ?>
+        <?php endif ?>
         <?php if ( ! $todo->open): ?>
             <li>
                 <?= @textf('COM-TODOS-TODOLIST-COMPLETED-BY-REPORT', @date($todo->openStatusChangeTime), @name($todo->lastChanger)) ?>
