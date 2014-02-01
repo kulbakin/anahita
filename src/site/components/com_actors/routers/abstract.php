@@ -73,7 +73,7 @@ abstract class ComActorsRouterAbstract extends ComBaseRouterDefault
         $last = AnHelperArray::getValueAtIndex($segments, AnHelperArray::LAST_INDEX);
         
         if (preg_match('/@\w+/', $last)) {
-            $vars['oid'] = str_replace('@','',array_pop($segments));
+            $vars['oid'] = str_replace('@', '', array_pop($segments));
         }
         
         $vars = array_merge($vars, parent::parse($segments));

@@ -23,10 +23,10 @@ class ComPeopleControllerSession extends ComBaseControllerResource
         parent::__construct($config);
         
         $this->registerCallback('after.login', array($this, 'redirect'),
-                array('url' => $config->redirect_to_after_login));
+            array('url' => $config->redirect_to_after_login));
         
         $this->registerCallback('after.delete', array($this, 'redirect'),
-                array('url' => $config->redirect_to_after_logout));
+            array('url' => $config->redirect_to_after_logout));
     }
     
     /**

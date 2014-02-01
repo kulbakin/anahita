@@ -135,7 +135,7 @@ class ComActorsViewSettingsHtml extends ComBaseViewHtml
         }
         
         $this->getService('anahita:event.dispatcher')
-            ->dispatchEvent('onSettingDisplay', array('actor'=>$this->_state->getItem(), 'tabs'=>$tabs));
+            ->dispatchEvent('onSettingDisplay', array('actor' => $this->_state->getItem(), 'tabs' => $tabs));
         
         $url        = $this->_state->getItem()->getURL(false).'&get=settings&edit=';
         $active_tab = $tabs['profile'];

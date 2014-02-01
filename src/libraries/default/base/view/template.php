@@ -24,7 +24,7 @@ class LibBaseViewTemplate extends LibBaseViewAbstract
      * 
      * @var string
      */
-    protected $_escape; 
+    protected $_escape;
     
     /**
      * Auto assign
@@ -50,7 +50,7 @@ class LibBaseViewTemplate extends LibBaseViewAbstract
         parent::__construct($config);
         
         //set the media url
-        if( ! $config->media_url instanceof KHttpUrl) {
+        if ( ! $config->media_url instanceof KHttpUrl) {
             $this->_mediaurl = KService::get('koowa:http.url', array('url' => $config->media_url));
         } else {
             $this->_mediaurl = $config->media_url;
@@ -59,14 +59,14 @@ class LibBaseViewTemplate extends LibBaseViewAbstract
         // set the auto assign state
         $this->_auto_assign = $config->auto_assign;
         
-         // user-defined escaping callback
+        // user-defined escaping callback
         $this->setEscape($config->escape);
         
         // set the template object
         $this->_template = $config->template;
         
         //Set the template filters
-        if(!empty($config->template_filters)) {
+        if ( ! empty($config->template_filters)) {
             $this->getTemplate()->addFilter($config->template_filters);
         }
         
@@ -75,9 +75,8 @@ class LibBaseViewTemplate extends LibBaseViewAbstract
         
         //Add alias filter for media:// namespace
         $this->getTemplate()->getFilter('alias')->append(
-            array('media://' => (string) $this->_mediaurl.'/'), KTemplateFilter::MODE_READ | KTemplateFilter::MODE_WRITE
+            array('media://' => (string)$this->_mediaurl.'/'), KTemplateFilter::MODE_READ | KTemplateFilter::MODE_WRITE
         );
-        
     }
     
     /**
@@ -89,7 +88,7 @@ class LibBaseViewTemplate extends LibBaseViewAbstract
      * @return  void
      */
     protected function _initialize(KConfig $config)
-    {        
+    {
         $config->append(array(
             'escape'           => 'htmlspecialchars',
             'template'         => $this->getName(),
@@ -193,7 +192,6 @@ class LibBaseViewTemplate extends LibBaseViewAbstract
      * 
      * @param string $layout The layout
      * @param array $data    The data
-     * 
      * @return void
      */
     public function load($template, $data = array())
@@ -228,7 +226,7 @@ class LibBaseViewTemplate extends LibBaseViewAbstract
     
     /**
      * Get the view media url
-     *
+     * 
      * @return object A KHttpUrl object
      */
     public function getMediaUrl()

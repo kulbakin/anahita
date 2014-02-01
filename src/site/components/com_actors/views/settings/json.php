@@ -37,7 +37,7 @@ class ComActorsViewSettingsJson extends ComBaseViewJson
                 foreach ($actions as $action) {
                     $key   = $identifier->package.':'.$identifier->name.':'.$action;
                     $value = $this->_state->getItem()->getPermission($key);
-                    $permissions[] = array('name'=>$key, 'value'=>$value);
+                    $permissions[] = array('name' => $key, 'value' => $value);
                 }
                 $config->append(array(
                     $component->component => array('name' => $component->component, 'enabled' => true, 'permissions' => $permissions)

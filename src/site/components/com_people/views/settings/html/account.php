@@ -46,7 +46,7 @@
         <div class="controls">
             <div class="input-prepend">
                 <span class="add-on"><i class="icon-lock"></i></span>
-                <?= @helper('password.input', '', false)?>
+                <?= @helper('password.input', '', false) ?>
             </div>
         </div>
     </div>
