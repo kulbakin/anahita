@@ -37,6 +37,7 @@ class ComStoriesControllerBehaviorPublisher extends KControllerBehaviorAbstract
                 ->where('name', '=', $config->name)
                 ->where('owner', '=', $config->owner)
                 ->where('target', '=', $config->target)
+                ->where('object', '=', $config->object)
                 ->destroy();
         }
         
