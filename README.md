@@ -58,7 +58,8 @@ changes.
   [105c2ee](https://github.com/kulbakin/anahita/commit/105c2ee869cf0aba7c0a9726fa5e1ffd8e97d669)
 * update story publishing logic to have *avatar_edit* and *actor_follow* stories appear only once
   for the same combination of story *owner* and *target*
-  [9b4ef15](https://github.com/kulbakin/anahita/commit/9b4ef15b68ec925d08d643af9bbee19bfadf452c)
+  [9b4ef15](https://github.com/kulbakin/anahita/commit/9b4ef15b68ec925d08d643af9bbee19bfadf452c),
+  [a39aa98](https://github.com/kulbakin/anahita/commit/a39aa987dc4034d620e4af5e3d663f4f09e3c297)
 * remove no longer relevant firefox image border-radius fix
   [45e2e80](https://github.com/kulbakin/anahita/commit/45e2e800c674f6c2b7a161390f80f0ffd0b29090)
 * (legacy) add support for readonly parameters in joomla component configs
