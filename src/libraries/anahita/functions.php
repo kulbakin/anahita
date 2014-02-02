@@ -168,7 +168,7 @@ function is()
         } elseif (is_object($object)) {
             $ret = $object instanceof $class;
         } elseif (is_string($object) && ! in_array($class, array('boolean', 'integer', 'double', 'string', 'array', 'object', 'resource')) && class_exists($object)) {
-            $ret = $object == $class || is_subclass_of($object,$class) || in_array($class, class_implements($object));
+            $ret = $object == $class || is_subclass_of($object, $class) || in_array($class, class_implements($object));
         } else {
             $ret = gettype($object) == strtolower($class);
         }
