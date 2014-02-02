@@ -101,7 +101,8 @@ changes.
 * fix *LibApplicationRouter::build()* to construct base url, i.e. when empty string is submitted
   as argument, WITHOUT index.php part (applies only when *enable_rewrite* application config is
   enabled)
-  [4781d13](https://github.com/kulbakin/anahita/commit/4781d135304f2cf8ba132a7dfdb51cef3bed9a68)
+  [4781d13](https://github.com/kulbakin/anahita/commit/4781d135304f2cf8ba132a7dfdb51cef3bed9a68),
+  [e9d335e](https://github.com/kulbakin/anahita/commit/e9d335e4e20f247d048697f10ae49696e074c687)
 * fix notification button on profile when viewer is not following viewed actor, since notifications
   cannot be managed, hide the button in such case
   [fd7aa0a](https://github.com/kulbakin/anahita/commit/fd7aa0ab8deb6588187f02c0fd9b0a36fba263de)
