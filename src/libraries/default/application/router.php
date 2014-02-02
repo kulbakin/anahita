@@ -168,6 +168,9 @@ class LibApplicationRouter extends KObject
         if (strpos($url, 'index.php?') === 0) {
             // remove the index.php for urls that starts with index.php?
             $url = substr($url, 9);
+        } elseif ('index.php' == $url) {
+            // equivalent of root path
+            $url = '';
         } elseif (preg_match('%^[^?/]+=%', $url) ) {
             // add ? to the urls that starts with a query key=
             $url = '?'.$url;
