@@ -17,7 +17,7 @@ class ComBaseControllerBehaviorSubscribable extends KControllerBehaviorAbstract
      * 
      * @param KCommandContext $context Context parameter
      * @return void
-     */    
+     */
     protected function _actionTogglesubscription(KCommandContext $context)
     {
         if ($this->getItem()->subscribed(get_viewer())) {

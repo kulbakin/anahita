@@ -29,13 +29,12 @@ class PackageCommand extends Command
              ->getExtensionPackages()
              ->findPackages($packages);
         
-        if ( !count($packages) ) {
+        if ( ! count($packages)) {
             throw new \RuntimeException('Invalid Packages');
         }
         
         $this->getApplication()->loadFramework();
-        \KService::get('koowa:loader')
-            ->loadIdentifier('com://admin/migrator.helper');
+        \KService::get('koowa:loader')->loadIdentifier('com://admin/migrator.helper');
         
         /*
         $helper = $this->getHelperSet();
@@ -43,35 +42,35 @@ class PackageCommand extends Command
         $get_composer = function($root) use($input, $output, $helper,$io) {
             global $composerLoader;
             $embeddedComposerBuilder = new \Dflydev\EmbeddedComposer\Core\EmbeddedComposerBuilder($composerLoader, $root);
-            return $embeddedComposerBuilder->build();            
+            return $embeddedComposerBuilder->build();
         };
         */
         
         foreach ($packages as $package) {
             $mapper   = new \Installer\Mapper($package->getSourcePath(), WWW_ROOT);
-            $mapper->addCrawlMap('',  array(
+            $mapper->addCrawlMap('', array(
                 '#^(site|administrator)/(components|modules|templates|media)/([^/]+)/.+#' => '\1/\2/\3',
                 '#^(media)/([^/]+)/.+#' => '\1/\2',
-                '#CHANGELOG.php#'  => '',
-                '#^migration.*#'     => '',
-                '#manifest.xml#'   => ''
+                '#CHANGELOG.php#' => '',
+                '#^migration.*#' => '',
+                '#manifest.xml#' => '',
             ));
             $output->writeLn("<info>Linking {$package->getFullName()} Package</info>");
             $mapper->symlink();
             
-//             $root     = $get_composer(COMPOSER_ROOT)->createComposer($io);
-//             $app      = $get_composer($package->getRoot())->createComposer($io);
+//             $root = $get_composer(COMPOSER_ROOT)->createComposer($io);
+//             $app  = $get_composer($package->getRoot())->createComposer($io);
             
 //             $requires = $root->getPackage()->getRequires();
             
 //             foreach($app->getPackage()->getRequires() as $require) {
 //                 $output->writeLn((string)$require);
-//                 //$require    = new \Composer\Package\Link('__root__',$require->getTarget(), $require->getConstraint(), null, $require->getPrettyConstraint());
+//                 //$require = new \Composer\Package\Link('__root__', $require->getTarget(), $require->getConstraint(), null, $require->getPrettyConstraint());
 //                 $requires[] = $require;
 //             }
 
 //             $root->getPackage()->setRequires($requires);
-//             $installer = \Composer\Installer::create($io, $root);            
+//             $installer = \Composer\Installer::create($io, $root);
             
 //             $installer->setDryRun(true);
 //             $installer->setUpdate(true);
@@ -87,8 +86,9 @@ class PackageCommand extends Command
         $manifests = array();
         foreach ($files as $file) {
            if ($file->isFile() && pathinfo($file->getFilename(), PATHINFO_EXTENSION) == 'xml') {
-               $xml     = new \SimpleXMLElement(file_get_contents($file));
-               $install = array_pop($xml->xpath('/install'));
+               $xml = new \SimpleXMLElement(file_get_contents($file));
+               $t = $xml->xpath('/install');
+               $install = array_pop($t);
                if ($install && in_array($install['type'], array('component','plugin','module'))) {
                    $manifests[dirname($file)] = $install;
                }
@@ -99,12 +99,12 @@ class PackageCommand extends Command
             $method   = '_install'.ucfirst($type);
             $name     = (string)$manifest->name[0].' '.$type;
             $this->$method($manifest, $output, $dir, $schema);
-        }                        
+        }
     }
     
     protected function _installModule($manifest, $output)
     {
-        $name     = strtolower((string)$manifest->name[0]);
+        $name = strtolower((string)$manifest->name[0]);
         $output->writeLn("<info>...installing module $name</info>");
     }
     
@@ -117,7 +117,7 @@ class PackageCommand extends Command
             if (($name = (string)$file->attributes()->plugin)) {
                 $plugin = $plugins->findOrAddNew(array(
                     'element' => $name,
-                    'folder'  => $group 
+                    'folder'  => $group,
                 ), array('data' => array('params' => '', 'published' => true)));
                 $plugin->name = (string)$manifest->name;
                 $plugin->saveEntity();
@@ -132,14 +132,15 @@ class PackageCommand extends Command
         $name = \KService::get('koowa:filter.cmd')->sanitize($manifest->name[0]);
         $name = 'com_'.strtolower($name);
         
-        $components = \KService::get('repos:cli.component', 
-                    array('resources'=>'components'));
+        $components = \KService::get('repos:cli.component', array('resources' => 'components'));
         
-        //find or create a component
-        $component = $components->findOrAddNew(array('option' => $name,'parent' => 0),
-                     array('data' => array('params' => '')));
+        // find or create a component
+        $component = $components->findOrAddNew(
+            array('option' => $name, 'parent' => 0),
+            array('data' => array('params' => '')
+        ));
         
-        //remove any child component
+        // remove any child component
         $components->getQuery()
             ->option($name)
             ->parent('0','>')->destroy();
@@ -153,7 +154,7 @@ class PackageCommand extends Command
             'link'      => '',
             'adminMenuLink' => '',
             'adminMenuAlt'  => '',
-            'adminMenuImg'  => ''
+            'adminMenuImg'  => '',
         ));
         
         if ($site_menu) {
@@ -165,15 +166,14 @@ class PackageCommand extends Command
                 'link'      => 'option='.$name,
                 'adminMenuLink' => 'option='.$name,
                 'adminMenuAlt'  => (string)$admin_menu,
-                'adminMenuImg'  => 'js/ThemeOffice/component.png'
+                'adminMenuImg'  => 'js/ThemeOffice/component.png',
             ));
         }
-        //first time installing the component then
-        //run the schema
+        // first time installing the component then run the schema
         if ($component->isNew()) {
             $schema = true;
         }
-        $output->writeLn('<info>...installing '.str_replace('com_','',$name).' component</info>');        
+        $output->writeLn('<info>...installing '.str_replace('com_','',$name).' component</info>');
         $component->saveEntity();
         if ($schema && file_exists($path.'/schemas/schema.sql')) {
              $output->writeLn('<info>...running schema for '.str_replace('com_','',$name).' component</info>');

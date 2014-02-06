@@ -203,7 +203,7 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
             // if actorbar or menu alawys default to the base
             if (in_array($toolbar, array('actorbar'))) {
                 $identifier       = clone $this->getIdentifier();
-                $identifier->path = array('controller','toolbar');
+                $identifier->path = array('controller', 'toolbar');
                 $identifier->name = $toolbar;
                 register_default(array('identifier' => $identifier, 'default' => 'ComActorsControllerToolbar'.ucfirst($toolbar)));
                 $toolbar = $identifier;
@@ -211,7 +211,7 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
         }
         
         return parent::getToolbar($toolbar, $config);
-    } 
+    }
     
     /**
      * Overwrite the setPrivacy action in privatable behavior
