@@ -106,7 +106,7 @@ changes.
 * fix notification button on profile when viewer is not following viewed actor, since notifications
   cannot be managed, hide the button in such case
   [fd7aa0a](https://github.com/kulbakin/anahita/commit/fd7aa0ab8deb6588187f02c0fd9b0a36fba263de)
-* (legacy) fix joomla legacy not to issue strict standards notifications, fix method declarations
+* fix strict standards notifications, fix method declarations
   in child classes to comply with php 5.4+ strict standards restrictions (though there is constant
   effort to get rid of joomla legacy, anahita codebase still strongly relies on it and seems to
   continue be that way for some time, thus in order to efficienly develop in php 5.4+ strict
@@ -123,7 +123,8 @@ changes.
   [a17dfa3](https://github.com/kulbakin/anahita/commit/a17dfa34c42910cddb9db43909af9962cdbbe394),
   [5bc22aa](https://github.com/kulbakin/anahita/commit/5bc22aa424eb3542aae3a57bc934627a1d97ad74),
   [e27ed7a](https://github.com/kulbakin/anahita/commit/e27ed7a34045e7f630c0b4045eafb80d35b01fad),
-  [9bc90a4](https://github.com/kulbakin/anahita/commit/9bc90a472dff3c57e2805cbbf29974bc433f3967)
+  [9bc90a4](https://github.com/kulbakin/anahita/commit/9bc90a472dff3c57e2805cbbf29974bc433f3967),
+  [7df4620](https://github.com/kulbakin/anahita/commit/7df46208b3270716a110b3b8fac278c90ed2dd6d)
 * fix *KConfig::append()* so it supports mixed key types in parameter, i.e. checks key type for 
   each element instead of deciding on key type by the first one
   [48a627c](https://github.com/kulbakin/anahita/commit/48a627c5e570429b65fea0da7d1cc454fb838537)
