@@ -37,9 +37,9 @@ class ComConnectControllerBehaviorOauthorizable extends KControllerBehaviorAbstr
         
         $this->_consumer = $config->consumer;
         
-        if ( $config->api ) {
-            $this->_api  = $config->api;
-            $this->_api->setConsumer( $this->_consumer );
+        if ($config->api) {
+            $this->_api = $config->api;
+            $this->_api->setConsumer($this->_consumer);
         }
         
         $this->registerActionAlias('post','oauthorize');
@@ -54,8 +54,8 @@ class ComConnectControllerBehaviorOauthorizable extends KControllerBehaviorAbstr
     protected function _actionGetaccesstoken(KCommandContext $context)
     {
         $this->getAPI()->requestAccessToken($this->getRequest());
-        $token       = (array)$this->getAPI()->getToken();
-        $consumer    = (array)$this->_consumer;
+        $token    = (array)$this->getAPI()->getToken();
+        $consumer = (array)$this->_consumer;
         KRequest::set('session.oauth', array('api' => $this->getAPI()->getName(), 'token' => $token, 'consumer' => $consumer));
         $return = KRequest::get('session.return', 'raw', null);;
         if ($return) {
@@ -122,21 +122,21 @@ class ComConnectControllerBehaviorOauthorizable extends KControllerBehaviorAbstr
                      'option=com_'.$this->_mixer->getIdentifier()->package,
                      'view='.$this->_mixer->getIdentifier()->name,
                      'server='.$this->server,
-                     'get=accesstoken'
+                     'get=accesstoken',
                 );
-                if ( $this->oid ) {
+                if ($this->oid) {
                     $query[] = 'oid='.$this->oid;
-                }                
+                }
                 $callback = JRoute::_(implode($query, '&'), true);
                 $this->_consumer = new ComConnectOauthConsumer(new KConfig(array(
-                    'key'          => $key, 
-                    'secret'       => $secret, 
+                    'key'          => $key,
+                    'secret'       => $secret,
                     'callback_url' => (string)$callback
                 )));
             }
             
             // set the consumer
-            $this->_api->setConsumer( $this->_consumer );
+            $this->_api->setConsumer($this->_consumer);
             
             $this->_api->setToken($session->token);
         }

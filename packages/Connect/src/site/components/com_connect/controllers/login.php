@@ -21,7 +21,7 @@ class ComConnectControllerLogin extends ComBaseControllerResource
     {
         parent::__construct($config);
     }
-        
+    
     /**
      * Initializes the options for the object
      * 
@@ -35,7 +35,7 @@ class ComConnectControllerLogin extends ComBaseControllerResource
         $config->append(array(
             'behaviors' => array(
                 'oauthorizable',
-                'validatable'
+                'validatable',
             )
         ));
         
@@ -53,7 +53,6 @@ class ComConnectControllerLogin extends ComBaseControllerResource
         parent::_actionGetaccesstoken($context);
         
         $token = $this->getAPI()->getToken();
-        
         if (empty($token)) {
             $context->response->setRedirect(JRoute::_('index.php?'));
             return false;
@@ -76,7 +75,7 @@ class ComConnectControllerLogin extends ComBaseControllerResource
         
         $service    = $this->getAPI()->getName();
         $userid     = $this->getAPI()->getUser()->id;
-        $token      =  $this->getService('repos://site/connect.session')->find(array('profileId'=>$userid,'api'=>$service));        
+        $token      =  $this->getService('repos://site/connect.session')->find(array('profileId' => $userid, 'api' => $service));
         $return_url = KRequest::get('session.return', 'raw');
         if ($token) {
             $person = $token->owner;

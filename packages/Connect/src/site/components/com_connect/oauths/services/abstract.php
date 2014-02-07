@@ -27,7 +27,7 @@ abstract class ComConnectOauthServiceAbstract extends KObject
      * @var string
      */
     public $request_token_url;
-
+    
     /**
      * Access Token URL
      * 
@@ -41,7 +41,7 @@ abstract class ComConnectOauthServiceAbstract extends KObject
      * @var string
      */
     public $authenticate_url;
-
+    
     /**
      * Authorize URL
      * 
@@ -62,7 +62,7 @@ abstract class ComConnectOauthServiceAbstract extends KObject
      * @var AnOauthConsumer
      */
     protected $_consumer;
-
+    
     /**
      * Token
      * 
@@ -167,7 +167,7 @@ abstract class ComConnectOauthServiceAbstract extends KObject
      * @return boolean
      */
     abstract public function canAddService($actor);
-        
+    
     /**
      * Return a user object representing the logged-in user
      * 
