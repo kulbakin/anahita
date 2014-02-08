@@ -33,7 +33,7 @@ class ModMenuHtml extends ModBaseHtml
             }
             
             //check if it has any children. then claim them
-            if ( isset($children[$item->id]) ) {
+            if (isset($children[$item->id])) {
                 $item->subitems = $children[$item->id];
             }
             
@@ -65,8 +65,8 @@ class ModMenuHtml extends ModBaseHtml
      */
     public function load($template, $data = array())
     {
-        if ( strpos($template,'type_') === 0 ) {
-            if ( !$this->getTemplate()->findFile($template) ) {
+        if (strpos($template,'type_') === 0) {
+            if ( ! $this->getTemplate()->findFile($template)) {
                 $template = 'type_default';
             }
         }
