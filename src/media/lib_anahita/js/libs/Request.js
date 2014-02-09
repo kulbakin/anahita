@@ -1,7 +1,7 @@
 /**
  * Request constructor
  */
-Request.from = function(element, options) {
+Request.from = function (element, options) {
     options = options || {};
     var spinnerTarget;
     if (element.get('tag') == 'a') {
@@ -103,7 +103,7 @@ Request.from = function(element, options) {
     }
     
     return request;
-}
+};
 
 /**
  * Creates an ajax request with the element as the spiner 
@@ -132,7 +132,7 @@ Element.implement({
             el.store('raw-options', rawOption);
         }
         return JSON.decode.bind(el).attempt(el.retrieve('raw-options'));
-    }
+    };
     var request = function(el, api) {
         if ( ! el.retrieve('raw-options')) {
             var rawOption = el.get('data-request-options') || '{}';
@@ -164,11 +164,10 @@ Element.implement({
         options.onTrigger.apply(el, [request]);
         request.addEvent('success', function () {
             if (autoFollow) {
-                location = this.xhr.getResponseHeader('Content-Location') ||
-                    this.xhr.getResponseHeader('Location');
+                var url = this.xhr.getResponseHeader('Content-Location') || this.xhr.getResponseHeader('Location');
                 
-                if (location) {
-                    window.location = location;
+                if (url) {
+                    window.location = url;
                 }
             }
         });
