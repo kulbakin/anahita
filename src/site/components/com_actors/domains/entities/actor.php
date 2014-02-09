@@ -71,9 +71,9 @@ class ComActorsDomainEntityActor extends ComBaseDomainEntityNode
     public function setStatus($status)
     {
         $this->set('status', $status);
-        $this->statusUpdatedTime = AnDomainAttributeDate::getInstance();
+        $this->statusUpdateTime = AnDomainAttributeDate::getInstance();
     }
-
+    
     /**
      * Return the portrait file for a size
      * 
