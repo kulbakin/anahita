@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *statusUpdateTime* column update when status is changed with
+  *ComActorsDomainEntityActor::setStatus()*
+  [b387c18](https://github.com/kulbakin/anahita/commit/b387c18596c27b2475035bfd4cb29b70b33a3d16)
 * update template shortcuts `<script src="" />` and `<style src="" />` to support empty container
   tag notation, i.e. `<script src=""></script>` and `<style src=""></style>` respectively
   [c9bcb44](https://github.com/kulbakin/anahita/commit/c9bcb44a686412928af7fa62dd8e6e1d780e11b6)
