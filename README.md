@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix autofollow redirect by javascript Request object
+  [f1b3d1c](https://github.com/kulbakin/anahita/commit/f1b3d1ce35c01146e9ac4c28a6f4401f246b2c19)
 * fix *statusUpdateTime* column update when status is changed with
   *ComActorsDomainEntityActor::setStatus()*
   [b387c18](https://github.com/kulbakin/anahita/commit/b387c18596c27b2475035bfd4cb29b70b33a3d16)
