@@ -36,7 +36,7 @@ class ComConnectOauthServiceLinkedin extends ComConnectOauthServiceAbstract
     }
     
     /**
-     * Post an status update to facebook for the logge-in user  
+     * Post an status update to facebook for the logge-in user
      * 
      * @return array
      */

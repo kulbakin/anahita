@@ -83,7 +83,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
      */
     protected function _actionPost(KCommandContext $context)
     {
-        try  {
+        try {
             $result = $this->execute('add', $context);
             return $result;
         } catch (RuntimeException $e) {
@@ -132,7 +132,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
             //return a cookie that contains the credential
             if ($remember === true) {
                 //legacy for now
-                $key      = JUtility::getHash(KRequest::get('server.HTTP_USER_AGENT','raw'));
+                $key      = JUtility::getHash(KRequest::get('server.HTTP_USER_AGENT', 'raw'));
                 $crypt    = new JSimpleCrypt($key);
                 $cookie   = $crypt->encrypt(serialize($user));
                 $lifetime = time() + AnHelperDate::yearToSeconds();
@@ -143,7 +143,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
             $this->getCommandChain()->run('after.login', $context);
             return true;
         } else {
-            $user = $this->getService('repos://site/users.user')->fetch(array('username'=>$user['username']));
+            $user = $this->getService('repos://site/users.user')->fetch(array('username' => $user['username']));
             if ($user && $user->block) {
                 $this->setMessage('COM-PEOPLE-AUTHENTICATION-PERSON-BLOCKED', 'error');
                 throw new LibBaseControllerExceptionUnauthorized('User is blocked');

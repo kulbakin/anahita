@@ -158,7 +158,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         $user->set('registerDate', $date->toMySQL());
         
         $user->save();
-        $person = $this->getRepository()->find(array('userId'=>$user->id));
+        $person = $this->getRepository()->find(array('userId' => $user->id));
         
         //if person is null then user has not been saved
         if ( ! $person) {
