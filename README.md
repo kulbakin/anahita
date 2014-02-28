@@ -49,9 +49,9 @@ changes.
 
 * fix autofollow redirect by javascript Request object
   [f1b3d1c](https://github.com/kulbakin/anahita/commit/f1b3d1ce35c01146e9ac4c28a6f4401f246b2c19)
-* fix *statusUpdateTime* column update when status is changed with
+* ~~fix *statusUpdateTime* column update when status is changed with
   *ComActorsDomainEntityActor::setStatus()*
-  [b387c18](https://github.com/kulbakin/anahita/commit/b387c18596c27b2475035bfd4cb29b70b33a3d16)
+  [b387c18](https://github.com/kulbakin/anahita/commit/b387c18596c27b2475035bfd4cb29b70b33a3d16)~~
 * update template shortcuts `<script src="" />` and `<style src="" />` to support empty container
   tag notation, i.e. `<script src=""></script>` and `<style src=""></style>` respectively
   [c9bcb44](https://github.com/kulbakin/anahita/commit/c9bcb44a686412928af7fa62dd8e6e1d780e11b6)
@@ -76,9 +76,9 @@ changes.
   [92dfa84](https://github.com/kulbakin/anahita/commit/92dfa84e5bb74be72250fefffc732f9c1e64ca7d)
 * fix html syntax error (container button tag is closed in its opening part)
   [a265126](https://github.com/kulbakin/anahita/commit/a265126c4d41ee155adedec5d1dbda5c05d68f66)
-* fix login for blocked user to display a message in login form instead of returning
+* ~~fix login for blocked user to display a message in login form instead of returning
   *404 Permission Denied* page
-  [6d6b689](https://github.com/kulbakin/anahita/commit/6d6b68914cef00f7b542bea440763171799c51a1)
+  [6d6b689](https://github.com/kulbakin/anahita/commit/6d6b68914cef00f7b542bea440763171799c51a1)~~
 * fix *AnDomainAttributeJson::serialize()* so nested objects are properly serialized,
   affects any *dictionariable* entity which stores structures as meta data
   [c0bae52](https://github.com/kulbakin/anahita/commit/c0bae52fc9d26eacbcc0a26583c3129cf745f376)

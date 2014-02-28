@@ -5,7 +5,7 @@ define('JPATH_ISWIN', (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'));
 /** boolean True if a Mac based host */
 define('JPATH_ISMAC', (strtoupper(substr(PHP_OS, 0, 3)) === 'MAC'));
 
-if (!defined('DS')) {
+if ( ! defined('DS')) {
     /** string Shortcut for the DIRECTORY_SEPARATOR define */
     define('DS', DIRECTORY_SEPARATOR);
 }

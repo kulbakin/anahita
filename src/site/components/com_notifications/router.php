@@ -19,7 +19,7 @@ class ComNotificationsRouter extends ComBaseRouterDefault
     {
         $query = array();
         $path  = implode('/', $segments);
-        if ( $path == 'new' ) {
+        if ($path == 'new') {
             array_pop($segments);
             $query = array_merge(parent::parse($segments), array('new' => true));
         } else {

@@ -31,12 +31,12 @@ class ComActorsDomainEntityActor extends ComBaseDomainEntityNode
     {
         $config->append(array(
             'inheritance' => array('abstract' => $this->getIdentifier()->classname == __CLASS__),
-            'attributes' => array(
+            'attributes' => to_hash(array(
                 'name' => array('required' => AnDomain::VALUE_NOT_EMPTY, 'format' => 'string', 'read' => 'public'),
                 'body' => array('format' => 'string'),
                 'status' => array(),
                 'statusUpdateTime' => array(),
-            ),
+            )),
             'behaviors'  => to_hash(array(
                 'subscribable',
                 'modifiable',

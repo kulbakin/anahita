@@ -48,11 +48,11 @@ class JSite extends JApplication
         // if a language was specified it has priority
         // otherwise use user or default language settings
         if (empty($options['language'])) {
-            $user = & JFactory::getUser();
-            $lang = $user->getParam( 'language' );
+            $user =& JFactory::getUser();
+            $lang = $user->getParam('language');
             
             // Make sure that the user's language exists
-            if ( $lang && JLanguage::exists($lang) ) {
+            if ($lang && JLanguage::exists($lang)) {
                 $options['language'] = $lang;
             } else {
                 $params =  JComponentHelper::getParams('com_languages');
@@ -121,7 +121,7 @@ class JSite extends JApplication
                 $title = $menu->name;
             }
             
-            $params[$hash]->def('page_title'      , $title);
+            $params[$hash]->def('page_title', $title);
             $params[$hash]->def('page_description', $description);
         }
         
@@ -172,8 +172,7 @@ class JSite extends JApplication
      */
     public static function &getMenu($name = 'site', $options = array())
     {
-        $options = array();
-        $menu =& parent::getMenu('site', $options);
+        $menu =& parent::getMenu($name, $options);
         return $menu;
     }
     
@@ -184,8 +183,7 @@ class JSite extends JApplication
      */
     public function &getPathway($name = 'site', $options = array())
     {
-        $options = array();
-        $pathway =& parent::getPathway('site', $options);
+        $pathway =& parent::getPathway($name, $options);
         return $pathway;
     }
     

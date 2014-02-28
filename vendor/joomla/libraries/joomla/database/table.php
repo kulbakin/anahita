@@ -67,7 +67,7 @@ class JTable extends JObject
      * @return database A database object
      * @since 1.5
      */
-    public static function &getInstance( $type, $prefix = 'JTable', $config = array() )
+    public static function &getInstance($type, $prefix = 'JTable', $config = array())
     {
         $false = false;
         $type = preg_replace('/[^A-Z0-9_\.-]/i', '', $type);

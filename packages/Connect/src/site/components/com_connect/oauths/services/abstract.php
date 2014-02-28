@@ -377,6 +377,7 @@ abstract class ComConnectOauthServiceAbstract extends KObject
     /**
      * Make a GET request
      * 
+     * @param  string resource name
      * @param  array $data
      * @return mixed
      */

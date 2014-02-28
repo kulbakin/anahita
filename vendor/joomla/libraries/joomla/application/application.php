@@ -1,6 +1,4 @@
-<?php
-// Check to ensure this file is within the rest of the framework
-defined('JPATH_BASE') or die();
+<?phpd defined('JPATH_BASE') or die();
 
 jimport('joomla.event.dispatcher');
 
@@ -651,7 +649,7 @@ class JApplication extends JObject
      * @return object JPathway.
      * @since 1.5
      */
-    function &getPathway($name = null, $options = array())
+    public function &getPathway($name = null, $options = array())
     {
         if ( ! isset($name)) {
             $name = $this->_name;
@@ -679,7 +677,7 @@ class JApplication extends JObject
             $name = $this->_name;
         }
         
-        jimport( 'joomla.application.menu' );
+        jimport('joomla.application.menu');
         $menu =& JMenu::getInstance($name, $options);
         if (JError::isError($menu)) {
             $null = null;

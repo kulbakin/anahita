@@ -125,7 +125,7 @@ class LibApplicationRouter extends KObject
      * @param JURI $uri
      * @return void
      */
-    public function parse($url)
+	public function parse(&$url)
     {
         $this->_fixUrlForParsing($url);
         $this->_parse($url);
@@ -137,7 +137,7 @@ class LibApplicationRouter extends KObject
      * 
      * @param KHttpUrl $url
      */
-    protected function _parse($url)
+	protected function _parse(&$url)
     {
         $segments   = explode('/', trim($url->path,'/'));
         $segments   = array_filter($segments);
@@ -158,7 +158,7 @@ class LibApplicationRouter extends KObject
      * @param boolean $fqr Full query resolution
      * @return void
      */
-    public function build($url = '', $fqr = false)
+	public function build(&$url = '', $fqr = false)
     {
         if (is_array($url)) {
             $url = '?'.http_build_query($url, '', '&');
