@@ -25,9 +25,9 @@ class ComConnectOauthServiceTwitter extends ComConnectOauthServiceAbstract
         $config->append(array(
             'service_name'      => 'Twitter',
             'api_url'           => 'http://api.twitter.com/1.1',
-            'request_token_url' => 'http://api.twitter.com/oauth/request_token' ,
+            'request_token_url' => 'https://api.twitter.com/oauth/request_token',
             'authorize_url'     => 'https://api.twitter.com/oauth/authenticate',
-            'access_token_url'  => 'https://api.twitter.com/oauth/access_token' ,
+            'access_token_url'  => 'https://api.twitter.com/oauth/access_token',
             'authenticate_url'  => '',
         ));
         
@@ -62,7 +62,7 @@ class ComConnectOauthServiceTwitter extends ComConnectOauthServiceAbstract
         $profile = $this->get('account/verify_credentials.json');
         
         $data = array(
-            'id'            => $profile->id ,
+            'id'            => $profile->id,
             'profile_url'   => 'http://twitter.com/'.$profile->username,
             'name'          => $profile->name,
             'username'      => $profile->screen_name,

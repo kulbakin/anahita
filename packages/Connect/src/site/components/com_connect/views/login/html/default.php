@@ -13,4 +13,4 @@
 <?php else: ?>
     <h4><?= @text('COM-CONNECT-LOGIN-PROMPT-SIGN-IN')?></h4>
     <button data-trigger="BS.showPopup" data-bs-showpopup-url="<?= @route('option=com_people&view=session&layout=modal_simple&ajax=1') ?>" class="btn btn-large"><?= @text('COM-CONNECT-LOGIN-PROMPT-LOGIN')?></button>
-<?php endif;?>
+<?php endif ?>

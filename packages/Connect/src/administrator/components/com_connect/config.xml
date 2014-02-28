@@ -7,8 +7,8 @@
             <option value="0">NO</option>
             <option value="1">YES</option>
         </param>
-        <param name="facebook_key" size="60" type="text" default="" label="Consumer Key" description="Facebook Client Id" />
-        <param name="facebook_secret" size="60"  type="text" default="" label="Consumer Secret"  description="Facebook Client Secret" />
+        <param name="facebook_key" size="60" type="text" default="" label="Consumer Key" description="App ID" />
+        <param name="facebook_secret" size="60"  type="text" default="" label="Consumer Secret"  description="App Secret" />
         
         <param name="spacer" type="spacer" default=" " description="" />
         <param name="spacer" type="spacer" default="&lt;h3&gt;Twitter Connect &lt;h3/&gt;&lt;hr/&gt;" description="" />
@@ -17,8 +17,8 @@
             <option value="0">NO</option>
             <option value="1">YES</option>
         </param>
-        <param name="twitter_key" size="60" type="text" default="" label="Consumer Key" description="Twitter Client Id" />
-        <param name="twitter_secret" size="60"  type="text" default="" label="Consumer Secret"  description="Twitter Client Secret" />
+        <param name="twitter_key" size="60" type="text" default="" label="Consumer Key" description="API key" />
+        <param name="twitter_secret" size="60"  type="text" default="" label="Consumer Secret"  description="API secret" />
         
         <param name="spacer" type="spacer" default=" " description="" />
         <param name="spacer" type="spacer" default="&lt;h3&gt;LinkedIn Connect &lt;h3/&gt;&lt;hr/&gt;" description="" />
@@ -27,8 +27,8 @@
             <option value="0">NO</option>
             <option value="1">YES</option>
         </param>
-        <param name="linkedin_key" size="60" type="text" default="" label="Consumer Key" description="LinkedIn Client Id" />
-        <param name="linkedin_secret" size="60"  type="text" default="" label="Consumer Secret"  description="LinkedIn Client Secret" />
+        <param name="linkedin_key" size="60" type="text" default="" label="Consumer Key" description="Secret Key" />
+        <param name="linkedin_secret" size="60"  type="text" default="" label="Consumer Secret"  description="Secret Key" />
         
         <param name="spacer" type="spacer" default=" " description="" />
         

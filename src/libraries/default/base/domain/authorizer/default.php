@@ -10,7 +10,7 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class LibBaseDomainAuthorizerDefault extends LibBaseDomainAuthorizerAbstract 
+class LibBaseDomainAuthorizerDefault extends LibBaseDomainAuthorizerAbstract
 {
     /**
      * Check if a node authorize being subscribed too
@@ -80,8 +80,8 @@ class LibBaseDomainAuthorizerDefault extends LibBaseDomainAuthorizerAbstract
                     return false;
                 }
                 
-                $action  = 'com_'.$this->_entity->getIdentifier()->package.':'.$this->_entity->getIdentifier()->name.':addcomment';
-                $result  = $this->_entity->owner->authorize('action',array('action'=>$action));
+                $action = 'com_'.$this->_entity->getIdentifier()->package.':'.$this->_entity->getIdentifier()->name.':addcomment';
+                $result = $this->_entity->owner->authorize('action', array('action' => $action));
                 if ($result === false) {
                     /**
                      * @TODO We need to communicate back the nature of not having a 
