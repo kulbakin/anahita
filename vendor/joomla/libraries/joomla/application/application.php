@@ -1,4 +1,4 @@
-<?phpd defined('JPATH_BASE') or die();
+<?php defined('JPATH_BASE') or die();
 
 jimport('joomla.event.dispatcher');
 
