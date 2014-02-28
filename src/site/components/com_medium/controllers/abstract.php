@@ -48,7 +48,7 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
                 'filter' => null,
                 'order'  => null
             ),
-            'behaviors' => array(
+            'behaviors' => to_hash(array(
                 'com://site/search.controller.behavior.searchable',
                 'com://site/stories.controller.behavior.publisher',
                 'com://site/notifications.controller.behavior.notifier',
@@ -57,7 +57,7 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
                 'votable',
                 'privatable',
                 'subscribable',
-            ),
+            )),
         ));
         
         //anything within the medium app
