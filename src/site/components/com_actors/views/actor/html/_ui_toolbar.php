@@ -1,3 +1,5 @@
+<?php defined('KOOWA') or die ?>
+
 <?php $commands = $toolbar->getCommands() ?>
 <?php if (count($commands)): ?>
     <div class="actor-profile-toolbar btn-toolbar clearfix" data-behavior="BS.Dropdown">
