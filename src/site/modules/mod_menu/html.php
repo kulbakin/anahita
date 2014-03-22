@@ -87,7 +87,7 @@ class ModMenuHtml extends ModBaseHtml
                 case 'menulink':
                     $query = $route->query;
                     if (isset($query['Itemid'])) {
-                        $route = &JSite::getMenu()->getItem($query['Itemid']);
+                        $route =& JSite::getMenu()->getItem($query['Itemid']);
                     } else {
                         $route = null;
                     }

@@ -3,14 +3,14 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 /**
-* @package      Joomla
-* @subpackage   Languages
-* @copyright    Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
-* @license      GNU/GPL, see LICENSE.php
-*/
-class HTML_languages {
-
-    public static function showLanguages( &$rows, &$page, $option, &$client, &$ftp )
+ * @package      Joomla
+ * @subpackage   Languages
+ * @copyright    Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @license      GNU/GPL, see LICENSE.php
+ */
+class HTML_languages
+{
+    public static function showLanguages(&$rows, &$page, $option, &$client, &$ftp)
     {
         $limitstart = JRequest::getVar('limitstart', '0', '', 'int');
         $user =& JFactory::getUser();

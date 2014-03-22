@@ -498,29 +498,6 @@ class HTML_modules
     <?php
     }
     
-    public static function preview()
-    {
-        $editor =& JFactory::getEditor();
-        
-        ?>
-        <script>
-        var form = window.top.document.adminForm
-        var title = form.title.value;
-        
-        var alltext = window.top.<?php echo $editor->getContent('text') ?>;
-        </script>
-        
-        <table align="center" width="90%" cellspacing="2" cellpadding="2" border="0">
-            <tr>
-                <td class="contentheading" colspan="2"><script>document.write(title);</script></td>
-            </tr>
-        <tr>
-            <script>document.write("<td valign=\"top\" height=\"90%\" colspan=\"2\">" + alltext + "</td>");</script>
-        </tr>
-        </table>
-        <?php
-    }
-    
     /**
      * Displays a selection list for module types
      */

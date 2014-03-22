@@ -212,8 +212,8 @@ class JModel extends JObject
         }
         
         JError::raiseError(0, 'Table ' . $name . ' not supported. File not found.');
-        $null = null;
-        return $null;
+        
+        return;
     }
     
     /**
@@ -276,7 +276,7 @@ class JModel extends JObject
      * @access   protected
      * @since    1.5
      */
-    function _getListCount($query)
+    private static function _getListCount($query)
     {
         $this->_db->setQuery($query);
         $this->_db->query();
@@ -293,7 +293,7 @@ class JModel extends JObject
      * @return   mixed    Model object or boolean false if failed
      * @since    1.5
      */
-    function &_createTable($name, $prefix = 'Table', $config = array())
+    private static function &_createTable($name, $prefix = 'Table', $config = array())
     {
         $result = null;
         
@@ -318,7 +318,7 @@ class JModel extends JObject
      * @return   string The filename
      * @since    1.5
      */
-    protected static function _createFileName($type, $parts = array())
+    private static function _createFileName($type, $parts = array())
     {
         $filename = '';
         

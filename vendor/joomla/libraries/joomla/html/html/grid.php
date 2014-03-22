@@ -92,7 +92,8 @@ class JHTMLGrid
         return $checked;
     }
     
-    public static function published(&$row, $i, $imgY = 'tick.png', $imgX = 'publish_x.png', $prefix = '') {
+    public static function published(&$row, $i, $imgY = 'tick.png', $imgX = 'publish_x.png', $prefix = '')
+    {
         $img    = $row->published ? $imgY : $imgX;
         $task   = $row->published ? 'unpublish' : 'publish';
         $alt    = $row->published ? JText::_( 'Published' ) : JText::_( 'Unpublished' );
@@ -132,7 +133,7 @@ class JHTMLGrid
         return $href;
     }
     
-    protected static function _checkedOut( &$row, $overlib = 1 )
+    private static function _checkedOut( &$row, $overlib = 1 )
     {
         $hover = '';
         if ($overlib) {

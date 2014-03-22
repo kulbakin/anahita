@@ -32,32 +32,6 @@ class JHTMLList
     }
     
     /**
-     * Build the select list to choose an image
-     */
-    public static function images($name, $active = NULL, $javascript = NULL, $directory = NULL, $extensions =  "bmp|gif|jpg|png")
-    {
-        if ( ! $directory) {
-            $directory = '/images/stories/';
-        }
-        
-        if ( ! $javascript) {
-            $javascript = "onchange=\"javascript:if (document.forms.adminForm.".$name.".options[selectedIndex].value!='') {document.imagelib.src='..$directory' + document.forms.adminForm.".$name.".options[selectedIndex].value} else {document.imagelib.src='../images/blank.png'}\"";
-        }
-        
-        jimport('joomla.filesystem.folder');
-        $imageFiles = JFolder::files(JPATH_SITE.DS.$directory);
-        $images     = array(JHTML::_('select.option', '', '- '. JText::_( 'Select Image' ) .' -'));
-        foreach ($imageFiles as $file) {
-            if (preg_match("#$extensions#i", $file)) {
-                $images[] = JHTML::_('select.option',  $file );
-            }
-        }
-        $images = JHTML::_('select.genericlist',  $images, $name, 'class="inputbox" size="1" '. $javascript, 'value', 'text', $active );
-        
-        return $images;
-    }
-    
-    /**
      * Description
      * 
      * @param string SQL with ordering As value and 'name field' AS text
@@ -167,56 +141,5 @@ class JHTMLList
         $positions = JHTML::_('select.genericlist',   $pos, $name, 'class="inputbox" size="1"'. $javascript, 'value', 'text', $active, $id );
         
         return $positions;
-    }
-    
-    /**
-     * Select list of active categories for components
-     */
-    public static function category( $name, $section, $active = NULL, $javascript = NULL, $order = 'ordering', $size = 1, $sel_cat = 1 )
-    {
-        $db =& JFactory::getDBO();
-        
-        $query = 'SELECT id AS value, title AS text'
-            . ' FROM #__categories'
-            . ' WHERE section = '.$db->Quote($section)
-            . ' AND published = 1'
-            . ' ORDER BY '. $order
-        ;
-        $db->setQuery( $query );
-        if ( $sel_cat ) {
-            $categories[] = JHTML::_('select.option',  '0', '- '. JText::_( 'Select a Category' ) .' -' );
-            $categories = array_merge( $categories, $db->loadObjectList() );
-        } else {
-            $categories = $db->loadObjectList();
-        }
-        
-        $category = JHTML::_('select.genericlist',   $categories, $name, 'class="inputbox" size="'. $size .'" '. $javascript, 'value', 'text', $active );
-        return $category;
-    }
-    
-    /**
-     * Select list of active sections
-     */
-    public static function section( $name, $active = NULL, $javascript = NULL, $order = 'ordering', $uncategorized = true, $scope = 'content' )
-    {
-        $db =& JFactory::getDBO();
-        
-        $categories[] = JHTML::_('select.option',  '-1', '- '. JText::_('Select Section') .' -' );
-        
-        if ($uncategorized) {
-            $categories[] = JHTML::_('select.option',  '0', JText::_('Uncategorized'));
-        }
-        
-        $query = 'SELECT id AS value, title AS text'
-            . ' FROM #__sections'
-            . ' WHERE published = 1'
-            . ' AND scope = ' . $db->Quote($scope)
-            . ' ORDER BY ' . $order
-        ;
-        $db->setQuery( $query );
-        $sections = array_merge( $categories, $db->loadObjectList() );
-        $category = JHTML::_('select.genericlist', $sections, $name, 'class="inputbox" size="1" '. $javascript, 'value', 'text', $active);
-        
-        return $category;
     }
 }

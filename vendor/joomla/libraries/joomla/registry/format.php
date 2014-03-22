@@ -70,5 +70,6 @@ class JRegistryFormat extends JObject
      */
     function objectToString(&$object, $params)
     {
+        return;
     }
 }

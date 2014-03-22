@@ -74,8 +74,8 @@ class CacheController
         jimport('joomla.html.pagination');
         $pageNav = new JPagination($cmData->getGroupCount(), $limitstart, $limit);
         
-        $rows = $cmData->getRows($limitstart, $limit);
-        CacheView::displayCache($rows, $client, $pageNav);
+        $cmDataRows = $cmData->getRows($limitstart, $limit);
+        CacheView::displayCache($cmDataRows, $client, $pageNav);
     }
     
     public static function deleteCache($cid)

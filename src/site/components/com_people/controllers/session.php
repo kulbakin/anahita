@@ -20,8 +20,8 @@ class ComPeopleControllerSession extends ComBaseControllerResource
      */
     public function __construct(KConfig $config)
     {
-        parent::__construct($config);
-        
+    	parent::__construct($config);
+  
         $this->registerCallback('after.login', array($this, 'redirect'),
             array('url' => $config->redirect_to_after_login));
         
@@ -49,7 +49,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
      */
     protected function _initialize(KConfig $config)
     {
-        $config->append(array(
+    	$config->append(array(
             'redirect_to_after_login'  => '',
             'redirect_to_after_logout' => '',
             //by default the format is json
@@ -70,7 +70,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
         $person = $this->getService('repos://site/people.person')->find(array('userId' => JFactory::getUser()->id));
         $this->_state->setItem($person);
         if (isset($_SESSION['return'])) {
-            $this->_state->append(array('return' => $_SESSION['return']));
+            $this->_state->append(array('return' => $this->getService('koowa:filter.cmd')->sanitize($_SESSION['return'])));
         }
         return $person;
     }
@@ -175,7 +175,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
         //if there's a sign up then 
         //change the redirect url
         if ($data->return) {
-            $_SESSION['return'] = $data->return;
+        	$_SESSION['return'] = $this->getService('koowa:filter.cmd')->sanitize($data->return);
             $url = base64UrlDecode($data->return);
             $this->registerCallback('after.login', array($this, 'redirect'), array('url' => $url));
         }

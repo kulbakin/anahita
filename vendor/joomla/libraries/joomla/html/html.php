@@ -21,7 +21,8 @@ class JHTML
      *                  prefix and class are optional and can be used to load custom
      *                  html helpers.
      */
-    public static function _($type) {
+    public static function _($type)
+    {
         //Initialise variables
         $prefix = 'JHTML';
         $file   = '';

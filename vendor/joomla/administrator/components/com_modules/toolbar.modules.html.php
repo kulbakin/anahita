@@ -33,10 +33,6 @@ class TOOLBAR_modules
         
         JToolBarHelper::title(JText::_('Module').': <small><small>[ '.JText::_('Edit').' ]</small></small>', 'module.png');
         
-        if($moduleType == 'custom') {
-            JToolBarHelper::Preview('index.php?option=com_modules&tmpl=component&client='.$client->id.'&pollid='.$cid[0]);
-        }
-        
         JToolBarHelper::save();
         JToolBarHelper::apply();
         if ($cid[0]) {

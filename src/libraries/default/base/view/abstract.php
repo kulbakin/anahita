@@ -323,9 +323,8 @@ abstract class LibBaseViewAbstract extends KObject
         }
         
         $parts = array_merge($route, $parts);
-        $query = http_build_query($parts);
-        $route = $this->getService('application')
-            ->getRouter()->build($query);
+        $parts = http_build_query($parts);
+        $route = $this->getService('application')->getRouter()->build($parts);
         
         //Add the host and the schema
         if ($fqr) {

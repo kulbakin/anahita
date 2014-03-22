@@ -181,8 +181,9 @@ class AnDomainQueryHelper
         if ( ! $child_belongs_to_property->getParent()) {
             throw new AnDomainQueryException('Query Building Failed. Unkown Parent');
         } elseif ($child_belongs_to_property->isPolymorphic()) {
-            list($k) = array_keys($columns);
-            $columns = array($k => $columns[$k]);
+            $columnsKeys = array_keys($columns);
+            $columnsValues = array_values($columns);
+            $columns = array(array_shift($columnsKeys) => array_shift($columnsValues));
         }
         
         $condition = array();
@@ -216,8 +217,9 @@ class AnDomainQueryHelper
         if ( ! $child_belongs_to_property->getParent()) {
             throw new AnDomainQueryException('Query Building Failed. Unkown Parent');
         } elseif ($child_belongs_to_property->isPolymorphic()) {
-            list($key, ) = array_keys($columns);
-            $columns = array($key => $columns[$key]);
+            $columnsKeys = array_keys($columns);
+            $columnsValues = array_values($columns);
+            $columns = array(array_shift($columnsKeys) => array_shift($columnsValues));
         }
         
         $condition = array();

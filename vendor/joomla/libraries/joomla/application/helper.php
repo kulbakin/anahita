@@ -286,7 +286,7 @@ class JApplicationHelper
      * @param integer $checkAdmin 0 to check site only, 1 to check site and admin, -1 to check admin only
      * @since 1.5
      */
-    protected static function _checkPath($path, $checkAdmin = 1)
+    private static function _checkPath($path, $checkAdmin = 1)
     {
         $file = JPATH_SITE . $path;
         if ($checkAdmin > -1 && file_exists( $file )) {

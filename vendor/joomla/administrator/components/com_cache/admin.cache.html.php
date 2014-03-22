@@ -140,6 +140,6 @@ class CacheView
         <input type="hidden" name="option" value="com_cache" />
         <?php echo JHTML::_( 'form.token' ); ?>
         </form>
-         <?php
+        <?php
     }
 }

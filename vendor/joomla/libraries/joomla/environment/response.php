@@ -193,7 +193,7 @@ class JResponse
      * @param    string        data
      * @return   string        compressed data
      */
-    protected static function _compress($data)
+    public static function _compress($data)
     {
         $encoding = JResponse::_clientEncoding();
 
@@ -236,7 +236,7 @@ class JResponse
      * 
      * @return    boolean
      */
-    protected static function _clientEncoding()
+    private static function _clientEncoding()
     {
         if ( ! isset($_SERVER['HTTP_ACCEPT_ENCODING'])) {
             return false;

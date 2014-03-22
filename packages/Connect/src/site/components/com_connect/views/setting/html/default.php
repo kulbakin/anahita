@@ -4,8 +4,8 @@
 
 <div class="an-entities">
 <?php foreach ($apis as $api): ?>
-    <?php 
-    $session = $sessions->find(array('api'=>$api->getName()));
+<?php 
+$session = $sessions->find(array('api'=>$api->getName()));
     if ($session && ! $session->validateToken()) {
         $session->delete()->save();
         $session = null;
@@ -30,11 +30,11 @@
         ?>
         <div class="entity-actions">
             <?php if ( ! $session): ?>
-                <a class="btn btn-primary" data-trigger="Submit" href="<?= @route(array('scroll' => '', 'option' => 'com_connect', 'view' => 'setting', 'oid' => $actor->uniqueAlias, 'server' => $api->getName())) ?>">
+                <a class="btn btn-primary" data-trigger="Submit" href="<?= @route(array('option' => 'com_connect', 'view' => 'setting', 'oid' => $actor->uniqueAlias, 'get' => 'accesstoken', 'server' => $api->getName())) ?>">
                     <?= @text('LIB-AN-ACTION-ENABLE')?>
                 </a>
             <?php else: ?>
-                <a class="btn" data-trigger="Submit" href="<?= @route(array('scroll' => '', 'option' => 'com_connect', 'view' => 'setting', 'oid' => $actor->uniqueAlias, '_action' => 'delete', 'server' => $api->getName())) ?>">
+                <a class="btn" data-trigger="Submit" href="<?= @route(array('option' => 'com_connect', 'view' => 'setting', 'oid' => $actor->uniqueAlias, '_action' => 'delete', 'server' => $api->getName())) ?>">
                     <?= @text('LIB-AN-ACTION-DISABLE')?>
                 </a>
             <?php endif ?>

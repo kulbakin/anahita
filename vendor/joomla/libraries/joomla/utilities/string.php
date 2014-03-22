@@ -103,7 +103,8 @@ class JString
      * @return mixed either string in lowercase or FALSE is UTF-8 invalid
      * @see http://www.php.net/strtolower
      */
-    public static function strtolower($str){
+    public static function strtolower($str)
+    {
         return utf8_strtolower($str);
     }
     
@@ -119,7 +120,8 @@ class JString
      * @return mixed either string in uppercase or FALSE is UTF-8 invalid
      * @see http://www.php.net/strtoupper
      */
-    public static function strtoupper($str){
+    public static function strtoupper($str)
+    {
         return utf8_strtoupper($str);
     }
     
@@ -131,7 +133,8 @@ class JString
      * @return int number of UTF-8 characters in string
      * @see http://www.php.net/strlen
      */
-    public static function strlen($str){
+    public static function strlen($str)
+    {
         return utf8_strlen($str);
     }
     

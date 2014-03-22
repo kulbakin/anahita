@@ -5,12 +5,12 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.html.toolbar');
 
 /**
-* Utility class for the button bar
-*
-* @package        Joomla
-* @copyright    Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
-* @license      GNU/GPL, see LICENSE.php
-*/
+ * Utility class for the button bar
+ *
+ * @package      Joomla
+ * @copyright    Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @license      GNU/GPL, see LICENSE.php
+ */
 class JToolBarHelper
 {
     /**
@@ -495,10 +495,10 @@ class JToolBarHelper
 }
 
 /**
-* Utility class for the submenu
-* 
-* @package Joomla
-*/
+ * Utility class for the submenu
+ * 
+ * @package Joomla
+ */
 class JSubMenuHelper
 {
     public static function addEntry($name, $link = '', $active = false)

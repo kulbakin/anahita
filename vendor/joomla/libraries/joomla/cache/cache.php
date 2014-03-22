@@ -125,7 +125,9 @@ class JCache extends JObject
                 require_once(dirname(__FILE__).DS.'storage'.DS.$name.'.php');
             }
             
-            if (call_user_func_array(array(trim($class), 'test'), array())) {
+            $class= trim($class);
+            
+            if(call_user_func_array(array($class, 'test'), array())) {
                 $names[] = $name;
             }
         }

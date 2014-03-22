@@ -94,19 +94,19 @@ class JCacheCallback extends JCache
             $this->store(serialize($cached), $id);
         }
         
-        echo $output;
         return $result;
     }
     
     /**
      * Generate a callback cache id
      * 
+     * @access   private
      * @param    callback  $callback Callback to cache
      * @param    array     $args     Arguments to the callback method to cache
      * @return   string    MD5 Hash : function cache id
      * @since    1.5
      */
-    protected function _makeId($callback, $args)
+    function _makeId($callback, $args)
     {
         if (is_array($callback) && is_object($callback[0])) {
             $vars = get_object_vars($callback[0]);

@@ -474,7 +474,9 @@ class AnDomainQuery extends KObject implements KCommandInterface
         $key = false;
         
         if (count($this->where) == 1) {
-            list($where) = array_values($this->where);
+            $where = array_values($this->where);
+            $where = array_pop($where);
+            
             if (isset($where['property'])) {
                 $property = $where['property'];
                 $keys     = $this->getRepository()->getDescription()->getIdentifyingProperties();
