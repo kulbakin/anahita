@@ -180,7 +180,7 @@ class ComActorsControllerToolbarDefault extends ComBaseControllerToolbarDefault
         $labels[] = 'New';
         $label = translate($labels);
         $url   = 'option=com_'.$this->getIdentifier()->package.'&view='.$name.'&layout=add';
-        $command->append(array('label' => $label)) ->href($url);
+        $command->append(array('label' => $label))->href($url);
     }
     
     /**
