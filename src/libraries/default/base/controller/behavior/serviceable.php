@@ -53,7 +53,7 @@ class LibBaseControllerBehaviorServiceable extends KControllerBehaviorAbstract
                 'except' => array('add', 'edit', 'delete')
             ));
         }
-                        
+        
         $config->append(array(
             'identifiable' => array(),
             'validatable'  => array(),
@@ -85,7 +85,7 @@ class LibBaseControllerBehaviorServiceable extends KControllerBehaviorAbstract
         $config->append(array(
             'actions'   => array(),
             'read_only' => false,
-            'except'    => array()
+            'except'    => array(),
         ));
         
         parent::_initialize($config);
@@ -119,7 +119,7 @@ class LibBaseControllerBehaviorServiceable extends KControllerBehaviorAbstract
         $query = $context->query;
         
         if ($this->q) {
-            $query->keyword = $this->q;
+            $query->keyword = $this->getService('anahita:filter.term')->sanitize($this->q);
         }
         
         if ($this->hasBehavior('parentable') && $this->getParent()) {

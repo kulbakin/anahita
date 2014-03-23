@@ -72,7 +72,7 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
         $query = $context->query;
         
         if ($this->q) {
-            $query->keyword($this->q);
+            $query->keyword($this->getService('anahita:filter.term')->sanitize($this->q));
         }
         
         $key = KInflector::pluralize($this->getIdentifier()->name);
