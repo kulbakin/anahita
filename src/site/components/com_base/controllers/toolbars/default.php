@@ -94,8 +94,8 @@ class ComBaseControllerToolbarDefault extends ComBaseControllerToolbarAbstract
         $entity = $this->getController()->getItem();
         $voted  = $entity->votedUp(get_viewer());
         
-        $btn_1_id   = uniqid('v');
-        $btn_2_id   = uniqid('u');
+        $btn_1_id = uniqid('v');
+        $btn_2_id = uniqid('u');
         
         $action_key = '_action';
         
@@ -124,9 +124,9 @@ class ComBaseControllerToolbarDefault extends ComBaseControllerToolbarAbstract
             return;
         }
         
-        $action_value   = ! $voted ? 'unvote' : 'vote';
-        $label          = ! $voted ? JText::_('LIB-AN-ACTION-UNVOTE') : JText::_('LIB-AN-ACTION-VOTE');
-        $class          = 'btn btn-mini';
+        $action_value = ! $voted ? 'unvote' : 'vote';
+        $label        = ! $voted ? JText::_('LIB-AN-ACTION-UNVOTE') : JText::_('LIB-AN-ACTION-VOTE');
+        $class        = 'btn btn-mini';
         if ( ! $voted) {
             $class .= ' btn-inverse';
         }
@@ -152,7 +152,7 @@ class ComBaseControllerToolbarDefault extends ComBaseControllerToolbarAbstract
         $entity = $this->getController()->getItem();
         $label  = JText::_('LIB-AN-ACTION-'.strtoupper($entity->subscribed(get_viewer()) ? 'unsubscribe' : 'subscribe'));
         
-        $command ->append(array('label' => $label))
+        $command->append(array('label' => $label))
             ->href($entity->getURL().'&action='.($entity->subscribed(get_viewer()) ? 'unsubscribe' : 'subscribe'))
             ->setAttribute('data-trigger', 'Submit');
     }
