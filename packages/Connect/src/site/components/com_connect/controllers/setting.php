@@ -71,7 +71,7 @@ class ComConnectControllerSetting extends ComBaseControllerResource
         }
         $route = JRoute::_($this->actor->getURL().'&get=settings&edit=connect');
         if ($data->return) {
-            $route = base64_decode($data->return);
+            $route = base64UrlDecode($data->return);
         }
         $context->response->setRedirect($route);
     }

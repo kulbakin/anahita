@@ -18,7 +18,7 @@
     <?php if ($show_guest_prompt && ! $can_comment): ?>
         <?php if ($viewer->guest()): ?>
             <?= $entity->get('type') ?>
-            <?php $return = base64_encode(@route($entity->getURL())); ?>
+            <?php $return = base64UrlEncode(@route($entity->getURL())); ?>
         <?php elseif ( ! $entity->commentStatus): ?>
             <?= @message(@text('LIB-AN-COMMENTS-ARE-CLOSED')) ?>
         <?php elseif ( ! empty($require_follow)): ?>

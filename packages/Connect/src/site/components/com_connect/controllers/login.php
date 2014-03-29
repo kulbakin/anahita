@@ -85,6 +85,6 @@ class ComConnectControllerLogin extends ComBaseControllerResource
                 
             return false;
         }
-        $this->return_url = base64_encode($return_url);
+        $this->return_url = base64UrlEncode($return_url);
     }
 }

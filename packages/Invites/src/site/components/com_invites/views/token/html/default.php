@@ -13,11 +13,11 @@
         ->layout('list') ?>
 </div>
 <?php if ($viewer->guest()): ?>
-    <a class="btn btn-large" data-trigger="BS.showPopup" data-bs-showpopup-url="<?= @route('option=people&view=session&layout=modal&return='.base64_encode(@route('token='.$token->value))) ?>" >
-    <?= @text('COM-INVITES-LOGIN')?>
+    <a class="btn btn-large" data-trigger="BS.showPopup" data-bs-showpopup-url="<?= @route('option=people&view=session&layout=modal&return='.base64UrlEncode(@route('token='.$token->value))) ?>">
+        <?= @text('COM-INVITES-LOGIN')?>
     </a>
     
-    <a class="btn btn-large btn-primary" data-trigger="BS.showPopup" data-bs-showpopup-url="<?= @route('option=people&view=person&modal=1&layout=add&return='.base64_encode(@route('token='.$token->value))) ?>" >
-    <?= @text('COM-INVITES-SIGN-UP')?>
+    <a class="btn btn-large btn-primary" data-trigger="BS.showPopup" data-bs-showpopup-url="<?= @route('option=people&view=person&modal=1&layout=add&return='.base64UrlEncode(@route('token='.$token->value))) ?>">
+        <?= @text('COM-INVITES-SIGN-UP')?>
     </a>
 <?php endif ?>

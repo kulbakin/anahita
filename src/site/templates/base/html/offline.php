@@ -26,7 +26,7 @@
                         <input type="hidden" name="remember" value="yes">
                         <input type="hidden" name="option" value="com_user">
                         <input type="hidden" name="task" value="login">
-                        <input type="hidden" name="return" value="<?= base64_encode(JURI::base()) ?>" />
+                        <input type="hidden" name="return" value="<?= base64UrlEncode(JURI::base()) ?>" />
                         <?= JHTML::_('form.token') ?>
                         <input data-behavior="required" type="text" name="username" class="input-medium" placeholder="<?= @text('USERNAME OR EMAIL') ?>">
                         <input data-behavior="required" type="password" name="passwd" class="input-medium" placeholder="<?= @text('PASSWORD') ?>">
