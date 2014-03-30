@@ -4,7 +4,7 @@
  * 
  * <code>
  *  //creates a link tag
- *  <?= @html('a','someurl')->class('link-class') ?>
+ *  <?= @html('a', 'someurl')->class('link-class') ?>
  *  
  *  //creates a select box and set the selected value to 1
  *  <?= @html('select', 'select-name', array('options'=>array('value1','value2'),1));
@@ -66,9 +66,9 @@ class LibBaseTemplateHelperHtml extends KTemplateHelperAbstract implements KServ
      */
     public function options($options, $selected = array()) 
     {
-        $options     = (array)KConfig::unbox($options);
-        $selected    = (array)KConfig::unbox($selected);
-        $tags        = array();
+        $options  = (array)KConfig::unbox($options);
+        $selected = (array)KConfig::unbox($selected);
+        $tags     = array();
         
         foreach ($options as $value => $content) {
             if (is_array($content) && count($content) == 2) {
@@ -88,25 +88,46 @@ class LibBaseTemplateHelperHtml extends KTemplateHelperAbstract implements KServ
     }
     
     /**
-     * Create a select tag. 
+     * Create a select tag.
      * 
-     * @param $name string
-     * @param $selectedOption string|array
-     * @param $attributes array 
+     * @param string $name 
+     * @param string|array $options
+     * @param array $attributes  
      * @return LibBaseTemplateHelperHtmlElement
      */
-    public function select($name, $options = null, $attributes=array())
+    public function select($name, $options = null, $attributes = array())
     {
         $attributes['name'] = $name;
         
         if ( ! isset($attributes['id'])) {
-            $attributes['id'] = str_replace(array('[', ']'),array('_', ''), $name);
+            $attributes['id'] = str_replace(array('[', ']'), array('_', ''), $name);
         }
         if (is_array($options)) {
             $options = array_merge(array('options' => array(), 'selected' => null), $options);
             $options = $this->options($options['options'], @$options['selected']);
         }
         return $this->tag('select', (string)$options, $attributes);
+    }
+    
+    /**
+     * Create a datalist tag.
+     * 
+     * @param string $id
+     * @param string|array $options
+     * @param $attributes array 
+     * @return LibBaseTemplateHelperHtmlElement
+     */
+    public function datalist($id, $options = null, $attributes = array())
+    {
+        $attributes['id'] = $id;
+        if (is_array($options)) {
+            $tags = array();
+            foreach ($options as $value) {
+                $tags[] = '<option value="'.$value.'" />';
+            }
+            $options = implode("\n", $tags);
+        }
+        return $this->tag('datalist', $options, $attributes);
     }
     
     /**
