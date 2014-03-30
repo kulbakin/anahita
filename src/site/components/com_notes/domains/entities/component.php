@@ -1,7 +1,7 @@
 <?php
 /**
  * Component object
- *
+ * 
  * @category   Anahita
  * @package    Com_Notes
  * @subpackage Domain_Entity
