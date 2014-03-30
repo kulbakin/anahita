@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update @html template helper to have support for datalist (html5 tag)
+  [2d42bca](https://github.com/kulbakin/anahita/commit/2d42bcad65018585cae01df315a9481c698abae6)
 * fix bug related autoredirect after login caused by rare occasions of base64 encoded string
   in `return` url paramter having special symbols (`/` or `+`)
   [1a1a428](https://github.com/kulbakin/anahita/commit/1a1a4280165938ed4bbd7f01d1b181453d4c6b6c)
