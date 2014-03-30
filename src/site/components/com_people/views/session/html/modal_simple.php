@@ -29,7 +29,7 @@
 </form>
 
 <popup:footer>
-    <button data-behavior="<?= isset($ajax) ? 'Request' : 'Submit'?>" data-request-form="#modal-login-form" data-submit-form="#modal-login-form" data-request-redirect="true" name="Submit" class="btn btn-large btn-primary">
+    <button data-behavior="<?= isset($ajax) ? 'Request' : 'Submit' ?>" data-request-form="#modal-login-form" data-submit-form="#modal-login-form" name="Submit" class="btn btn-large btn-primary">
         <?= @text('COM-PEOPLE-ACTION-LOGIN') ?>
     </button>
 </popup:footer>

@@ -1,10 +1,10 @@
-<?php defined('KOOWA') or die('Restricted access') ?>
+<?php defined('KOOWA') or die ?>
 
 <popup:header>
     <h3><?= @text('COM-PEOPLE-SESSION-TITLE') ?></h3>
 </popup:header>
 
-<?php KService::get('koowa:loader')->loadIdentifier('com://site/connect.template.helper.service')?>
+<?php KService::get('koowa:loader')->loadIdentifier('com://site/connect.template.helper.service') ?>
 <?php if (class_exists('ComConnectTemplateHelperService', true)): ?>
     <p><?= KService::get('com://site/connect.template.helper.service')->renderLogins() ?></p>
     <hr />
@@ -23,7 +23,7 @@
         <div class="controls">
             <input class="input-block-level" type="password" placeholder="<?= @text('COM-PEOPLE-SESSION-PLACEHOLDER-PASSWORD') ?>" id="passwd" name="password" size="18" alt="password" /> 
             <a href="<?= @route('view=token') ?>">
-            <?= @text('COM-PEOPLE-SESSION-FORGOT-PASSWORD'); ?>
+                <?= @text('COM-PEOPLE-SESSION-FORGOT-PASSWORD'); ?>
             </a>
         </div>
     </div>
