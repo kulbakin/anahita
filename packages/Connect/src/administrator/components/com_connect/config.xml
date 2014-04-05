@@ -9,6 +9,11 @@
         </param>
         <param name="facebook_key" size="60" type="text" default="" label="Consumer Key" description="App ID" />
         <param name="facebook_secret" size="60"  type="text" default="" label="Consumer Secret"  description="App Secret" />
+        <param type="custom" label="Callback URL" description="Must be copied into facebook application settings">
+            <![CDATA[
+                <?= JURI::root().'connect/login/server/facebook/token' ?>
+            ]]>
+        </param>
         
         <param name="spacer" type="spacer" default=" " description="" />
         <param name="spacer" type="spacer" default="&lt;h3&gt;Twitter Connect &lt;h3/&gt;" description="" />
@@ -21,7 +26,7 @@
         <param name="twitter_secret" size="60"  type="text" default="" label="Consumer Secret" description="API secret" />
         <param type="custom" label="Callback URL" description="Must be copied into twitter application settings">
             <![CDATA[
-                <b><?= JURI::root().'connect/login/server/twitter/token' ?></b>
+                <?= JURI::root().'connect/login/server/twitter/token' ?>
             ]]>
         </param>
         
@@ -34,6 +39,11 @@
         </param>
         <param name="linkedin_key" size="60" type="text" default="" label="Consumer Key" description="Secret Key" />
         <param name="linkedin_secret" size="60"  type="text" default="" label="Consumer Secret"  description="Secret Key" />
+        <param type="custom" label="Callback URL" description="Must be copied into facebook application settings">
+            <![CDATA[
+                <?= JURI::root().'connect/login/server/linkedin/token' ?>
+            ]]>
+        </param>
         
         <param name="spacer" type="spacer" default=" " description="" />
         
