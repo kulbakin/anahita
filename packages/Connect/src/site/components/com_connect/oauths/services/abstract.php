@@ -292,7 +292,7 @@ abstract class ComConnectOauthServiceAbstract extends KObject
         if (version_compare($this->getVersion(), '1.0', '=')) {
             $response = $this->requestRequestToken();
             if ( ! $response) {
-                throw new \LogicException("Twitter OAuth request token has failed");
+                throw new \LogicException("OAuth token request has failed");
             }
             $data['oauth_token'] = $response->oauth_token;
         }
