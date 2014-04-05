@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix twitter connect integration to throw application level error upon failure and having
+  callback url value visible on module settings page in admin area
+  [12abef0](https://github.com/kulbakin/anahita/commit/12abef034636993a5ba4b9ea68e65d9d0b0e7626)
 * update @html template helper to have support for datalist (html5 tag)
   [2d42bca](https://github.com/kulbakin/anahita/commit/2d42bcad65018585cae01df315a9481c698abae6)
 * fix bug related autoredirect after login caused by rare occasions of base64 encoded string
