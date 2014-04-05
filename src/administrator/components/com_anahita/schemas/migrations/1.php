@@ -1,29 +1,14 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
+/**
+ * Anahita Schema Migration
  * 
  * @category   Anahita
  * @package    Com_Anahita
  * @subpackage Schema_Migration
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
+ * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id: resource.php 11985 2012-01-12 10:53:20Z asanieyan $
- * @link       http://www.anahitapolis.com
- */
-
-/**
- * Anahita Schema Migration
- *
- * @category   Anahita
- * @package    Com_Anahita
- * @subpackage Schema_Migration
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
  */
 class ComAnahitaSchemaMigration1 extends ComMigratorMigrationVersion
 {
@@ -37,19 +22,18 @@ class ComAnahitaSchemaMigration1 extends ComMigratorMigrationVersion
         anahita_25();
         anahita_26();
 
-        dbexec('INSERT IGNORE INTO #__migrator_versions (component,version) VALUES 
-                   ("connect",   1),
-                   ("opensocial",1),
-                   ("groups",0),
-                   ("photos",0),
-                   ("topics",1),
-                   ("subscriptions",1),
-                   ("todos",1)
-                   ');
+        dbexec('INSERT IGNORE INTO #__migrator_versions (component,version) VALUES
+           ("connect",   1),
+           ("opensocial",1),
+           ("groups",0),
+           ("photos",0),
+           ("topics",1),
+           ("subscriptions",1),
+           ("todos",1)
+        ');
     }
     
 }
-
 
 //story migration
 function anahita_20()
@@ -59,10 +43,10 @@ function anahita_20()
     dbexec("UPDATE jos_anahita_edges as e,jos_anahita_nodes as n SET e.node_b_type = 'com:notes.domain.entity.note' WHERE n.id = e.node_b_id and node_b_type like 'com:stories.domain.entity.story'");
 
     $set = array(
-            '`type` = "ComMediumDomainEntityMedium,ComNotesDomainEntityNote,com:notes.domain.entity.note"' ,
-            '`name` = ""',
-            '`alias` = ""',
-            '`component` = "com_notes"',
+        '`type` = "ComMediumDomainEntityMedium,ComNotesDomainEntityNote,com:notes.domain.entity.note"',
+        '`name` = ""',
+        '`alias` = ""',
+        '`component` = "com_notes"',
     );
     $set   = implode($set,',');
     $query = 'UPDATE jos_anahita_nodes SET '.$set." where type like 'ComMediumDomainEntityMedium,ComStoriesDomainEntityStory,com:stories.domain.entity.story' and (name = 'story_add' or name = 'private_message')";
@@ -120,8 +104,8 @@ function anahita_20()
 function anahita_21()
 {
     dbexec('ALTER TABLE jos_anahita_nodes
-                ADD tag_count INT(11) UNSIGNED NULL AFTER blocked_ids,
-                ADD tag_ids TEXT NULL AFTER tag_count');
+        ADD tag_count INT(11) UNSIGNED NULL AFTER blocked_ids,
+        ADD tag_ids TEXT NULL AFTER tag_count');
 
 }
 
