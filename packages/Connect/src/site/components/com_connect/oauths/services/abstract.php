@@ -289,15 +289,18 @@ abstract class ComConnectOauthServiceAbstract extends KObject
      */
     public function getAuthorizationURL($data = array())
     {
-        if ( version_compare($this->getVersion(), '1.0', '=') ) {
+        if (version_compare($this->getVersion(), '1.0', '=')) {
             $response = $this->requestRequestToken();
+            if ( ! $response) {
+                throw new \LogicException("Twitter OAuth request token has failed");
+            }
             $data['oauth_token'] = $response->oauth_token;
         }
         
         $data = KConfig::unbox($data);
         
         foreach ($data as $key => $value) {
-            if ( is_array($value) ) {
+            if (is_array($value)) {
                 $data[$key] = implode(',', $value);
             }
         }
@@ -328,11 +331,12 @@ abstract class ComConnectOauthServiceAbstract extends KObject
         $response  = $request->send();
         
         if ($response->successful()) {
-            $result = $response->parseQuery();			
+            $result = $response->parseQuery();
             $_SESSION['oauth_token_secret'] = $result->oauth_token_secret;
         }
-		else
-			$result = '';
+        else {
+            $result = false;
+        }
         
         return $result;
     }

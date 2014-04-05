@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <params>
-        <param name="spacer" type="spacer" default="&lt;h3&gt;Facebook Connect&lt;h3/&gt;&lt;hr/&gt;" description="" />
+        <param name="spacer" type="spacer" default="&lt;h3&gt;Facebook Connect&lt;h3/&gt;" description="" />
         
         <param menu="hide" name="facebook_enable" type="radio" default="0" label="Enable Service" description="Enable Facebook Service">
             <option value="0">NO</option>
@@ -11,17 +11,22 @@
         <param name="facebook_secret" size="60"  type="text" default="" label="Consumer Secret"  description="App Secret" />
         
         <param name="spacer" type="spacer" default=" " description="" />
-        <param name="spacer" type="spacer" default="&lt;h3&gt;Twitter Connect &lt;h3/&gt;&lt;hr/&gt;" description="" />
+        <param name="spacer" type="spacer" default="&lt;h3&gt;Twitter Connect &lt;h3/&gt;" description="" />
         
         <param menu="hide" name="twitter_enable" type="radio" default="0" label="Enable Service" description="Enable Twitter Service">
             <option value="0">NO</option>
             <option value="1">YES</option>
         </param>
         <param name="twitter_key" size="60" type="text" default="" label="Consumer Key" description="API key" />
-        <param name="twitter_secret" size="60"  type="text" default="" label="Consumer Secret"  description="API secret" />
+        <param name="twitter_secret" size="60"  type="text" default="" label="Consumer Secret" description="API secret" />
+        <param type="custom" label="Callback URL" description="Must be copied into twitter application settings">
+            <![CDATA[
+                <b><?= JURI::root().'connect/login/server/twitter/token' ?></b>
+            ]]>
+        </param>
         
         <param name="spacer" type="spacer" default=" " description="" />
-        <param name="spacer" type="spacer" default="&lt;h3&gt;LinkedIn Connect &lt;h3/&gt;&lt;hr/&gt;" description="" />
+        <param name="spacer" type="spacer" default="&lt;h3&gt;LinkedIn Connect &lt;h3/&gt;" description="" />
         
         <param menu="hide" name="linkedin_enable" type="radio" default="0" label="Enable Service" description="Enable LinkedIn Service">
             <option value="0">NO</option>

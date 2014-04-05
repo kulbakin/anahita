@@ -66,7 +66,7 @@ class ComConnectOauthServiceTwitter extends ComConnectOauthServiceAbstract
             'profile_url'   => 'http://twitter.com/'.$profile->username,
             'name'          => $profile->name,
             'username'      => $profile->screen_name,
-            'large_avatar'  => 'http://api.twitter.com/1/users/profile_image?screen_name='.$profile->screen_name.'&size=original',
+            'large_avatar'  => $this->api_url.'/users/profile_image?screen_name='.$profile->screen_name.'&size=original',
             'thumb_avatar'  => $profile->profile_image_url,
         );
         
