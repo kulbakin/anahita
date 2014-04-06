@@ -24,7 +24,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         
         $this->registerCallback('after.add', array($this, 'notifyAdminsNewUser'));
     }
-     
+    
     /**
      * Initializes the default configuration for the object
      * 

@@ -14,10 +14,10 @@
  *     {
  *         $config->append(array(
  *             'event_publishers' => array('com://admin/foo.controller.bar')
- *          ));
- *          
- *          parent::_initialize($config);
- *      }
+ *         ));
+ *         
+ *         parent::_initialize($config);
+ *     }
  * }
  * </code>
  * 
@@ -53,7 +53,7 @@
  * }
  * </code>
  *
- * @author        Johan Janssens <johan@nooku.org>
+ * @author      Johan Janssens <johan@nooku.org>
  * @package     Koowa_Plugins
  * @subpackage  Koowa
  * @copyright   Copyright (C) 2007 - 2012 Johan Janssens. All rights reserved.

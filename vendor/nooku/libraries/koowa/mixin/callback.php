@@ -76,7 +76,7 @@ class KMixinCallback extends KMixinAbstract implements KCommandInterface
      * 
      * @return boolean
      */
-    public function execute( $name, KCommandContext $context)
+    public function execute($name, KCommandContext $context)
     {
         $result = true;
         

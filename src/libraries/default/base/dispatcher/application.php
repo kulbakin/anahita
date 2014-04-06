@@ -11,10 +11,10 @@
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
 class LibBaseDispatcherApplication extends LibBaseDispatcherAbstract implements KServiceInstantiatable
-{   
+{
     /**
      * Force creation of a singleton
-     *
+     * 
      * @param KConfigInterface  $config    An optional KConfig object with configuration options
      * @param KServiceInterface $container A KServiceInterface object
      * @return KServiceInstantiatable
@@ -110,7 +110,7 @@ class LibBaseDispatcherApplication extends LibBaseDispatcherAbstract implements 
     /**
      * Dispatch the request
      * 
-     * @param KCommandContext $context    A command context object
+     * @param KCommandContext $context A command context object
      */
     protected function _actionDispatch(KCommandContext $context)
     {
@@ -120,14 +120,14 @@ class LibBaseDispatcherApplication extends LibBaseDispatcherAbstract implements 
         global $option;
         $option = $name;
         
-        define( 'JPATH_COMPONENT',               JPATH_BASE.DS.'components'.DS.$name);
-        define( 'JPATH_COMPONENT_SITE',          JPATH_SITE.DS.'components'.DS.$name);
-        define( 'JPATH_COMPONENT_ADMINISTRATOR', JPATH_ADMINISTRATOR.DS.'components'.DS.$name);
-        if ( !file_exists(JPATH_COMPONENT) ) {
+        define('JPATH_COMPONENT',               JPATH_BASE.DS.'components'.DS.$name);
+        define('JPATH_COMPONENT_SITE',          JPATH_SITE.DS.'components'.DS.$name);
+        define('JPATH_COMPONENT_ADMINISTRATOR', JPATH_ADMINISTRATOR.DS.'components'.DS.$name);
+        if ( ! file_exists(JPATH_COMPONENT)) {
             throw new LibBaseControllerExceptionNotFound('Component not found');
         }
-        if ( !JComponentHelper::isEnabled($name) ) {
-            throw new LibBaseControllerExceptionForbidden('Component is disabled');            
+        if ( ! JComponentHelper::isEnabled($name)) {
+            throw new LibBaseControllerExceptionForbidden('Component is disabled');
         }
         $this->getComponent()->dispatch($context);
     }
