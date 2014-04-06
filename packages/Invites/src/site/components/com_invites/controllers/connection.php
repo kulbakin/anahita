@@ -20,13 +20,13 @@ class ComInvitesControllerConnection extends ComInvitesControllerDefault
      */
     protected function _actionBrowse(KCommandContext $context)
     {
-       $service = pick($this->service, 'facebook');
-       if ( ! ComConnectHelperApi::enabled('facebook')) {
+       $serviceType = pick($this->service, 'facebook');
+       if ( ! ComConnectHelperApi::enabled($serviceType)) {
            throw new LibBaseControllerExceptionBadRequest('Service is not enabled');
        }
        
        $this->getService('repos://site/connect.session');
-       $service = $this->viewer->sessions->$service;
+       $service = $this->viewer->sessions->$serviceType;
        if ( ! empty($service)) {
            try {
                $this->_state->setList($service->getFriends());
@@ -35,11 +35,15 @@ class ComInvitesControllerConnection extends ComInvitesControllerDefault
                 
                 if ($session) {
                     $session->delete()->save();
+
                 }
+              
                 $service = null;
-           }
-       }
-       
-       $this->service = $service;
+            }
+        } else {
+            $service = null;	
+        }
+        
+        $this->service = $service;
     }
 }

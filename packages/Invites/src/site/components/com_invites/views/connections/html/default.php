@@ -19,8 +19,8 @@ $body    = @helper('text.script', @textf('COM-INVITES-MESSAGE-BODY', @name($view
 new FacebookInvite({
     'appId'    :  <?= $service->getAppID() ?>,
     'subject'  : '<?= $subject ?>',
-    'body'     : '<?= $body?>',
-    'appURL'   : '<?= $url?>',
+    'body'     : '<?= $body ?>',
+    'appURL'   : '<?= $url ?>',
     'picture'  : '<?= $viewer->getPortraitURL() ?>',
 });
 </script>
