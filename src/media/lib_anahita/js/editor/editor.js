@@ -178,13 +178,18 @@ var AnEditor = new Class({
     _cleanupEditor: function (type, content) {
         switch (type) {
             case "get_from_editor":
-                content = content.replace(/<br>/gi,"\n").replace(/<br\s*\/>/gi, "\n");
+                content = content
+                    .replace(/<br>\n*<br>/gmi,"\n\n")
+                    .replace(/<br\s*\/>\n*<br\s*\/>/gmi, "\n\n")
+                    .replace(/<br\s*\/>/gmi, "");
+		  			
                 content = this._formatText(content, type);
                 content = Encoder.htmlDecode(content);
                 break;
+		     
             case "insert_to_editor":
                 content = this._formatText(content, type);
-                content = content.replace(/\n/gi,'<br />');
+                content = content.replace(/\r?\n\r?\n/gm,'<br /><br />');
                 break;
         }
         return content;
