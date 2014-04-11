@@ -127,14 +127,14 @@ class LibBaseTemplateHelperJavascriptFile extends KTemplateHelperAbstract
                 foreach ($matches[1] as $i => $match) {
                     $imported_file = $dir.'/'.$match;
                     $imports[] = $imported_file;
-                    if ( file_exists($imported_file) ) {
+                    if (file_exists($imported_file)) {
                         $data    = $this->_parseFile($imported_file);
                         $content = str_replace($matches[0][$i], $data, $content);
                     }
                 }
             }
             $content = "//".str_replace(JPATH_ROOT,'',$file)."\n".$content;
-            $this->_cache_data[$file] = array('data'=> $content, 'imports' => $imports);
+            $this->_cache_data[$file] = array('data' => $content, 'imports' => $imports);
         } else {
             $content = $this->_cache_data[$file]['data'];
         }
@@ -150,7 +150,7 @@ class LibBaseTemplateHelperJavascriptFile extends KTemplateHelperAbstract
      */
     protected function _hasBeenModified($file)
     {
-        if ( ! isset($this->_cache_data[$file]) ) {
+        if ( ! isset($this->_cache_data[$file])) {
             return true;
         }
         

@@ -37,7 +37,7 @@ abstract class ComActorsControllerPermissionAbstract extends LibBaseControllerPe
         
         return true;
     }
-
+    
     /**
      * Authorize Edit
      * 

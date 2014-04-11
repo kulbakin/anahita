@@ -110,7 +110,6 @@ class ComActorsDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
         }
         
         $action = $context->action;
-        
         //any action on the actor requires being a follower by default
         $context->append(array(
             'default' => LibBaseDomainBehaviorPrivatable::FOLLOWER
@@ -138,7 +137,6 @@ class ComActorsDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
                 }
             }
         }
-        
         return $this->_entity->allows($this->_viewer, $action, $context->default);
     }
     

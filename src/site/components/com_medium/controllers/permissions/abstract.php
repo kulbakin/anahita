@@ -44,11 +44,10 @@ abstract class ComMediumControllerPermissionAbstract extends LibBaseControllerPe
         // if repository is ownable then ask the actor if viewer can publish things
         if (in_array($this->getRequest()->get('layout'), array('add', 'edit', 'form', 'composer'))) {
             if ($this->getItem()) {
-               $result = $this->canEdit();
+                $result = $this->canEdit();
             } else {
-               $result = $this->canAdd();
+                $result = $this->canAdd();
             }
-            
             return $result;
         }
         
