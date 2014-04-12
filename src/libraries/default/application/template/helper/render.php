@@ -45,7 +45,7 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
         $config->append(array(
             'show_logo' => pick($this->_params->showLogo, 1),
             'name'      => pick($this->_params->brandName, 'Anahita'),
-            'url'       => 'base://'
+            'url'       => 'base://',
         ));
         
         $showLogo = $config->show_logo ? ' brand-logo' : '';
@@ -65,7 +65,7 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
         $config->append(array(
             'favicon' => pick($this->_params->favicon, 'favicon.ico'),
             'type'    => 'image/png',
-            'url'     => 'base://'
+            'url'     => 'base://',
         ));
         
         $paths = array(
@@ -90,12 +90,17 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
     {
         require_once 'less/compiler.php';
         
+        if (is_string($config)) {
+            $config = array('file' => $config);
+        }
+        
         $config = new KConfig($config);
         $config->append(array(
-            'parse_urls'   => true,
-            'style'        => pick($this->_params->cssStyle, 'style1'),
-            'compile'      => pick($this->_params->compilestyle, 0),
-            'compress'     => pick($this->_params->compresstyle, 1),
+            'parse_urls' => true,
+            'style'      => pick($this->_params->cssStyle, 'style1'),
+            'compile'    => pick($this->_params->compilestyle, 0),
+            'compress'   => pick($this->_params->compresstyle, 1),
+            'file'       => 'style',
         ));
         
         $paths = array(
@@ -106,8 +111,8 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
         
         $finder = $this->getService('anahita:file.pathfinder');
         $finder->addSearchDirs($paths);
-        $style = $finder->getPath('style.less');
-        $css   = $css_folder.DS.'style.css';
+        $style = $finder->getPath($config->file.'.less');
+        $css   = $css_folder.DS.$config->file.'.css';
         //compile        
         if ($config->compile > 0 && ! empty($style)) {
             $this->_template->renderHelper('less.compile', array(
@@ -136,8 +141,8 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
         $config = new KConfig($config);
         
         $config->append(array(
-            'style'  => 'default',
-            'spans'  => pick($this->_params->{$row}, '4,4,4,4'),
+            'style' => 'default',
+            'spans' => pick($this->_params->{$row}, '4,4,4,4'),
         ));
         
         if (is_string($config->spans)) {
