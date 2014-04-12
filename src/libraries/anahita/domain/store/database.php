@@ -79,7 +79,7 @@ class AnDomainStoreDatabase extends KObject implements AnDomainStoreInterface
         //Set the mixer in the config
         $config->mixer = $this;
         
-        $this->mixin( new KMixinCommand($config) );
+        $this->mixin(new KMixinCommand($config));
     }
     
     /**
@@ -173,7 +173,7 @@ class AnDomainStoreDatabase extends KObject implements AnDomainStoreInterface
                 $values   = isset($vals[$resource->getAlias()]) ? array_values($vals[$resource->getAlias()]) : array();
                 
                 if ($resource !== $resources->main()) {
-                    $link       = $resource->getLink();
+                    $link      = $resource->getLink();
                     $columns[] =  $link->child;
                     $values[]  =  $main_insert_id;
                 }

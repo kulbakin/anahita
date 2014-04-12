@@ -222,7 +222,7 @@ class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
     {
         //@TODO we should use a belongs to relationship for this
         $user = $this->getService('repos://'.$this->getIdentifier()->application.'/users.user')
-            ->fetch(array('id'=>$this->userId));
+            ->fetch(array('id' => $this->userId));
         
         return $user;
     }

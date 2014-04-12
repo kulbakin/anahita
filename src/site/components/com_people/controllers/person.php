@@ -124,7 +124,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         if ($firsttime) {
             //for now lets make the com_notes assigable to always
             $component = $this->getService('repos://site/components')
-                    ->find(array('component'=>'com_notes'));
+                ->find(array('component' => 'com_notes'));
             if ($component) {
                 $component->setAssignmentForIdentifier('person', ComComponentsDomainBehaviorAssignable::ACCESS_ALWAYS);
             }

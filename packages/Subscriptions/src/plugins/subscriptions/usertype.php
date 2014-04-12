@@ -21,7 +21,7 @@ class PlgSubscriptionsUsertype extends PlgKoowaDefault
         //change the usertype to registered
         $subscription = $event->subscription;
         $config       = new KConfig($subscription->package->getPluginValues('usertype'));
-        if ( $subscription ) {
+        if ($subscription) {
             $this->_changeUserType($subscription->person, 'Registered');
         }
     }
@@ -55,9 +55,9 @@ class PlgSubscriptionsUsertype extends PlgKoowaDefault
         }
         
         if (is_numeric($usertype)) {
-            $gid = (int) $usertype;
+            $gid = (int)$usertype;
         } else {
-            $gid = $acl->get_group_id( '',$usertype, 'ARO' );
+            $gid = $acl->get_group_id('', $usertype, 'ARO');
         }
         //if not valid GID, then return Registered
         if ( ! @$acl->get_group_data($gid)) {

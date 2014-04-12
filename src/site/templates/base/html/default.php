@@ -23,7 +23,7 @@
     
     <?= @render('component') ?>
     
-    <?php if($this->getView()->getParams()->poweredby): ?>
+    <?php if ($this->getView()->getParams()->poweredby): ?>
         <div class="container">
             <div class="row">
                 <div class="span12">
@@ -33,8 +33,8 @@
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+    <?php endif ?>
     
-    <?= @render('analytics') ?> 
+    <?= @render('analytics') ?>
 </body>
 </html>

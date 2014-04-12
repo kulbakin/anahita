@@ -128,7 +128,7 @@ class PlgUserConnect extends JPlugin
                 ));
             }
         } catch(Exception $e) {
-          $api = null;
+            $api = null;
         }
         
         return $api;
