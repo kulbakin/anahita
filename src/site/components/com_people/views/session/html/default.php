@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="offset3 span6">
-        <form action="<?=@route()?>" method="post" class="well">
+        <form action="<?= @route() ?>" method="post" class="well">
             <?php if ( ! empty($return)): ?>
                 <input type="hidden" name="return" value="<?= $return ?>" />
             <?php endif ?>
@@ -16,11 +16,11 @@
                     <?= @text('COM-PEOPLE-SESSION-TITLE') ?>
                     
                     <?php if (@service('com://site/people.controller.person')->permission->canRegister()): ?>
-                    <small>
-                        <a class="pull-right" href="<?= @route('option=com_people&view=person&layout=add'.(!empty($return) ? "&return=$return" : '')) ?>">
-                            <?= @text('COM-PEOPLE-ACTION-CREATE-AN-ACCOUNT') ?>
-                        </a>
-                    </small>
+                        <small>
+                            <a class="pull-right" href="<?= @route('option=com_people&view=person&layout=add'.(!empty($return) ? "&return=$return" : '')) ?>">
+                                <?= @text('COM-PEOPLE-ACTION-CREATE-AN-ACCOUNT') ?>
+                            </a>
+                        </small>
                     <?php endif ?>
                 </legend>
                 
@@ -46,7 +46,7 @@
                 
                 <div class="control-group">
                     <label class="checkbox">
-                        <input type="checkbox" name="remember" value="yes" alt="<?= @text('COM-PEOPLE-SESSION-REMEMBER-ME') ?>" />
+                        <input type="checkbox" name="remember" value="true" alt="<?= @text('COM-PEOPLE-SESSION-REMEMBER-ME') ?>" />
                         <?= @text('COM-PEOPLE-SESSION-REMEMBER-ME') ?>
                     </label>
                 </div>

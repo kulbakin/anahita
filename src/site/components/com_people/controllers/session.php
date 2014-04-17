@@ -134,7 +134,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
                 //legacy for now
                 $key      = JUtility::getHash(KRequest::get('server.HTTP_USER_AGENT', 'raw'));
                 $crypt    = new JSimpleCrypt($key);
-                $cookie   = $crypt->encrypt(serialize($user));
+                $cookie   = $crypt->encrypt(serialize(array('username' => $user['username'], 'password' => $user['password'])));				
                 $lifetime = time() + AnHelperDate::yearToSeconds();
                 setcookie(JUtility::getHash('JLOGIN_REMEMBER'), $cookie, $lifetime, '/');
             }

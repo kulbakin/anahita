@@ -58,7 +58,7 @@ class JMail extends PHPMailer
     /**
      * @return mixed True if successful, a JError object otherwise
      */
-    function &Send()
+    public function &Send()
     {
         if ($this->Mailer == 'mail' && ! function_exists('mail')) {
             return JError::raiseNotice( 500, JText::_('MAIL_FUNCTION_DISABLED') );
@@ -83,7 +83,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function setSender($from)
+    public function setSender($from)
     {
         if (is_array($from)) { // If $from is an array we assume it has an address and a name
             $this->From     = JMailHelper::cleanLine( $from[0] );
@@ -103,7 +103,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function setSubject($subject)
+    public function setSubject($subject) {
     {
         $this->Subject = JMailHelper::cleanLine($subject);
     }
@@ -116,7 +116,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function setBody($content)
+    public function setBody($content)
     {
         /*
          * Filter the Body
@@ -133,7 +133,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function addRecipient($recipient)
+    public function addRecipient($recipient)
     {
         // If the recipient is an aray, add each recipient... otherwise just add the one
         if (is_array($recipient)) {
@@ -155,7 +155,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function AddCC($cc, $name = '')
+    public function AddCC($cc, $name = '')
     {
         //If the carbon copy recipient is an aray, add each recipient... otherwise just add the one
         if (isset($cc)) {
@@ -179,7 +179,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function AddBCC($bcc, $name = '')
+    public function AddBCC($bcc, $name = '')
     {
         // If the blind carbon copy recipient is an aray, add each recipient... otherwise just add the one
         if (isset ($bcc))
@@ -204,13 +204,13 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function AddAttachment($attachment, $name = '', $encoding = 'base64', $type = 'application/octet-stream')
+    public function AddAttachment($attachment, $name = '', $encoding = 'base64', $type = 'application')
     {
         // If the file attachments is an aray, add each file... otherwise just add the one
         if (isset($attachment)) {
             if (is_array($attachment)) {
                 foreach ($attachment as $file) {
-                    parent::AddAttachment($file);
+                    parent::AddAttachment($file, $name, $encoding, $type);
                 }
             } else {
                 parent::AddAttachment($attachment, $name, $encoding, $type);
@@ -229,7 +229,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    function AddReplyTo($replyto, $name = '')
+    public function AddReplyTo($replyto, $name = '')
     {
         // Take care of reply email addresses
         if (is_array($replyto) and is_array($replyto[0])) {
@@ -243,7 +243,7 @@ class JMail extends PHPMailer
             $replyto1 = JMailHelper::cleanLine($replyto[1]);
             parent::AddReplyTo($replyto0, $replyto1);
         } else {
-            parent::AddReplyTo($replyto0, $name);
+            parent::AddReplyTo($replyto, $name);
         }
     }
     

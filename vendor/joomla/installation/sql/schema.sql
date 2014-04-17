@@ -365,8 +365,8 @@ CREATE TABLE `#__users` (
   KEY `usertype` (`usertype`),
   KEY `idx_name` (`name`),
   KEY `gid_block` (`gid`,`block`),
-  KEY `username` (`username`),
-  KEY `email` (`email`)
+  UNIQUE `username` (`username`),
+  UNIQUE `email` (`email`)
 ) ENGINE=MyISAM;
 
-INSERT INTO #__migrator_versions (`version`,`component`) VALUES(3, 'anahita') ON DUPLICATE KEY UPDATE `version` = 3;
+INSERT INTO #__migrator_versions (`version`,`component`) VALUES(3, 'anahita') ON DUPLICATE KEY UPDATE `version` = 4;
