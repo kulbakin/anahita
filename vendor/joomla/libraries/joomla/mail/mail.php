@@ -103,7 +103,7 @@ class JMail extends PHPMailer
      * @return void
      * @since 1.5
      */
-    public function setSubject($subject) {
+    public function setSubject($subject)
     {
         $this->Subject = JMailHelper::cleanLine($subject);
     }
