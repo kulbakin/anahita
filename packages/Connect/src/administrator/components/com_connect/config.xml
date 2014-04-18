@@ -37,9 +37,9 @@
             <option value="0">NO</option>
             <option value="1">YES</option>
         </param>
-        <param name="linkedin_key" size="60" type="text" default="" label="Consumer Key" description="Secret Key" />
+        <param name="linkedin_key" size="60" type="text" default="" label="Consumer Key" description="API Key" />
         <param name="linkedin_secret" size="60"  type="text" default="" label="Consumer Secret"  description="Secret Key" />
-        <param type="custom" label="Callback URL" description="Must be copied into facebook application settings">
+        <param type="custom" label="Callback URL" description="">
             <![CDATA[
                 <?= JURI::root().'connect/login/server/linkedin/token' ?>
             ]]>
