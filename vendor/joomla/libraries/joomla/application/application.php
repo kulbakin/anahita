@@ -107,7 +107,7 @@ class JApplication extends JObject
     {
         static $instances;
         
-        if  ( ! isset($instances)) {
+        if ( ! isset($instances)) {
             $instances = array();
         }
         
@@ -283,7 +283,7 @@ class JApplication extends JObject
         }
         
         // If the message exists, enqueue it
-        if (trim( $msg )) {
+        if (trim($msg)) {
             $this->enqueueMessage($msg, $msgType);
         }
         
@@ -385,8 +385,8 @@ class JApplication extends JObject
         
         if (empty($name)) {
             $r = null;
-            if ( !preg_match( '/J(.*)/i', get_class($this), $r) ) {
-                JError::raiseError(500, "JApplication::getName() : Can\'t get or parse class name.");
+            if ( ! preg_match( '/J(.*)/i', get_class($this), $r)) {
+                JError::raiseError(500, "JApplication::getName() : Can't get or parse class name.");
             }
             $name = strtolower( $r[1] );
         }
@@ -598,7 +598,7 @@ class JApplication extends JObject
          * much more information about why the routine may have failed.
          */
         if ( ! in_array(false, $results, true)) {
-            setcookie( JUtility::getHash('JLOGIN_REMEMBER'), false, time() - 86400, '/');
+            setcookie(JUtility::getHash('JLOGIN_REMEMBER'), false, time() - 86400, '/');
             return true;
         }
         

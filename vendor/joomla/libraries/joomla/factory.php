@@ -107,7 +107,7 @@ class JFactory
         
         return $instance;
     }
-
+    
     /**
      * Get a document object
      * 
@@ -395,7 +395,7 @@ class JFactory
      * @return object JRegistry
      * @since 1.5
      */
-    static public function &_createConfig($file, $type = 'PHP')
+    static private function &_createConfig($file, $type = 'PHP')
     {
         jimport('joomla.registry.registry');
         
@@ -421,7 +421,7 @@ class JFactory
      * @return object JSession
      * @since 1.5
      */
-    static public function &_createSession( $options = array())
+    static private function &_createSession($options = array())
     {
         jimport('joomla.session.session');
         
@@ -447,12 +447,12 @@ class JFactory
      * @return object JAuthorization
      * @since 1.5
      */
-    static public function &_createACL()
+    static private function &_createACL()
     {
         //TODO :: take the authorization class out of the application package
         jimport('joomla.user.authorization');
         
-        $db =&  JFactory::getDBO();
+        $db =& JFactory::getDBO();
         
         $options = array(
             'db'              => &$db,
@@ -471,7 +471,7 @@ class JFactory
      * @return object JDatabase
      * @since 1.5
      */
-    static public function &_createDBO()
+    static private function &_createDBO()
     {
         jimport('joomla.database.database');
         jimport('joomla.database.table');
@@ -510,7 +510,7 @@ class JFactory
      * @return object JMail
      * @since 1.5
      */
-    static public function &_createMailer()
+    static private function &_createMailer()
     {
         jimport('joomla.mail.mail');
         
@@ -556,7 +556,7 @@ class JFactory
      * @return object JTemplate
      * @since 1.5
      */
-    static public function &_createTemplate($files = array())
+    static private function &_createTemplate($files = array())
     {
         jimport('joomla.template.template');
         
@@ -598,7 +598,7 @@ class JFactory
      * @return object JLanguage
      * @since 1.5
      */
-    static public function &_createLanguage()
+    static private function &_createLanguage()
     {
         jimport('joomla.language.language');
         
@@ -617,7 +617,7 @@ class JFactory
      * @return object JDocument
      * @since 1.5
      */
-    static public function &_createDocument()
+    static private function &_createDocument()
     {
         jimport('joomla.document.document');
         

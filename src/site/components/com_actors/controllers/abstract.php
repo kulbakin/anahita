@@ -98,6 +98,8 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
             }
         }
         
+        $entities->order('created_on', 'desc');
+        
         return $this->setList($entities)->getList();
     }
     
@@ -147,6 +149,7 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
         if ($entity->save($context)) {
             dispatch_plugin('profile.onSave', array('actor' => $entity, 'data' => $context->data));
         }
+        
         return $entity;
     }
     
@@ -181,8 +184,8 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
     protected function _actionDelete(KCommandContext $context)
     {
         $this->getService('repos://site/components')
-            ->fetchSet()
-            ->registerEventDispatcher($this->getService('anahita:event.dispatcher'));
+        ->fetchSet()
+        ->registerEventDispatcher($this->getService('anahita:event.dispatcher'));
         
         $result = parent::_actionDelete($context);
         
@@ -202,7 +205,7 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
         if (is_string($toolbar)) {
             // if actorbar or menu alawys default to the base
             if (in_array($toolbar, array('actorbar'))) {
-                $identifier       = clone $this->getIdentifier();
+                $identifier = clone $this->getIdentifier();
                 $identifier->path = array('controller', 'toolbar');
                 $identifier->name = $toolbar;
                 register_default(array('identifier' => $identifier, 'default' => 'ComActorsControllerToolbar'.ucfirst($toolbar)));
@@ -223,7 +226,8 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
     protected function _actionSetPrivacy(KCommandContext $context)
     {
         // call the parent privactable behavior
-        if ( $this->hasBehavior('privatable') ) {
+        if($this->hasBehavior('privatable')) 
+        {
             $this->getBehavior('privatable')->execute('action.setprivacy', $context);
         }
         

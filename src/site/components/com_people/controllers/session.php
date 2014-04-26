@@ -49,7 +49,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
      */
     protected function _initialize(KConfig $config)
     {
-    	$config->append(array(
+        $config->append(array(
             'redirect_to_after_login'  => '',
             'redirect_to_after_logout' => '',
             //by default the format is json
@@ -68,10 +68,12 @@ class ComPeopleControllerSession extends ComBaseControllerResource
     protected function _actionRead(KCommandContext $context)
     {
         $person = $this->getService('repos://site/people.person')->find(array('userId' => JFactory::getUser()->id));
+        
         $this->_state->setItem($person);
         if (isset($_SESSION['return'])) {
             $this->_state->append(array('return' => $this->getService('com://site/people.filter.return')->sanitize($_SESSION['return'])));
         }
+        
         return $person;
     }
     
@@ -97,66 +99,38 @@ class ComPeopleControllerSession extends ComBaseControllerResource
      * 
      * @param array   $user     The user as an array
      * @param boolean $remember Flag to whether remember the user or not
-     * @return void
+     * @return boolean
      * @throws LibBaseControllerExceptionUnauthorized If authentication failed
      * @throws LibBaseControllerExceptionForbidden    If person is authenticated but forbidden
      * @throws RuntimeException code for unkown error
      */
     public function login(array $user, $remember = false)
     {
-        $session  = &JFactory::getSession();
-        
-        // we fork the session to prevent session fixation issues
-        $session->fork();
-        JFactory::getApplication()->_createSession($session->getId());
-        
-        // Import the user plugin group
-        JPluginHelper::importPlugin('user');
-        $options = array();
-        $results = @JFactory::getApplication()->triggerEvent('onLoginUser', array($user, $options));
-        $failed  = false;
-        
-        foreach($results as $result) {
-            $failed = $result instanceof JException || $result instanceof Exception || $result === false;
-            if ($failed) {
-                break;
-            }
-        }
-        
-        if ( ! $failed) {
-            // Set the remember me cookie if enabled
-            jimport('joomla.utilities.simplecrypt');
-            jimport('joomla.utilities.utility');
+        if ( ! $this->getService('com:people.helper.person')->login($user, $remember)) {
+            $user = $this->getService('repos://site/users.user')->fetch(array('username'=>$user['username']));
             
-            //if remeber is true or json api is being called
-            //return a cookie that contains the credential
-            if ($remember === true) {
-                //legacy for now
-                $key      = JUtility::getHash(KRequest::get('server.HTTP_USER_AGENT', 'raw'));
-                $crypt    = new JSimpleCrypt($key);
-                $cookie   = $crypt->encrypt(serialize(array('username' => $user['username'], 'password' => $user['password'])));				
-                $lifetime = time() + AnHelperDate::yearToSeconds();
-                setcookie(JUtility::getHash('JLOGIN_REMEMBER'), $cookie, $lifetime, '/');
-            }
-            $context = $this->getCommandContext();
-            $context->result = true;
-            $this->getCommandChain()->run('after.login', $context);
-            return true;
-        } else {
-            $user = $this->getService('repos://site/users.user')->fetch(array('username' => $user['username']));
-            if ($user && $user->block) {
+            if ( ! isset($user)) {
+                $this->setMessage('COM-PEOPLE-AUTHENTICATION-PERSON-UNKOWN', 'error');
+                throw new RuntimeException('Unkown Error');
+            } elseif (isset($user) && $user->block) {
                 $this->setMessage('COM-PEOPLE-AUTHENTICATION-PERSON-BLOCKED', 'error');
                 throw new LibBaseControllerExceptionUnauthorized('User is blocked');
+            } else {
+                // Trigger onLoginFailure Event
+                JFactory::getApplication()->triggerEvent('onLoginFailure', array((array)$user));
+                
+                $this->setMessage('COM-PEOPLE-AUTHENTICATION-FAILED', 'error');
+                throw new LibBaseControllerExceptionUnauthorized('Authentication Failed. Check username/password');
             }
             
-            $this->setMessage('COM-PEOPLE-AUTHENTICATION-PERSON-UNKOWN', 'error');
-            throw new RuntimeException('Unkown Error');
+            return false;
         }
         
-        // Trigger onLoginFailure Event
-        $this->setMessage('COM-PEOPLE-AUTHENTICATION-FAILED', 'error');
-        JFactory::getApplication()->triggerEvent('onLoginFailure', array((array)$user));
-        throw new LibBaseControllerExceptionUnauthorized('Authentication Failed. Check username/password');
+        $context = $this->getCommandContext();
+        $context->result = true;
+        $this->getCommandChain()->run('after.login', $context);
+        
+        return true;
     }
     
     /**
@@ -175,26 +149,29 @@ class ComPeopleControllerSession extends ComBaseControllerResource
         //if there's a sign up then 
         //change the redirect url
         if ($data->return) {
-        	$_SESSION['return'] = $this->getService('com://site/people.filter.return')->sanitize($data->return);
+            $_SESSION['return'] = $this->getService('com://site/people.filter.return')->sanitize($data->return);
             $url = base64UrlDecode($data->return);
             $this->registerCallback('after.login', array($this, 'redirect'), array('url' => $url));
         }
         
         jimport('joomla.user.authentication');
         
-        $authenticate = & JAuthentication::getInstance();
-        $credentials  = KConfig::unbox($data);
-        $options      = array();
-        $authentication = $authenticate->authenticate($credentials, $options);
-        if ($authentication->status === JAUTHENTICATE_STATUS_SUCCESS) {
-            $_SESSION['return'] = null;
-            $this->login((array)$authentication, (bool) $data->remember);
+        $authentication =& JAuthentication::getInstance();
+        $credentials = KConfig::unbox($data);
+        
+        $options = array();
+        $authResponse = $authentication->authenticate($credentials, $options);
+        
+        if ($authResponse->status === JAUTHENTICATE_STATUS_SUCCESS && $this->login((array) $authResponse, (bool) $data->remember)) {
             $this->getResponse()->status = KHttpResponse::CREATED;
+            $_SESSION['return'] = null;
         } else {
             $this->setMessage('COM-PEOPLE-AUTHENTICATION-FAILED', 'error');
-            JFactory::getApplication()->triggerEvent('onLoginFailure', array((array)$authentication));
+            JFactory::getApplication()->triggerEvent('onLoginFailure', array((array)$authResponse));
             throw new LibBaseControllerExceptionUnauthorized('Authentication Failed. Check username/password');
         }
+        
+        return;
     }
     
     /**
@@ -206,8 +183,9 @@ class ComPeopleControllerSession extends ComBaseControllerResource
     protected function _actionDelete(KCommandContext $context)
     {
         //we don't care if a useris logged in or not just delete
-        $context->response->status = KHttpResponse::NO_CONTENT;
-        JFactory::getApplication()->logout();
+        if ($this->getService('com:people.helper.person')->logout()) {
+            $context->response->status = KHttpResponse::NO_CONTENT;
+        }
     }
     
     /**

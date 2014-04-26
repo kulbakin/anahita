@@ -14,58 +14,6 @@ jimport('joomla.plugin.plugin');
 class PlgSystemAnahita extends JPlugin 
 {
     /**
-     * Remebers handling
-     * 
-     * @return void
-     */
-    public function onAfterInitialise()
-    {
-        global $mainframe;
-        
-        // No remember me for admin
-        if ($mainframe->isAdmin()) {
-            return;
-        }
-        
-        //if alredy logged in then forget it
-        if (JFactory::getUser()->id) {
-            return;
-        }
-        
-        jimport('joomla.utilities.utility');
-        jimport('joomla.utilities.simplecrypt');
-        
-        if (KRequest::has('server.PHP_AUTH_USER')
-            && KRequest::has('server.PHP_AUTH_PW')
-            && KRequest::format() == 'json'
-        ) {
-            $data['username'] = KRequest::get('server.PHP_AUTH_USER', 'raw');
-            $data['password'] = KRequest::get('server.PHP_AUTH_PW',   'raw');
-        } elseif (($cookie = KRequest::get('cookie.'.JUtility::getHash('JLOGIN_REMEMBER'), 'raw'))) {
-            //first lets clear the cookie
-            setcookie(JUtility::getHash('JLOGIN_REMEMBER'), false, time() - AnHelperDate::dayToSeconds(), '/');
-            $key      = JUtility::getHash(KRequest::get('server.HTTP_USER_AGENT','raw'));
-            $crypt    = new JSimpleCrypt($key);
-            $cookie   = $crypt->decrypt($cookie);
-            $data     = (array)@unserialize($cookie);
-        }
-        
-        if ( ! empty($data)) {
-            try {
-                $data['rememmber'] = true;
-                // @TODO what happens when a user is blocked
-                KService::get('com://site/people.controller.session')->add($data);
-            } catch(RuntimeException $e) {
-                //only throws exception if we are using JSON format
-                //otherwise let the current app handle it
-                if (KRequest::format() == 'json') {
-                    throw $e;
-                }
-            }
-        }
-    }
-        
-    /**
      * Constructor
      * 
      * @param mixed $subject Dispatcher
@@ -87,28 +35,28 @@ class PlgSystemAnahita extends JPlugin
         
         // Check for suhosin
         if (in_array('suhosin', get_loaded_extensions())) {
-            // Attempt setting the whitelist value
+            //Attempt setting the whitelist value
             @ini_set('suhosin.executor.include.whitelist', 'tmpl://, file://');
             
-            // Checking if the whitelist is ok
+            //Checking if the whitelist is ok
             if ( ! @ini_get('suhosin.executor.include.whitelist') || strpos(@ini_get('suhosin.executor.include.whitelist'), 'tmpl://') === false) {
                 $url  =  KService::get('application')->getRouter()->getBaseUrl();
                 $url .= '/templates/system/error_suhosin.html';
                 KService::get('application.dispatcher')
                     ->getResponse()->setRedirect($url);
-                    
+                
                 KService::get('application.dispatcher')
                     ->getResponse()
                     ->send();
-                    
+                
                 return;
             }
         }
         
-        // Safety Extender compatibility
+        //Safety Extender compatibility
         if (extension_loaded('safeex') && strpos('tmpl', ini_get('safeex.url_include_proto_whitelist')) === false) {
             $whitelist = ini_get('safeex.url_include_proto_whitelist');
-            $whitelist = (strlen($whitelist) ? $whitelist.',' : '').'tmpl';
+            $whitelist = (strlen($whitelist) ? $whitelist . ',' : '').'tmpl';
             ini_set('safeex.url_include_proto_whitelist', $whitelist);
         }
         
@@ -137,6 +85,65 @@ class PlgSystemAnahita extends JPlugin
     }
     
     /**
+     * Remebers handling
+     * 
+     * @return void
+     */
+    public function onAfterInitialise()
+    {
+        global $mainframe;
+        
+        // No remember me for admin
+        if ($mainframe->isAdmin()) {
+            return;
+        }
+        
+        //if alredy logged in then forget it
+        if ( ! JFactory::getUser()->guest) {
+            return;
+        }
+        
+        jimport('joomla.utilities.utility');
+        jimport('joomla.utilities.simplecrypt');
+        $user = array();
+        $remember = JUtility::getHash('JLOGIN_REMEMBER');
+        
+        // for json requests obtain the username and password from the $_SERVER array
+        // else if the remember me cookie exists, decrypt and obtain the username and password from it
+        if (KRequest::has('server.PHP_AUTH_USER') && KRequest::has('server.PHP_AUTH_PW') && KRequest::format() == 'json') {
+            $user['username'] = KRequest::get('server.PHP_AUTH_USER', 'raw');
+            $user['password'] = KRequest::get('server.PHP_AUTH_PW', 'raw');
+        } elseif(isset($_COOKIE[$remember]) && $_COOKIE[$remember] != '') {
+            $key = JUtility::getHash(KRequest::get('server.HTTP_USER_AGENT', 'raw'));
+            if ($key) {
+                $crypt  = new JSimpleCrypt($key);
+                $cookie = $crypt->decrypt($_COOKIE[$remember]);
+                $user   = (array)@unserialize($cookie);
+            }
+        }
+        
+        if ( ! empty($user)) {
+            jimport('joomla.user.authentication');
+            $authentication =& JAuthentication::getInstance();
+            
+            try {
+                $authResponse = $authentication->authenticate($user, array());
+                if ($authResponse->status === JAUTHENTICATE_STATUS_SUCCESS) {
+                    KService::get('com://site/people.helper.person')->login($user, true);
+                }
+            } catch(RuntimeException $e) {
+                //only throws exception if we are using JSON format
+                //otherwise let the current app handle it
+                if (KRequest::format() == 'json') {
+                    throw $e;
+                }
+            }
+        }
+        
+        return;
+    }
+    
+    /**
      * store user method
      * 
      * Method is called after user data is stored in the database
@@ -150,7 +157,7 @@ class PlgSystemAnahita extends JPlugin
     {
         global $mainframe;
         
-        if( ! $succes) {
+        if ( ! $succes) {
             return false;
         }
         
@@ -181,10 +188,8 @@ class PlgSystemAnahita extends JPlugin
     public function onBeforeDeleteUser($user)
     {
         $person = KService::get('repos://site/people.person')->find(array('userId' => $user['id']));
-        
         if ($person) {
-            KService::get('repos://site/components')
-                ->fetchSet()
+            KService::get('repos://site/components')->fetchSet()
                 ->registerEventDispatcher(KService::get('anahita:event.dispatcher'));
             
             KService::get('anahita:event.dispatcher')

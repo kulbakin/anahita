@@ -81,7 +81,7 @@ class JSite extends JApplication
     {
         //Set the application login entry point
         if( ! array_key_exists('entry_url', $options)) {
-            $options['entry_url'] = JURI::base().'index.php?option=com_user&task=login';
+            $options['entry_url'] = JURI::base().'index.php?option=com_people&view=session&action=login';
         }
         
         return parent::login($credentials, $options);
@@ -98,7 +98,7 @@ class JSite extends JApplication
     {
         static $params = array();
         $hash = '__default';
-        if( ! empty($option)) {
+        if ( ! empty($option)) {
             $hash = $option;
         }
         if ( ! isset($params[$hash])) {
@@ -109,8 +109,8 @@ class JSite extends JApplication
             $params[$hash] =& JComponentHelper::getParams($option);
             
             // Get menu parameters
-            $menus  =& JSite::getMenu();
-            $menu   = $menus->getActive();
+            $menus =& JSite::getMenu();
+            $menu  = $menus->getActive();
             
             $title       = htmlspecialchars_decode($this->getCfg('sitename' ));
             $description = $this->getCfg('MetaDesc');
