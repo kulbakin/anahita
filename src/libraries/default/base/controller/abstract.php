@@ -22,17 +22,17 @@ class LibBaseControllerAbstract extends KControllerAbstract
     
     /**
      * response object
-     *
+     * 
      * @var LibBaseControllerResponseAbstract
      */
     protected $_response;
     
     /**
      * Constructor.
-     *
+     * 
      * @param object An optional KConfig object with configuration options.
      */
-    public function __construct( KConfig $config)
+    public function __construct(KConfig $config)
     {
         parent::__construct($config);
         
@@ -165,7 +165,7 @@ class LibBaseControllerAbstract extends KControllerAbstract
      */
     public function getResponse()
     {
-        if( ! $this->_response instanceof LibBaseControllerResponse) {
+        if ( ! $this->_response instanceof LibBaseControllerResponse) {
             $this->_response = $this->getService($this->_response);
             if ( ! $this->_response instanceof LibBaseControllerResponse) {
                 throw new UnexpectedValueException('Response must be an instanceof LibBaseControllerResponse');
@@ -212,9 +212,9 @@ class LibBaseControllerAbstract extends KControllerAbstract
     public function getBehavior($behavior, $config = array())
     {
         if (is_string($behavior)) {
-            if (strpos($behavior,'.') === false) {
+            if (strpos($behavior, '.') === false) {
                 $identifier       = clone $this->getIdentifier();
-                $identifier->path = array('controller','behavior');
+                $identifier->path = array('controller', 'behavior');
                 $identifier->name = $behavior;
                 register_default(array('identifier' => $identifier, 'prefix' => $this));
                 $behavior = $identifier;

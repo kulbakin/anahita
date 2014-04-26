@@ -84,7 +84,7 @@ class ComActorsDomainEntityActor extends ComBaseDomainEntityNode
     public function getPortraitFile($size)
     {
         if (strpos($this->filename,'/')) {
-             $filename = str_replace('/', '/avatars/'.$size, $this->filename);
+            $filename = str_replace('/', '/avatars/'.$size, $this->filename);
         } else {
             $filename = $this->component.'/avatars/'.$size.$this->filename;
         }

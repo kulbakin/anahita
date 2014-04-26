@@ -88,7 +88,7 @@ class ComBaseControllerBehaviorServiceable extends LibBaseControllerBehaviorServ
         $query->keyword = $this->search;
         
         if ($this->getRepository()->hasBehavior('parentable')) {
-            if ( $this->getState()->parent ) {
+            if ($this->getState()->parent) {
                 $query->parent($this->getState()->parent);
             } elseif ($this->pid == -1) {
                 $query->parent(null);

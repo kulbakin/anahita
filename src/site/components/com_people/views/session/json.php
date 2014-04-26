@@ -1,7 +1,5 @@
 <?php
 /**
- * Search result in Html format.
- * 
  * @category   Anahita
  * @package    Com_People
  * @subpackage View

@@ -108,8 +108,8 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         
         //add the validations here
         $this->getRepository()->getValidator()
-            ->addValidation('username','uniqueness')
-            ->addValidation('email',   'uniqueness');
+            ->addValidation('username', 'uniqueness')
+            ->addValidation('email',    'uniqueness');
             
         if ($person->validate() === false) {
             throw new AnErrorException($person->getErrors(), KHttpResponse::BAD_REQUEST);
@@ -132,9 +132,9 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
             //joomla legacy. don't know what happens if it's set to 1
             $query = "INSERT INTO #__users VALUES (62, 'admin', 'admin', 'admin@example.com', '', 'Super Administrator', 0, 1, 25, '', '', '', '')";
             $datbase->execute($query);
-            $query = "INSERT INTO #__core_acl_aro VALUES (10,'users','62',0,'Administrator',0)";
+            $query = "INSERT INTO #__core_acl_aro VALUES (10, 'users', '62', 0, 'Administrator', 0)";
             $datbase->execute($query);
-            $query = "INSERT INTO #__core_acl_groups_aro_map VALUES (25,'',10)";
+            $query = "INSERT INTO #__core_acl_groups_aro_map VALUES (25, '', 10)";
             $datbase->execute($query);
             $user  =& JFactory::getUser();
             $user  = JUser::getInstance(62);

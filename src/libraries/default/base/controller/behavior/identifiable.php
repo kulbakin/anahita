@@ -1,7 +1,7 @@
 <?php
 /**
  * Identifiable Behavior
- *
+ * 
  * @category   Anahita
  * @package    Lib_Base
  * @subpackage Controller_Behavior
@@ -27,9 +27,9 @@ class LibBaseControllerBehaviorIdentifiable extends KControllerBehaviorAbstract
      */
     protected $_identifiable_key;
     
-    /** 
+    /**
      * Constructor.
-     *
+     * 
      * @param KConfig $config An optional KConfig object with configuration options.
      * @return void
      */
@@ -128,7 +128,7 @@ class LibBaseControllerBehaviorIdentifiable extends KControllerBehaviorAbstract
     public function getItem($create = false)
     {
         $item = $this->_mixer->getState()->getItem();
-        if ($item  == null && $this->_mixer->getState()->isUnique()) {
+        if ($item == null && $this->_mixer->getState()->isUnique()) {
             $item = $this->fetchEntity(new KCommandContext()); 
         }
         
@@ -151,7 +151,7 @@ class LibBaseControllerBehaviorIdentifiable extends KControllerBehaviorAbstract
         if ( ! $repository instanceof AnDomainRepositoryAbstract) {
             $identifier = $repository;
             
-            if (strpos($repository,'.') === false) {
+            if (strpos($repository, '.') === false) {
                 $identifier = clone $this->getIdentifier();
                 $identifier->path = array('domain', 'entity');
                 $identifier->name = $repository;

@@ -47,7 +47,7 @@ class ComBaseControllerBehaviorVotable extends KControllerBehaviorAbstract
     {
         $context->response->status = KHttpResponse::CREATED;
         
-        $this->getItem()->voteup( get_viewer() );
+        $this->getItem()->voteup(get_viewer());
         $notification = $this->_mixer->createNotification(array(
             'name'      => 'voteup',
             'object'    => $this->getItem(),
