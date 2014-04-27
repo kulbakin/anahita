@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *LibBaseControllerBehaviorServiceable::getMethods()* when called within behavior controller
+  before protected *_exclude_actions* is initialized
+  [8afd6ee](https://github.com/kulbakin/anahita/commit/8afd6ee560199d22df253f7032080a1c3b2a5759)
 * update template helper for rendering style `@render('style')` to support file parameter
   to be able to load style file other than `style.css`, backward compatibility preserved
   by assuming `style.css` by default
