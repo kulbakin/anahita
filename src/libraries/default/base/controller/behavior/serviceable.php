@@ -18,7 +18,7 @@ class LibBaseControllerBehaviorServiceable extends KControllerBehaviorAbstract
      * 
      * @var array
      */
-    protected $_exclude_actions;
+    protected $_exclude_actions = array();
     
     /**
      * Constructor.
@@ -69,7 +69,6 @@ class LibBaseControllerBehaviorServiceable extends KControllerBehaviorAbstract
         foreach ($this->_exclude_actions as $i => $action) {
             $this->_exclude_actions[$i] = '_action'.ucfirst($action);
         }
-        
     }
     
     /**
