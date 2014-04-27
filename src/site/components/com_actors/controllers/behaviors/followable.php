@@ -23,9 +23,11 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
         parent::__construct($config);
         
         $config->mixer->registerCallback(
-            array('before.deletefollower', 'before.addfollower',
-                  'before.addrequester', 'before.deleterequester',
-                  'before.addblocked', 'before.deleteblocked'),
+            array(
+                'before.deletefollower', 'before.addfollower',
+                'before.addrequester', 'before.deleterequester',
+                'before.addblocked', 'before.deleteblocked',
+            ),
             array($this, 'getActor')
         );
         
@@ -43,8 +45,8 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
     {
         $this->getResponse()->status  = KHttpResponse::RESET_CONTENT;
         $this->getItem()->addRequester($this->actor);
-        $this->createNotification(array('subject'=>$this->actor,'target'=>$this->getItem(),'name'=>'actor_request'));
-        return $this->getItem();        
+        $this->createNotification(array('subject' => $this->actor, 'target' => $this->getItem(), 'name' => 'actor_request'));
+        return $this->getItem();
     }
     
     /**
@@ -70,14 +72,14 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
     {
         $this->getResponse()->status = KHttpResponse::RESET_CONTENT;
         
-        if ( ! $this->getItem()->leading( $this->actor)) {
-            $this->getItem()->addFollower( $this->actor);
+        if ( ! $this->getItem()->leading($this->actor)) {
+            $this->getItem()->addFollower($this->actor);
             
             $story = $this->createStory(array(
-                    'name'    => 'actor_follow',
-                    'subject' => $this->actor,
-                    'owner'   => $this->actor,
-                    'target'  => $this->getItem()
+                'name'    => 'actor_follow',
+                'subject' => $this->actor,
+                'owner'   => $this->actor,
+                'target'  => $this->getItem()
             ), true);
             
             //if the entity is not an adiminstrable actor (person)
@@ -133,9 +135,9 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
      * @return AnDomainEntitysetDefault
      */
     protected function _actionGetgraph(KCommandContext $context)
-    {            
+    {
         $this->getState()
-            ->insert('type','followers');
+            ->insert('type', 'followers');
         
         $filters  = array();
         $entities = array();
@@ -165,9 +167,9 @@ class ComActorsControllerBehaviorFollowable extends KControllerBehaviorAbstract
         $xid = (array)KConfig::unbox($this->getState()->xid);
         
         if ( ! empty($xid)) {
-            $entities->where('id','NOT IN', $xid);
+            $entities->where('id', 'NOT IN', $xid);
         }
-        $entities->limit( $this->limit, $this->start );
+        $entities->limit($this->limit, $this->start);
         
         if ($this->q) {
             $entities->keyword($this->q);

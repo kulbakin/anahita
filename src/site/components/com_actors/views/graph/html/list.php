@@ -1,16 +1,14 @@
-<?php defined('KOOWA') or die; ?>
+<?php defined('KOOWA') or die ?>
 
-<?php 
+<?php
 $url = $item->getURL().'&layout=list&get=graph&type='.$type;
-if ( !empty($q) ) {
-    $url .= '&q='.$q;   
+if ( ! empty($q)) {
+    $url .= '&q='.$q;
 }
-?>
-
-<?php 
-if ( $item->isAdministrable() )
-	//set the actor as state
-    @listItemView()->getState()->actor = $item;        
+if ($item->isAdministrable()) {
+    //set the actor as state
+    @listItemView()->getState()->actor = $item;
+}
 ?>
 
 <?= @previous(array('pagination_url'=>@route($url))) ?>

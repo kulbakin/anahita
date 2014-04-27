@@ -125,7 +125,7 @@ class LibApplicationRouter extends KObject
      * @param JURI $uri
      * @return void
      */
-	public function parse(&$url)
+    public function parse(&$url)
     {
         $this->_fixUrlForParsing($url);
         $this->_parse($url);
@@ -137,11 +137,11 @@ class LibApplicationRouter extends KObject
      * 
      * @param KHttpUrl $url
      */
-	protected function _parse(&$url)
+    protected function _parse(&$url)
     {
-        $segments   = explode('/', trim($url->path,'/'));
-        $segments   = array_filter($segments);
-         
+        $segments = explode('/', trim($url->path,'/'));
+        $segments = array_filter($segments);
+        
         if (count($segments)) {
             $component  = array_shift($segments);
             $url->query = array_merge(array('option' => 'com_'.$component), $url->query);
@@ -158,7 +158,7 @@ class LibApplicationRouter extends KObject
      * @param boolean $fqr Full query resolution
      * @return void
      */
-	public function build(&$url = '', $fqr = false)
+    public function build(&$url = '', $fqr = false)
     {
         if (is_array($url)) {
             $url = '?'.http_build_query($url, '', '&');
@@ -264,7 +264,7 @@ class LibApplicationRouter extends KObject
         $path  = trim($path, '/');
         $url->path   = $path;
         $url->format = $url->format ? $url->format : pick(KRequest::format(), 'html');
-        if( ! empty($url->format)) {
+        if ( ! empty($url->format)) {
             $url->query['format'] = $url->format;
         }
     }
