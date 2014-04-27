@@ -26,6 +26,8 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
         
         //set filter state
         $this->getState()->insert('filter');
+        $this->getState()->insert('sort');
+        $this->getState()->insert('direction');
     }
     
     /**
@@ -94,11 +96,15 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
             if ($this->filter == 'administering' && $this->getRepository()->hasBehavior('administrable')) {
                 $entities->where('administrators.id', 'IN', array($this->actor->id));
             } elseif ($this->actor->isFollowable()) {
-                $entities->where('followers.id','IN', array($this->actor->id));
+                $entities->where('followers.id', 'IN', array($this->actor->id));
             }
         }
         
-        $entities->order('created_on', 'desc');
+        $this->getState()->append(array(
+            'sort' => 'creationTime',
+            'direction' => 'desc'
+        ));
+        $entities->order($this->sort, $this->direction);
         
         return $this->setList($entities)->getList();
     }
