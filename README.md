@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update search funcitonality to support unicode
+  [6fca12b](https://github.com/kulbakin/anahita/commit/6fca12b4fa3fe25100d0e1290007ea3e2de38344)
 * fix *LibBaseControllerBehaviorServiceable::getMethods()* when called within behavior controller
   before protected *_exclude_actions* is initialized
   [8afd6ee](https://github.com/kulbakin/anahita/commit/8afd6ee560199d22df253f7032080a1c3b2a5759)
