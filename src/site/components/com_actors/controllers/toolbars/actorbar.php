@@ -42,7 +42,7 @@ class ComActorsControllerToolbarActorbar extends ComBaseControllerToolbarActorba
             //if viewing a list of actors related to another actor
             $this->_configureBar();
         }
-    } 
+    }
     
     /**
      * Configure actorbar for when socialgraph is showing. This is temporary as the 

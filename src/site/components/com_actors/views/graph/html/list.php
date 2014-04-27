@@ -11,5 +11,4 @@ if ($item->isAdministrable()) {
 }
 ?>
 
-<?= @previous(array('pagination_url'=>@route($url))) ?>
-
+<?= @previous(array('pagination_url' => @route($url))) ?>

@@ -1,4 +1,4 @@
-<?php defined('KOOWA') or die; ?>
+<?php defined('KOOWA') or die ?>
 
 <module position="sidebar-b" style="none"></module>
 
