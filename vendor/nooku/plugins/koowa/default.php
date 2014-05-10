@@ -130,11 +130,11 @@ abstract class PlgKoowaDefault extends KEventSubscriberDefault
      */
     public function loadLanguage($extension = '', $basePath = JPATH_BASE)
     {
-        if(empty($extension)) {
+        if (empty($extension)) {
             $extension = 'plg_'.$this->getIdentifier()->package.'_'.$this->getIdentifier()->name;
         }
         
-        return JFactory::getLanguage()->load( strtolower($extension), $basePath);
+        return JFactory::getLanguage()->load(strtolower($extension), $basePath);
     }
     
     /**

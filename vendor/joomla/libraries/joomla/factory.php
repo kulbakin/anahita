@@ -530,7 +530,7 @@ class JFactory
         // Create a JMail object
         $mail =& JMail::getInstance();
         // Set default sender
-        $mail->setSender(array ($mailfrom, $fromname));
+        $mail->setSender(array($mailfrom, $fromname));
         
         // Default mailer is to use PHP's mail function
         switch ($mailer) {

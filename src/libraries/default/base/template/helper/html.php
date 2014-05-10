@@ -19,12 +19,12 @@
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
 class LibBaseTemplateHelperHtml extends KTemplateHelperAbstract implements KServiceInstantiatable
-{ 
+{
     /**
      * Force creation of a singleton
      * 
-     * @param KConfigInterface     $config    An optional KConfig object with configuration options
-     * @param KServiceInterface    $container A KServiceInterface object
+     * @param KConfigInterface  $config    An optional KConfig object with configuration options
+     * @param KServiceInterface $container A KServiceInterface object
      * @return KServiceInstantiatable
      */
     public static function getInstance(KConfigInterface $config, KServiceInterface $container)
@@ -401,12 +401,12 @@ class LibBaseTemplateHelperHtmlElement
     
     /**
      * Set an attribute. The parameters can be a key/value or an array of key values
-     *
+     * 
      * <code>
-     * $tag->set('id','my-id');
-     * $this->set(array('id'=>'my-id'));
+     *  $tag->set('id','my-id');
+     *  $this->set(array('id'=>'my-id'));
      * </code>
-     *
+     * 
      * @return LibBaseTemplateHelperHtmlTag class instances
      */
     public function set()
@@ -432,7 +432,7 @@ class LibBaseTemplateHelperHtmlElement
         $attributes = array();
         $tag  = '<'.$this->name;
         $attr = array();
-        foreach ($this->attributes as $key=>$value) {
+        foreach ($this->attributes as $key => $value) {
             if (is_array($value)) {
                 $value = str_replace('"', "'", json_encode($value));
             }
@@ -441,7 +441,7 @@ class LibBaseTemplateHelperHtmlElement
         
         $attr = implode(' ',$attr);
         $tag .= ' '.$attr;
-        if ((isset($this->content) && ! is_null($this->content)) || ($this->name == 'textarea')) {
+        if ((isset($this->content) && ! is_null($this->content)) || $this->name == 'textarea') {
             $tag .= '>'.$this->content.'</'.$this->name.'>';
         } else {
             $tag .= ' />';

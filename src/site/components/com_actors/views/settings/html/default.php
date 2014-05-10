@@ -3,7 +3,7 @@
 <module position="sidebar-b">
 <ul id="setting-tabs" class="nav nav-pills nav-stacked" >
     <li class="nav-header">
-          <?= @text('COM-ACTORS-PROFILE-EDIT') ?>
+        <?= @text('COM-ACTORS-PROFILE-EDIT') ?>
     </li>
     <?php foreach($tabs as $tab) : ?>
         <li class="<?= $tab->active ? 'active' : ''?>">

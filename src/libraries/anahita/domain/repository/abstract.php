@@ -404,7 +404,7 @@ abstract class AnDomainRepositoryAbstract extends KCommand
         }
         
         $context = $this->getCommandContext();
-        $context->append(array('data'=>array()));
+        $context->append(array('data' => array()));
         $context->append($config);
         
         //force data to be stored by real name
@@ -416,7 +416,7 @@ abstract class AnDomainRepositoryAbstract extends KCommand
             }
         }
         
-        $entity          = clone $this->getClone();
+        $entity = clone $this->getClone();
         $context->entity = $entity;
         $this->getCommandChain()->run('after.instantiate', $context);
         

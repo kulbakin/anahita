@@ -10,7 +10,7 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode 
+class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
 {
     /**
      * Notification Status
@@ -37,7 +37,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
                 'subscriberIds' => array('type' => 'set', 'default' => 'set', 'write' => 'private', 'required' => true),
             ),
             'behaviors' => to_hash(array(
-                  'serializable' => array('serializer'=>'com://site/stories.domain.serializer.story'),
+                  'serializable' => array('serializer' => 'com://site/stories.domain.serializer.story'),
                   'dictionariable',
             )),
             'relationships' => array(
@@ -89,7 +89,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
                     'subscribers' => array($data->object->author->id),
                 ));
             }
-        } elseif ( $data->target ) {
+        } elseif ($data->target) {
             //if there are no objects, then there are no subscribers
             //in that case add the target as the notification subscriber
             //if it's notifiable
@@ -109,7 +109,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
         parent::_afterEntityInstantiate($config);
         
         if ($config->data->subscribers) {
-            $this->setSubscribers( $config->data->subscribers);
+            $this->setSubscribers($config->data->subscribers);
         }
     }
     
@@ -139,7 +139,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
     public function setSubscribers($subscribers)
     {
         //flatten the array
-        $subscribers = AnHelperArray::getValues( KConfig::unbox($subscribers) );
+        $subscribers = AnHelperArray::getValues(KConfig::unbox($subscribers));
         $ids = array();
         foreach ($subscribers as $subscriber) {
             if (is($subscriber, 'AnDomainEntityAbstract')) {

@@ -161,7 +161,7 @@ class ComMailerControllerBehaviorMailer extends KControllerBehaviorAbstract
     public function mailAdmins($config = array())
     {
         $admins = $this->getService('repos://site/users.user')
-            ->fetchSet(array('usertype'=>'Super Administrator'));
+            ->fetchSet(array('usertype' => 'Super Administrator'));
         
         $config['to'] = $admins->email;
         

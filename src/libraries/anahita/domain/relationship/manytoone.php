@@ -194,7 +194,6 @@ class AnDomainRelationshipManytoone extends AnDomainRelationshipProperty impleme
      * 
      * @param AnDomainEntityAbstract $instance The entity whose relationship it's materializing for
      * @param array                  $data     The row data
-     * 
      * @return AnDomainProxyEntity
      */
     public function materialize(array $data, $instance)
@@ -207,7 +206,7 @@ class AnDomainRelationshipManytoone extends AnDomainRelationshipProperty impleme
             throw new AnDomainExceptionMapping($this->getName().' Mapping Failed');
         }
         
-        $child_key =  $this->_child_column->key();
+        $child_key = $this->_child_column->key();
         
         // get parent value
         $parent_value = $data[$child_key];
