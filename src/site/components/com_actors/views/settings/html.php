@@ -123,7 +123,7 @@ class ComActorsViewSettingsHtml extends ComBaseViewHtml
                 'can_enable' => true
             ));
         
-        if ( count($this->enablable_apps)) {
+        if (count($this->enablable_apps)) {
             $tabs->insert('apps', array(
                 'label' => JText::_('COM-ACTORS-PROFILE-EDIT-TAB-APPS'),
             ));

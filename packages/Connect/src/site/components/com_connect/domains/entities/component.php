@@ -24,7 +24,7 @@ class ComConnectDomainEntityComponent extends ComComponentsDomainEntityComponent
     {
         $config->append(array(
             'behaviors' => array(
-                'assignable'=>array('assignment_option' => ComComponentsDomainBehaviorAssignable::OPTION_NOT_OPTIONAL),
+                'assignable' => array('assignment_option' => ComComponentsDomainBehaviorAssignable::OPTION_NOT_OPTIONAL),
             )
         ));
         
