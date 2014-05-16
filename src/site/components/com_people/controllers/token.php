@@ -78,7 +78,7 @@ class ComPeopleControllerToken extends ComBaseControllerResource
             $this->user = $user;
         } else {
             $this->setMessage('COM-PEOPLE-TOKEN-INVALID-EMAIL', 'error', false);
-            throw new LibBaseControllerExceptionNotFound('Email Not Found');
+            $this->getResponse()->status = KHttpResponse::CREATED;
         }
     }
     
