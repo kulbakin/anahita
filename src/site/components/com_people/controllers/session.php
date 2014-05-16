@@ -107,7 +107,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
     public function login(array $user, $remember = false)
     {
         if ( ! $this->getService('com:people.helper.person')->login($user, $remember)) {
-            $user = $this->getService('repos://site/users.user')->fetch(array('username'=>$user['username']));
+            $user = $this->getService('repos://site/users.user')->fetch(array('username' => $user['username']));
             
             if ( ! isset($user)) {
                 $this->setMessage('COM-PEOPLE-AUTHENTICATION-PERSON-UNKOWN', 'error');
@@ -162,7 +162,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
         $options = array();
         $authResponse = $authentication->authenticate($credentials, $options);
         
-        if ($authResponse->status === JAUTHENTICATE_STATUS_SUCCESS && $this->login((array) $authResponse, (bool) $data->remember)) {
+        if ($authResponse->status === JAUTHENTICATE_STATUS_SUCCESS && $this->login((array)$authResponse, (bool)$data->remember)) {
             $this->getResponse()->status = KHttpResponse::CREATED;
             $_SESSION['return'] = null;
         } else {

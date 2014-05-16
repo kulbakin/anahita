@@ -32,7 +32,7 @@ class ComHtmlRouter extends ComBaseRouterAbstract
     public function parse(&$segments)
     {
         $query = array('view' => 'content');
-        if ( count($segments) ) {
+        if (count($segments)) {
             $query['layout'] = str_replace('-','_', implode('/', $segments));
         }
         return $query;
