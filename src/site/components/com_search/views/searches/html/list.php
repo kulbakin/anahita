@@ -1,7 +1,7 @@
 <?php defined('KOOWA') or die; ?>
 
 <div class="an-meta">
-    <p><?= @ntextf('COM-SEARCH-RESULTS-FOUND', $items->getTotal()) ?></p>
+    <p><?= @ntextf('COM-SEARCH-RESULTS-FOUND', $items->getTotal(), $term) ?></p>
 </div>
 
 <?php if ($current_scope && ($current_scope->commentable || $current_scope->ownable) && $items->getTotal()): ?>
