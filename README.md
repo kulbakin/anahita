@@ -60,7 +60,8 @@ changes.
   callback url value visible on module settings page in admin area
   [12abef0](https://github.com/kulbakin/anahita/commit/12abef034636993a5ba4b9ea68e65d9d0b0e7626)
 * update @html template helper to have support for datalist (html5 tag)
-  [2d42bca](https://github.com/kulbakin/anahita/commit/2d42bcad65018585cae01df315a9481c698abae6)
+  [2d42bca](https://github.com/kulbakin/anahita/commit/2d42bcad65018585cae01df315a9481c698abae6),
+  [57bd681](https://github.com/kulbakin/anahita/commit/57bd6814d9477c1f424e18cfb35b6c8e1c55c909)
 * fix bug related autoredirect after login caused by rare occasions of base64 encoded string
   in `return` url paramter having special symbols (`/` or `+`)
   [1a1a428](https://github.com/kulbakin/anahita/commit/1a1a4280165938ed4bbd7f01d1b181453d4c6b6c)
