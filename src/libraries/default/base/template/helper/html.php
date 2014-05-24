@@ -122,8 +122,8 @@ class LibBaseTemplateHelperHtml extends KTemplateHelperAbstract implements KServ
         $attributes['id'] = $id;
         if (is_array($options)) {
             $tags = array();
-            foreach ($options as $value) {
-                $tags[] = '<option value="'.$value.'" />';
+            foreach ($options as $value => $label) {
+                $tags[] = '<option value="'.$value.'">'.$label.'</option>';
             }
             $options = implode("\n", $tags);
         }
