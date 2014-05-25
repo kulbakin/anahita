@@ -78,7 +78,7 @@ EOT;
         
         $data = array(
             'id'           => $profile['id'],
-            'profile_url'   => 'https://www.linkedin.com/profile/view?id='.$profile['id'],
+            'profile_url'  => 'https://www.linkedin.com/profile/view?id='.$profile['id'],
             'name'         => $profile['first-name'].' '.$profile['last-name'],
             'large_avatar' => $profile['picture-url'],
             'thumb_avatar' => $profile['picture-url'],

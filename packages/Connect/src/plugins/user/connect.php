@@ -49,7 +49,7 @@ class PlgUserConnect extends JPlugin
             $user->save();
             $user = $this->_api->getUser();
             if (KRequest::get('post.import_avatar', 'cmd') && $user->large_avatar) {
-                $this->_person->setPortraitImage(array('url'=>$user->large_avatar));
+                $this->_person->setPortraitImage(array('url' => $user->large_avatar));
             }
             $this->_person->enabled = true;
             $this->_person->save();

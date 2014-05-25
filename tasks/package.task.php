@@ -87,14 +87,14 @@ class PackageCommand extends Command
         foreach ($files as $file) {
            if ($file->isFile() && pathinfo($file->getFilename(), PATHINFO_EXTENSION) == 'xml') {
                $xml = new \SimpleXMLElement(file_get_contents($file));
-               $t = $xml->xpath('/install');
-               $install = array_pop($t);
-               if ($install && in_array($install['type'], array('component','plugin','module'))) {
+               $xmlPath = $xml->xpath('/install');
+               $install = array_pop($xmlPath);
+               if ($install && in_array($install['type'], array('component', 'plugin', 'module'))) {
                    $manifests[dirname($file)] = $install;
                }
            }
         }
-        foreach($manifests as $dir => $manifest) {
+        foreach ($manifests as $dir => $manifest) {
             $type     = $manifest['type'];
             $method   = '_install'.ucfirst($type);
             $name     = (string)$manifest->name[0].' '.$type;

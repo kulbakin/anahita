@@ -9,7 +9,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
-jimport( 'joomla.plugin.plugin' );
+jimport('joomla.plugin.plugin');
 
 /**
  * Joomla Authentication plugin
@@ -70,7 +70,7 @@ class PlgAuthenticationConnect extends JPlugin
                     }
                 }
             } catch(Exception $e) {
-              // ignore any exception
+                // ignore any exception
             }
         }
     }

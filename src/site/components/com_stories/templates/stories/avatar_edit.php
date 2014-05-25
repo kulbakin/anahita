@@ -4,7 +4,7 @@
     <?php if( ! is_array($target)): ?>
         <?= @textf('COM-STORIES-TITLE-UPDATE-AVATAR', @name($subject), @possessive($target)) ?>
     <?php else: ?>
-        <?= @ntextf('COM-STORIES-TITLE-UPDATE-AVATARS', count($target)) ?>
+        <?= @textf('COM-STORIES-TITLE-UPDATE-AVATARS', @name($subject)) ?>
     <?php endif ?>
 </data>
 
