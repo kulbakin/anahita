@@ -9,7 +9,7 @@
 
 /**
  * Schema Migration
- *
+ * 
  * @package    Com_Anahita
  * @subpackage Schema_Migration
  */
@@ -20,13 +20,15 @@ class ComAnahitaSchemaMigration4 extends ComMigratorMigrationVersion
     */
     public function up()
     {
+        dbexec('ALTER TABLE #__users DROP INDEX `username`');
+        dbexec('ALTER TABLE #__users DROP INDEX `email`');
         dbexec('ALTER TABLE #__users ADD UNIQUE (`username`)');
         dbexec('ALTER TABLE #__users ADD UNIQUE (`email`)');
     }
-
+    
    /**
     * Called when rolling back a migration
-    */        
+    */
     public function down()
     {
         //add your migration here

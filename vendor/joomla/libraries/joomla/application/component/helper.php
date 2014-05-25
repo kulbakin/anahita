@@ -41,7 +41,7 @@ class JComponentHelper
      * @param   boolean $string    If set and a component does not exist, false will be returned
      * @return  boolean
      */
-    static function isEnabled( $component, $strict = false )
+    static function isEnabled($component, $strict = false)
     {
         global $mainframe;
         
@@ -56,7 +56,7 @@ class JComponentHelper
      * @param string $name The component name
      * @return object A JParameter object
      */
-    static function &getParams( $name )
+    static function &getParams($name)
     {
         static $instances;
         if ( ! isset($instances[$name])) {

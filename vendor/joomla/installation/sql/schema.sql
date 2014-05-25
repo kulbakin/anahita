@@ -369,4 +369,4 @@ CREATE TABLE `#__users` (
   UNIQUE `email` (`email`)
 ) ENGINE=MyISAM;
 
-INSERT INTO #__migrator_versions (`version`,`component`) VALUES(3, 'anahita') ON DUPLICATE KEY UPDATE `version` = 4;
+INSERT INTO #__migrator_versions (`version`,`component`) VALUES(4, 'anahita') ON DUPLICATE KEY UPDATE `version` = 4;
