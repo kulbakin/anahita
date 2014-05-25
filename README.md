@@ -47,6 +47,11 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update *com_connect* to store social profile meta information (name, username etc.) in database
+  [d9dcc05](https://github.com/kulbakin/anahita/commit/d9dcc054553f6d6d2e57c9cc1aed740952b2d093)
+* fix *com_connect* package to compose proper *profile_url* for twitter
+  by *ComConnectOauthServiceTwitter*
+  [5b72c66](https://github.com/kulbakin/anahita/commit/5b72c667f6356e2d50ddef0308041a0250d92830)
 * update search funcitonality to support unicode
   [6fca12b](https://github.com/kulbakin/anahita/commit/6fca12b4fa3fe25100d0e1290007ea3e2de38344)
 * fix *LibBaseControllerBehaviorServiceable::getMethods()* when called within behavior controller
