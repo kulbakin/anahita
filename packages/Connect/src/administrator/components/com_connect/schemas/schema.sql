@@ -10,8 +10,9 @@ CREATE TABLE `#__connect_sessions` (
   `api` varchar(100) NOT NULL,
   `update_status` tinyint(1) NOT NULL DEFAULT '0',
   `profile_id` varchar(30) NOT NULL,
+  `meta` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `owner_id_and_profile_id_and_service_id` (`owner_id`,`profile_id`,`api`)
 ) ENGINE=InnoDB;
 
-INSERT INTO #__migrator_versions (`version`,`component`) VALUES(1, 'connect') ON DUPLICATE KEY UPDATE `version` = 1;
+INSERT INTO #__migrator_versions (`version`,`component`) VALUES(2, 'connect') ON DUPLICATE KEY UPDATE `version` = 2;

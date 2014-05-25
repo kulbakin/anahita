@@ -95,6 +95,10 @@ class PlgUserConnect extends JPlugin
                 'component' => 'com_connect',
                 'owner'     => $person,
             ))->setToken($token);
+            // save social connect meta
+            foreach ($user as $key => $value) {
+                $session->setValue($key, $value);
+            }
             $session->save();
             $this->_person = $person;
             $this->_api    = $api;

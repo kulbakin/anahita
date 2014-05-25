@@ -78,6 +78,12 @@ class ComConnectControllerLogin extends ComBaseControllerResource
         $token      = $this->getService('repos://site/connect.session')->find(array('profileId' => $userid, 'api' => $service));
         $return_url = KRequest::get('session.return', 'raw');
         if ($token) {
+            // update social connect meta
+            foreach ($this->getAPI()->getUser() as $key => $value) {
+                $token->setValue($key, $value);
+            }
+            $token->save();
+            
             $person = $token->owner;
             KRequest::set('session.oauth', null);
             $this->getService('com://site/people.controller.person', array('response' => $context->response))

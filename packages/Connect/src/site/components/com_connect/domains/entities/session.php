@@ -40,7 +40,10 @@ class ComConnectDomainEntitySession extends AnDomainEntityDefault
                     'parent'      => 'com:actors.domain.entity.actor',
                     'inverse'     => true,
                 )
-            )
+            ),
+            'behaviors' => to_hash(array(
+                'dictionariable',
+            )),
         ));
         
         parent::_initialize($config);
