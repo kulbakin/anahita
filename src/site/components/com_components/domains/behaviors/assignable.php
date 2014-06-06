@@ -80,16 +80,16 @@ class ComComponentsDomainBehaviorAssignable extends LibBaseDomainBehaviorEnablea
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
-                'profile_name'        => ucfirst($this->getIdentifier()->package),
-                'profile_description' => JText::_('COM-'.$this->getIdentifier()->package.'-APP-DESCRIPTION'),
-                'profile_features'    => array(),
-                'assignment_option'   => self::OPTION_OPTIONAL,
-                'relationships' => array(
-                    'assignments' => array(
-                        'child'     => 'com:components.domain.entity.assignment',
-                        'child_key' => 'componentEntity'
-                    )
+            'profile_name'        => ucfirst($this->getIdentifier()->package),
+            'profile_description' => JText::_('COM-'.$this->getIdentifier()->package.'-APP-DESCRIPTION'),
+            'profile_features'    => array(),
+            'assignment_option'   => self::OPTION_OPTIONAL,
+            'relationships' => array(
+                'assignments' => array(
+                    'child'     => 'com:components.domain.entity.assignment',
+                    'child_key' => 'componentEntity'
                 )
+            )
         ));
         
         parent::_initialize($config);

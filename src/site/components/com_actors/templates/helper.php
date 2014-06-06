@@ -137,7 +137,7 @@ class ComActorsTemplateHelper extends KTemplateHelperAbstract implements KServic
      * @param array $options Options to pass
      * @return string
      */
-    public function noune($actor, $options=array())
+    public function noune($actor, $options = array())
     {
         $options = array_merge(array('useyou' => false), $options);
         $gender  = strtolower($actor->gender);

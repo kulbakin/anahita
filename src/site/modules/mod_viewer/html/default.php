@@ -1,6 +1,6 @@
-<?php defined('KOOWA') or die('Restricted access');?>
+<?php defined('KOOWA') or die ?>
 
-<?php $num_notifications = empty($num_notifications) ? get_viewer()->numOfNewNotifications() : $num_notifications; ?>
+<?php $num_notifications = empty($num_notifications) ? get_viewer()->numOfNewNotifications() : $num_notifications ?>
 
 <ul class="menu nav" data-behavior="BS.Dropdown">
     <li>
@@ -26,8 +26,8 @@
             <?php if (isset($menutype)): ?>
                 <li class="divider"></li>
                 <?= @service('mod://site/menu.module')
-                        ->menutype($menutype)
-                        ->layout('list') ?>
+                    ->menutype($menutype)
+                    ->layout('list') ?>
             <?php endif ?>
             
             <li class="divider"></li>
@@ -41,7 +41,7 @@
 <script data-inline>
 (function(){
     var metaTitle = document.getElement('title').innerHTML;
-
+    
     (function(){
         new Request.JSON({
             url      : '<?= @route("option=com_notifications&view=notifications&get=count") ?>',
@@ -55,7 +55,7 @@
                     document.getElement('title').innerHTML = metaTitle;
                 }
                 
-                if ( data.new_notifications > 0 ) {   
+                if ( data.new_notifications > 0 ) {
                     badge.addClass('badge-important');
                 } else {
                     badge.removeClass('badge-important');
@@ -64,4 +64,4 @@
         }).get();
     }).periodical(30000);
 })();
-</script> 
+</script>

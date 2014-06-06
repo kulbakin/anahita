@@ -62,7 +62,7 @@ class ComStoriesTemplateHelperStory extends KTemplateHelperAbstract
             $value = JText::_('LIB-AN-THEIR');
         } else {
             if ($actor->eql($story->subject)) {
-                $value = JText::_(KService::get('com:actors.template.helper')->noune($actor, array('type'=>'possessive')));
+                $value = JText::_(KService::get('com:actors.template.helper')->noune($actor, array('type' => 'possessive')));
             } elseif ($actor->eql(get_viewer())) {
                  $value = JText::_('LIB-AN-YOUR');
             } else {
