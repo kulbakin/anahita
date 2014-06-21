@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* (legacy) fix images paths in admin template
+  [9330e83](https://github.com/kulbakin/anahita/commit/9330e83a672b80f8a5b8f9e60c94c30b76e476f3)
 * update *com_connect* to store social profile meta information (name, username etc.) in database
   [d9dcc05](https://github.com/kulbakin/anahita/commit/d9dcc054553f6d6d2e57c9cc1aed740952b2d093)
 * fix *com_connect* package to compose proper *profile_url* for twitter
