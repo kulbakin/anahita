@@ -129,7 +129,7 @@
 			url = link.get('href');
 			event.preventDefault();
 			if ( api.get('target') ) {
-				target = link.getElement(api.get('target'));
+				target = document.getElement(api.get('target'));
 			} 
 			if ( api.get('url') ) {			
 				url	   = api.get('url');
