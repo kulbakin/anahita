@@ -139,8 +139,8 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         $content = $document->render(false, $config);
         
         //lets do some parsing. mission template and legacy stuff
-        $content = preg_replace_callback('#(src|href)="templates\/#', function ($matches) {
-           return $matches[1].'="'.KRequest::base().'/templates/';
+        $content = preg_replace_callback('#(src|href)="(templates|images)\/#', function ($matches) {
+           return $matches[1].'="'.KRequest::base().'/'.$matches[2].'/';
         }, $content);
         
         $content = preg_replace_callback('#(src|href)="/(media|administrator)/#', function ($matches) {
