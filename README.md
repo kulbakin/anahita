@@ -47,6 +47,11 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix comment story/notification creation so component controllers could redefine
+  *ComStoriesControllerBehaviorPublisher::createStory()* or
+  *ComNotificationsControllerBehaviorNotifier::createNotification()* and disable story or
+  notification publishing on some occasions by returning NULL
+  [b0a1295](https://github.com/kulbakin/anahita/commit/b0a1295714f2079e377b6ea94ca61805b1940f31)
 * (legacy) fix images paths in admin template
   [9330e83](https://github.com/kulbakin/anahita/commit/9330e83a672b80f8a5b8f9e60c94c30b76e476f3)
 * update *com_connect* to store social profile meta information (name, username etc.) in database
