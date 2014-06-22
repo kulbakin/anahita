@@ -155,7 +155,7 @@ class ComBaseControllerBehaviorCommentable extends KControllerBehaviorAbstract
             $identifier = clone $this->getIdentifier();
             $identifier->path = array('controller');
             $identifier->name = 'comment';
-            $request = new LibBaseControllerRequest(array('format'=>$this->getRequest()->getFormat()));
+            $request = new LibBaseControllerRequest(array('format' => $this->getRequest()->getFormat()));
             if ($this->getRequest()->has('get')) {
                 $request->set('get', $this->getRequest()->get('get'));
             }

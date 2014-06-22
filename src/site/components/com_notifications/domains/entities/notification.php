@@ -65,7 +65,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
             'subscribers' => array(),
         ));
         
-        if (is($data->object,'ComBaseDomainEntityComment')) {
+        if (is($data->object, 'ComBaseDomainEntityComment')) {
             $data->comment = $data->object;
             unset($data->object);
         }
@@ -117,7 +117,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
      * Sets the type of the notification. If an array of configuration is passed, it will
      * store it as the notification configuration.
      * 
-     * @param string $type   The type of the notification     
+     * @param string $type   The type of the notification
      * @param array  $config An array of configuration for the notification
      * @return ComNotificationsDomainEntityNotification
      */
@@ -202,8 +202,9 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
     public function shouldNotify($person, $setting)
     {
         //if a person is not notifiable then return false
-        if ( ! $person->isNotifiable())
+        if ( ! $person->isNotifiable()) {
             return false;
+        }
         
         //check if the target allows access to the person
         if ( ! $this->target->allows($person, 'access')) {
