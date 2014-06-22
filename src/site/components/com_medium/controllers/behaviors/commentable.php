@@ -54,10 +54,13 @@ class ComMediumControllerBehaviorCommentable extends ComBaseControllerBehaviorCo
         );
         
         $story = $this->_mixer->createStory($data);
+        if ($story) {
+            $story->save();
+        }
         
         if ($this->isNotifier()) {
             //story owner
-            $data['subscribers'] = array($story->owner);
+            $data['subscribers'] = array($owner);
             
             //all the not subscribers
             if ($parent->isSubscribable()) {
@@ -65,9 +68,11 @@ class ComMediumControllerBehaviorCommentable extends ComBaseControllerBehaviorCo
             }
             
             $notification = $this->_mixer->createNotification($data);
-            $notification->setType('post');
+            
+            if ($notification) {
+                $notification->setType('post');
+                $notification->save();
+            }
         }
-        
-        $story->save();
     }
 }
