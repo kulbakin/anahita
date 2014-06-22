@@ -15,7 +15,7 @@
             </div>
         </div>
         
-        <?php if (is_person($item)) : ?>
+        <?php if (is_person($item)): ?>
             <div class="control-group">
                 <label class="control-label" for="actor-enabled">
                     <?= @text('COM-ACTORS-PROFILE-GENDER') ?>
