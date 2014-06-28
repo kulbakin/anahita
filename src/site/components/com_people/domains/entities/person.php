@@ -75,7 +75,7 @@ class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
      */
     protected function _afterEntityInstantiate(KConfig $config)
     {
-        $config->append(array('data'=>array(
+        $config->append(array('data' => array(
             'author'     => $this,
             'component' => 'com_people',
         )));

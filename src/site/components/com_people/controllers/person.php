@@ -67,7 +67,6 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         if ($this->modal) {
             $this->getView()->layout('add_modal');
         }
-        
         return parent::_actionGet($context);
     }
     
@@ -282,7 +281,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         $this->user = $person->getUserObject();
         $this->mailAdmins(array(
             'subject'  => JText::sprintf('COM-PEOPLE-NEW-USER-NOTIFICATION-SUBJECT', $this->user->name),
-            'template' => 'new_user'
+            'template' => 'new_user',
         ));
     }
     

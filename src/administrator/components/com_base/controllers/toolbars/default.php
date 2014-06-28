@@ -37,7 +37,7 @@ class ComBaseControllerToolbarDefault extends KControllerToolbarAbstract
         $name    = KInflector::humanize(KInflector::pluralize($this->getName()));
         
         $config->append(array(
-            'title'  => JText::_($package.' - '.$name)
+            'title' => JText::_($package.' - '.$name)
         ));
         
         parent::_initialize($config);
@@ -75,7 +75,7 @@ class ComBaseControllerToolbarDefault extends KControllerToolbarAbstract
      * @param KEvent A event object
      */
     public function onAfterControllerBrowse(KEvent $event)
-    {        
+    {
         if ($this->getController()->canAdd()) {
             $identifier = $this->getController()->getIdentifier();
             $config     = array('attribs' => array(
