@@ -169,6 +169,39 @@ Delegator.register('click', {
         });
         yWindow.document.body.innerHTML = '<pre>' + codes.join("\n") + '</pre>';
     },
+    'Confirm' : function (event, el, api) {
+        event.stop();
+        var options = {
+            'confirmMsg': api.get('confirm-message') || 'Prompt.confirm'.translate()
+        };
+        var submit  = function (options) {
+            var data = el.get('href').toURI().getData();
+            var url  = el.get('href');
+            var form = (options.form || Element.Form({
+                method: 'post',
+                url: url,
+                data: data
+            }));
+            
+            form.submit();
+            
+            if (el.retrieve('modal')) {
+                el.retrieve('modal').destroy();
+            }
+        }.pass(options);
+        
+        if ( ! el.retrieve('modal')) {
+            el.store('modal', Bootstrap.Popup.from({
+                body: '<h3>' + options.confirmMsg + '</h3>',
+                buttons: [
+                   {name: 'Action.no'.translate(), dismiss: true},
+                   {name: 'Action.yes'.translate(), dismiss: true, click: function () {submit();}, type: 'btn-primary'}
+                ]
+            }));
+        }
+        
+        el.retrieve('modal').show();
+    },
     'Remove' : function (event, handle, api) {
         event.stop();
         var options = {
