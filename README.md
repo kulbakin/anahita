@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update javascript data-trigger handlers by adding a new one for showing confirmation messages
+  [54b49fd](https://github.com/kulbakin/anahita/commit/54b49fd9a1096110066b37a4b6c0cba4de69cc70)
 * fix comment story/notification creation so component controllers could redefine
   *ComStoriesControllerBehaviorPublisher::createStory()* or
   *ComNotificationsControllerBehaviorNotifier::createNotification()* and disable story or
