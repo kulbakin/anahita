@@ -32,8 +32,7 @@ class ComComponentsDomainSetAssignableComponent extends KObject implements KServ
             
             //check the cache
             $container->get('repos://site/components.component')->getCommandChain()->disable();
-            $components = $container->get('repos://site/components.component')
-                ->fetch($query, AnDomain::FETCH_ENTITY_LIST);
+			$components = $container->get('repos://site/components.component')->fetch($query, AnDomain::FETCH_ENTITY_LIST);
             
             $container->get('repos://site/components.component')->getCommandChain()->enable();
             

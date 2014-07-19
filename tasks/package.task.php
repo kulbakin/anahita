@@ -17,17 +17,16 @@ class PackageCommand extends Command
     protected function configure()
     {
         $this->addArgument('package', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'Name of the package');
+        
         $this->addOption('create-schema', null, InputOption::VALUE_NONE, 'If set then it tries to run the database schema if found');
-        $this->setName('package:install')
-            ->setDescription('Install a package into the site');
+        
+        $this->setName('package:install')->setDescription('Install a package into the site');
     }
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $packages = $input->getArgument('package');
-        $packages = $this->getApplication()
-             ->getExtensionPackages()
-             ->findPackages($packages);
+        $packages = $this->getApplication()->getExtensionPackages()->findPackages($packages);
         
         if ( ! count($packages)) {
             throw new \RuntimeException('Invalid Packages');
@@ -91,13 +90,13 @@ class PackageCommand extends Command
                $install = array_pop($xmlPath);
                if ($install && in_array($install['type'], array('component', 'plugin', 'module'))) {
                    $manifests[dirname($file)] = $install;
-               }
            }
         }
+        
         foreach ($manifests as $dir => $manifest) {
-            $type     = $manifest['type'];
-            $method   = '_install'.ucfirst($type);
-            $name     = (string)$manifest->name[0].' '.$type;
+            $type = $manifest['type'];
+            $method = '_install'.ucfirst($type);
+            $name = (string)$manifest->name[0].' '.$type;
             $this->$method($manifest, $output, $dir, $schema);
         }
     }
@@ -111,7 +110,7 @@ class PackageCommand extends Command
     protected function _installPlugin($manifest, $output)
     {
         $plugins = \KService::get('repos:cli.plugin', array('resources' => 'plugins'));
-        $group   = (string)$manifest->attributes()->group;
+        $group = (string)$manifest->attributes()->group;        
         
         foreach ($manifest->files->children() as $file) {
             if (($name = (string)$file->attributes()->plugin)) {
@@ -119,9 +118,11 @@ class PackageCommand extends Command
                     'element' => $name,
                     'folder'  => $group,
                 ), array('data' => array('params' => '', 'published' => true)));
+                
                 $plugin->name = (string)$manifest->name;
                 $plugin->saveEntity();
                 $output->writeLn("<info>...installing $group plugin $name</info>");
+                
                 return;
             }
         }
@@ -131,7 +132,6 @@ class PackageCommand extends Command
     {
         $name = \KService::get('koowa:filter.cmd')->sanitize($manifest->name[0]);
         $name = 'com_'.strtolower($name);
-        
         $components = \KService::get('repos:cli.component', array('resources' => 'components'));
         
         // find or create a component
@@ -141,9 +141,7 @@ class PackageCommand extends Command
         ));
         
         // remove any child component
-        $components->getQuery()
-            ->option($name)
-            ->parent('0','>')->destroy();
+        $components->getQuery()->option($name)->parent('0','>')->destroy();
         
         $admin_menu = $manifest->administration->menu;
         $site_menu  = $manifest->menu;
@@ -163,24 +161,24 @@ class PackageCommand extends Command
             ));
         } elseif ($admin_menu) {
             $component->setData(array(
-                'link'      => 'option='.$name,
+                'link' => 'option='.$name,
                 'adminMenuLink' => 'option='.$name,
-                'adminMenuAlt'  => (string)$admin_menu,
-                'adminMenuImg'  => 'js/ThemeOffice/component.png',
+                'adminMenuAlt' => (string)$admin_menu,
+                'adminMenuImg' => 'js/ThemeOffice/component.png',
             ));
         }
         // first time installing the component then run the schema
         if ($component->isNew()) {
             $schema = true;
         }
+        
         $output->writeLn('<info>...installing '.str_replace('com_','',$name).' component</info>');
         $component->saveEntity();
         if ($schema && file_exists($path.'/schemas/schema.sql')) {
-             $output->writeLn('<info>...running schema for '.str_replace('com_','',$name).' component</info>');
-             $queries = dbparse(file_get_contents($path.'/schemas/schema.sql'));
+        	$output->writeLn('<info>...running schema for '.str_replace('com_', '', $name).' component</info>');
+            $queries = dbparse(file_get_contents($path.'/schemas/schema.sql'));
              foreach ($queries as $query) {
-                 \KService::get('koowa:database.adapter.mysqli')
-                     ->execute($query);
+                 \KService::get('koowa:database.adapter.mysqli')->execute($query);
              }
         }
     }
