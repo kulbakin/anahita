@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstract Domain Entity 
+ * Abstract Domain Entity
  * 
  * @category   Anahita
  * @package    Anahita_Domain
@@ -632,27 +632,22 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
      * Set the value of a property by checking for custom setter. An array 
      * can be passed to set multiple properties
      * 
-     * @param string|array $property Property name 
-     * @param mixd         $value    Property value
+     * @param string|array $property Property name or array of property => value pairs
+     * @param mixed|int[optional] $value Property value or access restrictions for properties to be set
+     * @param int[optional] $access Access to use for single property (only used when first parameter is not array)
      * @return void
      */
-    public function setData($property, $value = null)
+    public function setData($property, $value = null, $access = AnDomain::ACCESS_PROTECTED)
     {
         if (is_array($property)) {
             $description = $this->getEntityDescription();
-            $properties  = $property;
-            $access      = pick($value, AnDomain::ACCESS_PUBLIC);
+            $properties = $property;
+            $access = pick($value, AnDomain::ACCESS_PUBLIC);
             
             foreach ($properties as $key => $value) {
                 $property = $description->getProperty($key);
                 if ($property && $property->getWriteAccess() >= $access) {
-                    //ignore any type related exceptions
-                    try {
-                        $this->setData($property->getName(), $value);
-                    } catch(AnDomainExceptionType $e) {
-                        print $e->getMessage();
-                        die;
-                    }
+                    $this->setData($property->getName(), $value, $access);
                 } elseif ( ! $property) {
                     $this->$key = $value;
                 }
@@ -663,23 +658,20 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
             $name = $property; 
             $description = $this->getEntityDescription();
             $property = $description->getProperty($property);
-            
             if ( ! $property instanceof AnDomainPropertyAbstract) {
                 $this->set($name, $value);
                 return $this;
             }
             
-            $name   = $property->getName();
+            $name = $property->getName();
             $method = 'set'.ucfirst($name);
-            
             if ($this->methodExists($method)) {
                 $this->$method($value);
             } else {
-                //only set the property if it's not write proteced (write != private)
-                if ($property->getWriteAccess() < AnDomain::ACCESS_PROTECTED) {
-                    throw new KException(get_class($this).'::$'.$name.' is write protected');
+                // only set the property if specified access permission allows to do so
+                if ($property->getWriteAccess() >= $access) {
+                    $this->set($name, $value);
                 }
-                $this->set($name, $value);
             }
             
             return $this;
@@ -690,7 +682,7 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
      * get the value of a property by checking for custom getter. If no property
      * is passed an array of properties is returend
      * 
-     * @param string $property Property name
+     * @param string|int $property Property name
      * @param string $default  Default value 
      * @return mixed
      */
@@ -699,8 +691,8 @@ abstract class AnDomainEntityAbstract extends KObject implements ArrayAccess, Se
         $description = $this->getEntityDescription();
         
         if (gettype($property) == 'integer') {
-            $properties  = $this->getEntityDescription()->getProperty();
-            $access      = (int) $property;
+            $properties = $this->getEntityDescription()->getProperty();
+            $access = $property;
             $data = array();
             
             foreach ($properties as $name => $property) {

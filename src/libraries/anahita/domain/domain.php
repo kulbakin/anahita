@@ -15,9 +15,9 @@
 class AnDomain
 {
     // Property Access Constants
-    const ACCESS_PRIVATE   = 0;
-    const ACCESS_PROTECTED = 1;
-    const ACCESS_PUBLIC       = 2;
+    const ACCESS_PRIVATE    = 0;
+    const ACCESS_PROTECTED  = 1;
+    const ACCESS_PUBLIC     = 2;
     
     // entity states
     const STATE_CLEAN       = 2;
