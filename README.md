@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix AnDomainEntityAbstract::setData() to respect access permission parameter both when an array
+  of properties is specified and when a single one is updated
+  [eab615e](https://github.com/kulbakin/anahita/commit/eab615e643917420b0ee4c7d84fdcbaa1236b62d)
 * update javascript data-trigger handlers by adding a new one for showing confirmation messages
   [54b49fd](https://github.com/kulbakin/anahita/commit/54b49fd9a1096110066b37a4b6c0cba4de69cc70)
 * fix comment story/notification creation so component controllers could redefine
