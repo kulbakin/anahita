@@ -57,7 +57,7 @@ class ComHtmlControllerContent extends ComBaseControllerResource
     {
         $config->append(array(
             'base_path' => get_config_value('com_html.content_path'),
-            'request'   => array('layout'=>'default'),
+            'request'   => array('layout' => 'default'),
         ));
         
         parent::_initialize($config);

@@ -90,6 +90,7 @@ class PackageCommand extends Command
                $install = array_pop($xmlPath);
                if ($install && in_array($install['type'], array('component', 'plugin', 'module'))) {
                    $manifests[dirname($file)] = $install;
+               }
            }
         }
         

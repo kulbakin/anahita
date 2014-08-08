@@ -1,7 +1,7 @@
 <?php
 /**
  * Unauthorized Exception
- *
+ * 
  * @category   Anahita
  * @package    Lib_Base
  * @subpackage Controller_Behavior
