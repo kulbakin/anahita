@@ -1,37 +1,21 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
+/**
+ * Toolbar command. This class extends the base template object and provides
+ * specific methods for setting toolbar attributes
  * 
  * @category   Anahita
  * @package    Com_Base
  * @subpackage Controller_Toolbar
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
+ * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id$
- * @link       http://www.anahitapolis.com
- */
-
-/**
- * Toolbar command. This class extends the base template object and provides
- * specific methods for setting toolbar attributes
- *
- * @category   Anahita
- * @package    Com_Base
- * @subpackage Controller_Toolbar
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
  */
 class ComBaseControllerToolbarCommand extends LibBaseTemplateObject
 {
     /**
      * 
      * @param string $label The command label
-     * 
      * @return ComBaseControllerToolbarCommand
      */
     public function setLabel($label)
@@ -46,9 +30,9 @@ class ComBaseControllerToolbarCommand extends LibBaseTemplateObject
      */
     public function getLabel()
     {
-       return $this->label;   
+       return $this->label;
     }
-        
+    
     /**
      * Set the command Href (or URL)
      * 
@@ -58,18 +42,18 @@ class ComBaseControllerToolbarCommand extends LibBaseTemplateObject
      */
     public function setHref($href)
     {
-        $this->setAttribute('href', (string)JRoute::_($href));   
+        $this->setAttribute('href', (string)JRoute::_($href));
         return $this;
     }
     
     /**
-     * Set the command Href (or URL) 
+     * Set the command Href (or URL)
      * 
      * @return string
      */
     public function getHref()
     {
-        $this->getAttribute('href');   
+        $this->getAttribute('href');
     }
 
     /**
@@ -82,10 +66,10 @@ class ComBaseControllerToolbarCommand extends LibBaseTemplateObject
      */
     public function setData($data)
     {
-        $this->setAttribute('data-data', $data);   
+        $this->setAttribute('data-data', $data);
         return $this;
     }
-        
+    
     /**
      * Return the command data
      * 
@@ -93,32 +77,31 @@ class ComBaseControllerToolbarCommand extends LibBaseTemplateObject
      */
     public function getData()
     {
-        $this->getAttribute('data-data');   
+        $this->getAttribute('data-data');
     }
     
     /**
-     * Return the command method. 
+     * Return the command method
      * 
      * @return string Return a HTTP method. @see KHttpRequest
      */
     public function getMethod()
     {
         $this->getAttribute('data-method');
-    } 
-        
+    }
+    
     /**
      * Set the command method of submittion. The method must be one of the 
      * KHttpRequest
      * 
      * @param string $method The post method. Must be one of the @see KHttpRequest
-     *  
      * @return ComBaseControllerToolbarCommand
      */
     public function setMethod($method)
     {
-        $this->setAttribute('data-method',$method);
+        $this->setAttribute('data-method', $method);
         return $this;
-    }     
+    }
     
     /**
      * Calls on of the method above.
@@ -127,12 +110,11 @@ class ComBaseControllerToolbarCommand extends LibBaseTemplateObject
      */
     public function __call($method, $arguments)
     {
-       if ( count($arguments) && 
-            in_array(strtolower($method), array('method','data','href','label')) )
-       {
+       if (count($arguments)
+           && in_array(strtolower($method), array('method', 'data', 'href', 'label'))
+       ) {
             $this->{'set'.ucfirst($method)}($arguments[0]);
-       } 
-       else {
+       } else {
             parent::__call($method, $arguments);
        }
        
