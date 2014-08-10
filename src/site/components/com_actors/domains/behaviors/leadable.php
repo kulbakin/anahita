@@ -40,7 +40,7 @@ class ComActorsDomainBehaviorLeadable extends AnDomainBehaviorAbstract
                 'leaders' => array(
                     'parent_delete' => 'ignore',
                     'through'       => 'com:actors.domain.entity.follow',
-                    'child_key'     => 'follower',                
+                    'child_key'     => 'follower',
                     'target'        => 'com:actors.domain.entity.actor',
                 )
             )
