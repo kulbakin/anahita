@@ -25,11 +25,11 @@ if ($editor) {
     <div class="comment-form-container">
         <div class="control-group">
             <div class="controls">
-            <?php if ($editor): ?>
-                <?= @editor(array('name' => 'body', 'content' => $body, 'html' => array('cols' => 50, 'rows' => 5, 'class' => 'input-block-level', 'data-validators' => 'required maxLength:5000', 'id' => 'an-comment-body-'.$id))) ?>
-            <?php else: ?>
-                <textarea name="body" cols="50" rows="3" class="input-block-level" data-validators="required maxLength:5000"><?= $body ?></textarea>
-            <?php endif ?>
+                <?php if ($editor): ?>
+                    <?= @editor(array('name' => 'body', 'content' => $body, 'html' => array('cols' => 50, 'rows' => 5, 'class' => 'input-block-level', 'data-validators' => 'required maxLength:5000', 'id' => 'an-comment-body-'.$id))) ?>
+                <?php else: ?>
+                    <textarea name="body" cols="50" rows="3" class="input-block-level" data-validators="required maxLength:5000"><?= $body ?></textarea>
+                <?php endif ?>
             </div>
         </div>
         

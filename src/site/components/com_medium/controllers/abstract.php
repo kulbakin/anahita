@@ -89,7 +89,7 @@ abstract class ComMediumControllerAbstract extends ComBaseControllerService
            $entities->where('owner.id', 'IN', $leaderIds);
         } elseif (
             $this->getRepository()->hasBehavior('ownable')
-            && $this->actor 
+            && $this->actor
             && $this->actor->id > 0
         ) {
             $entities->where('owner', '=', $this->actor);

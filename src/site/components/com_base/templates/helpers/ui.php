@@ -127,7 +127,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
             'editor'            => false,
             'pagination'        => true,
             'show_guest_prompt' => true ,
-         ), $config);
+        ), $config);
         
         $data   = $this->getTemplate()->getData();
         $limit  = isset($data['limit']) ? $data['limit'] : 0;

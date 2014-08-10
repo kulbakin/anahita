@@ -4,27 +4,27 @@
     <div class="an-comments an-entities">
         <?php foreach ($comments as $comment): ?>
             <?= @view('comment')->comment($comment)->strip_tags($strip_tags)->truncate_body($truncate_body)->editor($editor) ?>
-        <?php endforeach; ?>
+        <?php endforeach ?>
     </div>
     
     <?php if ( ! empty($pagination)): ?>
         <?= $pagination ?>
-    <?php endif; ?>
+    <?php endif ?>
     
     <?php if ($can_comment): ?>
-        <?= @view('comment')->load('form', array('parent' => $entity, 'editor' => $editor, 'comment' => null))?>
-    <?php endif;?>
+        <?= @view('comment')->load('form', array('parent' => $entity, 'editor' => $editor, 'comment' => null)) ?>
+    <?php endif ?>
     
     <?php if ($show_guest_prompt && ! $can_comment): ?>
         <?php if ($viewer->guest()): ?>
             <?= $entity->get('type') ?>
-            <?php $return = base64UrlEncode(@route($entity->getURL())); ?>
+            <?php $return = base64UrlEncode(@route($entity->getURL())) ?>
         <?php elseif ( ! $entity->commentStatus): ?>
             <?= @message(@text('LIB-AN-COMMENTS-ARE-CLOSED')) ?>
         <?php elseif ( ! empty($require_follow)): ?>
            <div class="alert alert-info">
                 <p><?= @textf('LIB-AN-COMMENT-MUST-FOLLOW', $entity->owner->name) ?></p>
-                <p><a class="btn" data-trigger="Submit" href="<?= @route($entity->owner->getURL().'&action=follow') ?>"><?= @text('COM-ACTORS-SOCIALGRAPH-FOLLOW')?></a></p>
+                <p><a class="btn" data-trigger="Submit" href="<?= @route($entity->owner->getURL().'&action=follow') ?>"><?= @text('COM-ACTORS-SOCIALGRAPH-FOLLOW') ?></a></p>
            </div>
         <?php else: ?>
             <?= @message(@text('LIB-AN-COMMENT-NO-PERMISSION')) ?>
