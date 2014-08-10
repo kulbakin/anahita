@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix default controller so there is no attempt to apply 'leaders' filter if repository does not
+  have 'ownable' behavior
+  [5501c47](https://github.com/kulbakin/anahita/commit/5501c471e8c0a78e47f164ecc4e71e585c9b3446)
 * fix page title composition so it does not start from dash, happened on entity pages there were
   no entity title
   [ab7d0e6](https://github.com/kulbakin/anahita/commit/ab7d0e63efddf58e7d9dadc4bd923ef4b0d51a75) 
