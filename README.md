@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix page title composition so it does not start from dash, happened on entity pages there were
+  no entity title
+  [ab7d0e6](https://github.com/kulbakin/anahita/commit/ab7d0e63efddf58e7d9dadc4bd923ef4b0d51a75) 
 * fix AnDomainEntityAbstract::setData() to respect access permission parameter both when an array
   of properties is specified and when a single one is updated
   [eab615e](https://github.com/kulbakin/anahita/commit/eab615e643917420b0ee4c7d84fdcbaa1236b62d)
