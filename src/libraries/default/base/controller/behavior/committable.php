@@ -1,7 +1,7 @@
 <?php
 /**
  * Commitable behavior provides API to interace with domain context and storing
- * the last save result 
+ * the last save result
  * 
  * @category   Anahita
  * @package    Lib_Base

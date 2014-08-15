@@ -24,7 +24,7 @@ class ComBaseTemplateHelperToolbar extends KTemplateHelperAbstract
     {
         $toolbar = $this->_template->getHelper('controller')->getToolbar();
         
-        if (isset($data['clone'])) {
+        if ( ! empty($data['clone'])) {
             $toolbar = clone $toolbar;
         }
         

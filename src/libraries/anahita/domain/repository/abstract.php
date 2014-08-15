@@ -205,8 +205,8 @@ abstract class AnDomainRepositoryAbstract extends KCommand
     public function validate($entity)
     {
         //reset the error message
-        $context           = $this->getCommandContext();
-        $context->entity   = $entity;
+        $context = $this->getCommandContext();
+        $context->entity = $entity;
         if ($entity->isValidatable()) {
             $entity->resetErrors();
         }

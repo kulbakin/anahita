@@ -90,8 +90,8 @@ class AnDomainSpace extends KObject
     {
         $result = $this->validateEntities($failed);
         
-        while($result && count($entities = $this->getCommitables())) {
-            foreach($entities as $entity) {
+        while ($result && count($entities = $this->getCommitables())) {
+            foreach ($entities as $entity) {
                 $result = $entity->getRepository()->commit($entity);
                 
                 if ($result === false) {
