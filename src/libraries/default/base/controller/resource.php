@@ -72,6 +72,18 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
      * @param KCommandContext $context Context parameter
      * @return string
      */
+    protected function _actionHead(KCommandContext $context)
+    {
+        // deligate to get
+        return $this->execute('get', $context);
+    }
+    
+    /**
+     * Get action
+     * 
+     * @param KCommandContext $context Context parameter
+     * @return string
+     */
     protected function _actionGet(KCommandContext $context)
     {
         $action = null;

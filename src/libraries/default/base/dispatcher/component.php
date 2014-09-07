@@ -81,6 +81,25 @@ class LibBaseDispatcherComponent extends LibBaseDispatcherAbstract implements KS
     }
     
     /**
+     * Head action in order to support HEAD requests
+     * 
+     * TODO
+     * make special transport
+     * (@see LibBaseDispatcherResponseTransportAbstract) or adjust dispatching
+     * logic so there wouldn't be any content output for the response;
+     * make it in a way so no unnecessary logic is executed, e.g.
+     * template rendering (it's not critical since web server truncate response body, so
+     * it is rather an optimization to avoid unnecessary rendering/culculations)
+     * 
+     * @param KCommandContext $context
+     * @return void
+     */
+    protected function _actionHead(KCommandContext $context)
+    {
+        return $this->getController()->execute('head', $context);
+    }
+    
+    /**
      * Get action
      * 
      * @param KCommandContext $context
