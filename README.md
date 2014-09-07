@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update dispatcher logic to support HEAD request
+  [9583d08](https://github.com/kulbakin/anahita/commit/9583d080926f350cd9d5e2556039b59a935ef7b4)
 * fix default controller so there is no attempt to apply 'leaders' filter if repository does not
   have 'ownable' behavior
   [5501c47](https://github.com/kulbakin/anahita/commit/5501c471e8c0a78e47f164ecc4e71e585c9b3446)
