@@ -184,8 +184,8 @@ class LibBaseDomainBehaviorPortraitable extends LibBaseDomainBehaviorStorable
         $config = new KConfig($config);
         
         $config->append(array(
-                'rotation' => 0,
-                'mimetype' => 'image/jpeg'
+            'rotation' => 0,
+            'mimetype' => 'image/jpeg',
         ));
         
         if ($config->url) {

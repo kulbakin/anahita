@@ -76,7 +76,7 @@ class AnDomainRelationshipManytomany extends AnDomainRelationshipOnetomany
     protected function _initialize(KConfig $config)
     {
         $identifier       = clone $this->_parent;
-        $identifier->name = KInflector::singularize($this->_name);        
+        $identifier->name = KInflector::singularize($this->_name);
         $config->append(array(
             'entityset'         => 'anahita:domain.entityset.manytomany',
             'target'            => $identifier,
@@ -124,7 +124,7 @@ class AnDomainRelationshipManytomany extends AnDomainRelationshipOnetomany
      */
     public function getTargetRepository()
     {
-        return AnDomain::getRepository($this->_target);        
+        return AnDomain::getRepository($this->_target);
     }
     
     /**
@@ -146,7 +146,7 @@ class AnDomainRelationshipManytomany extends AnDomainRelationshipOnetomany
     {
         $this->getTargetRepository()->getDescription()->getProperty($this->_target_parent_key);
     }
-        
+    
     /**
      * Returns the child property
      * 
@@ -156,7 +156,7 @@ class AnDomainRelationshipManytomany extends AnDomainRelationshipOnetomany
     {
         return $this->_target_child_key;
     }
-
+    
     /**
      * Return the target identifier
      * 
@@ -175,7 +175,7 @@ class AnDomainRelationshipManytomany extends AnDomainRelationshipOnetomany
     public function getTargetParentKey()
     {
         return $this->_target_parent_key;
-    }    
+    }
     
     /**
      * Return an alias for the junction model

@@ -1,29 +1,14 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
+/**
+ * Default tempalte object is a Kconfig that return the $config->id as the object id
  * 
  * @category   Anahita
  * @package    Lib_Base
  * @subpackage Template
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
+ * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id: view.php 13650 2012-04-11 08:56:41Z asanieyan $
- * @link       http://www.anahitapolis.com
- */
-
-/**
- * Default tempalte object is a Kconfig that return the $config->id as the object id
- *
- * @category   Anahita
- * @package    Lib_Base
- * @subpackage Template
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
  */
 class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInterface
 {
@@ -38,22 +23,21 @@ class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInte
     static public function getInstance($name, $config = array())
     {
         static $instance;
-    
-        if ( !$instance ) {
+        
+        if ( ! $instance) {
             $instance = new static();
         }
-    
+        
         $object = clone $instance;
         
         $config['name'] = $name;
-    
         $object->append($config)
-               ->append(array(
-                   'attribs'    => array(
-                      'id'      => $name
-                 )
-        ));
-    
+            ->append(array(
+                'attribs' => array(
+                    'id' => $name
+                )
+            ));
+        
         return $object;
     }
     
@@ -61,7 +45,6 @@ class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInte
      * Sets the name of the command
      * 
      * @param string $name
-     * 
      * @return void
      */
     public function setName($name)
@@ -86,17 +69,16 @@ class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInte
      * @param string $name  Attribute name
      * @param mixed  $value Attribute
      * @param string $glue  If glue is set, then if there's an old value it will be appended
-     * 
-     *  @return LibBaseTemplateObject
+     * @return LibBaseTemplateObject
      */
     public function setAttribute($name, $value, $glue = false)
     {
         //get attributes
         $attrbs = KConfig::unbox(pick($this->attribs, array()));
         //get the existing value
-        $old    = isset($attrbs[$name]) ? $attrbs[$name] : null;
+        $old = isset($attrbs[$name]) ? $attrbs[$name] : null;
         //if glue and existing value then stich the old and new using the glue
-        if ( $glue && $old ) {            
+        if ($glue && $old) {
             $value = $old.(string)$glue.$value;
         }
         
@@ -109,9 +91,8 @@ class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInte
     
     /**
      * Retrn the value of an attribute
-     *
-     * @param string $name Attribute name
      * 
+     * @param string $name Attribute name
      * @return string
      */
     public function getAttribute($name)
@@ -121,7 +102,7 @@ class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInte
     
     /**
      * Return an array of attributes for the command
-     *
+     * 
      * @return array
      */
     public function getAttributes()
@@ -131,10 +112,9 @@ class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInte
     
     /**
      * Adds a missed method as $key/$value
-     *
+     * 
      * @param  string $method
      * @param  array  $arguments
-     * 
      * @return LibBaseTemplateObject
      */
     public function __call($method, $arguments)
@@ -153,9 +133,8 @@ class LibBaseTemplateObject extends KConfig implements LibBaseTemplateObjectInte
     public function __toString()
     {
         $attributes = array();
-        foreach($this->getAttributes() as $key => $value) 
-        {
-            $value        = is_string($value) ? '"'.addslashes($value).'"' : json_encode($value);
+        foreach ($this->getAttributes() as $key => $value) {
+            $value = is_string($value) ? '"'.addslashes($value).'"' : json_encode($value);
             $attributes[] = $key.'='.$value;
         }
         

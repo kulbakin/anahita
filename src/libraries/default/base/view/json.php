@@ -80,12 +80,12 @@ class LibBaseViewJson extends LibBaseViewAbstract
         //if null then return empty string
         $this->output = pick($this->output, '');
         
-        if (!is_string($this->output)) {
+        if ( ! is_string($this->output)) {
             $this->output = json_encode($this->_toArray(KConfig::unbox($this->output)));
         }
         
         //Handle JSONP
-        if(!empty($this->_padding)) {
+        if ( ! empty($this->_padding)) {
             $this->output = $this->_padding.'('.$this->output.');';
         }
         
@@ -121,9 +121,9 @@ class LibBaseViewJson extends LibBaseViewAbstract
             
             if (is($items, 'AnDomainEntitysetAbstract')) {
                 $data['pagination'] = array(
-                        'offset' => (int) $items->getOffset(),
-                        'limit'  => (int) $items->getLimit(),
-                        'total'  => (int) $items->getTotal(),
+                    'offset' => (int)$items->getOffset(),
+                    'limit'  => (int)$items->getLimit(),
+                    'total'  => (int)$items->getTotal(),
                 );
             }
         }
@@ -190,7 +190,7 @@ class LibBaseViewJson extends LibBaseViewAbstract
             
             $commands = $this->_state->toolbar->getCommands();
             foreach ($commands as $command) {
-                $result[] =$command->getname();
+                $result[] = $command->getname();
             }
         }
         

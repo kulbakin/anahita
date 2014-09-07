@@ -137,7 +137,7 @@
       */
      public function getReferrer($isInternal = true)
      {
-         return KRequest::referrer($isInternal);    
+         return KRequest::referrer($isInternal);
      }
      
      /**
@@ -150,3 +150,4 @@
          return KRequest::type() == 'AJAX';
      }
  }
+ 

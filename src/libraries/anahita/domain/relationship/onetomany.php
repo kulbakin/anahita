@@ -145,7 +145,7 @@ class AnDomainRelationshipOnetomany extends AnDomainRelationshipProperty
      * @return AnDomainCollectionAggregateAbstract
      */
     public function materialize(array $data, $entity)
-    {                
+    {
         //use a entity proxy to delay loading the related entity
         if ($this->_cardinality == 1) {
             $config = array();

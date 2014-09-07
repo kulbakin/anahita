@@ -201,7 +201,6 @@ class AnDomainQueryBuilder extends KObject
                 $link->child.'='.$link->parent
             ));
         }
-        
         $this->_links($query, $query->link);
         
         if ( ! empty($query->join)) {
@@ -209,10 +208,10 @@ class AnDomainQueryBuilder extends KObject
             foreach ($query->join as $join) {
                 $tmp = '';
                 if ( ! empty($join['type'])) {
-                    $tmp .= $join['type'] . ' ';
+                    $tmp .= $join['type'].' ';
                 }
-                $tmp .= 'JOIN ' . $join['resource'];
-                $tmp .= ' ON ' . implode(' AND ', $join['condition']);
+                $tmp .= 'JOIN '.$join['resource'];
+                $tmp .= ' ON '.implode(' AND ', $join['condition']);
                 $joins[] = $tmp;
             }
             
@@ -229,7 +228,7 @@ class AnDomainQueryBuilder extends KObject
      * @param array 
      */
     protected function _links($query, $links)
-    {        
+    {
         settype($links, 'array');
         
         foreach ($links as $link) {
@@ -372,7 +371,7 @@ class AnDomainQueryBuilder extends KObject
         
         list($columns, $property) = array_values(AnDomainQueryHelper::parseColumn($query, $where['property']));
         
-        $value             = isset($where['value']) ? $where['value'] : null;
+        $value = isset($where['value']) ? $where['value'] : null;
         $where['property'] = pick($columns, $where['property']);
         
         if ($property && ! $value instanceof AnDomainQuery) {
