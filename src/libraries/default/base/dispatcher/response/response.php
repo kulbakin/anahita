@@ -10,8 +10,8 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2011 rmdStudio Inc./Peerglobe Technology Inc
  */
- class LibBaseDispatcherResponse extends LibBaseControllerResponse
- {
+class LibBaseDispatcherResponse extends LibBaseControllerResponse
+{
     /**
      * Transport object
      * 

@@ -21,8 +21,7 @@ class LibBaseDispatcherApplication extends LibBaseDispatcherAbstract implements 
      */
     public static function getInstance(KConfigInterface $config, KServiceInterface $container)
     {
-        if (!$container->has($config->service_identifier))
-        {
+        if ( ! $container->has($config->service_identifier)) {
             $classname = $config->service_identifier->classname;
             $instance  = new $classname($config);
             $container->set($config->service_identifier, $instance);
@@ -94,7 +93,7 @@ class LibBaseDispatcherApplication extends LibBaseDispatcherAbstract implements 
     {
         if( ! ($component instanceof LibBaseDispatcherAbstract)) {
             if (is_string($component) && strpos($component, '.') === false) {
-                $identifier          = clone $this->getIdentifier();
+                $identifier = clone $this->getIdentifier();
                 $identifier->package = $component;
             } else {
                 $identifier = $this->getIdentifier($component);
