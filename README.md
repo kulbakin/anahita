@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix LibBaseDomainBehaviorDictionariable::setValue() to chain properly
+  [72cca26](https://github.com/kulbakin/anahita/commit/72cca26f8c34144b77998a816ad9351593bcd660)
 * update dispatcher logic to support HEAD request
   [9583d08](https://github.com/kulbakin/anahita/commit/9583d080926f350cd9d5e2556039b59a935ef7b4)
 * fix default controller so there is no attempt to apply 'leaders' filter if repository does not
