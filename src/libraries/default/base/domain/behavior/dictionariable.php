@@ -48,7 +48,7 @@ class LibBaseDomainBehaviorDictionariable extends AnDomainBehaviorAbstract
         if (is_array($key)) {
             $data = $key;
         } else {
-            $data = array($key=>$value);
+            $data = array($key => $value);
         }
         
         foreach ($data as $key => $value) {
@@ -61,7 +61,8 @@ class LibBaseDomainBehaviorDictionariable extends AnDomainBehaviorAbstract
         }
         
         $this->set('meta', $meta);
-        return $this;
+        
+        return $this->_mixer;
     }
     
     /**
