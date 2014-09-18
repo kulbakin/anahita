@@ -46,7 +46,7 @@ class ComMediumDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
             return true;
         }
         
-        // if the viewer is the author of the object            
+        // if the viewer is the author of the object
         if ($this->_entity->author->id == $this->_viewer->id) {
             return true;
         }

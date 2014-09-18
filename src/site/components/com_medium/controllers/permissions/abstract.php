@@ -39,8 +39,6 @@ abstract class ComMediumControllerPermissionAbstract extends LibBaseControllerPe
      */
     public function canRead()
     {
-        $actor = pick($this->actor, get_viewer());
-        
         // if repository is ownable then ask the actor if viewer can publish things
         if (in_array($this->getRequest()->get('layout'), array('add', 'edit', 'form', 'composer'))) {
             if ($this->getItem()) {

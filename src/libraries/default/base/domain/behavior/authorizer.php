@@ -26,7 +26,6 @@ class LibBaseDomainBehaviorAuthorizer extends AnDomainBehaviorAbstract
      * Constructor.
      *
      * @param KConfig $config An optional KConfig object with configuration options.
-     *
      * @return void
      */
     public function __construct(KConfig $config)
@@ -34,7 +33,6 @@ class LibBaseDomainBehaviorAuthorizer extends AnDomainBehaviorAbstract
         parent::__construct($config);
         
         $authorizers = array_reverse(array_unique(KConfig::unbox($config->authorizers)));
-        
         foreach ($authorizers as $authorizer) {
             $this->addAuthorizer($authorizer);
         }
@@ -67,7 +65,7 @@ class LibBaseDomainBehaviorAuthorizer extends AnDomainBehaviorAbstract
     {
         if ( ! $authorizer instanceof LibBaseDomainAuthorizerAbstract) {
             if (is_string($authorizer) && strpos($authorizer, '.') === false) {
-                //create identifier
+                // create identifier
                 $identifier = clone $this->_repository->getIdentifier();
                 $identifier->path = array('domain', 'authorizer');
                 $identifier->name = $authorizer;

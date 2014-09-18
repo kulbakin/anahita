@@ -19,7 +19,7 @@ class LibBaseDomainBehaviorDescribable extends AnDomainBehaviorAbstract
      */
     protected $_searchable_properties = array();
     
-    /** 
+    /**
      * Constructor.
      * 
      * @param KConfig $config An optional KConfig object with configuration options.
@@ -102,12 +102,12 @@ class LibBaseDomainBehaviorDescribable extends AnDomainBehaviorAbstract
     {
         $query = $context->query;
         
-        if ($query->keyword ) {
+        if ($query->keyword) {
             $keywords = $query->keyword;
             
             if ($keywords) {
                 if (strpos($keywords,' OR ')) {
-                    $keywords  = explode(' OR ',$keywords);
+                    $keywords = explode(' OR ',$keywords);
                     $operation = 'OR';
                 } else {
                     $keywords = explode(' ', $keywords);
@@ -115,7 +115,7 @@ class LibBaseDomainBehaviorDescribable extends AnDomainBehaviorAbstract
                 }
                 
                 if ( ! empty($operation)) {
-                    $clause        = $query->clause();
+                    $clause = $query->clause();
                     $search_column = array();
                     foreach ($this->_searchable_properties as $property) {
                         $search_column[] = "IF(@col($property) IS NULL,\"\",@col($property))";

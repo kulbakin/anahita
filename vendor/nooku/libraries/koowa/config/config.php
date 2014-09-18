@@ -23,7 +23,7 @@ class KConfig implements KConfigInterface
      * 
      * @param array|KConfig An associative array of configuration settings or a KConfig instance.
      */
-    public function __construct( $config = array() )
+    public function __construct($config = array())
     {
         if ($config instanceof KConfig) {
             $data = $config->toArray();

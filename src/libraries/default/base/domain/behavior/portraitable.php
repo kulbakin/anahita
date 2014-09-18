@@ -2,7 +2,7 @@
 jimport('joomla.filesystem.file');
 
 /**
- * Portraitable Behavior. 
+ * Portraitable Behavior.
  * 
  * An image representation of a node
  * 
@@ -14,7 +14,7 @@ jimport('joomla.filesystem.file');
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class LibBaseDomainBehaviorPortraitable extends LibBaseDomainBehaviorStorable 
+class LibBaseDomainBehaviorPortraitable extends LibBaseDomainBehaviorStorable
 {
     /**
      * An arary of sizes to resize a portrait to
@@ -52,7 +52,7 @@ class LibBaseDomainBehaviorPortraitable extends LibBaseDomainBehaviorStorable
         
         $this->_pending_files = $this->getService('anahita:object.array');
     }
-        
+    
     /**
      * Initializes the default configuration for the object
      * 
