@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix LibBaseDomainBehaviorLocatable not to uppend legacy 'index.php?' part into composed route url
+  [4ff36e2](https://github.com/kulbakin/anahita/commit/4ff36e2f69c74492a55d495a5c3099a4edb8a4ff)
 * fix LibBaseDomainBehaviorDictionariable::setValue() to chain properly
   [72cca26](https://github.com/kulbakin/anahita/commit/72cca26f8c34144b77998a816ad9351593bcd660)
 * update dispatcher logic to support HEAD request
