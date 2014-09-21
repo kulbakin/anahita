@@ -28,14 +28,14 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
     {
         parent::__construct($config);
         
-        //set the view
+        // set the view
         $this->_view  = $config->view;
         
-        //register display as get so $this->display() return $this->get()
+        // register display as get so $this->display() return $this->get()
         $this->registerActionAlias('display', 'get');
         
         // Mixin the toolbar
-        if($config->dispatch_events) {
+        if ($config->dispatch_events) {
             $this->mixin(new KMixinToolbar($config->append(array('mixer' => $this))));
         }
         
@@ -52,7 +52,7 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
      */
     protected function _initialize(KConfig $config)
     {
-        $permission       = clone $this->getIdentifier();
+        $permission = clone $this->getIdentifier();
         $permission->path = array($permission->path[0], 'permission');
         register_default(array('identifier' => $permission, 'prefix' => $this));
         
@@ -113,7 +113,7 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
             }
             
             $content = $view->display();
-            //Set the data in the response
+            // Set the data in the response
             $context->response->setContent($content);
         }
         
@@ -129,9 +129,9 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
      */
     public function getView()
     {
-        if( ! $this->_view instanceof LibBaseViewAbstract) {
+        if ( ! $this->_view instanceof LibBaseViewAbstract) {
             //Make sure we have a view identifier
-            if( ! $this->_view instanceof KServiceIdentifier) {
+            if ( ! $this->_view instanceof KServiceIdentifier) {
                 $this->setView($this->_view);
             }
             
@@ -162,9 +162,9 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
      */
     public function setView($view)
     {
-        if( ! ($view instanceof ComBaseViewAbstract)) {
+        if ( ! ($view instanceof ComBaseViewAbstract)) {
             if (is_string($view) && strpos($view, '.') === false) {
-                $identifier       = clone $this->getIdentifier();
+                $identifier = clone $this->getIdentifier();
                 $identifier->path = array('view', $view);
                 $identifier->name = $this->_request->getFormat();
             } else {
@@ -209,7 +209,7 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
     public function __toString()
     {
         try {
-           return $this->display();
+            return $this->display();
         } catch(Exception $e) {
             trigger_error('Exception in '.get_class($this).' : '.$e->getMessage(), E_USER_WARNING);
         }
@@ -224,7 +224,7 @@ class LibBaseControllerResource extends LibBaseControllerAbstract
     {
         if (is_string($toolbar)) {
             if (strpos($toolbar, '.') === false) {
-                $identifier       = clone $this->getIdentifier();
+                $identifier = clone $this->getIdentifier();
                 $identifier->path = array('controller', 'toolbar');
                 $identifier->name = $toolbar;
                 register_default(array('identifier' => $identifier, 'prefix' => $this));

@@ -39,8 +39,8 @@ class LibBaseDomainSpace extends AnDomainSpace implements KServiceInstantiatable
     public function commitEntities(&$failed = null)
     {
         if (($ret = parent::commitEntities($failed))) {
-            $ids  = array();
-            foreach($this->_entities as $entity) {
+            $ids = array();
+            foreach ($this->_entities as $entity) {
                 if ($entity->getEntityState() ==  AnDomain::STATE_DESTROYED) {
                     if (is($entity, 'ComBaseDomainEntityNode')) {
                         $ids[] = $entity->id;

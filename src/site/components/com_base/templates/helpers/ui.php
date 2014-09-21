@@ -14,7 +14,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
 {
     /**
      * Constructor.
-     *
+     * 
      * @param object An optional KConfig object with configuration options
      */
     public function __construct(KConfig $config)
@@ -220,10 +220,10 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
      * @param AnDomainEntitysetDefault|KConfigPaginator $paginator Paginator object
      * @param array $config Configuration
      * @returns string
-     */ 
+     */
     public function pagination($paginator, $config = array())
     {
-        //sanity check
+        // sanity check
         if ( ! $paginator) {
             return '';
         }
@@ -253,13 +253,13 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
         
         $paginator->display = 5;
         
-        //if our total is less than the limit don't show paginator
+        // if our total is less than the limit don't show paginator
         if ($paginator->total < $paginator->limit) {
             return;
         }
         
         $config->paginator = $paginator;
-        //convert url to the httpurl object
+        // convert url to the httpurl object
         $config->url = $this->getService('koowa:http.url', array('url' => $config->url));
         
         $pages = array();
@@ -277,7 +277,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
         
         $config['pages'] = $pages;
         $config['total'] = $paginator->total;
-        $pages = array('prev','next');
+        $pages = array('prev', 'next');
         
         foreach ($pages as $page) {
             if ($paginator->pages->$page) {
@@ -346,8 +346,8 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
         }
         
         $config->append(array(
-            'auto_submit'=> $config->entity && $config->entity->persisted(),
-            'name'       => 'access',
+            'auto_submit' => $config->entity && $config->entity->persisted(),
+            'name'        => 'access',
         ));
         
         if ( ! $config->options) {
@@ -414,7 +414,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
                 unset($config->options[LibBaseDomainBehaviorPrivatable::GUEST]);
             }
             
-            //trim the options based on the actor
+            // trim the options based on the actor
             if ($config->entity && !$config->entity->eql($actor)) {
                 $current_index = array_search($actor->access, array_keys(KConfig::unbox($config->options)));
                 $i = 0;

@@ -39,10 +39,10 @@ class ComBaseControllerBehaviorOwnable extends KControllerBehaviorAbstract
         
         $this->_default = $config['default'];
         
-        //set the default actor
+        // set the default actor
         $this->setActor($this->_default);
         
-        //set the identifiable key. By default its set to oid
+        // set the identifiable key. By default its set to oid
         $this->_identifiable_key = $config->identifiable_key;
         $this->getState()->insert($this->_identifiable_key);
     }
@@ -62,18 +62,18 @@ class ComBaseControllerBehaviorOwnable extends KControllerBehaviorAbstract
             'default'          => null,
             'priority'         => KCommand::PRIORITY_HIGHEST
         ));
-
+        
         parent::_initialize($config);
     }
-        
+    
     /**
      * Command handler
      * 
      * @param  string  The command name
      * @param  object  The command context
-     * @return boolean Can return both true or false.  
+     * @return boolean Can return both true or false.
      */
-    public function execute($name, KCommandContext $context) 
+    public function execute($name, KCommandContext $context)
     {
         $parts = explode('.', $name);
         
@@ -83,10 +83,10 @@ class ComBaseControllerBehaviorOwnable extends KControllerBehaviorAbstract
         
         parent::execute($name, $context);
     }
-       
+    
     /**
      * If the context->data actor is not already set them set the owner to the data 
-     * before controller add. 
+     * before controller add.
      * 
      * @param KCommandContext $context
      * @return boolean
@@ -137,17 +137,17 @@ class ComBaseControllerBehaviorOwnable extends KControllerBehaviorAbstract
             if ($value == 'viewer')  {
                 $actor = get_viewer();
             } elseif ( ! is_numeric($value) ) {
-                $actor = $this->getService('repos://site/people.person')->fetch(array('username'=>$value));
+                $actor = $this->getService('repos://site/people.person')->fetch(array('username' => $value));
             } else {
                 $actor = $this->getService('repos://site/actors.actor')->fetch((int)$value);
             }
             
-            //guest actor can never be a context actor
+            // guest actor can never be a context actor
             if (is_person($actor) && $actor->guest()) {
                 $actor = null;
             }
             
-            //set the data owner to actor.
+            // set the data owner to actor.
             $context->data['owner'] = $actor;
             
             if ( ! $actor) {

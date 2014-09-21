@@ -211,7 +211,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
         
         //all must be false in order to return false
         foreach ($permissions as $value) {
-            $value  = pick($value, LibBaseDomainBehaviorPrivatable::GUEST);
+            $value = pick($value, LibBaseDomainBehaviorPrivatable::GUEST);
             
             switch ($value) {
                 //public
@@ -230,7 +230,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
                 case LibBaseDomainBehaviorPrivatable::LEADER:
                     $result = $actor->leading($owner) || $actor->administrator($owner);
                     break;
-                //mutual                        
+                //mutual
                 case LibBaseDomainBehaviorPrivatable::MUTUAL:
                     $result = $actor->mutuallyLeading($owner) || $actor->administrator($owner);
                     break;

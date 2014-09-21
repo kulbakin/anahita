@@ -60,8 +60,8 @@ class AnDomainBehaviorValidatable extends AnDomainBehaviorAbstract
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
-            'priority'   => KCommand::PRIORITY_LOWEST,
-            'validator'  => $this->_repository->getIdentifier()->name
+            'priority'  => KCommand::PRIORITY_LOWEST,
+            'validator' => $this->_repository->getIdentifier()->name
         ));
         
         parent::_initialize($config);
@@ -133,7 +133,7 @@ class AnDomainBehaviorValidatable extends AnDomainBehaviorAbstract
             ->validateData($this->_mixer, $property, $value, $validations);
             
        return $ret !== false;
-    }    
+    }
     
     /**
      * Sanitizes an entity properties values using the passed validations.
@@ -182,14 +182,14 @@ class AnDomainBehaviorValidatable extends AnDomainBehaviorAbstract
      * Method to set the validator
      * 
      * @param mixed $validator Validator object. Can be an KServiceIdentifier or string
-     * @return  AnDomainBehaviorValidatable
+     * @return AnDomainBehaviorValidatable
      */
     public function setValidator($validator)
     {
         if ( ! ($validator instanceof AnDomainValidatorAbstract)) {
             if (is_string($validator) && strpos($validator, '.') === false) {
                 $identifier = clone $this->getIdentifier();
-                $identifier->path = array('domain','validator');
+                $identifier->path = array('domain', 'validator');
                 $identifier->name = $validator;
             } else {
                 $identifier = $this->getIdentifier($validator);
@@ -224,7 +224,7 @@ class AnDomainBehaviorValidatable extends AnDomainBehaviorAbstract
      */
     public function resetErrors()
     {
-        //reset the errors
+        // reset the errors
         unset($this->_errors[$this->_mixer]);
     }
     

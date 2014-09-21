@@ -49,7 +49,7 @@ class ComBaseControllerToolbarMenubar extends KControllerToolbarAbstract
         if (file_exists(JPATH_COMPONENT.DS.'config.xml') && JFactory::getUser()->get('gid') > 22) {
             if (count($this->getCommands()) > 0) {
                 $this->addCommand('configurations',
-                    array('href'=>JRoute::_('index.php?option=com_'.$this->getIdentifier()->package.'&view=configurations')));
+                    array('href' => JRoute::_('index.php?option=com_'.$this->getIdentifier()->package.'&view=configurations')));
             }
             
             //if the view is configuration then just add a save

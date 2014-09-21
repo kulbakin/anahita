@@ -84,10 +84,10 @@ abstract class AnDomainValidatorAbstract extends KObject
     
     /**
      * Sanitize an entity property value against an array of passed validations
-     *
-     * @param AnDomainEntityAbstract $entity      Entity 
+     * 
+     * @param AnDomainEntityAbstract $entity      Entity
      * @param string                 $property    Property Name
-     * @param array                  $value       Property Value   
+     * @param array                  $value       Property Value
      * @param array                  $validations An array of validations. If no validation are passed. Default validations are used
      * @return boolean
      */
@@ -135,15 +135,15 @@ abstract class AnDomainValidatorAbstract extends KObject
     {
         $description = $entity->getEntityDescription();
         
-        //if entity is persisted only look at the modified properties
-        if ( $entity->isModified() ) {
+        // if entity is persisted only look at the modified properties
+        if ($entity->isModified()) {
             $properties = array_intersect_key($description->getProperty(), KConfig::unbox($entity->getModifiedData()));
         } else {
             $properties = $description->getProperty();
         }
         
         foreach ($properties as $property) {
-            $value  = $entity->get($property->getName());
+            $value = $entity->get($property->getName());
             $entity->getValidator()->validateData($entity, $property, $value);
         }
         
@@ -153,9 +153,9 @@ abstract class AnDomainValidatorAbstract extends KObject
     /**
      * Validates an entity property value against an array of passed validations
      * 
-     * @param AnDomainEntityAbstract $entity      Entity 
+     * @param AnDomainEntityAbstract $entity      Entity
      * @param string                 $property    Property Name
-     * @param array                  $value       Property Value   
+     * @param array                  $value       Property Value
      * @param array                  $validations An array of validations. If no validation are passed. Default validations are used
      * @return boolean
      */
@@ -167,7 +167,7 @@ abstract class AnDomainValidatorAbstract extends KObject
         if (empty($validations)) {
             $validations = $this->getValidations($property);
         }
-        $validations = (array) KConfig::unbox($validations);
+        $validations = (array)KConfig::unbox($validations);
         
         foreach ($validations as $validation => $options) {
             if (is_numeric($validation)) {
@@ -258,7 +258,7 @@ abstract class AnDomainValidatorAbstract extends KObject
                     $identifier = clone $this->getIdentifier();
                     $identifier->path = array('filter');
                     $identifier->name = $filter;
-                    register_default(array('identifier'=>$identifier,'prefix'=>$this));
+                    register_default(array('identifier' => $identifier, 'prefix' => $this));
                 } else {
                     $identifier = $this->getIdentifier($filter);
                 }
@@ -268,7 +268,7 @@ abstract class AnDomainValidatorAbstract extends KObject
             $filter = $this->_filters[$filter];
         }
         
-        return $filter; 
+        return $filter;
     }
     
     /**
@@ -282,9 +282,9 @@ abstract class AnDomainValidatorAbstract extends KObject
         $property = $config->property;
         $value    = $config->value;
         $options  = KConfig::unbox($config->options);
-        //if a number is just passed then treat it as max
+        // if a number is just passed then treat it as max
         if ( ! is_array($options)) {
-            $options = array('max'=>$options);
+            $options = array('max' => $options);
         }
         
         if ($property->isAttribute() && $property->isScalar() && isset($options['max'])) {
@@ -330,10 +330,10 @@ abstract class AnDomainValidatorAbstract extends KObject
         if ( ! empty($value) && $property->isAttribute() && $property->isScalar()) {
             if ($this->getFilter($filter)->validate($value) === false) {
                 $entity->addError(array(
-                    'message'  => $property->getName().' must have the format of '.$filter,
-                    'code'     => AnError::INVALID_FORMAT,
-                    'key'      => $property->getName(),
-                    'format'   => $filter
+                    'message' => $property->getName().' must have the format of '.$filter,
+                    'code'    => AnError::INVALID_FORMAT,
+                    'key'     => $property->getName(),
+                    'format'  => $filter,
                 ));
                 
                 return false;
@@ -358,10 +358,10 @@ abstract class AnDomainValidatorAbstract extends KObject
         
         if ( ! in_array($value, $options)) {
             $entity->addError(array(
-                'message'  => $property->getName().' must be one of the value of '.implode($options, ','),
-                'code'     => AnError::OUT_OF_SCOPE,
-                'key'      => $property->getName(),
-                'scope'    => $options
+                'message' => $property->getName().' must be one of the value of '.implode($options, ','),
+                'code'    => AnError::OUT_OF_SCOPE,
+                'key'     => $property->getName(),
+                'scope'   => $options,
             ));
             
             return false;
@@ -388,7 +388,7 @@ abstract class AnDomainValidatorAbstract extends KObject
         
         //if the serial id is missing for a new entity, then don't validate
         //@TODO this causes no-incremental primary keys
-        //to pass the validation. Need a new serial type the represet 
+        //to pass the validation. Need a new serial type the represet
         //incremental identity property
         if ($property === $entity->getEntityDescription()->getIdentityProperty() && ! $entity->persisted()) {
             return true;
@@ -538,9 +538,9 @@ abstract class AnDomainValidatorAbstract extends KObject
         
         if ($query->disableChain()->fetch()) {
             $entity->addError(array(
-                'message'    => JText::sprintf('%s %s is not unique', $this->getIdentifier()->name, $property->getName()),
-                'code'       => AnError::NOT_UNIQUE,
-                'key'        => $property->getName()
+                'message' => JText::sprintf('%s %s is not unique', $this->getIdentifier()->name, $property->getName()),
+                'code'    => AnError::NOT_UNIQUE,
+                'key'     => $property->getName(),
             ));
             return false;
         }
