@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix LibBaseControllerPermissionAbstract to properly call overwritten canGet,
+  canBrowse etc. methods
+  [7daaf0e](https://github.com/kulbakin/anahita/commit/7daaf0e9637ffe656db4152ffca74e399913d910)
 * fix LibBaseDomainBehaviorLocatable not to uppend legacy 'index.php?' part into composed route url
   [4ff36e2](https://github.com/kulbakin/anahita/commit/4ff36e2f69c74492a55d495a5c3099a4edb8a4ff)
 * fix LibBaseDomainBehaviorDictionariable::setValue() to chain properly
