@@ -223,6 +223,7 @@ class LibApplicationRouter extends KObject
                 $uri->$part = $this->_base_url->$part; 
             }
         }
+        
         return $uri;
     }
     

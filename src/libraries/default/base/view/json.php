@@ -141,7 +141,7 @@ class LibBaseViewJson extends LibBaseViewAbstract
         $item = null;
         
         if (($item = $this->_state->getItem())) {
-           $item     = $this->_serializeToArray($item);
+           $item = $this->_serializeToArray($item);
            $commands = $this->getToolbarCommands('toolbar');
            if ( ! empty($commands)) {
                 $item['commands'] = $commands;
