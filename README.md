@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix dispatching logic for *format=pdf* to properly resolve into corresponding view type if
+  defined
+  [5d51b6a](https://github.com/kulbakin/anahita/commit/5d51b6a65603d8d822be5a8a05c0c6770166fff0)
 * fix LibBaseControllerPermissionAbstract to properly call overwritten canGet,
   canBrowse etc. methods
   [7daaf0e](https://github.com/kulbakin/anahita/commit/7daaf0e9637ffe656db4152ffca74e399913d910)
