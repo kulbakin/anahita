@@ -177,7 +177,7 @@ class AnDomainSpaceState extends KObject
                 }
                 //someone else is responsible for deleteing the relations
                 //good for mass deletion. i.e. node and edges
-                if ( $relationship->getDeleteRule() == AnDomain::DELETE_IGNORE) {
+                if ($relationship->getDeleteRule() == AnDomain::DELETE_IGNORE) {
                     continue;
                 } elseif ($relationship->getDeleteRule() == AnDomain::DELETE_DESTROY) {
                     if ($relationship->isOneToOne()) {
@@ -191,7 +191,7 @@ class AnDomainSpaceState extends KObject
                     if ($relationship->isOneToOne()) {
                         $entities = array($entities);
                     }
-                    foreach($entities as $ent) {
+                    foreach ($entities as $ent) {
                         //if the cascading fails for the related entities then
                         //nullify the property in the failed entity 
                         if ( ! $ent->delete() && $ent->getObject()) {
@@ -201,7 +201,7 @@ class AnDomainSpaceState extends KObject
                 }
             } else if ($relationship->getDeleteRule() == AnDomain::DELETE_DENY) {
                 //don't state change if there at least one entity left
-                $count = $entity->getData( $relationship->getName() )->limit(0, 0)->getTotal();
+                $count = $entity->getData($relationship->getName())->limit(0, 0)->getTotal();
                 
                 if ($count > 0) {
                     $entity->reset();
@@ -210,10 +210,16 @@ class AnDomainSpaceState extends KObject
             } else if ($relationship->getDeleteRule() == AnDomain::DELETE_NULLIFY) {
                 //@TODO you should set the values to null directly rather
                 //then instantiating them
-                $entities = $entity->getData($relationship->getName())->fetchSet();
+                $entities = $entity->getData($relationship->getName());
+                if ( ! $entities) {
+                    continue;
+                }
+                if ($entities and $relationship->isOneToOne()) {
+                    $entities = array($entities);
+                }
                 $property = $relationship->getChildKey();
-                foreach ($entities as $entity) {
-                    $entity->set($property, null);
+                foreach ($entities as $ent) {
+                    $ent->set($property, null);
                 }
             }
         }

@@ -189,7 +189,7 @@ class AnDomainEntityProxy extends KObjectDecorator implements ArrayAccess
     {
         //security check
         if ( ! isset($this->_object)) {
-            $condition  = array($this->_property=>$this->_value);
+            $condition  = array($this->_property => $this->_value);
             $repository = AnDomain::getRepository($this->getIdentifier());
             
             //check if an entity exiting in the repository with $condition
