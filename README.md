@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix delete cascading defined in entity relationships
+  [49bb7e0](https://github.com/kulbakin/anahita/commit/49bb7e0c5aac76c27ee4b85b7498e4b802d6aa8e)
 * fix dispatching logic for *format=pdf* to properly resolve into corresponding view type if
   defined
   [5d51b6a](https://github.com/kulbakin/anahita/commit/5d51b6a65603d8d822be5a8a05c0c6770166fff0)
