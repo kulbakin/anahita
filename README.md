@@ -47,6 +47,11 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix *Remove* and *Confirm* javascript data-triggers to use URL defined in the tag
+  [dca9ac5](https://github.com/kulbakin/anahita/commit/dca9ac5884ba63e7a3f493aa1804fecefdaef091)
+* fix to have delete permission fallback rule defined in abstract medium controller so controllers
+  also use delete permission defined in corresponding domain
+  [a00b713](https://github.com/kulbakin/anahita/commit/a00b713c6d4756e95e9e2ec424fcfa7f25456eae)
 * fix delete cascading defined in entity relationships
   [49bb7e0](https://github.com/kulbakin/anahita/commit/49bb7e0c5aac76c27ee4b85b7498e4b802d6aa8e)
 * fix dispatching logic for *format=pdf* to properly resolve into corresponding view type if
