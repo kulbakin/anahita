@@ -75,7 +75,7 @@ abstract class ComMediumControllerPermissionAbstract extends LibBaseControllerPe
     }
     
     /**
-     * Authorize Read
+     * Authorize Edit
      * 
      * @return boolean
      */
@@ -83,6 +83,20 @@ abstract class ComMediumControllerPermissionAbstract extends LibBaseControllerPe
     {
         if ($this->getItem()) {
             return $this->getItem()->authorize('edit');
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Authorize Delete
+     * 
+     * @return boolean
+     */
+    public function canDelete()
+    {
+        if ($this->getItem()) {
+            return $this->getItem()->authorize('delete');
         }
         
         return false;

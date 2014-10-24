@@ -166,7 +166,7 @@ class LibBaseControllerResponse extends KObject
         $this->_redirect = null;
         
         if ( ! empty($location)) {
-            if ( ! is_string($location) && !is_numeric($location) && !is_callable(array($location, '__toString'))) {
+            if ( ! is_string($location) && ! is_numeric($location) && ! is_callable(array($location, '__toString'))) {
                 throw new \UnexpectedValueException(
                     'The Response location must be a string or object implementing __toString(), "'.gettype($location).'" given.'
                 );
