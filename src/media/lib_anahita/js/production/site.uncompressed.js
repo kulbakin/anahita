@@ -21305,7 +21305,7 @@ Delegator.register('click', {
             var url  = el.get('href');
             var form = (options.form || Element.Form({
                 method: 'post',
-                url: url,
+                action: url,
                 data: data
             }));
             
@@ -21349,7 +21349,7 @@ Delegator.register('click', {
                 var form = (options.form || 
                     Element.Form({
                         method: 'post',
-                        url: url,
+                        action: url,
                         data: data
                     }));
                 if (instanceOf(options.form, String)) {
