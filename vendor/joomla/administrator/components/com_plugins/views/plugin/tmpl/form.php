@@ -14,7 +14,6 @@
 	// clean item data
 	JFilterOutput::objectHTMLSafe( $this->plugin, ENT_QUOTES, '' );
 ?>
-    isset($row) or $row = new stdClass();
 <script language="javascript" type="text/javascript">
 	function submitbutton(pressbutton) {
 		if (pressbutton == "cancel") {
