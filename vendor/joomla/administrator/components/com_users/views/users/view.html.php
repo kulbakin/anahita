@@ -54,21 +54,19 @@ class UsersViewUsers extends JView
 			$searchEscaped = $db->Quote( '%'.$db->getEscaped( $search, true ).'%', false );
 			$where[] = 'a.username LIKE '.$searchEscaped.' OR a.email LIKE '.$searchEscaped.' OR a.name LIKE '.$searchEscaped;
 		}
-		if ( $filter_type )
-		{
-			if ( $filter_type == 'Public Frontend' )
-			{
-				$where[] = ' a.usertype = \'Registered\' OR a.usertype = \'Author\' OR a.usertype = \'Editor\' OR a.usertype = \'Publisher\' ';
-			}
-			else if ( $filter_type == 'Public Backend' )
-			{
-				$where[] = 'a.usertype = \'Manager\' OR a.usertype = \'Administrator\' OR a.usertype = \'Super Administrator\' ';
-			}
-			else
-			{
-				$where[] = 'a.usertype = LOWER( '.$db->Quote($filter_type).' ) ';
-			}
-		}
+        if ($filter_type) {
+            if ($filter_type == 'Public Frontend' || $filter_type == 'Public Backend') {
+                $grp = $acl->get_group_id('', $filter_type, 'ARO');
+                if ($grp) {
+                    $grpids = $acl->get_group_children($grp, 'ARO', 'RECURSE');
+                    if ($grpids) {
+                        $where[] = 'a.gid IN('.implode(',', $grpids).')';
+                    }
+                }
+            } else {
+                $where[] = 'a.usertype = '.$db->Quote($filter_type);
+            }
+        }
 		if ( $filter_logged == 1 )
 		{
 			$where[] = 's.userid = a.id';
