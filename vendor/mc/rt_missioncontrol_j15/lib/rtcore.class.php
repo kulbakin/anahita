@@ -474,16 +474,10 @@ class RTCore
 
         // cache some acl checks
         $canConfig 	= $user->authorize('com_config', 'manage');
-        $canCheckin = $user->authorize('com_checkin', 'manage');
 
-        if ($canConfig || $canCheckin || $canMassMail) {
+        if ($canConfig) {
             $tools = array();
             
-            if ($canCheckin) {
-                //$tools[] = $this->_addListItem(JText::_('Global Checkin'), 'checkin', 'index.php?option=com_checkin');
-				//$tools[] = $this->_addListItem('___');
-            }
-
             $tools[] = $this->_addListItem(JText::_('Cache Manager'), 'config', 'index.php?option=com_cache');
             $tools[] = $this->_addListItem(JText::_('Purge Expired Cache'), 'config', 'index.php?option=com_cache&task=purgeadmin');
 			$tools[] = $this->_addListItem('___');
