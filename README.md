@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix default *canAdd* rule defined in medium only to allow adding entities to logged-in users
+  since medium entites are ownable and cannot belong to guest
+  [2999909](https://github.com/kulbakin/anahita/commit/29999095e6849aebd835e300ffe25c415f3ce849)
 * fix *Remove* and *Confirm* javascript data-triggers to use URL defined in the tag
   [dca9ac5](https://github.com/kulbakin/anahita/commit/dca9ac5884ba63e7a3f493aa1804fecefdaef091)
 * fix to have delete permission fallback rule defined in abstract medium controller so controllers
