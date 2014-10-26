@@ -10,7 +10,7 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class ComPeopleDomainAuthorizerPerson extends ComActorsDomainAuthorizerDefault 
+class ComPeopleDomainAuthorizerPerson extends ComActorsDomainAuthorizerDefault
 {
     /**
      * Check if a person can be deleted by the viewer
