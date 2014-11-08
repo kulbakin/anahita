@@ -20384,7 +20384,6 @@ var parseLess = function() {
             event.preventDefault();
             if (api.get('target')) {
                 target = document.getElement(api.get('target'));
-                console.log(target);
             }
             if (api.get('url')) {
                 url = api.get('url');

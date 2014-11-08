@@ -66,7 +66,6 @@ class LibBaseViewJson extends LibBaseViewAbstract
     public function display()
     {
         $name  = $this->getName();
-        $data  = array();
         
         //if data is set the just json encode those
         if (count($this->_data)) {
