@@ -58,12 +58,12 @@ class LibBaseDomainBehaviorStorable extends AnDomainBehaviorAbstract
      */
     public function getStoragePath($path = '')
     {
-        //prepend the path with a \/
+        // prepend the path with a \/
         if (strlen($path)) $path = '/'.$path;
         
         $base = $this->_mixer->id;
-        //for ownable entities, use the owner component to prefix the path
-        if ($this->_mixer->isOwnable()) {
+        // for ownable entities, use the owner component to prefix the path
+        if ($this->_mixer->isOwnable() and ! is($this->_mixer, 'ComActorsDomainEntityActor')) {
             $path = '/'.$this->_mixer->component.$path;
             $base = $this->_mixer->owner->id;
         }
