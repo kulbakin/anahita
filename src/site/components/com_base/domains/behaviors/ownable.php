@@ -10,8 +10,8 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
- class ComBaseDomainBehaviorOwnable extends AnDomainBehaviorAbstract
- {
+class ComBaseDomainBehaviorOwnable extends AnDomainBehaviorAbstract
+{
     /**
      * Initializes the default configuration for the object
      * 
@@ -57,4 +57,3 @@
         return $this;
     }
 }
- 
