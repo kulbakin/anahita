@@ -307,9 +307,9 @@ class AnDomainStoreDatabase extends KObject implements AnDomainStoreInterface
     public function quoteValue($value)
     {
         if ($value === NULL) return 'NULL';
-        if (is_numeric($value)) return $value;
+        if (is_int($value) or is_float($value)) return $value;
         if ($value === false) return 0;
-        if (empty($value)) return '\'\'';
+        if ('' === $value or array() === $value) return "''";
         
         if (is_array($value)) {
             $values = array_unique($value);
