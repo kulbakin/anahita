@@ -47,6 +47,8 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* fix javascript *@depends* custom directive which includes external files
+  [a8f0a98](https://github.com/kulbakin/anahita/commit/a8f0a98bcc926d1a83c5582f9555a8c953216c0f)
 * fix value quoting for database queries when a string can be interprited as number in scientific
   notation
   [b4676f7](https://github.com/kulbakin/anahita/commit/b4676f7960f36bd3001030602ab27ee3383672c5)
