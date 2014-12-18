@@ -125,7 +125,7 @@ class LibBaseTemplateHelperJavascriptFile extends KTemplateHelperAbstract
             $dir     = dirname($file);
             if (preg_match_all('/\/\/@depends (.*)/', $content, $matches)) {
                 foreach ($matches[1] as $i => $match) {
-                    $imported_file = $dir.'/'.$match;
+                    $imported_file = $dir.'/'.trim($match);
                     $imports[] = $imported_file;
                     if (file_exists($imported_file)) {
                         $data    = $this->_parseFile($imported_file);
