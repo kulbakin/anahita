@@ -317,7 +317,7 @@ class AnDomainProperty extends KObject
             if (is_bool($config->inverse)) {
                 $config['inverse'] = array();
             }
-            $relationship->setInverse( $config->inverse );
+            $relationship->setInverse($config->inverse);
         }
         
         return $relationship;

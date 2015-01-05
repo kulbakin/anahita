@@ -15,19 +15,29 @@
                 <?php endif ?>
                 
                 <div class="entity-container">
+                    <div class="entity-meta">
+                        <?= @date($notification->creationTime) ?>
+                    </div>
+                    
                     <div class="entity-description">
                         <?php $data = @helper('parser.parse', $notification, $actor) ?>
                         <?= $data['title']?>
                     </div>
                     
-                    <div class="entity-meta">
-                        <?= @date($notification->creationTime) ?>
-                    </div>
+                    <?php if ( ! empty($data['commands'])): ?>
+                        <div class="entity-actions">
+                            <ul class="an-actions">
+                                <?php foreach($data['commands'] as $command): ?>
+                                    <li><a href="<?= @route($command->attribs->href) ?>" class="btn btn-mini"><?= $command->label?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         <?php endforeach ?>
     </div>
     <?php if (count($notifications) == 0) : ?>
         <?= @message(@text('COM-NOTIFICATIONS-EMPTY-LIST-MESSAGE')) ?>
-    <?php endif; ?>
+    <?php endif ?>
 </div>

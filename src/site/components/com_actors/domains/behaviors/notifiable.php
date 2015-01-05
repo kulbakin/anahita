@@ -69,7 +69,7 @@ class ComActorsDomainBehaviorNotifiable extends AnDomainBehaviorAbstract
         $ids[] = $notification->id;
         $this->set('newNotificationIds', $ids);
     }
-        
+    
     /**
      * Return the number of new notifications
      * 
@@ -147,8 +147,7 @@ class ComActorsDomainBehaviorNotifiable extends AnDomainBehaviorAbstract
      */
     public function resetStats($actors)
     {
-        foreach($actors as $actor)
-        {
+        foreach ($actors as $actor) {
             $ids = $actor->notificationIds->toArray();
             $ids = $this->getService('repos://site/notifications.notification')->getQuery()->id($ids)->fetchValues('id');
             $actor->set('notificationIds', AnDomainAttribute::getInstance('set')->setData($ids));

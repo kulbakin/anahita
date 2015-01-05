@@ -46,13 +46,13 @@ class ComBaseControllerBehaviorOwnable extends KControllerBehaviorAbstract
         $this->_identifiable_key = $config->identifiable_key;
         $this->getState()->insert($this->_identifiable_key);
     }
-        
+    
     /**
      * Initializes the default configuration for the object
-     *
+     * 
      * Called from {@link __construct()} as a first step of object instantiation.
-     *
-     * @param   object  An optional KConfig object with configuration options.
+     * 
+     * @param  object An optional KConfig object with configuration options.
      * @return void
      */
     protected function _initialize(KConfig $config)

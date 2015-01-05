@@ -15,15 +15,27 @@
                     <?php endif ?>
                     
                     <div class="entity-container">
-                        <p class="entity-title">
-                            <?= $data['title']?>
-                        </p>
-                        <div class="body">
-                            <?= $data['body']?>
-                        </div>
                         <div class="entity-meta">
                             <?= $notification->creationTime->format('%l:%M %p')?>
                         </div>
+                        
+                        <p class="entity-title">
+                            <?= $data['title']?>
+                        </p>
+                        
+                        <div class="body">
+                            <?= $data['body']?>
+                        </div>
+                        
+                        <?php if ( ! empty($data['commands'])): ?>
+                            <div class="entity-actions">
+                                <ul class="an-actions">
+                                    <?php foreach($data['commands'] as $command): ?>
+                                        <li><a href="<?= @route($command->attribs->href) ?>" class="btn btn-mini"><?= $command->label?></a></li>
+                                    <?php endforeach ?>
+                                </ul>
+                            </div>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

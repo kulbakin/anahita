@@ -37,8 +37,8 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
                 'subscriberIds' => array('type' => 'set', 'default' => 'set', 'write' => 'private', 'required' => true),
             ),
             'behaviors' => to_hash(array(
-                  'serializable' => array('serializer' => 'com://site/stories.domain.serializer.story'),
-                  'dictionariable',
+                'serializable' => array('serializer' => 'com://site/stories.domain.serializer.story'),
+                'dictionariable',
             )),
             'relationships' => array(
                 'object'    => array('polymorphic' => true, 'type_column' => 'story_object_type', 'child_column' => 'story_object_id'),
@@ -77,9 +77,8 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
             ));
         }
         
-        //force the target to be the owner of the object
-        //if the object is ownable
-        if ($data->object && $data->object->isOwnable()) {
+        // by default force the target to be the owner of the object if the object is ownable
+        if (empty($data->target) && $data->object && $data->object->isOwnable()) {
             $data->target = $data->object->owner;
         }
         
@@ -90,16 +89,15 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
                 ));
             }
         } elseif ($data->target) {
-            //if there are no objects, then there are no subscribers
-            //in that case add the target as the notification subscriber
-            //if it's notifiable
+            // if there are no objects, then there are no subscribers
+            // in that case add the target as the notification subscriber
+            // if it's notifiable
             if ($data->target->isNotifiable()) {
                 $data->append(array(
                     'subscribers' => array($data->target->id),
                 ));
             } elseif ($data->target->isAdministrable()) {
-                //if not notiable but administrable 
-                //then add all the admins
+                // if not notiable but administrable then add all the admins
                 $data->append(array(
                     'subscribers' => $data->target->administratorIds->toArray(),
                 ));
@@ -138,7 +136,7 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
      */
     public function setSubscribers($subscribers)
     {
-        //flatten the array
+        // flatten the array
         $subscribers = AnHelperArray::getValues(KConfig::unbox($subscribers));
         $ids = array();
         foreach ($subscribers as $subscriber) {
@@ -201,12 +199,12 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
      */
     public function shouldNotify($person, $setting)
     {
-        //if a person is not notifiable then return false
+        // if a person is not notifiable then return false
         if ( ! $person->isNotifiable()) {
             return false;
         }
         
-        //check if the target allows access to the person
+        // check if the target allows access to the person
         if ( ! $this->target->allows($person, 'access')) {
             return false;
         } elseif (isset($this->object) && $this->object->isPrivatable()) {
@@ -216,8 +214,8 @@ class ComNotificationsDomainEntityNotification extends ComBaseDomainEntityNode
         }
         
         if ($this->type) {
-             $delegate = $this->getService('com://site/notifications.domain.delegate.setting.'.$this->type);
-             return $delegate->shouldNotify($person, $this, $setting);
+            $delegate = $this->getService('com://site/notifications.domain.delegate.setting.'.$this->type);
+            return $delegate->shouldNotify($person, $this, $setting);
         } else {
             return ComNotificationsDomainDelegateSettingInterface::NOTIFY_WITH_EMAIL;
         }
