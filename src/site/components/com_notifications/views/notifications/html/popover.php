@@ -24,7 +24,7 @@
                         <?= $data['title']?>
                     </div>
                     
-                    <?php if ( ! empty($data['commands'])): ?>
+                    <?php if (get_viewer()->eql($actor) and ! empty($data['commands'])): ?>
                         <div class="entity-actions">
                             <ul class="an-actions">
                                 <?php foreach($data['commands'] as $command): ?>
