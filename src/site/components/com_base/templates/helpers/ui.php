@@ -332,7 +332,8 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
     }
     
     /**
-     * Renders a privacy selector for a {@see LibBaseDomainBehaviorPrivatable} entity
+     * Renders a privacy selector for an entity 
+     * @see LibBaseDomainBehaviorPrivatable
      * 
      * @param array|AnDomainEntityAbstract A privatable entity
      * @return string
@@ -355,7 +356,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
             if ($config->entity->isOwnable()) {
                 $config->options = $config->entity->owner;
             } elseif (is($config->entity, 'ComActorsDomainEntityActor')) {
-               $config->options  = $config->entity;
+                $config->options  = $config->entity;
             }
         }
         
@@ -397,7 +398,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
             }
             
             foreach ($options as $key => $value) {
-                if ($actor->authorize('setprivacyvalue', array('value'=>$key)) === false) {
+                if ($actor->authorize('setprivacyvalue', array('value' => $key)) === false) {
                     unset($options[$key]);
                 }
             }
@@ -415,7 +416,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
             }
             
             // trim the options based on the actor
-            if ($config->entity && !$config->entity->eql($actor)) {
+            if ($config->entity && ! $config->entity->eql($actor)) {
                 $current_index = array_search($actor->access, array_keys(KConfig::unbox($config->options)));
                 $i = 0;
                 foreach ($config->options as $key => $value) {
@@ -431,7 +432,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
     
     /**
      * Renders a filterbox
-     *
+     * 
      * @param  array $config Configuration
      * @returns void
      */

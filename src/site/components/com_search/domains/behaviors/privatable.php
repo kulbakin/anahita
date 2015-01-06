@@ -17,10 +17,7 @@ class ComSearchDomainBehaviorPrivatable extends LibBaseDomainBehaviorPrivatable
      */
     protected function _beforeQuerySelect(KCommandContext $context)
     {
-        if (KService::has('com:people.viewer')
-            && is_person(get_viewer())
-            && get_viewer()->admin()
-        ) {
+        if (KService::has('com:people.viewer') && is_person(get_viewer()) && get_viewer()->admin() ) {
             return;
         }
         
@@ -36,7 +33,7 @@ class ComSearchDomainBehaviorPrivatable extends LibBaseDomainBehaviorPrivatable
         
         $query->getRepository()->addBehavior('ownable');
         // do a left join operation just in case an owner is missing
-        $query->link('owner', array('type'=>'weak','bind_type'=>false));
+        $query->link('owner', array('type' => 'weak', 'bind_type' => false));
         $config->append(array(
             'use_access_column' => '@col(access)'
         ));

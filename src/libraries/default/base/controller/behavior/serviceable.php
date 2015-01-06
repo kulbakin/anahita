@@ -148,7 +148,14 @@ class LibBaseControllerBehaviorServiceable extends KControllerBehaviorAbstract
     protected function _actionAdd(KCommandContext $context)
     {
         $context->response->status = KHttpResponse::CREATED;
-        $entity = $this->getRepository()->getEntity()->setData($context['data']);
+        $entity = $this->getRepository()->getEntity();
+        $data = $context['data'];
+        // make sure owner is assigned first since hooks on assigning data to other fields may rely on that
+        if (isset($data['owner'])) {
+            $entity->setData('owner', $data['owner'], AnDomain::ACCESS_PUBLIC);
+            unset($data['owner']);
+        }
+        $entity->setData($data);
         $this->setItem($entity);
         return $this->getItem();
     }

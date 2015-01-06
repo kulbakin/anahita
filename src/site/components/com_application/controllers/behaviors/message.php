@@ -97,10 +97,10 @@ class ComApplicationControllerBehaviorMessage extends KControllerBehaviorAbstrac
      * @param boolean $global  A flag to whether store the message in the global queue or not
      * @return void
      */
-    public function setMessage($message,$type = 'info', $global = false)
+    public function setMessage($message, $type = 'info', $global = false)
     {
         // if ajax send back the message in the header
-        if ( $this->getRequest()->isAjax() ) {
+        if ($this->getRequest()->isAjax()) {
             $this->getResponse()->setHeader(
                'X-Message',
                json_encode(array('text' => JText::_($message), 'type' => $type))

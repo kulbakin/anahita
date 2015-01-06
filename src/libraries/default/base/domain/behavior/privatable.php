@@ -70,7 +70,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
                 break;
             }
             
-            if ($this->_mixer->authorize('setprivacyvalue', array('value' => $key)) === false) {
+            if ($this->_mixer->authorize('setprivacyvalue', array('value' => $value)) === false) {
                 unset($values[$key]);
             } else {
                 $values[$key] = $value;
@@ -200,7 +200,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
      * Checks an array of permissions against an accessor using the socialgraph between the
      * accessor and actor
      * 
-     * @param ComActorsDomainEntityActor $actor     The actor who's trying to perform an operation
+     * @param ComActorsDomainEntityActor $actor        The actor who's trying to perform an operation
      * @param array                      $permissions  An array of permissions
      * @param ComActorsDomainEntityActor $owner        If one of the permision
      * @return boolean
@@ -237,7 +237,7 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
                 case LibBaseDomainBehaviorPrivatable::ADMIN:
                     $result = $actor->administrator($owner);
                     break;
-                default: 
+                default:
                     $result = $actor->id == $value;
                     break;
             }
@@ -248,7 +248,6 @@ class LibBaseDomainBehaviorPrivatable extends AnDomainBehaviorAbstract
         }
         
         return $result;
-      
     }
     
     /**
