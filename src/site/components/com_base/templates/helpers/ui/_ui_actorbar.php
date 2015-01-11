@@ -19,7 +19,7 @@
         <?php endforeach ?>
         <li class="profile visible-desktop">
             <a href="<?= @route($actorbar->getActor()->getURL()) ?>">
-            <?= @text('COM-ACTORS-BACK-TO-PROFILE') ?>
+                <?= @text('COM-ACTORS-BACK-TO-PROFILE') ?>
             </a>
         </li>
     </ul>

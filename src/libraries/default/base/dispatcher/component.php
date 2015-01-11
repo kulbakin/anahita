@@ -17,7 +17,6 @@ class LibBaseDispatcherComponent extends LibBaseDispatcherAbstract implements KS
      * 
      * @param KConfigInterface  $config    An optional KConfig object with configuration options
      * @param KServiceInterface $container A KServiceInterface object
-     * 
      * @return KServiceInstantiatable
      */
     public static function getInstance(KConfigInterface $config, KServiceInterface $container)
@@ -113,9 +112,8 @@ class LibBaseDispatcherComponent extends LibBaseDispatcherAbstract implements KS
     
     /**
      * Get action
-     *
+     * 
      * @param KCommandContext $context
-     *
      * @return void
      */
     protected function _actionPost(KCommandContext $context)

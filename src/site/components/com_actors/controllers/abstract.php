@@ -187,9 +187,8 @@ abstract class ComActorsControllerAbstract extends ComBaseControllerService
      */
     protected function _actionDelete(KCommandContext $context)
     {
-        $this->getService('repos://site/components')
-        ->fetchSet()
-        ->registerEventDispatcher($this->getService('anahita:event.dispatcher'));
+        $this->getService('repos://site/components')->fetchSet()
+            ->registerEventDispatcher($this->getService('anahita:event.dispatcher'));
         
         $result = parent::_actionDelete($context);
         

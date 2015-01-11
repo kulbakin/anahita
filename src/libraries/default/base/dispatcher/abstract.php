@@ -1,7 +1,7 @@
 <?php
 /**
  * Abstract Base Dispatcher
- *
+ * 
  * @category   Anahita
  * @package    Lib_Base
  * @subpackage Dispatcher
