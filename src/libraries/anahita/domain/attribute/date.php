@@ -1,6 +1,6 @@
 <?php
 /**
- * Date Attribute 
+ * Date Attribute
  * 
  * @category   Anahita
  * @package    Anahita_Domain
@@ -27,7 +27,7 @@ class AnDomainAttributeDate extends KDate implements AnDomainAttributeInterface
             $config = new KConfig();
         
         $config->append(array(
-            'date' => gmdate( 'Y-m-d H:i:s' )
+            'date' => gmdate('Y-m-d H:i:s')
         ));
         
         $instance->setDate($config->date);
@@ -46,7 +46,7 @@ class AnDomainAttributeDate extends KDate implements AnDomainAttributeInterface
             $config = new KConfig();
         }
         $config->append(array(
-            'date'  => gmdate( 'Y-m-d H:i:s' )
+            'date' => gmdate('Y-m-d H:i:s')
         ));
         
         parent::__construct($config);

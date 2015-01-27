@@ -68,12 +68,12 @@ class LibBaseViewHtml extends LibBaseViewTemplate
         $this->_data = array_merge($this->_state->toArray(), $this->_data);
         
         //Assign the data of the model to the view
-        if ( $items = $this->_state->getList()  ) {
+        if (($items = $this->_state->getList())) {
             $this->_data[KInflector::pluralize($name)] = $items;
             $this->_data['items'] = $items;
         }
         
-        if ( $item = $this->_state->getItem()  ) {
+        if (($item = $this->_state->getItem())) {
             $this->_data[KInflector::singularize($name)] = $item;
             $this->_data['item'] = $item;
         }

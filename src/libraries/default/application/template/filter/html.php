@@ -27,7 +27,7 @@ class LibApplicationTemplateFilterHtml extends KTemplateFilterAbstract implement
             $text = str_replace('<head>', '<head>'.$this->_renderHead(), $text);
             //render the styles
             $text = str_replace('</head>',$this->_renderStyles().'</head>', $text);
-            //render the scripts                
+            //render the scripts
             $text = str_replace('</body>',$this->_renderScripts().'</body>', $text);
         }
     }

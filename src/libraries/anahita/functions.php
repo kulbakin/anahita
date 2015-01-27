@@ -249,9 +249,9 @@ function pick()
 function translate($texts, $force = true)
 {
     settype($texts, 'array');
-    $debug		  = isset($_GET['dbg']);
-    $debug_list	  = array();
-    $lang  		  = JFactory::getLanguage();
+    $debug = isset($_GET['dbg']);
+    $debug_list = array();
+    $lang = JFactory::getLanguage();
     $translatable = false;
     foreach ($texts as $text) {
         if (strpos($text, '_')) {
