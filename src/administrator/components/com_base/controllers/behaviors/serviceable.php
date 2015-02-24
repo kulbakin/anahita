@@ -38,7 +38,7 @@ class ComBaseControllerBehaviorServiceable extends LibBaseControllerBehaviorServ
     protected function _actionAdd(KCommandContext $context)
     {
         $entity = parent::_actionAdd($context);
-        $data 	= $context->data;
+        $data = $context->data;
         if ($entity->isDictionariable() && $data->meta) {
             foreach ($data->meta as $key => $value) {
                 $entity->setValue($key, $value);
@@ -56,7 +56,7 @@ class ComBaseControllerBehaviorServiceable extends LibBaseControllerBehaviorServ
     protected function _actionEdit(KCommandContext $context)
     {
         $entity = parent::_actionEdit($context);
-        $data   = $context->data;
+        $data = $context->data;
         if ($entity->isDictionariable() && $data->meta) {
             foreach ($data->meta as $key => $value) {
                 $entity->setValue($key, $value);

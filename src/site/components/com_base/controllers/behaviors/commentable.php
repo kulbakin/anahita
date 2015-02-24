@@ -75,7 +75,7 @@ class ComBaseControllerBehaviorCommentable extends KControllerBehaviorAbstract
     protected function _actionDeletecomment(KCommandContext $context)
     {
         $ret = $this->getCommentController()->id($this->cid)->delete();
-        $context->response->status  = KHttpResponse::NO_CONTENT;
+        $context->response->status = KHttpResponse::NO_CONTENT;
     }
     
     /**

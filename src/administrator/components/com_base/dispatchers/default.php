@@ -19,7 +19,7 @@ class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
      * @see LibBaseDispatcherComponent::_actionGet()
      */
     protected function _actionGet(KCommandContext $context)
-    {   
+    {
         //if there are no views then
         //lets redirect to configuration
         if ( ! file_exists(JPATH_COMPONENT.'/views')
