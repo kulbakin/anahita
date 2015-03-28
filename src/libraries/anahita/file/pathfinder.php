@@ -1,19 +1,4 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
- * 
- * @category   Anahita
- * @package    Anahita_File
- * @subpackage File
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id: view.php 13650 2012-04-11 08:56:41Z asanieyan $
- * @link       http://www.anahitapolis.com
- */
-
 /**
  * Path Finder. This class finds a relative path within list of search paths
  * 
@@ -29,10 +14,10 @@
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
+ * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
 class AnFilePathfinder extends KObject
-{        
+{
     /**
      * Base media paths to search
      * 
@@ -42,27 +27,25 @@ class AnFilePathfinder extends KObject
     
     /**
      * Constructor.
-     *
+     * 
      * @param KConfig $config An optional KConfig object with configuration options.
-     *
      * @return void
      */
     public function __construct(KConfig $config)
     {
-        parent::__construct($config);        
+        parent::__construct($config);
     }
     
     /**
      * Initializes the default configuration for the object
-     *
+     * 
      * Called from {@link __construct()} as a first step of object instantiation.
-     *
+     * 
      * @param KConfig $config An optional KConfig object with configuration options.
-     *
      * @return void
      */
     protected function _initialize(KConfig $config)
-    {       
+    {
         parent::_initialize($config);
     }
     
@@ -74,21 +57,20 @@ class AnFilePathfinder extends KObject
      * @return AnFilePathfinder
      */
     public function addSearchDirs($dirs)
-    { 
+    {
         // just force to array
         settype($dirs, 'array');
-
+        
         // loop through the path directories
-        foreach ($dirs as $dir)
-        {
+        foreach ($dirs as $dir) {
             // no surrounding spaces allowed!
             $dir = $this->_unifyPath(trim($dir));
-
+            
             // remove trailing slash
             if (substr($dir, -1) == DS) {
                 $dir = substr_replace($dir, '', -1);
             }
-
+            
             // add to the top of the search dirs
             array_unshift($this->_dirs, $dir);
         }
@@ -105,14 +87,12 @@ class AnFilePathfinder extends KObject
     {
         return $this->_dirs;
     }
-        
+    
     /**
      * Gets a file path of a relative path by searching the directories
      * 
      * @param string $path Relative path
-     * 
      * @return string
-     * 
      * @uses AnFilePathfinder::_findPath to find the path
      */
     public function getPath($path)
@@ -124,25 +104,23 @@ class AnFilePathfinder extends KObject
      * Search for a relative path within the search directories
      * 
      * @param string $path Relative path
-     * 
      * @return string
      */
     protected function _findPath($path)
     {
-    	$path = $this->_unifyPath($path);
+        $path = $this->_unifyPath($path);
         $dirs = $this->_dirs;
         
         $file = null;
         
-        foreach($dirs as $dir)
-        {
-            if ( is_readable(realpath($dir.DS.$path)) ) {
+        foreach($dirs as $dir) {
+            if (is_readable(realpath($dir.DS.$path))) {
                 $file = $dir.DS.$path;
                 break;
-            }            
+            }
         }
         
-        return $file;       
+        return $file;
     }    
     
     /**
@@ -156,5 +134,3 @@ class AnFilePathfinder extends KObject
     	return preg_replace('%[/\\\\]%', DS, $path);
     }
 }
-
-?>
