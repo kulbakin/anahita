@@ -113,7 +113,7 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
         $finder->addSearchDirs($paths);
         $style = $finder->getPath($config->file.'.less');
         $css   = $css_folder.DS.$config->file.'.css';
-        //compile        
+        //compile
         if ($config->compile > 0 && ! empty($style)) {
             $this->_template->renderHelper('less.compile', array(
                 'force'      => $config->compile > 1,
