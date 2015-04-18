@@ -1,0 +1,1 @@
+shiraz template inherit all styles from templates/base/css/style.less
