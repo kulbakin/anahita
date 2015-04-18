@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update *.less compilation and introduce minified versions of css which are automatically used
+  for production, i.e. when debugging is turned off in admin area
+  [55b9250](https://github.com/kulbakin/anahita/commit/55b92509839e7ebcb56cef181a28f31704e56b1b)
 * fix javascript *@depends* custom directive which includes external files
   [a8f0a98](https://github.com/kulbakin/anahita/commit/a8f0a98bcc926d1a83c5582f9555a8c953216c0f)
 * fix value quoting for database queries when a string can be interprited as number in scientific
