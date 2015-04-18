@@ -93,6 +93,26 @@ class PlgSystemAnahita extends JPlugin
     {
         global $mainframe;
         
+        // compile *.less styles for the current site template templates
+        if ( ! JFactory::getApplication()->isAdmin() && JDEBUG) {
+            $less_helper = KService::get('com://site/base.view.html')->getTemplate()->getHelper('com:application.template.helper.less');
+            $iterator = new AppendIterator();
+            $iterator->append(new GlobIterator(JPATH_THEMES.DS.'base'.DS.'css/*.less', FilesystemIterator::CURRENT_AS_PATHNAME));
+            $iterator->append(new GlobIterator(JPATH_THEMES.DS.JFactory::getApplication()->getTemplate().DS.'css/*/*.less', FilesystemIterator::CURRENT_AS_PATHNAME));
+            $include = array(
+                JPATH_THEMES.DS.'base'.DS.'css',
+                JPATH_ROOT.DS.'media'.DS.'lib_anahita'.DS.'css',
+            );
+            foreach ($iterator as $less_file) {
+                $css_file = preg_replace('%\.less$%i', '.css', $less_file);
+                $less_helper->compile(array(
+                    'input' => $less_file,
+                    'output' => $css_file,
+                    'import' => array_merge(array(dirname($less_file)), $include),
+                ));
+            }
+        }
+        
         // No remember me for admin
         if ($mainframe->isAdmin()) {
             return;

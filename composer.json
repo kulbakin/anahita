@@ -7,6 +7,8 @@
     "bin": ["bin/anahita"],
     "require": {
         "php": ">=5.3",
+        "oyejorge/less.php": "dev-master",
+        "matthiasmullie/minify": "dev-master",
         "symfony/console": "2.1.*",
         "dg/mysql-dump": "1.1.0",
         "easybook/geshi": "1.0.8.11"

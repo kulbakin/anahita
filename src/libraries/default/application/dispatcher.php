@@ -67,7 +67,6 @@ class LibApplicationDispatcher extends LibBaseDispatcherApplication
         // trigger the onAfterRoute events
         $this->_application->triggerEvent('onAfterRoute');
         $url->query = KRequest::get('get','raw');
-        
         //globally set ItemId
         global $Itemid;
         

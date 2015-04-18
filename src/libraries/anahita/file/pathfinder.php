@@ -4,7 +4,7 @@
  * 
  * <code>
  * $finder = KService::get('anahita:file.pathfinder');
- * $finder->addSearchDirs(array($path1,$path2));
+ * $finder->addSearchDirs(array($path1, $path2));
  * $finder->getPath($relative_path);
  * </code>
  * 
@@ -53,7 +53,6 @@ class AnFilePathfinder extends KObject
      * Adds an array of search dirs to search for a path
      * 
      * @param $paths string|array Adds a base path
-     * 
      * @return AnFilePathfinder
      */
     public function addSearchDirs($dirs)
@@ -120,8 +119,8 @@ class AnFilePathfinder extends KObject
             }
         }
         
-        return $file;
-    }    
+        return $this->_absolutePath($file);
+    }
     
     /**
      * Unify directory separator to one used by environemnt OS
@@ -131,6 +130,26 @@ class AnFilePathfinder extends KObject
      */
     protected function _unifyPath($path)
     {
-    	return preg_replace('%[/\\\\]%', DS, $path);
+        return preg_replace('%[/\\\\]%', DS, $path);
+    }
+    
+    /**
+     * Works like realpath() but without resolving symbolic links
+     * 
+     * @param string $path
+     * @return string
+     */
+    protected function _absolutePath($path) {
+        $parts = explode(DS, $path);
+        $absolutes = array();
+        foreach ($parts as $i => $part) {
+            if ('' == $part && $i > 0 || '.' == $part) continue;
+            if ('..' == $part) {
+                array_pop($absolutes);
+            } else {
+                $absolutes[] = $part;
+            }
+        }
+        return implode(DS, $absolutes);
     }
 }

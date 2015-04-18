@@ -1,19 +1,4 @@
 <?php
-
-/** 
- * LICENSE: ##LICENSE##
- * 
- * @category   Anahita
- * @package    Lib_Application
- * @subpackage Template_Helper
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id$
- * @link       http://www.anahitapolis.com
- */
-
 /**
  * Renders a message. This class is specialized at the application 
  * level to render system messages
@@ -24,32 +9,29 @@
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
+ * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class LibApplicationTemplateHelperMessage extends KTemplateHelperAbstract 
-{         
+class LibApplicationTemplateHelperMessage extends KTemplateHelperAbstract
+{
     /**
      * Renders a message using the passed configuration
      * 
      * @param string $message The message to render
      * @param array  $config  Message configuration
-     * 
      * @return string
      */
     public function render($config = array())
-    {            
+    {
         $message  = $config['message'];
         unset($config['message']);
         $message  = '<p>'.$message.'</p>';
         $buttons  = isset($config['buttons']) ? $config['buttons'] : array();
         unset($config['buttons']);
-        if ( !empty($buttons) ) 
-        {
-            foreach($buttons as $label => $attrbs) 
-            {
+        if ( ! empty($buttons)) {
+            foreach ($buttons as $label => $attrbs) {
                 $buttons[$label] = $this->_renderButton($label, $attrbs);
             }
-            $message .= '<p class="alert-actions">'.implode(' ', $buttons).'</p>';              
+            $message .= '<p class="alert-actions">'.implode(' ', $buttons).'</p>';
         }
         return $this->_renderMessage($message, $config);
     }
@@ -59,8 +41,7 @@ class LibApplicationTemplateHelperMessage extends KTemplateHelperAbstract
      * 
      * @param string  $message The message to render
      * @param array   $config  Options
-     * 
-     * @return string 
+     * @return string
      */
     protected function _renderMessage($message, $config)
     {
@@ -68,10 +49,10 @@ class LibApplicationTemplateHelperMessage extends KTemplateHelperAbstract
         $config->append(array(
             'type' => 'info'
         ));
-        $message = "<div class=\"alert alert-block alert-{$config->type}\">" .
-                "<a class=\"close\" data-trigger=\"nix\" data-nix-options=\"'target':'!div.alert'\">&times;</a>".
-                "$message" .
-                "</div>";
+        $message = "<div class=\"alert alert-block alert-{$config->type}\">"
+            ."<a class=\"close\" data-trigger=\"nix\" data-nix-options=\"'target':'!div.alert'\">&times;</a>"
+            ."$message"
+            ."</div>";
         return $message;
     }
     
@@ -80,8 +61,7 @@ class LibApplicationTemplateHelperMessage extends KTemplateHelperAbstract
      * 
      * @param string  $label  Button label
      * @param array   $attrbs Button attributes
-     * 
-     * @return string 
+     * @return string
      */
     protected function _renderButton($label, $attrbs)
     {
@@ -90,7 +70,7 @@ class LibApplicationTemplateHelperMessage extends KTemplateHelperAbstract
             'class' => ''
         ));
         $attrbs->class .= 'btn small';
-        if ( isset($attrbs->type) ) {
+        if (isset($attrbs->type)) {
             $attrbs->class .= ' btn-'.$attrbs->type;
             unset($attrbs->type);
         }

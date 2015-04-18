@@ -1,6 +1,4 @@
 <?php
-require_once 'compiler.php';
-
 /**
  * Less Compiler Template Helper
  * 
@@ -26,20 +24,14 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
         
         $config->append(array(
             'parse_urls' => true,
-            'compress' => true,
             'import' => array(),
             'force'  => false,
             'output' => null, //required
             'input'  => null, //required
         ));
         
-        $less  = new lessc();
-        $less->setPreserveComments( ! $config->compress);
-        if ($config->compress) {
-            $less->setFormatter("compressed");
-        }
-        $config['import'] = $config['import'];
-        $less->setImportDir($config['import']);
+        $less = new lessc();
+        $less->setImportDir($config->import->toArray());
         $cache_file = JPATH_CACHE.'/less-'.md5($config->input);
         
         if (file_exists($cache_file)) {
@@ -49,13 +41,12 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
         }
         $force = $config->force;
         
-        //if output doesn't exsit then force compile
+        // if output doesn't exsit then force compile
         if ( ! is_readable($config->output)) {
             $force = true;
         }
         
-        //check if any of the import folder have changed or
-        //if yes then re-compile
+        // check if any of the import folder have changed and recompile if necessary
         if (is_array($cache)) {
             foreach ($config['import'] as $path) {
                 if (is_readable($path) && filemtime($path) > $cache['updated']) {
@@ -72,17 +63,18 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
         }
         if ( ! is_array($cache) || $new_cache['updated'] > $cache['updated']) {
             if ($config->parse_urls) {
-                $new_cache['compiled'] = $this->_parseUrls($new_cache['compiled'], $config->import);
+                $new_cache['compiled'] = $this->_parseUrls($new_cache['compiled'], array_merge(array(dirname($config->output)), $config->import->toArray()));
             }
             
             //store the cache
             file_put_contents($cache_file, serialize($new_cache));
             //store the compiled file
-            //create a directory if 
-            if ( ! file_exists(dirname($config->output))) {
+            if ( ! file_exists(dirname($config->output))) { // create a directory if necessary
                  mkdir(dirname($config->output), 0755);
             }
             file_put_contents($config->output, $new_cache['compiled']);
+            $minifier = new \MatthiasMullie\Minify\CSS($new_cache['compiled']);
+            file_put_contents(preg_replace('%\.css$%', '.min.css', $config->output), $minifier->minify());
         }
     }
     
@@ -108,7 +100,7 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
                 
                 if (($path = $finder->getPath($match))) {
                     $path = AnHelperFile::getTravelPath($starting_path, $path);
-                    $path = str_replace(DS,'/',$path);
+                    $path = str_replace(DS, '/', $path);
                     $replaces[$match] = $path;
                 }
             }

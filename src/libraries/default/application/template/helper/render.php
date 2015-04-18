@@ -88,43 +88,26 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
      */
     public function style($config = array())
     {
-        require_once 'less/compiler.php';
-        
         if (is_string($config)) {
             $config = array('file' => $config);
         }
         
         $config = new KConfig($config);
         $config->append(array(
-            'parse_urls' => true,
-            'style'      => pick($this->_params->cssStyle, 'style1'),
-            'compile'    => pick($this->_params->compilestyle, 0),
-            'compress'   => pick($this->_params->compresstyle, 1),
-            'file'       => 'style',
+            'style' => pick($this->_params->cssStyle, 'style1'),
+            'file'  => 'style',
+            'minified' => ! JDEBUG,
         ));
         
-        $paths = array(
-            JPATH_ROOT.DS.'media'.DS.'lib_anahita'.DS.'css',
-            JPATH_THEMES.DS.'base'.DS.'css',
-            $css_folder = JPATH_ROOT.DS.'templates'.DS.$this->getIdentifier()->package.DS.'css'.DS.$config->style,
-        );
-        
         $finder = $this->getService('anahita:file.pathfinder');
-        $finder->addSearchDirs($paths);
-        $style = $finder->getPath($config->file.'.less');
-        $css   = $css_folder.DS.$config->file.'.css';
-        //compile
-        if ($config->compile > 0 && ! empty($style)) {
-            $this->_template->renderHelper('less.compile', array(
-                'force'      => $config->compile > 1,
-                'compress'   => $config->compress,
-                'parse_urls' => $config->parse_urls,
-                'import'     => $finder->getSearchDirs(),
-                'input'      => $style,
-                'output'     => $css,
-            ));
+        $finder->addSearchDirs(array(
+            JPATH_THEMES.DS.'base'.DS.'css',
+            JPATH_ROOT.DS.'templates'.DS.$this->getIdentifier()->package.DS.'css'.DS.$config->style,
+        ));
+        $css = $finder->getPath($config->file.($config->minified ? '.min.css' : '.css'));
+        if ( ! $css) {
+            throw new InvalidArgumentException('Requested css file is not found');
         }
-        
         $cssHref = str_replace('\\', '/', str_replace(JPATH_ROOT.DS, 'base://', $css));
         return '<link rel="stylesheet" href="'.$cssHref.'" type="text/css" />';
     }
