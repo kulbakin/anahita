@@ -64,7 +64,7 @@ class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
             JFactory::getDocument()->addScript($url);
         }
         
-        $url = $asset->getURL("com_{$this->getIdentifier()->package}/css/{$this->getIdentifier()->package}".(JDEBUG ? '.css' : '.min.js'));
+        $url = $asset->getURL("com_{$this->getIdentifier()->package}/css/{$this->getIdentifier()->package}".(JDEBUG ? '.css' : '.min.css'));
         if ($url) {
             JFactory::getDocument()->addStyleSheet($url);
         }
