@@ -155,7 +155,7 @@ class LibBaseTemplateAsset extends KObject implements KServiceInstantiatable
             // results in a directory registered so that
             // non-registered directores are not accessible via directory
             // traversal attempts.
-            $file_path = JPATH_ROOT.DS.$path;
+            $file_path = JPATH_BASE.DS.$path;
             
             // fixes windows file system issue
             $path = str_replace(DS, '/', $path);
