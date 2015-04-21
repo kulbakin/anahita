@@ -47,6 +47,11 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update javascript compilation in debug mode, introduce minified versions of js which are
+  automatically used for production, i.e. when debugging is turned off in admin area, it is
+  expected for each module to have compiled and minified versions, update script include pattern,
+  in other words, *js* and *css* compilation and include logic is very similar now
+  [7abc052](https://github.com/kulbakin/anahita/commit/7abc052c08b064383fd26193f23aa460af61b1f7)
 * update *.less compilation and introduce minified versions of css which are automatically used
   for production, i.e. when debugging is turned off in admin area
   [55b9250](https://github.com/kulbakin/anahita/commit/55b92509839e7ebcb56cef181a28f31704e56b1b)
