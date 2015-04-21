@@ -1,4 +1,3 @@
-//\media\com_todos\js\todos.src.js
 /**
  * @version		Id
  * @category	Anahita

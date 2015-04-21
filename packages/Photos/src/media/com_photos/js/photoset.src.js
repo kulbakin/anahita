@@ -1,4 +1,3 @@
-//\media\com_photos\js\photoset.src.js
 var PhotoSet = new Class({
 	
 	Implements :[Options],

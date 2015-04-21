@@ -59,12 +59,12 @@ class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
     {
         $asset = $this->getService('com://site/base.template.asset');
         
-        $url = $asset->getURL("com_{$this->getIdentifier()->package}/js/{$this->getIdentifier()->package}.js");
+        $url = $asset->getURL("com_{$this->getIdentifier()->package}/js/{$this->getIdentifier()->package}".(JDEBUG ? '.js' : '.min.js'));
         if ($url) {
             JFactory::getDocument()->addScript($url);
         }
         
-        $url = $asset->getURL("com_{$this->getIdentifier()->package}/css/{$this->getIdentifier()->package}.css");
+        $url = $asset->getURL("com_{$this->getIdentifier()->package}/css/{$this->getIdentifier()->package}".(JDEBUG ? '.css' : '.min.js'));
         if ($url) {
             JFactory::getDocument()->addStyleSheet($url);
         }

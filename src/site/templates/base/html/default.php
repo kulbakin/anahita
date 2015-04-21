@@ -7,7 +7,7 @@
     <?= @render('style') ?>
 </head>
 <body>
-    <?= @template('tmpl/js') ?>
+    <?= @render('script') ?>
     
     <div id="container-system-message" class="container">
         <?= @helper('modules.render', 'messages', array('style'=>'none')) ?>

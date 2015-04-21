@@ -1,4 +1,3 @@
-//\media\com_invites\js\facebook.src.js
 var FacebookInvite = new Class({
 	initialize : function(options) {
 		this.options = options;

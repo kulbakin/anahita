@@ -1,4 +1,3 @@
-//\media\com_photos\js\organizer.src.js
 var SetOrganizer = new Class({
 	
 	Implements :[Options],

@@ -66,13 +66,14 @@ class LibApplicationTemplateHelperLess extends KTemplateHelperAbstract
                 $new_cache['compiled'] = $this->_parseUrls($new_cache['compiled'], array_merge(array(dirname($config->output)), $config->import->toArray()));
             }
             
-            //store the cache
+            // store the cache
             file_put_contents($cache_file, serialize($new_cache));
-            //store the compiled file
+            // store the compiled file
             if ( ! file_exists(dirname($config->output))) { // create a directory if necessary
                  mkdir(dirname($config->output), 0755);
             }
             file_put_contents($config->output, $new_cache['compiled']);
+            // store minified version
             $minifier = new \MatthiasMullie\Minify\CSS($new_cache['compiled']);
             file_put_contents(preg_replace('%\.css$%', '.min.css', $config->output), $minifier->minify());
         }

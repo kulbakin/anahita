@@ -1,4 +1,3 @@
-//\media\com_invites\js\email.src.js
 Delegator.register('click', {
 	
 	'Invite' : function(event, el, api) 

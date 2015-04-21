@@ -1,4 +1,3 @@
-//\media\com_subscriptions\js\subscriptions.src.js
 
 /*
 ---

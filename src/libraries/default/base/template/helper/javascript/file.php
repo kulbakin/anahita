@@ -96,13 +96,17 @@ class LibBaseTemplateHelperJavascriptFile extends KTemplateHelperAbstract
      */
     public function write($output)
     {
-        //lets parse the file
+        // lets parse the file
         if ( ! file_exists($output) || $this->_hasBeenModified($this->_file)) {
-            //get the data
+            // get the data
             file_put_contents($output, $this->getData());
-            //update the timestamp
+            // update the timestamp
             $this->_cache_data['timestamp'] = time();
             file_put_contents($this->_cache_file, serialize($this->_cache_data));
+            
+            // store minified version
+            $minifier = new \MatthiasMullie\Minify\JS($this->getData());
+            file_put_contents(preg_replace('%\.js$%', '.min.js', $output), $minifier->minify());
         }
     }
     
@@ -133,7 +137,7 @@ class LibBaseTemplateHelperJavascriptFile extends KTemplateHelperAbstract
                     }
                 }
             }
-            $content = "//".str_replace(JPATH_ROOT,'',$file)."\n".$content;
+            $content = "//".str_replace(JPATH_ROOT, '', $file)."\n".$content;
             $this->_cache_data[$file] = array('data' => $content, 'imports' => $imports);
         } else {
             $content = $this->_cache_data[$file]['data'];

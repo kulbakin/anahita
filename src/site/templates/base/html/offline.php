@@ -6,7 +6,7 @@
     <?= @render('style') ?>
 </head>
 <body>
-    <?= @template('tmpl/js') ?>
+    <?= @render('script') ?>
     <div class="navbar <?= $this->getView()->getParams()->navbarInverse ? 'navbar-inverse' : '' ?> navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">

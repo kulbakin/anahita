@@ -1,4 +1,3 @@
-//\media\com_photos\js\upload.src.js
 (function(){   
     var uploader = Object.clone(Behavior.getFilter('Uploader'));
     Behavior.addGlobalFilters({

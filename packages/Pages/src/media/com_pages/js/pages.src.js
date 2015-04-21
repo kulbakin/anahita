@@ -1,4 +1,3 @@
-//\media\com_pages\js\pages.src.js
 /**
  * @version		Id
  * @category	Anahita

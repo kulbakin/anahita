@@ -93,10 +93,13 @@ class PlgSystemAnahita extends JPlugin
     {
         global $mainframe;
         
-        // compile *.less styles for the current site template templates
         if ( ! JFactory::getApplication()->isAdmin() && JDEBUG) {
-            $less_helper = KService::get('com://site/base.view.html')->getTemplate()->getHelper('com:application.template.helper.less');
+            $tmpl = KService::get('com://site/base.view.html')->getTemplate();
+            
+            // compile *.less styles for the current site template
+            $less_helper = $tmpl->getHelper('com:application.template.helper.less');
             $iterator = new AppendIterator();
+            $iterator->append(new GlobIterator(JPATH_ROOT.DS.'media'.DS.'*'.DS.'css/*.less', FilesystemIterator::CURRENT_AS_PATHNAME));
             $iterator->append(new GlobIterator(JPATH_THEMES.DS.'base'.DS.'css/*.less', FilesystemIterator::CURRENT_AS_PATHNAME));
             $iterator->append(new GlobIterator(JPATH_THEMES.DS.JFactory::getApplication()->getTemplate().DS.'css/*/*.less', FilesystemIterator::CURRENT_AS_PATHNAME));
             $include = array(
@@ -109,6 +112,19 @@ class PlgSystemAnahita extends JPlugin
                     'input' => $less_file,
                     'output' => $css_file,
                     'import' => array_merge(array(dirname($less_file)), $include),
+                ));
+            }
+            
+            // compile *.src.js scripts for the current site template
+            $js_helper = $tmpl->getHelper('com:base.template.helper.javascript');
+            $iterator = new AppendIterator();
+            $iterator->append(new GlobIterator(JPATH_ROOT.DS.'media'.DS.'*'.DS.'js/*.src.js', FilesystemIterator::CURRENT_AS_PATHNAME));
+            $iterator->append(new GlobIterator(JPATH_THEMES.DS.JFactory::getApplication()->getTemplate().DS.'js/*.src.js', FilesystemIterator::CURRENT_AS_PATHNAME));
+            foreach ($iterator as $js_src_file) {
+                $js_file = preg_replace('%\.src\.js$%i', '.js', $js_src_file);
+                $js_helper->combine(array(
+                    'file' => $js_src_file,
+                    'output' => $js_file,
                 ));
             }
         }

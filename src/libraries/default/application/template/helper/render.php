@@ -113,6 +113,38 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
     }
     
     /**
+     * Renders the template javascript
+     * 
+     * @param array  $config Configuration
+     * @return string
+     */
+    public function script($config = array())
+    {
+        if (is_string($config)) {
+            $config = array('file' => $config);
+        }
+        
+        $config = new KConfig($config);
+        $config->append(array(
+            'file'  => 'site',
+            'minified' => ! JDEBUG,
+        ));
+        
+        $finder = $this->getService('anahita:file.pathfinder');
+        $finder->addSearchDirs(array(
+            JPATH_ROOT.DS.'media'.DS.'lib_anahita'.DS.'js',
+            JPATH_THEMES.DS.'base'.DS.'js',
+            JPATH_ROOT.DS.'templates'.DS.$this->getIdentifier()->package.DS.'js',
+        ));
+        $js = $finder->getPath($config->file.($config->minified ? '.min.js' : '.js'));
+        if ( ! $js) {
+            throw new InvalidArgumentException('Requested js file is not found');
+        }
+        $jsHref = str_replace('\\', '/', str_replace(JPATH_ROOT.DS, 'base://', $js));
+        return '<script src="'.$jsHref.'" type="text/javascript"></script>';
+    }
+    
+    /**
      * Renders a row of modules
      * 
      * @param string $row    The module row-position

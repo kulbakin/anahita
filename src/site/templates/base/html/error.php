@@ -6,7 +6,7 @@
     <?= @render('style') ?>
 </head>
 <body>
-    <?= @template('tmpl/js') ?>
+    <?= @render('script') ?>
     <?= @template('tmpl/navbar') ?>
     
     <?= @render('component') ?>
