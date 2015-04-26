@@ -176,7 +176,7 @@ Element.implement({
     Behavior.addGlobalFilter('Request', {
         setup: function (el, api) {
             var options = getOptions(el);
-            var form    = document.getElement(api.get('form') || el);
+            var form = document.getElement(api.get('form') || el);
             
             if ( ! form) { 
                 return;
@@ -190,12 +190,9 @@ Element.implement({
             }
             
             form.addEvent('submit', function (e) {
-                if ( ! e.mock)
-                    e.stop();
-            });
-            form.addEvent('keyup', function (e) {
-                if (e.key == 'enter') {
+                if ( ! e.mock) {
                     sendRequest();
+                    e.stop();
                 }
             });
         }

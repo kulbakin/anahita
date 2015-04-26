@@ -1537,6 +1537,9 @@ input.search-query {
   -moz-border-radius: 15px;
   border-radius: 15px;
 }
+.btn.btn-search:focus {
+  outline: 0;
+}
 /* Allow for input prepend/append in search forms */
 .form-search .input-append .search-query,
 .form-search .input-prepend .search-query {
