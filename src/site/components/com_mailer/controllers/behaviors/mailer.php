@@ -209,7 +209,7 @@ class ComMailerControllerBehaviorMailer extends KControllerBehaviorAbstract
             $mailer->isHTML($config->is_html);
             $mailer->addRecipient($emails);
             if ($config->reply) {
-                $mailer->AddReplyTo($config->reply);
+                $mailer->AddReplyTo($config->reply->toArray());
             }
             $mailer->Send();
         }
