@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update *ComMailerControllerBehaviorMailer*::mail() to support *reply* config option to set
+  *Reply-To* mail header
+  [29f574d](https://github.com/kulbakin/anahita/commit/29f574ddf8f662b623f0d96d1d1cac1f81d53a27)
 * update javascript compilation in debug mode, introduce minified versions of js which are
   automatically used for production, i.e. when debugging is turned off in admin area, it is
   expected for each module to have compiled and minified versions, update script include pattern,
