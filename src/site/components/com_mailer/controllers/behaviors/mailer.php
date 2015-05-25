@@ -173,6 +173,7 @@ class ComMailerControllerBehaviorMailer extends KControllerBehaviorAbstract
      * 
      * @param array $config An array of config
      *  'to' => array of recipients
+     *  'reply' => array(email, name) to specify Reply-To email header
      *  'template' => name of the email template to use
      *  'layout' => the email layout. It's set to default 
      *  'data' => array of data
@@ -207,6 +208,9 @@ class ComMailerControllerBehaviorMailer extends KControllerBehaviorAbstract
             $mailer->setBody($output);
             $mailer->isHTML($config->is_html);
             $mailer->addRecipient($emails);
+            if ($config->reply) {
+                $mailer->AddReplyTo($config->reply);
+            }
             $mailer->Send();
         }
         
