@@ -118,13 +118,12 @@ class LibPeopleHelperPerson extends KObject
         $options = array();
         
         $results = JFactory::getApplication()->triggerEvent('onLoginUser', array($user, $options));
-        
         foreach ($results as $result) {
             if ($result instanceof JException || $result instanceof Exception || $result === false)
                 return false;
         }
         
-        //if remember is true, create a remember cookie that contains the ecrypted username and password
+        // create a remember cookie that contains the ecrypted username and password
         if ($remember) {
             // Set the remember me cookie if enabled
             jimport('joomla.utilities.simplecrypt');

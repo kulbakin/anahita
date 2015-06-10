@@ -26,7 +26,7 @@ class ComConnectOauthServiceLinkedin extends ComConnectOauthServiceAbstract
             'response_format'   => 'xml',
             'service_name'      => 'LinkedIn',
             'api_url'           => 'https://api.linkedin.com/v1',
-            'request_token_url' => 'https://api.linkedin.com/uas/oauth/requestToken?scope=rw_nus',
+            'request_token_url' => 'https://api.linkedin.com/uas/oauth/requestToken?scope=w_share',
             'authorize_url'     => 'https://www.linkedin.com/uas/oauth/authenticate',
             'access_token_url'  => 'https://api.linkedin.com/uas/oauth/accessToken',
             'authenticate_url'  => '',
