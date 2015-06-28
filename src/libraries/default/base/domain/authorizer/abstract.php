@@ -35,6 +35,26 @@ abstract class LibBaseDomainAuthorizerAbstract extends KObject
     const AUTH_NOT_IMPLEMENTED = -9999;
     
     /**
+     * Deligate authorization to another object
+     * 
+     * @param mixed $object
+     * @param string $action
+     * @param KCommandContext|array[optional] $context
+     * @return bool
+     */
+    protected function _deligate($object, $action, $context = array(), $fallback = self::AUTH_FAILED)
+    {
+        if ($object instanceof KObject && $object->isAuthorizer()) {
+            $ret = $object->authorize($action, $context);
+            if ($ret !== self::AUTH_NOT_IMPLEMENTED) {
+                return $ret;
+            }
+        }
+        
+        return $fallback;
+    }
+    
+    /**
      * Executes an authorization action with the passed arguments
      * 
      * @param string          $name    The command name

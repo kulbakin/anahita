@@ -14,13 +14,6 @@
 class ComStoriesDomainAuthorizerStory extends LibBaseDomainAuthorizerDefault
 {
     /**
-     * Story List
-     * 
-     * @var array
-     */
-    static public $black_list = array('actor_follow', 'avatar_edit');
-    
-    /**
      * Check if a node authorize being updated
      * 
      * @param  KCommandContext $context Context parameter
@@ -31,10 +24,10 @@ class ComStoriesDomainAuthorizerStory extends LibBaseDomainAuthorizerDefault
         $owneids = $this->_entity->getIds('owner');
         
         if (count($owneids) > 1) {
-            return false;            
+            return false;
         } elseif ($this->_viewer->admin()) {
             return true;
-        } elseif ($this->_entity->owner->authorize('administration')) {
+        } elseif ($this->_entity->owner->authorize('administration', $context)) {
             return true;
         }
         
@@ -49,18 +42,7 @@ class ComStoriesDomainAuthorizerStory extends LibBaseDomainAuthorizerDefault
      */
     protected function _authorizeAddComment($context)
     {
-        if (isset($this->_entity->object)) {
-            if (is_array($this->_entity->object)) {
-                return false;
-            }
-            if ( ! $this->_entity->object->isAuthorizer()) {
-                return false;
-            }
-            
-            return $this->_entity->object->authorize('add.comment');
-        } else {
-            return false;
-        }
+        return $this->_deligate($this->object, 'add.comment', $context);
     }
     
     /**
@@ -71,18 +53,7 @@ class ComStoriesDomainAuthorizerStory extends LibBaseDomainAuthorizerDefault
      */
     protected function _authorizeVote($context)
     {
-        if (isset($this->_entity->object)) {
-            if (is_array($this->_entity->object)) {
-                return false;
-            }
-            if ( ! $this->_entity->object->isAuthorizer()) {
-                return false;
-            }
-            
-            return $this->_entity->object->authorize('vote');
-        } else {
-            return false;   
-        }
+        return $this->_deligate($this->object, 'vote', $context);
     }
     
     /**
@@ -93,24 +64,7 @@ class ComStoriesDomainAuthorizerStory extends LibBaseDomainAuthorizerDefault
      */
     protected function _authorizeDeleteComment($context)
     {
-        $comment = $context->comment;
-        
-        // guest can't delete
-        if ( $this->_viewer->guest()) {
-            return false;
-        }
-        
-        if (isset($this->_entity->object)) {
-            if (is_array($this->_entity->object)) {
-                return false;
-            }
-            if ( ! $this->_entity->object->isAuthorizer()) {
-                return false;
-            }
-            return $this->_entity->object->authorize('delete.comment');
-        }
-        
-        return false;
+        return $this->_deligate($this->object, 'delete.comment', $context);
     }
     
     /**
@@ -121,6 +75,6 @@ class ComStoriesDomainAuthorizerStory extends LibBaseDomainAuthorizerDefault
      */
     protected function _authorizeEditComment($context)
     {
-        return false;
+        return $this->_deligate($this->object, 'edit.comment', $context);
     }
 }

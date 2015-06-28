@@ -13,7 +13,7 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class LibBaseDomainBehaviorAuthorizer extends AnDomainBehaviorAbstract 
+class LibBaseDomainBehaviorAuthorizer extends AnDomainBehaviorAbstract
 {
     /**
      * Array of authorizers
@@ -96,10 +96,15 @@ class LibBaseDomainBehaviorAuthorizer extends AnDomainBehaviorAbstract
         $config  = KConfig::unbox($config);
         $context = $this->_mixer->getRepository()->getCommandContext();
         
-        $context->append($config)->append(array(
-            'viewer' => get_viewer(),
-            'mixer'  => $this->_mixer,
-        ));
+        $context
+            ->append(array(
+                'mixer' => $this->_mixer,
+            ))
+            ->append($config)
+            ->append(array(
+                'viewer' => get_viewer(),
+            ))
+        ;
         
         $authorizers = $this->_authorizers;
         $result = LibBaseDomainAuthorizerAbstract::AUTH_NOT_IMPLEMENTED;

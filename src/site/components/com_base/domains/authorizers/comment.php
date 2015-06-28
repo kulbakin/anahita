@@ -13,42 +13,24 @@
 class ComBaseDomainAuthorizerComment extends LibBaseDomainAuthorizerDefault
 {
     /**
-     * Checks if a comment of a  node can be deleted
+     * Checks if a comment can be deleted
      * 
      * @param  KCommandContext $context
      * @return boolean
      */
     protected function _authorizeDelete($context)
     {
-        $ret = false;
-        
-        $comment = $this->_entity;
-        
-        // guest can't delete
-        if ($this->_viewer->guest()) {
-            return false;
-        }
-        
-        if ($this->_viewer->admin() || $this->_viewer->eql($comment->author)) {
-            return true;
-        }
-        
-        // check if the parent is ownable and the parent owner authorizes administrator
-        if ($this->_entity->parent->isOwnable() && $this->_entity->parent->owner->authorize('administration')) {
-            return true;
-        }
-        
-        return false;
+        return $this->_deligate($this->_entity->parent, 'delete.comment', array('comment' => $this->_entity) + KConfig::unbox($context));
     }
     
     /**
-     * Checks if a comment of a  node can be edited
+     * Checks if a comment edited
      * 
      * @param  KCommandContext $context
      * @return boolean
      */
     protected function _authorizeEdit($context)
     {
-        return $this->_authorizeDelete($context);
+        return $this->_deligate($this->_entity->parent, 'edit.comment', array('comment' => $this->_entity) + KConfig::unbox($context));
     }
 }

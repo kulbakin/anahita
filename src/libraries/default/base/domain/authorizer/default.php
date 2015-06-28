@@ -100,4 +100,41 @@ class LibBaseDomainAuthorizerDefault extends LibBaseDomainAuthorizerAbstract
         
         return  false;
     }
+    
+    /**
+     * Checks if a comment can be edited on a node
+     * 
+     * @param KCommandContext $context Context parameter
+     * @return boolean
+     */
+    protected function _authorizeEditComment($context)
+    {
+        // guest can't edit
+        if ($this->_viewer->guest()) {
+            return false;
+        }
+        
+        // author can edit
+        if ($this->_viewer->admin() || $this->_viewer->eql($context->comment->author)) {
+            return true;
+        }
+        
+        // check if the node is ownable and the parent owner authorizes administrator
+        if ($this->_entity->isOwnable() && $this->_entity->owner->authorize('administration', $context)) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Checks if a comment can be deleted on a node
+     * 
+     * @param KCommandContext $context Context parameter
+     * @return boolean
+     */
+    protected function _authorizeDeleteComment($context)
+    {
+        return $this->_authorizeEditComment($context);
+    }
 }
