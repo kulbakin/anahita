@@ -43,13 +43,11 @@ class ComActorsDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
      */
     protected function _authorizeSetPrivacyValue(KCommandContext $context)
     {
-        $value = $context->value;
-        
-        if ($this->_entity->authorize('administration')) {
+        if ($this->_entity->authorize('administration', $context)) {
             return true;
         }
         
-        switch($value) {
+        switch($context->value) {
             case LibBaseDomainBehaviorPrivatable::GUEST:
             case LibBaseDomainBehaviorPrivatable::REG:
                 $ret = true;
@@ -58,7 +56,7 @@ class ComActorsDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
                 $ret = $this->_entity->isFollowable() && $this->_entity->leading($this->_viewer);
                 break;
             default :
-                $ret = $this->_entity->authorize('administration');
+                $ret = $this->_entity->authorize('administration', $context);
                 break;
         }
         
@@ -116,7 +114,7 @@ class ComActorsDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
         ));
         
         //not access to the entiy
-        if ($this->_entity->authorize('access') === false) {
+        if ($this->_entity->authorize('access', $context) === false) {
             return false;
         }
         

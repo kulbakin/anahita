@@ -38,7 +38,7 @@ class ComMediumDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
     {
         // if an ownable object ask the owner
         if ($this->_entity->isOwnable()) {
-            return $this->_entity->owner->authorize('administration');
+            return $this->_entity->owner->authorize('administration', $context);
         }
         
         // if the viewer is a moderator
@@ -74,7 +74,7 @@ class ComMediumDomainAuthorizerDefault extends LibBaseDomainAuthorizerDefault
         
         if ($this->_entity->isOwnable()) {
             // if the viewer is the admin of the medium owner
-            if ($this->_entity->owner->authorize('administration')) {
+            if ($this->_entity->owner->authorize('administration', $context)) {
                 return true;
             }
         }
