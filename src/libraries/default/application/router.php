@@ -144,7 +144,7 @@ class LibApplicationRouter extends KObject
         
         if (count($segments)) {
             // if there is no component matching first segment, fallback to com_html
-            if ( ! file_exists(JPATH_BASE.DS.'components'.DS.$segments[0]) or ! JComponentHelper::isEnabled($segments[0])) {
+            if ( ! file_exists(JPATH_BASE.DS.'components'.DS.'com_'.$segments[0]) or ! JComponentHelper::isEnabled('com_'.$segments[0])) {
                 array_unshift($segments, 'html');
             }
             
