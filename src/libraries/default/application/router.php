@@ -139,10 +139,15 @@ class LibApplicationRouter extends KObject
      */
     protected function _parse(&$url)
     {
-        $segments = explode('/', trim($url->path,'/'));
+        $segments = explode('/', trim($url->path, '/'));
         $segments = array_filter($segments);
         
         if (count($segments)) {
+            // if there is no component matching first segment, fallback to com_html
+            if ( ! file_exists(JPATH_BASE.DS.'components'.DS.$segments[0]) or ! JComponentHelper::isEnabled($segments[0])) {
+                array_unshift($segments, 'html');
+            }
+            
             $component  = array_shift($segments);
             $url->query = array_merge(array('option' => 'com_'.$component), $url->query);
             $component  = str_replace('com_', '', $url->query['option']);
