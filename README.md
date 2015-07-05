@@ -47,6 +47,9 @@ changes.
 > [difftool](https://www.kernel.org/pub/software/scm/git/docs/git-difftool.html),
 > e.g. [KDiff3](http://kdiff3.sourceforge.net/), for analyzing changes.
 
+* update *LibApplicationRouter* to fallback to *com_html* if first part in URL path does not
+  match any enabled component
+  [64ba210](https://github.com/kulbakin/anahita/commit/64ba21097eed9012149acf60ae860b9c201f473e)
 * update *ComMailerControllerBehaviorMailer*::mail() to support *reply* config option to set
   *Reply-To* mail header
   [29f574d](https://github.com/kulbakin/anahita/commit/29f574ddf8f662b623f0d96d1d1cac1f81d53a27)
