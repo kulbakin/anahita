@@ -155,7 +155,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
         $config['entity'] = $entity;
         
         if ($config['pagination'] === true && $config['comments'] instanceof AnDomainEntitysetDefault) {
-            $config['pagination'] = $this->pagination($config['comments'], array('paginate' => true, 'options' => array('scrollToTop' => true)));
+            $config['pagination'] = $this->pagination($config['comments'], array('paginate' => true, 'options' => array('container' => '.an-comments.an-entities')));
         }
         
         return $this->_render('comments', $config);
