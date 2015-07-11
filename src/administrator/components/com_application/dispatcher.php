@@ -148,7 +148,11 @@ class ComApplicationDispatcher extends LibApplicationDispatcher
         }, $content);
         
         $content = preg_replace_callback('#action="index.php"#', function ($matches) {
-            return 'action="'.JRoute::_('index.php?').'"';
+            return 'action="'.JRoute::_('index.php').'"';
+        }, $content);
+        
+        $content = preg_replace_callback('#action="index.php\?#', function ($matches) {
+            return 'action="'.JRoute::_('index.php').'?';
         }, $content);
         
         $context->response->setContent($content);
