@@ -126,7 +126,10 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
             'truncate_body'     => array(),
             'editor'            => false,
             'pagination'        => true,
-            'show_guest_prompt' => true ,
+            'show_guest_prompt' => true,
+            'order'             => null,
+            'direction'         => 'asc',
+            'inject'            => 'bottom',
         ), $config);
         
         $data   = $this->getTemplate()->getData();
@@ -135,6 +138,10 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
         
         if ( ! isset($config['comments'])) {
             $config['comments'] = $entity->comments->limit($limit, $offset);
+        }
+        
+        if ( ! empty($config['order'])) {
+            $entity->comments->order($config['order'], $config['direction']);
         }
         
         if ( ! isset($config['can_comment'])) {

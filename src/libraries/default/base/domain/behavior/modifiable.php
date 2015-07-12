@@ -10,7 +10,7 @@
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class LibBaseDomainBehaviorModifiable extends AnDomainBehaviorAbstract 
+class LibBaseDomainBehaviorModifiable extends AnDomainBehaviorAbstract
 {
     /**
      * Modiable Properties 
@@ -56,7 +56,7 @@ class LibBaseDomainBehaviorModifiable extends AnDomainBehaviorAbstract
         
         parent::_initialize($config);
     }
-        
+    
     /**
      * Executes the command after.instantiate
      * 

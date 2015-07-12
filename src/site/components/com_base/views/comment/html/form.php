@@ -5,6 +5,7 @@ $action = empty($comment) ? 'addcomment' : 'editcomment';
 $id     = isset($comment) ? $comment->id : time();
 $body   = isset($comment) ? $comment->getBody() : '';
 $editor = isset($editor) ? $editor : false;
+$inject = isset($inject) ? $inject : 'bottom';
 if ($editor) {
     $url .= '&comment[editor]=1';
 }
@@ -38,7 +39,7 @@ if ($editor) {
                 <button data-trigger="Request" type="button" class="btn" name="cancel" data-request-options="{method:'get',url:'<?= @route($comment->getURL().'&comment[layout]=list&comment[editor]='.$editor) ?>',replace:this.getParent('form')}" tabindex="5"><?= @text('LIB-AN-ACTION-CANCEL') ?></button>
                 <button data-trigger="Comment" data-request-options="{replace:this.getParent('form')}" type="submit" class="btn btn-primary" name="submit"><?= @text('LIB-AN-ACTION-UPDATE') ?></button>
             <?php else: ?>
-                <button data-trigger="Comment" data-request-options="{onSuccess:function(){this.form.getElement('textarea').value=''}.bind(this),inject:{where:'bottom',element:this.getParent('.an-comments-wrapper').getElement('.an-comments')}}" type="submit" class="btn"><?= @text('LIB-AN-ACTION-POST') ?></button>
+                <button data-trigger="Comment" data-request-options="{onSuccess:function(){this.form.getElement('textarea').value=''}.bind(this),inject:{where:'<?php echo $inject ?>',element:this.getParent('.an-comments-wrapper').getElement('.an-comments')}}" type="submit" class="btn"><?= @text('LIB-AN-ACTION-POST') ?></button>
             <?php endif ?>
         </div>
     </div>

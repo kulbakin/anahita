@@ -12,7 +12,7 @@
     <?php endif ?>
     
     <?php if ($can_comment): ?>
-        <?= @view('comment')->load('form', array('parent' => $entity, 'editor' => $editor, 'comment' => null)) ?>
+        <?= @view('comment')->load('form', array('parent' => $entity, 'editor' => $editor, 'comment' => null, 'inject' => $inject)) ?>
     <?php endif ?>
     
     <?php if ($show_guest_prompt && ! $can_comment): ?>
