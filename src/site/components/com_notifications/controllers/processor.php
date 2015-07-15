@@ -139,9 +139,14 @@ class ComNotificationsControllerProcessor extends ComBaseControllerResource
                     'email_body'    => $data->body,
                     'notification'  => $notification
             ));
+            
+            /*
+            XXX Disable by-user notification setting link in emails
+            TODO replace it with universal unsubscribe link
             if ($notification->target && !$notification->target->eql($person)) {
                 $data->commands->insert('notification_setting', array('actor' => $notification->target));
             }
+            */
             $body = $this->renderMail(array(
                 'layout'   => false,
                 'template' => 'notification',
