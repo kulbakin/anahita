@@ -1,12 +1,11 @@
 /*
  * mediaboxAdvanced Dark theme
- * version 2.6 - June 2011      
- * for mediaboxAdvanced v.1.5.x 
- * Overlay background styling  
+ * version 2.6 - June 2011
+ * for mediaboxAdvanced v.1.5.x
+ * Overlay background styling
 */
 
-#mbOverlay 
-{
+#mbOverlay  {
     position: fixed;
     z-index: 9998;
     top: 0;
@@ -17,7 +16,7 @@
     cursor: pointer;
     
     &.mbOverlayOpaque {
-        background: transparent url(images/mediabox/80.png) repeat;
+        background: transparent url(../images/mediabox/80.png) repeat;
     }
     
     &.mbOverlayAbsolute {
@@ -30,8 +29,7 @@
     }
 }
 
-#mbCenter 
-{
+#mbCenter  {
     position: absolute;
     z-index: 9999;
     left: 50%;
@@ -46,9 +44,9 @@
     
     &.mbLoading {
         background: #000 url(../images/spinner.gif) no-repeat center;
-            //  This style is applied only during animation.    
-            //  For example, the next lines turn off shadows    
-            //  improving browser performance on slow systems.  
+            //  This style is applied only during animation.
+            //  For example, the next lines turn off shadows
+            //  improving browser performance on slow systems.
             //  To leave shadows on, just remove the following:
         -webkit-box-shadow: none;
         -khtml-box-shadow: none;
@@ -57,8 +55,7 @@
     }
 }
 
-#mbMedia 
-{
+#mbMedia {
     position: relative;
     left: 0;
     top: 0;
@@ -71,9 +68,7 @@
     background-repeat: no-repeat;
 }
 
-
-#mbBottom 
-{
+#mbBottom {
     line-height: 20px;
     font-size: @baseFontSize;
     text-align: left;
@@ -87,87 +82,75 @@
     }
     
     a:hover, 
-    a:active 
-    {
+    a:active {
         text-decoration: underline;
         color: #fff;
     }
 }
 
-#mbTitle, 
-#mbPrevLink, 
-#mbNextLink, 
-#mbCloseLink 
-{
+#mbTitle,
+#mbPrevLink,
+#mbNextLink,
+#mbCloseLink {
     display: inline;
     color: #fff;
     font-weight: bold;
 }
 
-#mbNumber 
-{
+#mbNumber {
     display: inline;
     color: #999;
     font-size: 0.8em;
     margin: auto 10px;
 }
 
-#mbCaption 
-{
+#mbCaption {
     display: block;
     color: #999;
     line-height: @baseLineHeight;
     font-size: @baseFontSize;
 }
 
-#mbPrevLink, 
-#mbNextLink, 
-#mbCloseLink 
-{
+#mbPrevLink,
+#mbNextLink,
+#mbCloseLink {
     float: right;
     outline: none;
     margin: 0 0 0 10px;
     font-weight: normal;
 }
 
-#mbPrevLink, 
-#mbNextLink, 
-#mbCloseLink
-{
-    b
-    {
+#mbPrevLink,
+#mbNextLink,
+#mbCloseLink {
+    b {
         color: #eee;
         font-weight: bold;
         text-decoration: underline;
     }
 }
 
-#mbPrevLink, 
-#mbNextLink, 
-#mbCloseLink
-{
-    big
-    {
+#mbPrevLink,
+#mbNextLink,
+#mbCloseLink {
+    big {
         color: #eee;
         font-size: 1.4em;
         font-weight: bold;
     }
 }
  
-#mbBottom
-{    
+#mbBottom {    
     // Thanks to Danny Jung for feedback and corrections
     a,
     a:link,
-    a:visited
-    {
+    a:visited {
         text-decoration: none;
         color: #ddd;
     }
 }
 
-#mbError 
-{
+#mbError {
     position: relative;
     font-family: Myriad, Verdana, Arial, Helvetica, sans-serif;
     line-height: 20px;
@@ -183,14 +166,12 @@
     border-radius: 5px;
 }
 
-#mbError
-{
+#mbError {
     a,
     a:link,
     a:visited,
     a:hover,
-    a:hover
-    {
+    a:hover {
         color: #d00;
         font-weight: bold;
         text-decoration: underline;
