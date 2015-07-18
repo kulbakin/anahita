@@ -1,31 +1,17 @@
 <?php 
-
 /**
- * LICENSE: ##LICENSE##
- *
- * @category   Anahita
- * @package    Plg_Contentfilter
- * @author     Arash Sanieyan <ash@anahitapolis.com>
- * @author     Rastin Mehr <rastin@anahitapolis.com>
- * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @version    SVN: $Id$
- * @link       http://www.anahitapolis.com
- */
-
-/**
- * Contentfilter Chain. 
+ * Contentfilter Chain.
  * 
  * It filters a text by running the text through a chain of contentfilter commands
- *
+ * 
  * @category   Anahita
  * @package    Plg_Contentfilter
  * @author     Arash Sanieyan <ash@anahitapolis.com>
  * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
- * @link       http://www.anahitapolis.com
+ * @copyright  2008 - 2010 rmdStudio Inc./Peerglobe Technology Inc
  */
-class PlgContentfilterChain extends KObject 
+class PlgContentfilterChain extends KObject
 {
     /**
      * Return the singleton instnace of PlgContentfilterChain. This method also imports all the 
@@ -37,14 +23,13 @@ class PlgContentfilterChain extends KObject
     {
         static $_instance;
         
-        if ( !$_instance ) 
-        {
-            $_instance = new self(new KConfig(array('service_container'=>KService::getInstance())));
+        if ( ! $_instance) {
+            $_instance = new self(new KConfig(array('service_container' => KService::getInstance())));
             KService::set('plg:contentfilter.chain', $_instance);
             JPluginHelper::importPlugin('contentfilter');
         }
         
-        return $_instance;      
+        return $_instance;
     }
     
     /**
@@ -54,20 +39,19 @@ class PlgContentfilterChain extends KObject
      */
     protected $_chain;
     
-    /** 
+    /**
      * Constructor.
-     *
-     * @param KConfig $config An optional KConfig object with configuration options.
      * 
+     * @param KConfig $config An optional KConfig object with configuration options.
      * @return void
      */
     public function __construct(KConfig $config)
     {
         parent::__construct($config);
         
-        $this->_chain = $this->getService('koowa:command.chain');               
+        $this->_chain = $this->getService('koowa:command.chain');
     }
-            
+    
     /**
      * Alias for the sanitize method
      * 
@@ -78,11 +62,10 @@ class PlgContentfilterChain extends KObject
      */
     public function filter($text, $config = array())
     {
-        $context         = $this->_chain->getContext();
-        $context->data   = $text;
+        $context = $this->_chain->getContext();
+        $context->data = $text;
         $context->config = $config;
-        if ( $context->config->filter ) 
-        {
+        if ($context->config->filter) {
              $filter   = (array)KConfig::unbox($context->config->filter);
              $filter[] = 'ptag';
              $context->config->filter = $filter;
@@ -95,7 +78,6 @@ class PlgContentfilterChain extends KObject
      * Adds a content fitler to the content filter chain
      * 
      * @param PlgContentfilterInterface $filter Filter to be added
-     * 
      * @return PlgContentfilterChain
      */
     public function addFilter(PlgContentfilterInterface $filter)
@@ -108,7 +90,6 @@ class PlgContentfilterChain extends KObject
      * Removes an exsiting content filter fro the content filter chain 
      * 
      * @param PlgContentfilterInterface $filter Filter to be removed
-     * 
      * @return PlgContentfilterChain
      */
     public function removeFilter(PlgContentfilterInterface $filter)
