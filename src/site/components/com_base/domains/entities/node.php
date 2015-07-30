@@ -13,7 +13,7 @@
  */
 class ComBaseDomainEntityNode extends AnDomainEntityDefault
 {
-    /** 
+    /**
      * Constructor.
      * 
      * @param KConfig $config An optional KConfig object with configuration options.
