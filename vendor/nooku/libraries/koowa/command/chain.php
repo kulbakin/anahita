@@ -118,10 +118,10 @@ class KCommandChain extends KObjectQueue
      */
     public function dequeue(KObjectHandlable $command)
     {
-        if(!$command instanceof KCommandInterface) {
+        if ( ! $command instanceof KCommandInterface) {
             throw new InvalidArgumentException('Command needs to implement KCommandInterface');
         }
-
+        
         return parent::dequeue($command);
     }
 
@@ -134,44 +134,40 @@ class KCommandChain extends KObjectQueue
      */
     public function contains(KObjectHandlable $command)
     {
-        if(!$command instanceof KCommandInterface) {
+        if ( ! $command instanceof KCommandInterface) {
             throw new InvalidArgumentException('Command needs to implement KCommandInterface');
         }
-
+        
         return parent::contains($command);
     }
-
+    
     /**
      * Run the commands in the chain
-     *
+     * 
      * If a command returns the 'break condition' the executing is halted.
-     *
+     * 
      * @param   string          $name
      * @param   KCommandContext $context
      * @return  void|boolean    If the chain breaks, returns the break condition. Default returns void.
      */
-    public function run( $name, KCommandContext $context )
+    public function run($name, KCommandContext $context)
     {
-        if($this->_enabled)
-        {
+        if ($this->_enabled) {
             $this->getStack()->push(clone $this);
-
-            foreach($this->getStack()->top() as $command)
-            {
-                if ( $command->execute( $name, $context ) === $this->_break_condition)
-                {
+            foreach ($this->getStack()->top() as $command) {
+                if ($command->execute($name, $context) === $this->_break_condition) {
                     $this->getStack()->pop();
                     return $this->_break_condition;
                 }
             }
-
+            
             $this->getStack()->pop();
         }
     }
     
     /**
      * Enable the chain
-     *
+     * 
      * @return  void
      */
     public function enable()

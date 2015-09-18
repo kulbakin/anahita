@@ -285,7 +285,7 @@ class LibApplicationTemplateHelperRender extends KTemplateHelperAbstract
         foreach ($queue as $message) {
             //if message is an array
             if (isset($message['message']) && is_array($message['message'])) {
-                $message = array_merge(array('type'=>'info'), $message['message']);
+                $message = array_merge(array('type' => 'info'), $message['message']);
             }
             
             //make sure to not have duplicate messages

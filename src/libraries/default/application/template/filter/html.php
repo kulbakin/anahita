@@ -83,7 +83,11 @@ class LibApplicationTemplateFilterHtml extends KTemplateFilterAbstract implement
         
         // Generate script declarations
         foreach ($document->_script as $type => $content) {
-            $string .= '<script type="'.$type.'">'.$content.'</script>';
+            if ('noscript' == $type) {
+                $string .= '<noscript>'.$content.'</noscript>';
+            } else {
+                $string .= '<script type="'.$type.'">'.$content.'</script>';
+            }
         }
         
         $string .= $this->_template->getHelper('javascript')->language('lib_anahita');
