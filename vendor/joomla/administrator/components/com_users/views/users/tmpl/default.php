@@ -1,24 +1,24 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 
-<?php  JHTML::_('behavior.tooltip');  ?>
+<?php JHTML::_('behavior.tooltip');  ?>
 
 <?php
-JToolBarHelper::title( JText::_( 'User Manager' ), 'user.png' );
-JToolBarHelper::custom( 'logout', 'cancel.png', 'cancel_f2.png', 'Logout' );
-JToolBarHelper::deleteList();
+JToolBarHelper::title(JText::_('User Manager'), 'user.png');
+JToolBarHelper::custom('logout', 'cancel.png', 'cancel_f2.png', 'Logout');
+JToolBarHelper::deleteList(JText::_('Are you sure you want to delete selected users?'));
 JToolBarHelper::editListX();
 JToolBarHelper::addNewX();
-JToolBarHelper::help( 'screen.users' );
+JToolBarHelper::help('screen.users');
 ?>
 
 <form action="index.php?option=com_users" method="post" name="adminForm">
     <table>
         <tr>
             <td width="100%">
-                <?php echo JText::_( 'Filter' ); ?>:
+                <?php echo JText::_('Filter'); ?>:
                 <input type="text" name="search" id="search" value="<?php echo htmlspecialchars($this->lists['search']);?>" class="text_area" onchange="document.adminForm.submit();" />
-                <button onclick="this.form.submit();"><?php echo JText::_( 'Go' ); ?></button>
-                <button onclick="document.getElementById('search').value='';this.form.getElementById('filter_type').value='0';this.form.getElementById('filter_logged').value='0';this.form.submit();"><?php echo JText::_( 'Reset' ); ?></button>
+                <button onclick="this.form.submit();"><?php echo JText::_('Go'); ?></button>
+                <button onclick="document.getElementById('search').value='';this.form.getElementById('filter_type').value='0';this.form.getElementById('filter_logged').value='0';this.form.submit();"><?php echo JText::_('Reset'); ?></button>
             </td>
             <td nowrap="nowrap">
                 <?php echo $this->lists['type'];?>
@@ -31,7 +31,7 @@ JToolBarHelper::help( 'screen.users' );
         <thead>
             <tr>
                 <th width="2%" class="title">
-                    <?php echo JText::_( 'NUM' ); ?>
+                    <?php echo JText::_('NUM'); ?>
                 </th>
                 <th width="3%" class="title">
                     <input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($this->items); ?>);" />
@@ -43,7 +43,7 @@ JToolBarHelper::help( 'screen.users' );
                     <?php echo JHTML::_('grid.sort', 'Username', 'a.username', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                 </th>
                 <th width="5%" class="title" nowrap="nowrap">
-                    <?php echo JText::_( 'Logged In' ); ?>
+                    <?php echo JText::_('Logged In'); ?>
                 </th>
                 <th width="5%" class="title" nowrap="nowrap">
                     <?php echo JHTML::_('grid.sort', 'Enabled', 'a.block', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
@@ -80,14 +80,14 @@ JToolBarHelper::help( 'screen.users' );
                 $link = JURI::base(true).'/index.php?option=com_users&amp;view=user&amp;task=edit&amp;cid[]='. $row->id. '';
                 
                 if ($row->lastvisitDate == "0000-00-00 00:00:00") {
-                    $lvisit = JText::_( 'Never' );
+                    $lvisit = JText::_('Never');
                 } else {
                     $lvisit = JHTML::_('date', $row->lastvisitDate, '%Y-%m-%d %H:%M:%S');
                 }
                 ?>
                 <tr class="<?php echo "row$k"; ?>">
                     <td>
-                        <?php echo $i+1+$this->pagination->limitstart;?>
+                        <?php echo $i + 1 + $this->pagination->limitstart; ?>
                     </td>
                     <td>
                         <?php echo JHTML::_('grid.id', $i, $row->id ); ?>
@@ -102,11 +102,11 @@ JToolBarHelper::help( 'screen.users' );
                         <?php echo $row->loggedin ? '<img src="images/tick.png" width="16" height="16" border="0" alt="" />': ''; ?>
                     </td>
                     <td align="center">
-                        <a href="javascript:void(0);" onclick="return listItemTask('cb<?php echo $i;?>','<?php echo $task;?>')">
-                            <img src="images/<?php echo $img;?>" width="16" height="16" border="0" alt="<?php echo $alt; ?>" /></a>
+                        <a href="javascript:void(0);" onclick="return listItemTask('cb<?php echo $i; ?>','<?php echo $task; ?>')">
+                            <img src="images/<?php echo $img; ?>" width="16" height="16" border="0" alt="<?php echo $alt; ?>" /></a>
                     </td>
                     <td>
-                        <?php echo JText::_( $row->groupname ); ?>
+                        <?php echo JText::_($row->groupname); ?>
                     </td>
                     <td>
                         <a href="mailto:<?php echo $row->email; ?>">
@@ -131,5 +131,5 @@ JToolBarHelper::help( 'screen.users' );
     <input type="hidden" name="boxchecked" value="0" />
     <input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
     <input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
-    <?php echo JHTML::_( 'form.token' ); ?>
+    <?php echo JHTML::_('form.token'); ?>
 </form>
