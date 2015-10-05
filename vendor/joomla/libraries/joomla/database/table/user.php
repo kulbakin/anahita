@@ -104,6 +104,13 @@ class JTableUser extends JTable
 	/**
 	 * Description
 	 *
+	 * @var string
+	 */
+	var $lastvisitIp	= null;
+
+	/**
+	 * Description
+	 *
 	 * @var string activation hash
 	 */
 	var $activation		= null;
@@ -308,6 +315,7 @@ class JTableUser extends JTable
 		// updates user lastvistdate field with date and time
 		$query = 'UPDATE '. $this->_tbl
 		. ' SET lastvisitDate = '.$this->_db->Quote($date->toMySQL())
+		. ', lastvisitIp = '.$this->_db->Quote($_SERVER['REMOTE_ADDR'])
 		. ' WHERE id = '. (int) $id
 		;
 		$this->_db->setQuery( $query );

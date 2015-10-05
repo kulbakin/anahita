@@ -91,6 +91,11 @@ class JUser extends JObject
     var $lastvisitDate = null;
     
     /**
+     * @var string
+     */
+    var $lastvisitIp = null;
+    
+    /**
      * @var string activation hash
      */
     var $activation = null;

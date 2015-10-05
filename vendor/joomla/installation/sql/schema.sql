@@ -359,6 +359,7 @@ CREATE TABLE `#__users` (
   `gid` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `registerDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `lastvisitDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastvisitIp` varchar(32) NOT NULL DEFAULT '0.0.0.0',
   `activation` varchar(100) NOT NULL DEFAULT '',
   `params` text NOT NULL,
   PRIMARY KEY (`id`),

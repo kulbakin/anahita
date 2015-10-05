@@ -26,7 +26,7 @@
 	if ($this->user->get('lastvisitDate') == "0000-00-00 00:00:00") {
 		$lvisit = JText::_( 'Never' );
 	} else {
-		$lvisit	= JHTML::_('date', $this->user->get('lastvisitDate'), '%Y-%m-%d %H:%M:%S');
+		$lvisit	= JHTML::_('date', $this->user->get('lastvisitDate'), '%Y-%m-%d %H:%M:%S').' @ '.$this->user->get('lastvisitIp');
 	}
 ?>
 <script language="javascript" type="text/javascript">

@@ -82,7 +82,7 @@ JToolBarHelper::help('screen.users');
                 if ($row->lastvisitDate == "0000-00-00 00:00:00") {
                     $lvisit = JText::_('Never');
                 } else {
-                    $lvisit = JHTML::_('date', $row->lastvisitDate, '%Y-%m-%d %H:%M:%S');
+                    $lvisit = JHTML::_('date', $row->lastvisitDate, '%Y-%m-%d %H:%M:%S').' @ '.$row->lastvisitIp;
                 }
                 ?>
                 <tr class="<?php echo "row$k"; ?>">
