@@ -30,22 +30,22 @@ JToolBarHelper::help('screen.users');
     <table class="adminlist" cellpadding="1">
         <thead>
             <tr>
-                <th width="2%" class="title">
+                <th width="1%" class="title">
                     <?php echo JText::_('NUM'); ?>
                 </th>
-                <th width="3%" class="title">
+                <th width="1%" class="title">
                     <input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($this->items); ?>);" />
                 </th>
                 <th class="title">
                     <?php echo JHTML::_('grid.sort', 'Name', 'a.name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                 </th>
-                <th width="15%" class="title" >
+                <th width="1%" class="title" >
                     <?php echo JHTML::_('grid.sort', 'Username', 'a.username', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                 </th>
-                <th width="5%" class="title" nowrap="nowrap">
+                <th width="1%" class="title" nowrap="nowrap">
                     <?php echo JText::_('Logged In'); ?>
                 </th>
-                <th width="5%" class="title" nowrap="nowrap">
+                <th width="1%" class="title" nowrap="nowrap">
                     <?php echo JHTML::_('grid.sort', 'Enabled', 'a.block', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                 </th>
                 <th width="15%" class="title">
