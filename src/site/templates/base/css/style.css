@@ -1915,7 +1915,7 @@ table th[class*="span"],
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("images/glyphicons-halflings.png");
+  background-image: url("../images/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
@@ -1934,7 +1934,7 @@ table th[class*="span"],
 .dropdown-menu > .active > a > [class*=" icon-"],
 .dropdown-submenu:hover > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"] {
-  background-image: url("images/glyphicons-halflings-white.png");
+  background-image: url("../images/glyphicons-halflings-white.png");
 }
 .icon-glass {
   background-position: 0      0;
@@ -5122,7 +5122,7 @@ a:hover {
 }
 .navbar a.brand.brand-logo {
   padding: 12px 10px 12px 60px;
-  background: url(images/logo.png) 10px 5px no-repeat transparent;
+  background: url(../images/logo.png) 10px 5px no-repeat transparent;
 }
 .navbar ul.nav > li > a {
   padding: 12px 10px;
@@ -5434,10 +5434,10 @@ form.inline-edit .form-actions {
   font-size: 12px;
 }
 .uiActivityIndicator {
-  background: url(images/spinner.gif) center center no-repeat;
+  background: url(../../../media/lib_anahita/images/spinner.gif) center center no-repeat;
 }
 .defaultSkin .mceProgress {
-  background: url(images/spinner.gif) center center no-repeat !important;
+  background: url(../../../media/lib_anahita/images/spinner.gif) center center no-repeat !important;
 }
 ul.an-navigations li {
   line-height: 21px;
@@ -6098,7 +6098,7 @@ ul.autocompleter-choices span.autocompleter-queried {
   cursor: pointer;
 }
 #mbOverlay.mbOverlayOpaque {
-  background: transparent url(images/mediabox/80.png) repeat;
+  background: transparent url(../images/mediabox/80.png) repeat;
 }
 #mbOverlay.mbOverlayAbsolute {
   position: absolute;
@@ -6124,7 +6124,7 @@ ul.autocompleter-choices span.autocompleter-queried {
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
 }
 #mbCenter.mbLoading {
-  background: #000000 url(images/spinner.gif) no-repeat center;
+  background: #000000 url(../../../media/lib_anahita/images/spinner.gif) no-repeat center;
   -webkit-box-shadow: none;
   -khtml-box-shadow: none;
   -moz-box-shadow: none;
@@ -6234,7 +6234,7 @@ ul.autocompleter-choices span.autocompleter-queried {
   cursor: pointer;
 }
 .an-media-video-thumbnail span {
-  background: url("images/icon-play.png") no-repeat center;
+  background: url("../images/icon-play.png") no-repeat center;
   opacity: 0.5;
   position: absolute;
   display: block;
@@ -6251,7 +6251,7 @@ ul.autocompleter-choices span.autocompleter-queried {
 .icon-twitter,
 .icon-feed,
 .icon-linkedin {
-  background: url('images/icon-socialmedia.png') no-repeat top left;
+  background: url('../images/icon-socialmedia.png') no-repeat top left;
   width: 16px;
   height: 16px;
 }
@@ -6310,7 +6310,7 @@ ul.autocompleter-choices span.autocompleter-queried {
 .btn-feed .icon-linkedin,
 .btn-linkedin .icon-linkedin,
 .btn-pinterest .icon-linkedin {
-  background-image: url('images/icon-socialmedia-white.png');
+  background-image: url('../images/icon-socialmedia-white.png');
   color: #ffffff;
 }
 .btn-facebook.selected,
@@ -6900,7 +6900,7 @@ ul.autocompleter-choices span.autocompleter-queried {
 .icon-mastercard,
 .icon-paypal,
 .icon-visa {
-  background: url("images/icon-payments.png") no-repeat;
+  background: url("../images/icon-payments.png") no-repeat;
   padding: 6px 16px;
   margin: 4px;
 }
@@ -6932,7 +6932,7 @@ ul.autocompleter-choices span.autocompleter-queried {
   padding: 10px;
 }
 #payment-methods-container .paypal-express {
-  background: url("images/icon-payments.png") no-repeat;
+  background: url("../images/icon-payments.png") no-repeat;
   padding: 6px 16px;
   margin: 4px;
   background-position: -35px 0;
@@ -6953,25 +6953,25 @@ ul.autocompleter-choices span.autocompleter-queried {
   clear: both;
 }
 #payment-methods-container .icon-creditcards .visa {
-  background: url("images/icon-payments.png") no-repeat;
+  background: url("../images/icon-payments.png") no-repeat;
   padding: 6px 16px;
   margin: 4px;
   background-position: 0 0;
 }
 #payment-methods-container .icon-creditcards .mastercard {
-  background: url("images/icon-payments.png") no-repeat;
+  background: url("../images/icon-payments.png") no-repeat;
   padding: 6px 16px;
   margin: 4px;
   background-position: -71px 0;
 }
 #payment-methods-container .icon-creditcards .american-express {
-  background: url("images/icon-payments.png") no-repeat;
+  background: url("../images/icon-payments.png") no-repeat;
   padding: 6px 16px;
   margin: 4px;
   background-position: -144px 0;
 }
 #payment-methods-container .icon-creditcards .discover {
-  background: url("images/icon-payments.png") no-repeat;
+  background: url("../images/icon-payments.png") no-repeat;
   padding: 6px 16px;
   margin: 4px;
   background-position: -107px 0;

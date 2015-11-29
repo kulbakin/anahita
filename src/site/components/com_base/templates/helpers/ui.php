@@ -132,11 +132,15 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
             'inject'            => 'bottom',
         ), $config);
         
-        $data   = $this->getTemplate()->getData();
-        $limit  = isset($data['limit']) ? $data['limit'] : 0;
-        $offset = isset($data['start']) ? $data['start'] : 0;
-        
         if ( ! isset($config['comments'])) {
+            $data = $this->getTemplate()->getData();
+            $limit = isset($data['limit']) ? $data['limit'] : 0;
+            if ($limit and ! isset($data['start'])) { // by default show last page
+                $total = $entity->comments->getTotal();
+                $offset = max(0, $total - $limit);
+            } else {
+                $offset = isset($data['start']) ? $data['start'] : 0;
+            }
             $config['comments'] = $entity->comments->limit($limit, $offset);
         }
         
@@ -291,7 +295,7 @@ class ComBaseTemplateHelperUi extends KTemplateHelperAbstract
                 $url   = clone $config->url;
                 $query = array_merge($url->getQuery(true), array('limit' => $paginator->pages->$page->limit, 'start' => $paginator->pages->$page->offset));
                 $url->setQuery($query);
-                $config->{$page.'_page'} = (string) $url;
+                $config->{$page.'_page'} = (string)$url;
             }
         }
         

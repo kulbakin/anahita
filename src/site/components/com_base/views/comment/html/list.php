@@ -31,11 +31,13 @@
         <?= @content($body) ?>
     </div>
     
-    <div class="entity-meta">
-        <div id="vote-count-wrapper-<?= $comment->id ?>">
-            <?= @helper('ui.voters', $comment) ?>
+    <?php if ($comment->isVotable()): ?>
+        <div class="entity-meta">
+            <div id="vote-count-wrapper-<?= $comment->id ?>">
+                <?= @helper('ui.voters', $comment) ?>
+            </div>
         </div>
-    </div>
+    <?php endif ?>
     
     <div class="entity-actions">
         <?= @helper('ui.commands', @commands('list')) ?>

@@ -13,15 +13,15 @@
 class ComBaseDomainBehaviorVotable extends AnDomainBehaviorAbstract
 {
     /**
-    * Initializes the default configuration for the object
-    * 
-    * Called from {@link __construct()} as a first step of object instantiation.
-    * 
-    * @param KConfig $config An optional KConfig object with configuration options.
-    * @return void
-    */
+     * Initializes the default configuration for the object
+     * 
+     * Called from {@link __construct()} as a first step of object instantiation.
+     * 
+     * @param KConfig $config An optional KConfig object with configuration options.
+     * @return void
+     */
     protected function _initialize(KConfig $config)
-    {    
+    {
         $config->append(array(
             'attributes'    => array(
                 'voteUpCount'   => array('default' => 0, 'write' => 'private'),
@@ -80,7 +80,7 @@ class ComBaseDomainBehaviorVotable extends AnDomainBehaviorAbstract
             $votedown = $this->votedowns->findOrAddNew(array('voter' => $voter, 'votee' => $this));
         }
     }
-
+    
     /**
      * Check if a person voted up
      * 
